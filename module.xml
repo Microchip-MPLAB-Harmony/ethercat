@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Module name="EtherCAT" id="fe266d3c-d1b5-4c63-a1ca-9567c03328a5" version="1.0.0">
+    <ConfigRoot path="config/module.py"/>
+</Module>

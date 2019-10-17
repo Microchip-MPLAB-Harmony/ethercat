@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Package name="ethercat">
+    <Dependencies>
+        <Dependency name="csp" version="3.5.2"/>
+    </Dependencies>
+</Package>
