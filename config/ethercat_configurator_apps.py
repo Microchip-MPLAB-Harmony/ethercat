@@ -92,24 +92,24 @@ def instantiateComponent(etherCatComponent):
 	foeFileDownloadPassword.setDefaultValue(0x11223344)	
 	foeFileDownloadPassword.setDependencies(ethercatFoEAttrVisible, ["ETHERCAT_FOE_ENABLE"])
 	
-	enableLanDriverUse = etherCatComponent.createComboSymbol("ETHERCAT_DRIVER_ENABLE", None,ETHERCAT_DRIVER_TYPES)
-	enableLanDriverUse.setLabel("Enable Ethernet Driver Use")
-	enableLanDriverUse.setVisible(True)
-	enableLanDriverUse.setDescription("Enable Ethernet Driver Use")
-	enableLanDriverUse.setDefaultValue("None")
-	enableLanDriverUse.setDependencies(ethercatLanDriverMutualExclusiveVisible,["ETHERCAT_LAN9252_ENABLE"])
+	#enableLanDriverUse = etherCatComponent.createComboSymbol("ETHERCAT_DRIVER_ENABLE", None,ETHERCAT_DRIVER_TYPES)
+	#enableLanDriverUse.setLabel("Enable Ethernet Driver Use")
+	#enableLanDriverUse.setVisible(True)
+	#enableLanDriverUse.setDescription("Enable Ethernet Driver Use")
+	#enableLanDriverUse.setDefaultValue("None")
+	#enableLanDriverUse.setDependencies(ethercatLanDriverMutualExclusiveVisible,["ETHERCAT_LAN9252_ENABLE"])
 	
 	# LAN9252 driver configuration
-	ethercatLan9252Info = etherCatComponent.createBooleanSymbol("ETHERCAT_LAN9252_INFO", enableLanDriverUse)	
-	ethercatLan9252Info.setVisible(False)
-	ethercatLan9252Info.setDefaultValue(False)
-	ethercatLan9252Info.setDependencies(ethercatLan9252DriverInfoVisible, ["ETHERCAT_DRIVER_ENABLE"])
+	#ethercatLan9252Info = etherCatComponent.createBooleanSymbol("ETHERCAT_LAN9252_INFO", enableLanDriverUse)	
+	#ethercatLan9252Info.setVisible(False)
+	#ethercatLan9252Info.setDefaultValue(False)
+	#ethercatLan9252Info.setDependencies(ethercatLan9252DriverInfoVisible, ["ETHERCAT_DRIVER_ENABLE"])
 
 	# LAN9253 driver Configuration
-	ethercatLan9253Info = etherCatComponent.createBooleanSymbol("ETHERCAT_LAN9253_INFO", enableLanDriverUse)	
-	ethercatLan9253Info.setVisible(False)
-	ethercatLan9253Info.setDefaultValue(False)
-	ethercatLan9253Info.setDependencies(ethercatLan9253DriverInfoVisible, ["ETHERCAT_DRIVER_ENABLE"])
+	#ethercatLan9253Info = etherCatComponent.createBooleanSymbol("ETHERCAT_LAN9253_INFO", enableLanDriverUse)	
+	#ethercatLan9253Info.setVisible(False)
+	#ethercatLan9253Info.setDefaultValue(False)
+	#ethercatLan9253Info.setDependencies(ethercatLan9253DriverInfoVisible, ["ETHERCAT_DRIVER_ENABLE"])
 		
 	# config/ethercat_template/ecat_main.h to root of the path
 	ecatMainHeaderFile = etherCatComponent.createFileSymbol(None, None)
