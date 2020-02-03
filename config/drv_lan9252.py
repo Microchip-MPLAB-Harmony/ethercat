@@ -45,6 +45,15 @@ def instantiateComponent(ethercatLan9252Component):
 	lan9252SourceFile.setProjectPath("config/" + configName + "/driver/lan9252/")
 	lan9252SourceFile.setType("SOURCE")
 	lan9252SourceFile.setEnabled(True)
+	
+	# set TCP/IP include paths
+	lan9252DriverDefSym = ethercatLan9252Component.createSettingSymbol("ETHERCAT_LAN9252_INCLUDE_DIRS", None)
+	lan9252DriverDefSym.setCategory("C32")
+	lan9252DriverDefSym.setKey("extra-include-directories")
+	lan9252DriverDefSym.setValue( "../src/config/" + configName
+						+ "/driver/lan9252"
+						)
+	lan9252DriverDefSym.setAppend(True, ";")
 
 #def onAttachmentConnected(source, target):
 #	if (source["id"] == "LAN9252_SPI_Dependency"): 

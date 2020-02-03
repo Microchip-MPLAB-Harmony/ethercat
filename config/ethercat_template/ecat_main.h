@@ -37,7 +37,7 @@
 #ifndef ETHER_CAT_MAIN_H
 #define ETHER_CAT_MAIN_H
 #include "definitions.h"
-#include "ssc/ecat_def.h"
+#include "ecat_def.h"
 
 
 /* Global Data Types */
@@ -110,7 +110,8 @@ void	stop_timer(void);
 void	start_timer(void);
 void	HW_SetLed(UINT8 RunLed, UINT8 ErrLed);
 void	EtherCATInit();
-
+void CRITICAL_SECTION_ENTER(void);
+void CRITICAL_SECTION_LEAVE(void);
 #ifdef __cplusplus
 }
 #endif

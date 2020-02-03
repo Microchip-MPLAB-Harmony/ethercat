@@ -145,10 +145,17 @@ def instantiateComponent(etherCatComponent):
 	etheercatSlaveStackcodeDirPath.setVisible(True)
 	etheercatSlaveStackcodeDirPath.setDescription("Configure Slave Stack directory path")
 	etheercatSlaveStackcodeDirPath.setDefaultValue(Module.getPath() + "slave_stack")
-   
+	
 	
 	execfile(Module.getPath() + "/config/ethercatSlaveStack.py")
-
+	
+	# set TCP/IP include paths
+	slaveStackDefSym = etherCatComponent.createSettingSymbol("ETHERCAT_SLAVE_STACK_INCLUDE_DIRS", None)
+	slaveStackDefSym.setCategory("C32")
+	slaveStackDefSym.setKey("extra-include-directories")
+	slaveStackDefSym.setValue( "../src/slave_stack")
+	slaveStackDefSym.setAppend(True, ";")
+	
 	
 def ethercatFoEAttrVisible(symbol, event):
 	if (event["value"] == True):

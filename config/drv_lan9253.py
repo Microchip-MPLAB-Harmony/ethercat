@@ -26,7 +26,15 @@ def instantiateComponent(ethercatLan9253Component):
 	print("Ethercat LAN 9253 Driver Component")
 	configName = Variables.get("__CONFIGURATION_NAME")
 	
-
+	# set TCP/IP include paths
+	lan9253DriverDefSym = ethercatLan9253Component.createSettingSymbol("ETHERCAT_LAN9253_INCLUDE_DIRS", None)
+	lan9253DriverDefSym.setCategory("C32")
+	lan9253DriverDefSym.setKey("extra-include-directories")
+	lan9253DriverDefSym.setValue( "../src/config/" + configName
+						+ "/driver/lan9253"
+						)
+	lan9253DriverDefSym.setAppend(True, ";")
+	
 #def onAttachmentConnected(source, target):
 #	if (source["id"] == "LAN9253_SPI_Dependency"): 
 #		Database.setSymbolValue("ethercat_lan9253", None, target["component"].getDisplayName(),2)

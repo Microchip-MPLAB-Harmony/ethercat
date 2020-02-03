@@ -34,7 +34,7 @@
  * Support and FAQ: visit <a href="https://www.microchip.com/support/">Microchip Support</a>
  */
 
-#include "ssc/9252_HW.h"
+#include "9252_HW.h"
 //#include "peripheral_clk_config.h"
 #include "ecat_main.h"
 
@@ -43,17 +43,39 @@
 struct io_descriptor *io;
 void *EtherCAT_Sercom = NULL;
 
-volatile int      processorStatus = 0;        // lock protection counter
      
+volatile int      processorStatus_eic0 = 0;        // lock protection counter
+volatile int      processorStatus_eic7 = 0;        // lock protection counter
+void ECAT_SPI_Write_EnterAndLeave_Critical(void* pTransmitData, size_t txSize)
+{
+    int sysIntStatus=0;
+    sysIntStatus = SYS_INT_Disable();
+    QSPI_Write(pTransmitData, txSize);
+    SYS_INT_Restore(sysIntStatus);
+}
+
+void ECAT_SPI_Read_EnterAndLeave_Critical(void* pReceiveData, size_t rxSize)
+{
+    int sysIntStatus=0;
+    sysIntStatus = SYS_INT_Disable();
+    QSPI_Write(pReceiveData, rxSize);
+    SYS_INT_Restore(sysIntStatus);
+}
 #ifdef DC_SUPPORTED
 void CRITICAL_SECTION_ENTER(void)
 {
-    processorStatus = SYS_INT_Disable();
+    //processorStatus = SYS_INT_Disable();
+    //processorStatus_eic0 =  SYS_INT_SourceDisable(EIC_EXTINT_0_IRQn);
+   // processorStatus_eic7 =  SYS_INT_SourceDisable(EIC_EXTINT_7_IRQn);
+    __set_BASEPRI(4 << (8 - __NVIC_PRIO_BITS));
 }
 
 void CRITICAL_SECTION_LEAVE(void)
 {
-    SYS_INT_Restore( processorStatus );
+    //SYS_INT_Restore( processorStatus );
+    //SYS_INT_SourceRestore(EIC_EXTINT_0_IRQn,processorStatus_eic0);
+    //SYS_INT_SourceRestore(EIC_EXTINT_7_IRQn,processorStatus_eic7);
+    __set_BASEPRI(0U); // remove the BASEPRI masking
 }
 /*******************************************************************************
     Function:
@@ -64,11 +86,13 @@ void CRITICAL_SECTION_LEAVE(void)
 *******************************************************************************/
 void ether_cat_sync0_cb()
 {
-	//CRITICAL_SECTION_ENTER();
-    
+	CRITICAL_SECTION_ENTER();
+
 	Sync0_Isr();
-   
-	//CRITICAL_SECTION_LEAVE();
+    while(QSPI_IsBusy())
+    {
+    }
+	CRITICAL_SECTION_LEAVE();
 }
 
 /*******************************************************************************
@@ -80,8 +104,13 @@ void ether_cat_sync0_cb()
 *******************************************************************************/
 void ether_cat_sync1_cb()
 {
-	//CRITICAL_SECTION_ENTER();   
+	//CRITICAL_SECTION_ENTER();
+
 	Sync1_Isr();
+  
+    while(QSPI_IsBusy())
+    {
+    }
 	//CRITICAL_SECTION_LEAVE();
    
 }
@@ -96,9 +125,9 @@ void ether_cat_sync1_cb()
 void PDI_Init_SYNC_Interrupts()
 {
     // SYNC0 interrupt callback 
-    EIC_CallbackRegister(EIC_PIN_15,ether_cat_sync0_cb, 0);
+    EIC_CallbackRegister(EIC_PIN_0,ether_cat_sync0_cb, 0);
     // SYNC1 interrupt callback 
-    EIC_CallbackRegister(EIC_PIN_0,ether_cat_sync1_cb, 0);
+    EIC_CallbackRegister(EIC_PIN_1,ether_cat_sync1_cb, 0);
 }
 #endif // DC_SUPPORTED
 
@@ -112,12 +141,12 @@ void PDI_Init_SYNC_Interrupts()
 void ether_cat_escirq_cb()
 {
 	//CRITICAL_SECTION_ENTER();
-//    
-//    while(SERCOM4_SPI_IsBusy())
-//    {
-//        
-//    }
-	PDI_Isr();
+
+	PDI_Isr();    
+
+    while(QSPI_IsBusy())
+    {        
+    }
 	//CRITICAL_SECTION_LEAVE();
    
 }
@@ -132,7 +161,7 @@ void ether_cat_escirq_cb()
 void PDI_IRQ_Interrupt()
 {
     // External interrupt callback 
-    EIC_CallbackRegister(EIC_PIN_6,ether_cat_escirq_cb, 0);
+    EIC_CallbackRegister(EIC_PIN_7,ether_cat_escirq_cb, 0);
 }
 
 /*******************************************************************************
@@ -144,7 +173,7 @@ void PDI_IRQ_Interrupt()
 *******************************************************************************/
 void SPIChipSelectSet(void)
 {
-    SPI_CS_Set();
+   SPI_CS_Set();
 }
 
 /*******************************************************************************
@@ -168,7 +197,7 @@ void SPIChipSelectClr(void)
 *******************************************************************************/
 void EtherCATTestPinSet(void)
 {
-    Ethercat_Test_Set();
+    //Ethercat_Test_Set();
 }
 
 /*******************************************************************************
@@ -180,7 +209,7 @@ void EtherCATTestPinSet(void)
 *******************************************************************************/
 void EtherCATTestPinClr(void)
 {
-    Ethercat_Test_Clear();
+    //Ethercat_Test_Clear();
 }
 
 void SPIreadWriteTest(void)
@@ -192,11 +221,13 @@ void SPIreadWriteTest(void)
     
     for(count =0;count<100;)
     {
-        SPIWrite(adr+count,(uint8_t*)&data);
-        SPIRead(adr+count,(uint8_t*)&rdData);
-        
+       // SPIWrite(adr+count,(uint8_t*)&data);
+        //SPIRead(adr+count,(uint8_t*)&rdData);
+        HW_EscWrite((MEM_ADDR*)&data,adr+count,4);
+        HW_EscRead((MEM_ADDR*)&rdData,adr+count,4);
         if(data != rdData)
         {
+           // SPIRead(0x64,(uint8_t*)&rdData);
             break;
         }
         count= count+4;
@@ -212,7 +243,7 @@ void SPIreadWriteTest(void)
 
 void SPIWrite(uint16_t adr, uint8_t *data)
 {
-    int      processorStatus = 0;        // lock protection counter
+    //int      processorStatus = 0;        // lock protection counter
 	uint8_t len = 4;
     uint8_t  txData[4]={0,0,0,0};
 
@@ -221,16 +252,18 @@ void SPIWrite(uint16_t adr, uint8_t *data)
     txData[1] = (uint8_t)(adr >> 8);
     txData[2] = (uint8_t)adr;
     SPIChipSelectClr();
-	processorStatus = SYS_INT_Disable();
-    SERCOM4_SPI_Write(txData, 3);
-    SYS_INT_Restore(processorStatus);
-    while(SERCOM4_SPI_IsBusy());
+    
+    CRITICAL_SECTION_ENTER();
+    while(QSPI_IsBusy());
+	
+    QSPI_Write(txData,3);
+    
+    while(QSPI_IsBusy());
 
-    processorStatus = SYS_INT_Disable();
-    SERCOM4_SPI_Write(data, len);
-    SYS_INT_Restore(processorStatus);
-    while(SERCOM4_SPI_IsBusy());
-
+    QSPI_Write(data, len);
+   
+    while(QSPI_IsBusy());
+    CRITICAL_SECTION_LEAVE();
     SPIChipSelectSet();
     //CRITICAL_SECTION_LEAVE();
     
@@ -246,39 +279,36 @@ void SPIWrite(uint16_t adr, uint8_t *data)
 
 void SPIRead(uint16_t adr, uint8_t *data)
 {
-	//uint8_t dummy = 0;
-    int processorStatus =0;
 	uint8_t len = 4;
     uint8_t  txData[4]={0,0,0,0};
     uint8_t  rxData[4]={0,0,0,0};
     
     //CRITICAL_SECTION_ENTER();
     SPIChipSelectClr();
-
+    CRITICAL_SECTION_ENTER();
 	txData[0] = CMD_SERIAL_READ;
     txData[1] = (uint8_t)(adr >> 8);
     txData[2] = (uint8_t)adr;
 	//while(SERCOM4_SPI_IsBusy());
-    processorStatus = SYS_INT_Disable();
-    SERCOM4_SPI_Write(txData, 3);
-    SYS_INT_Restore(processorStatus);
-    while(SERCOM4_SPI_IsBusy());
-	
-    processorStatus = SYS_INT_Disable();
-    SERCOM4_SPI_Read(rxData, len);
-    SYS_INT_Restore(processorStatus);
     
-    while(SERCOM4_SPI_IsBusy());
+    while(QSPI_IsBusy());
+    QSPI_Write(txData, 3);
+    
+    while(QSPI_IsBusy());
+	
+    QSPI_Read(rxData, len);
+    
+    while(QSPI_IsBusy());
     
     memcpy(data,rxData,len);
+    CRITICAL_SECTION_LEAVE();
 	SPIChipSelectSet();
-    //CRITICAL_SECTION_LEAVE();
+    
 
 }
 
 void ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len) 
 {
-    int     processorStatus = 0;
 	UINT32_VAL param32_1;
 	UINT8 startAlignSize, EndAlignSize;
 	UINT8 dummy = 0;
@@ -301,64 +331,51 @@ void ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
 
    //CRITICAL_SECTION_ENTER();
 	/* Read SPI FIFO */
+    
 	SPIChipSelectClr();
-
+    
+    CRITICAL_SECTION_ENTER();
     txData[0] = CMD_SERIAL_READ;
     txData[1] = (uint8_t)0;
     txData[2] = (uint8_t)0x04;
 	
-    processorStatus = SYS_INT_Disable();
-    SERCOM4_SPI_Write(txData, 3);
-    SYS_INT_Restore(processorStatus);
+    while(QSPI_IsBusy());
     
-    while(SERCOM4_SPI_IsBusy());
+    QSPI_Write(txData, 3);
+    
+    while(QSPI_IsBusy());
     
     while (startAlignSize--)
 	{
-        processorStatus = SYS_INT_Disable();
-		SERCOM4_SPI_Write(&dummy,1);
-        SYS_INT_Restore(processorStatus);
+		QSPI_Write(&dummy,1);
         
-		while(SERCOM4_SPI_IsBusy());
+		while(QSPI_IsBusy());
         
-        processorStatus = SYS_INT_Disable();
-		SERCOM4_SPI_Read(&dummy,1);
-        SYS_INT_Restore(processorStatus);
+		QSPI_Read(&dummy,1);
         
-        while(SERCOM4_SPI_IsBusy());
+        while(QSPI_IsBusy());
 	}
     
     while (Len--)
 	{
-//        processorStatus = SYS_INT_Disable();
-//		SERCOM4_SPI_Write(&dummy,1);
-//        SYS_INT_Restore(processorStatus);
-//        
-//		while(SERCOM4_SPI_IsBusy());
-        
-        processorStatus = SYS_INT_Disable();
-		SERCOM4_SPI_Read(rxData,1);
-        SYS_INT_Restore(processorStatus);
-        
-        while(SERCOM4_SPI_IsBusy());
+		QSPI_Read(rxData,1);
+    
+        while(QSPI_IsBusy());
         *pData++ = rxData[0];
 	}
     
 
     while (EndAlignSize--)
 	{
-        processorStatus = SYS_INT_Disable();
-		SERCOM4_SPI_Write(&dummy,1);
-        SYS_INT_Restore(processorStatus);
+		QSPI_Write(&dummy,1);
         
-		while(SERCOM4_SPI_IsBusy());
+		while(QSPI_IsBusy());
         
-        processorStatus = SYS_INT_Disable();
-		SERCOM4_SPI_Read(&dummy,1);
-        SYS_INT_Restore(processorStatus);
+		QSPI_Read(&dummy,1);
         
-        while(SERCOM4_SPI_IsBusy());
+        while(QSPI_IsBusy());
 	}
+    CRITICAL_SECTION_LEAVE();
 	SPIChipSelectSet();
     //CRITICAL_SECTION_LEAVE();
     
@@ -366,12 +383,10 @@ void ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
 
 void WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len) 
 {
-    int processorStatus=0;
 	UINT32_VAL param32_1;
 	UINT8 startAlignSize, EndAlignSize;
 	UINT8 dummy = 0;
     uint8_t  txData[4]={0,0,0,0};
-//    uint8_t  rxData[4];
     
 	/* Address and length */
 	param32_1.w[0] = Address;
@@ -391,41 +406,36 @@ void WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
     /* Writing to FIFO */
     SPIChipSelectClr();
 
+    CRITICAL_SECTION_ENTER();
 	txData[0] = CMD_SERIAL_WRITE;
     txData[1] = (uint8_t)0;
     txData[2] = (uint8_t)0x20;
 
-    processorStatus = SYS_INT_Disable();
-    SERCOM4_SPI_Write(txData, 3);
-    SYS_INT_Restore(processorStatus);
-    while(SERCOM4_SPI_IsBusy());
+    while(QSPI_IsBusy());
+    
+    QSPI_Write(txData, 3);
+    while(QSPI_IsBusy());
     while (startAlignSize--)
 	{
-        processorStatus = SYS_INT_Disable();
-        SERCOM4_SPI_Write(&dummy,1);
-        SYS_INT_Restore(processorStatus);
-        while((SERCOM4_SPI_IsBusy()));
+        QSPI_Write(&dummy,1);
+        while((QSPI_IsBusy()));
 	}
     
     while (Len--)
 	{        
         txData[0] = *pData;
-        processorStatus = SYS_INT_Disable();
-		SERCOM4_SPI_Write(txData,1);
-        SYS_INT_Restore(processorStatus);
-        while(SERCOM4_SPI_IsBusy());
+		QSPI_Write(txData,1);
+        while(QSPI_IsBusy());
         pData++;
 	}
 
     while (EndAlignSize--)
 	{        
         txData[0] = dummy;
-        processorStatus = SYS_INT_Disable();
-		SERCOM4_SPI_Write(txData,1);
-        SYS_INT_Restore(processorStatus);
-        while(SERCOM4_SPI_IsBusy());
+		QSPI_Write(txData,1);
+        while(QSPI_IsBusy());
 	}
-
+    CRITICAL_SECTION_LEAVE();
     SPIChipSelectSet();
     //CRITICAL_SECTION_LEAVE();
    
