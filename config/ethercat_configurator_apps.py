@@ -67,7 +67,7 @@ def instantiateComponent(etherCatComponent):
 	
 	#SSC Stack need will be included to the MPLABx project manually. It is not MHC generated
 	sscStackComment = etherCatComponent.createCommentSymbol("EtherCATSlaveStackComment", None)
-	sscStackComment.setLabel("Note: SlaveStackCode should be included manually to the project after required generation.")
+	sscStackComment.setLabel("Note: Generated SlaveStackCode should be included manually in the project.")
 	
 	# Enable FOE
 	ethercatFOEEnable = etherCatComponent.createBooleanSymbol("ETHERCAT_FOE_ENABLE", None)

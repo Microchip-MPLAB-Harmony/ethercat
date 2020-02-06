@@ -26,20 +26,20 @@ def instantiateComponent(ethercatLan9252Component):
 	print("Ethercat LAN 9252 Driver Component")
 	configName = Variables.get("__CONFIGURATION_NAME")
 	
-	# driver/lan9252/9252_HW.h to config/<configName>/driver/lan9252/9252_HW.h
+	# driver/lan9252/drv_lan9252.h to config/<configName>/driver/lan9252/drv_lan9252.h
 	lan9252HeaderFile = ethercatLan9252Component.createFileSymbol(None, None)
-	lan9252HeaderFile.setSourcePath("driver/lan9252/9252_HW.h")
-	lan9252HeaderFile.setOutputName("9252_HW.h")
+	lan9252HeaderFile.setSourcePath("driver/lan9252/drv_lan9252.h")
+	lan9252HeaderFile.setOutputName("drv_lan9252.h")
 	lan9252HeaderFile.setDestPath("driver/lan9252/")
 	lan9252HeaderFile.setProjectPath("config/" + configName + "/driver/lan9252/")
 	lan9252HeaderFile.setType("HEADER")
 	lan9252HeaderFile.setOverwrite(True)
 	lan9252HeaderFile.setEnabled(True)	
 	
-	# file driver/lan9252/9252_HW.c to config/<configName>/driver/lan9252/9252_HW.c    
+	# file driver/lan9252/drv_lan9252.c to config/<configName>/driver/lan9252/drv_lan9252.c    
 	lan9252SourceFile = ethercatLan9252Component.createFileSymbol(None, None)
-	lan9252SourceFile.setSourcePath("driver/lan9252/9252_HW.c")
-	lan9252SourceFile.setOutputName("9252_HW.c")
+	lan9252SourceFile.setSourcePath("driver/lan9252/drv_lan9252.c")
+	lan9252SourceFile.setOutputName("drv_lan9252.c")
 	lan9252SourceFile.setOverwrite(True)
 	lan9252SourceFile.setDestPath("driver/lan9252/")
 	lan9252SourceFile.setProjectPath("config/" + configName + "/driver/lan9252/")
