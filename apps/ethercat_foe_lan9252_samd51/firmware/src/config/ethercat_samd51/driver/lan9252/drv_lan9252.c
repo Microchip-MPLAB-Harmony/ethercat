@@ -5,7 +5,7 @@
     Microchip Technology Inc.
 
   File Name
-    9252_HW.c
+    drv_lan9252.c
 
   Summary
     This file  contains the functional implementation of LAN9252 Hardware 
@@ -46,10 +46,10 @@
 #include <stdio.h>
 #include "ecat_def.h"
 #include "ecatslv.h"
-#define _9252_HW_ 1
-#include "9252_HW.h"
-#undef _9252_HW_
-#define _9252_HW_ 0
+#define _LAN9252_ 1
+#include "drv_lan9252.h"
+#undef _LAN9252_
+#define _LAN9252_ 0
 #include "ecatappl.h"
 
 

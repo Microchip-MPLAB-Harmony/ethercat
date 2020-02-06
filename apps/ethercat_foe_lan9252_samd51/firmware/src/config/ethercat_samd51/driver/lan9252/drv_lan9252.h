@@ -5,7 +5,7 @@
     Microchip Technology Inc.
 
   File Name
-    9252_HW.h
+    drv_lan9252.h
 
   Summary
     This file  contains the functional implementation of LAN9252 Hardware 
@@ -44,8 +44,8 @@
 *******************************************************************************/
 // DOM-IGNORE-END
 
-#ifndef _9252_HW_H_
-#define _9252_HW_H_
+#ifndef _LAN9252_H_
+#define _LAN9252_H_
 
 /* Includes */
 #include "esc.h"
@@ -156,7 +156,7 @@
 	    ((MEM_ADDR *)&(ByteValue)), ((UINT16)(Address)), 1) /**< \brief Interrupt specific 8Bit ESC write access*/
 
 /* PROTO DEFINES */
-#if _9252_HW_
+#if _lan9252_
 #define PROTO
 #else
 #define PROTO extern

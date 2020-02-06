@@ -1,6 +1,5 @@
 /*
-* This source file is part of the EtherCAT Slave Stack Code licensed by Beckhoff Automation GmbH & Co KG, 33415 Verl, Germany.
-* The corresponding license agreement applies. This hint shall not be removed.
+* This source file is modified for PDO input and output processing
 */
 
 /**
@@ -31,7 +30,13 @@
 
 #include "bootmode.h"
 #include "configuration.h"
+#include "app.h"
 
+
+UINT32  gTriggerCounterValMeasure=0;
+UINT32  gFOETestFrameSize=1;
+
+#if defined(ETHERCAT_USE_FOE)
 #define FOE_FILEDOWNLOAD_PASSWORD ETHERCAT_FOE_FILE_DOWNLOAD_PASSWORD
 /*--------------------------------------------------------------------------------------
 ------
@@ -41,8 +46,8 @@
 #define    MAX_FILE_NAME_SIZE    ETHERCAT_FOE_FILE_NAME_LENGTH
 
 /** \brief  MAX_FILE_SIZE: Maximum file size */
-#define MAX_FILE_SIZE	0x40000	// SAMD51 Bank A/B Size
-#define MAX_BLOCK_SIZE  0x2000	// SAMD51 Block Size
+#define MAX_FILE_SIZE	APP_MAX_NVM_BANK_SIZE   //SAMD51 Bank A/B Size
+#define MAX_BLOCK_SIZE  APP_ERASE_BLOCK_SIZE    //SAMD51 Block Size
 /*-----------------------------------------------------------------------------------------
 ------
 ------    local variables and constants
@@ -52,14 +57,12 @@ UINT32			nFileWriteOffset=0;
 UINT32			nFileStartWriteAddress=0;
 CHAR			aFileName[MAX_FILE_NAME_SIZE];
 UINT8			aFileData[MAX_BLOCK_SIZE];
-//static BOOL		flash_data_ready = FALSE;
 
 UINT32			u32FileSize=0;
 volatile BOOL	gFirmwareDownload_Started = FALSE;
 volatile BOOL	gFirmwareDownload_Finished = FALSE;
 
-UINT32  gTriggerCounterValMeasure=0;
-UINT32  gFOETestFrameSize=1;
+
 
 
 /*-----------------------------------------------------------------------------------------
@@ -67,7 +70,6 @@ UINT32  gFOETestFrameSize=1;
 ------    application specific functions
 ------
 -----------------------------------------------------------------------------------------*/
-extern void flash_write_task(UINT32 startAddress,UINT8 *flash_data);
 
 void APP_FW_startDownload(void)
 {
@@ -191,7 +193,7 @@ UINT16 FoE_WriteData(UINT16 MBXMEM * pData, UINT16 Size, BOOL bDataFollowing)
 			MBXMEMCPY(&aFileData[nFileWriteOffset], (UINT8*)pData, u32FileSize);
 			nFileWriteOffset += u32FileSize;
 			
-			flash_write_task(nFileStartWriteAddress, aFileData);
+			APP_FlashWrite(nFileStartWriteAddress, aFileData);
 			nFileStartWriteAddress += nFileWriteOffset;
 			
 			pData = (UINT16 MBXMEM *)((UINT8*)pData + u32FileSize);
@@ -214,11 +216,12 @@ UINT16 FoE_WriteData(UINT16 MBXMEM * pData, UINT16 Size, BOOL bDataFollowing)
 				u32FileSize = MAX_BLOCK_SIZE - nFileWriteOffset;
 				MBXMEMSET(&aFileData[nFileWriteOffset], 0xFF, u32FileSize);
 			}
-			flash_write_task(nFileStartWriteAddress, aFileData);
+			APP_FlashWrite(nFileStartWriteAddress, aFileData);
 			nFileStartWriteAddress += nFileWriteOffset; 
 			nFileWriteOffset = 0;
 		}
     }
+
     return 0;
 }
 
@@ -278,7 +281,7 @@ void BL_FOE_Application(void)
 	u32FileSize = 0;
 }
 
-
+#endif
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /**
@@ -323,7 +326,9 @@ UINT16 APPL_StartMailboxHandler(void)
 
 UINT16 APPL_StopMailboxHandler(void)
 {
+#if defined(ETHERCAT_USE_FOE)
 	APP_FW_StateBOOTtoINIT();
+#endif    
     return ALSTATUSCODE_NOERROR;
 }
 

@@ -36,81 +36,34 @@
 #include "slave_stack/applInterface.h"
 #include "slave_stack/sample_app.h"
 
+#if defined(ETHERCAT_USE_FOE)  
 //-----------------------------------------------------------------------------
-#define BOOTLOADER_SIZE       0
-#define NVM_START_ADDRESS     (0x40000)
-#define PAGE_SIZE             FLASH_PAGE_SIZE
-#define ERASE_BLOCK_SIZE      8192
-#define PAGES_IN_ERASE_BLOCK  ERASE_BLOCK_SIZE/PAGE_SIZE
+const uint32_t gAppBankBOffsetAddr = APP_NVM_BANKB_START_ADDRESS;
+// Bank B application need to started from this below location.
+const uint32_t gApplicationStartAddr   = (uint32_t)(APP_NVM_BANKB_START_ADDRESS + APP_BOOTLOADER_SIZE);
 
-#define DATA_SIZE             ERASE_BLOCK_SIZE
-#define WORDS(x)              ((int)((x) / sizeof(uint32_t)))
-
-
-static uint32_t flash_addr = NVM_START_ADDRESS;
-volatile uint32_t APPLICATION_START   =  (FLASH_ADDR + BOOTLOADER_SIZE);
-
-
-#if 0
-void flash_write_task(UINT32 startAddress,UINT8 *flash_data)
+void APP_FlashWrite( uint32_t startAddress,uint8_t *flash_data )
 {
-	uint32_t *dst = (uint32_t *)(flash_addr+startAddress);
-	uint32_t *src = (uint32_t *)flash_data;
-
-	NVMCTRL_REGS->NVMCTRL_ADDR = flash_addr+startAddress;
-
-	// Lock region size is always bigger than the row size
-	NVMCTRL_REGS->NVMCTRL_CTRLB = NVMCTRL_CTRLB_CMDEX_KEY | NVMCTRL_CTRLB_CMD_UR;
-	while(NVMCTRL_IsBusy());
-
-	NVMCTRL_REGS->NVMCTRL_CTRLB = NVMCTRL_CTRLB_CMDEX_KEY | NVMCTRL_CTRLB_CMD_EB;
-	while(NVMCTRL_IsBusy());
-
-	for (int page = 0; page < PAGES_IN_ERASE_BLOCK; page++)
-	{
-		for (int i = 0; i < WORDS(PAGE_SIZE); i++)
-			dst[i] = src[i];
-        
-        /* If write mode is manual, */
-    if ((NVMCTRL_REGS->NVMCTRL_CTRLA & NVMCTRL_CTRLA_WMODE_Msk) == NVMCTRL_CTRLA_WMODE_MAN)
-    {
-        /* Set address and command */
-        NVMCTRL_REGS->NVMCTRL_CTRLB = NVMCTRL_CTRLB_CMD_WP | NVMCTRL_CTRLB_CMDEX_KEY;
-    }
-		
-//		NVMCTRL_REGS->NVMCTRL_CTRLB = NVMCTRL_CTRLB_CMDEX_KEY | NVMCTRL_CTRLB_CMD_WP;
-		while(NVMCTRL_IsBusy());
-
-		src += WORDS(PAGE_SIZE);
-		dst += WORDS(PAGE_SIZE);
-	}
-}
-#endif
-
-//uint32_t readback[512];
-void flash_write_task(UINT32 startAddress,UINT8 *flash_data)
-{
-    uint32_t   FlashStartAddress=0;
+    uint32_t   flashStartAddress=0;
+    int         pageCnt=0;
     
-    FlashStartAddress = flash_addr+startAddress;
+    flashStartAddress = gAppBankBOffsetAddr+startAddress;
 	while(NVMCTRL_IsBusy()){}
 
     /* Erase the block */
-    NVMCTRL_BlockErase((uint32_t)FlashStartAddress);
+    NVMCTRL_BlockErase((uint32_t)flashStartAddress);
 
     while(NVMCTRL_IsBusy()){}
 
-    for (int page = 0; page < PAGES_IN_ERASE_BLOCK; page++)
+    for (pageCnt=0; pageCnt < APP_PAGES_IN_ERASE_BLOCK; pageCnt++)
 	{
         /* If write mode is manual, */
         /* Program 512 byte page */
-        NVMCTRL_PageWrite((uint32_t *)flash_data, (uint32_t)FlashStartAddress);
+        NVMCTRL_PageWrite((uint32_t *)flash_data, (uint32_t)flashStartAddress);
         while(NVMCTRL_IsBusy()){}
 
-//        memset(readback,0,sizeof(readback));
-//        NVMCTRL_Read(readback,PAGE_SIZE,FlashStartAddress);
-        flash_data = flash_data + PAGE_SIZE;
-        FlashStartAddress = FlashStartAddress + PAGE_SIZE;        
+        flash_data = flash_data + APP_PAGE_SIZE;
+        flashStartAddress = flashStartAddress + APP_PAGE_SIZE;        
 	}
 }
 
@@ -129,23 +82,21 @@ static void APP_BankSwitch(void)
 }
 
 //-----------------------------------------------------------------------------
-static void run_application(void)
+static void APP_RunApplication(void)
 {
-	uint32_t msp = *(uint32_t *)(APPLICATION_START);
-	uint32_t reset_vector = *(uint32_t *)(APPLICATION_START + 4);
+	uint32_t msp = *(uint32_t *)(gApplicationStartAddr);
+	uint32_t reset_vector = *(uint32_t *)(gApplicationStartAddr + 4);
 
 	if (0xffffffff == msp)
-	return;
+    {
+        return;
+    }
 
 	__set_MSP(msp);
 
 	asm("bx %0"::"r" (reset_vector));
 }
-// *****************************************************************************
-// *****************************************************************************
-// Section: Global Data Definitions
-// *****************************************************************************
-// *****************************************************************************
+#endif
 
 // *****************************************************************************
 /* Application Data
@@ -164,32 +115,6 @@ static void run_application(void)
 
 APP_DATA appData;
 
-// *****************************************************************************
-// *****************************************************************************
-// Section: Application Callback Functions
-// *****************************************************************************
-// *****************************************************************************
-
-/* TODO:  Add any necessary callback functions.
-*/
-
-// *****************************************************************************
-// *****************************************************************************
-// Section: Application Local Functions
-// *****************************************************************************
-// *****************************************************************************
-
-
-/* TODO:  Add any necessary local functions.
-*/
-
-
-// *****************************************************************************
-// *****************************************************************************
-// Section: Application Initialization and State Machine Functions
-// *****************************************************************************
-// *****************************************************************************
-
 /*******************************************************************************
   Function:
     void APP_Initialize ( void )
@@ -201,17 +126,7 @@ APP_DATA appData;
 void APP_Initialize ( void )
 {
     /* Place the App state machine in its initial state. */
-    appData.state = APP_STATE_INIT;
-//    EtherCATInit();
-//    MainInit();
-//
-//	BL_FOE_Application();
-//	
-//	bRunApplication = TRUE;
-
-    /* TODO: Initialize your application's state machine and other
-     * parameters.
-     */
+    appData.state = APP_STATE_INIT;   
 }
 
 
@@ -240,10 +155,11 @@ void APP_Tasks ( void )
                 // EtherCAT Initialization after NVIC initialization
                 EtherCATInit();
                 MainInit();
-
+#if defined(ETHERCAT_USE_FOE)  
                 BL_FOE_Application();
                 
                 bRunApplication = TRUE;
+#endif                
                 appData.state = APP_STATE_SERVICE_TASKS;
             }
             break;
@@ -253,30 +169,26 @@ void APP_Tasks ( void )
         {
             do
             {		
+#if defined(ETHERCAT_USE_FOE)                
                 if(APP_FW_GetDownloadStateFinished() == 1)
                 {
                     APP_BankSwitch();
-                    run_application();
+                    APP_RunApplication();
                 }
+#endif                
                 MainLoop();
 
             } while (bRunApplication == TRUE);
             break;
         }
 
-        /* TODO: implement your application state machine.*/
-
-
         /* The default state should never be executed. */
         default:
         {
-            /* TODO: Handle error in application's state machine. */
             break;
         }
     }
 }
-
-
 /*******************************************************************************
  End of File
  */

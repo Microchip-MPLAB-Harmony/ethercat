@@ -76,6 +76,15 @@
 #define SPI_CS_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = 1 << 11)
 #define SPI_CS_PIN                  PORT_PIN_PB11
 
+/*** Macros for Ethercat_Test_Pin pin ***/
+#define Ethercat_Test_Pin_Set()               (PORT_REGS->GROUP[0].PORT_OUTSET = 1 << 22)
+#define Ethercat_Test_Pin_Clear()             (PORT_REGS->GROUP[0].PORT_OUTCLR = 1 << 22)
+#define Ethercat_Test_Pin_Toggle()            (PORT_REGS->GROUP[0].PORT_OUTTGL = 1 << 22)
+#define Ethercat_Test_Pin_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 22)) & 0x01)
+#define Ethercat_Test_Pin_OutputEnable()      (PORT_REGS->GROUP[0].PORT_DIRSET = 1 << 22)
+#define Ethercat_Test_Pin_InputEnable()       (PORT_REGS->GROUP[0].PORT_DIRCLR = 1 << 22)
+#define Ethercat_Test_Pin_PIN                  PORT_PIN_PA22
+
 
 
 // *****************************************************************************

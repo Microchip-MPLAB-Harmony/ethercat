@@ -42,7 +42,7 @@ V5.01 : Start file change log
 #include "ecat_def.h"
 
 #include  "esc.h"
-#include "9252_HW.h"
+#include "drv_lan9252.h"
 
 #ifndef _ECATSLV_H_
 #define _ECATSLV_H_

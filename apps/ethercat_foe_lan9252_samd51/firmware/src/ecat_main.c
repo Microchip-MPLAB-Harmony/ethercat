@@ -43,15 +43,15 @@
 *******************************************************************************/
 // DOM-IGNORE-END
 
-#include "9252_HW.h"
-//#include "peripheral_clk_config.h"
+#include "drv_lan9252.h"
 #include "ecat_main.h"
 
 #define TIMER_INTERVAL 1 // ms
 
 struct io_descriptor *io;
 void *EtherCAT_Sercom = NULL;
-
+void PDI_Init_SYSTick_Interrupt();
+     
      
 volatile int      processorStatus_eic0 = 0;        // lock protection counter
 volatile int      processorStatus_eic7 = 0;        // lock protection counter
@@ -149,14 +149,14 @@ void PDI_Init_SYNC_Interrupts()
 *******************************************************************************/
 void ether_cat_escirq_cb()
 {
-	//CRITICAL_SECTION_ENTER();
+	CRITICAL_SECTION_ENTER();
 
 	PDI_Isr();    
 
     while(QSPI_IsBusy())
     {        
     }
-	//CRITICAL_SECTION_LEAVE();
+	CRITICAL_SECTION_LEAVE();
    
 }
 
@@ -206,7 +206,7 @@ void SPIChipSelectClr(void)
 *******************************************************************************/
 void EtherCATTestPinSet(void)
 {
-    //Ethercat_Test_Set();
+    Ethercat_Test_Pin_Set();
 }
 
 /*******************************************************************************
@@ -218,7 +218,7 @@ void EtherCATTestPinSet(void)
 *******************************************************************************/
 void EtherCATTestPinClr(void)
 {
-    //Ethercat_Test_Clear();
+    Ethercat_Test_Pin_Clear();
 }
 
 void SPIreadWriteTest(void)
@@ -230,13 +230,10 @@ void SPIreadWriteTest(void)
     
     for(count =0;count<100;)
     {
-       // SPIWrite(adr+count,(uint8_t*)&data);
-        //SPIRead(adr+count,(uint8_t*)&rdData);
         HW_EscWrite((MEM_ADDR*)&data,adr+count,4);
         HW_EscRead((MEM_ADDR*)&rdData,adr+count,4);
         if(data != rdData)
         {
-           // SPIRead(0x64,(uint8_t*)&rdData);
             break;
         }
         count= count+4;
@@ -252,11 +249,9 @@ void SPIreadWriteTest(void)
 
 void SPIWrite(uint16_t adr, uint8_t *data)
 {
-    //int      processorStatus = 0;        // lock protection counter
 	uint8_t len = 4;
     uint8_t  txData[4]={0,0,0,0};
 
-    //CRITICAL_SECTION_ENTER();
     txData[0] = CMD_SERIAL_WRITE;
     txData[1] = (uint8_t)(adr >> 8);
     txData[2] = (uint8_t)adr;
@@ -274,8 +269,6 @@ void SPIWrite(uint16_t adr, uint8_t *data)
     while(QSPI_IsBusy());
     CRITICAL_SECTION_LEAVE();
     SPIChipSelectSet();
-    //CRITICAL_SECTION_LEAVE();
-    
 }
 
 /*******************************************************************************
@@ -292,13 +285,11 @@ void SPIRead(uint16_t adr, uint8_t *data)
     uint8_t  txData[4]={0,0,0,0};
     uint8_t  rxData[4]={0,0,0,0};
     
-    //CRITICAL_SECTION_ENTER();
     SPIChipSelectClr();
     CRITICAL_SECTION_ENTER();
 	txData[0] = CMD_SERIAL_READ;
     txData[1] = (uint8_t)(adr >> 8);
     txData[2] = (uint8_t)adr;
-	//while(SERCOM4_SPI_IsBusy());
     
     while(QSPI_IsBusy());
     QSPI_Write(txData, 3);
@@ -312,9 +303,7 @@ void SPIRead(uint16_t adr, uint8_t *data)
     memcpy(data,rxData,len);
     CRITICAL_SECTION_LEAVE();
 	SPIChipSelectSet();
-    
-
-}
+ }
 
 void ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len) 
 {
@@ -338,9 +327,6 @@ void ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
 		EndAlignSize = (((EndAlignSize + 4) & 0xC) - EndAlignSize);
 	}
 
-   //CRITICAL_SECTION_ENTER();
-	/* Read SPI FIFO */
-    
 	SPIChipSelectClr();
     
     CRITICAL_SECTION_ENTER();
@@ -348,20 +334,14 @@ void ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
     txData[1] = (uint8_t)0;
     txData[2] = (uint8_t)0x04;
 	
-    while(QSPI_IsBusy());
-    
+    while(QSPI_IsBusy());    
     QSPI_Write(txData, 3);
     
     while(QSPI_IsBusy());
     
     while (startAlignSize--)
 	{
-		QSPI_Write(&dummy,1);
-        
-		while(QSPI_IsBusy());
-        
-		QSPI_Read(&dummy,1);
-        
+		QSPI_Read(&dummy,1);        
         while(QSPI_IsBusy());
 	}
     
@@ -376,17 +356,11 @@ void ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
 
     while (EndAlignSize--)
 	{
-		QSPI_Write(&dummy,1);
-        
-		while(QSPI_IsBusy());
-        
-		QSPI_Read(&dummy,1);
-        
+    	QSPI_Read(&dummy,1);        
         while(QSPI_IsBusy());
 	}
     CRITICAL_SECTION_LEAVE();
 	SPIChipSelectSet();
-    //CRITICAL_SECTION_LEAVE();
     
 }
 
@@ -411,7 +385,6 @@ void WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
 	if (EndAlignSize & 3){
 		EndAlignSize = (((EndAlignSize + 4) & 0xC) - EndAlignSize);
 	}
-	//CRITICAL_SECTION_ENTER();
     /* Writing to FIFO */
     SPIChipSelectClr();
 
@@ -446,8 +419,6 @@ void WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
 	}
     CRITICAL_SECTION_LEAVE();
     SPIChipSelectSet();
-    //CRITICAL_SECTION_LEAVE();
-   
 }
 /*******************************************************************************
     Function:
@@ -474,7 +445,6 @@ UINT16 PDI_GetTimer()
 *******************************************************************************/
 void PDI_ClearTimer(void)
 {
-	;
 }
 
 /*******************************************************************************
@@ -494,6 +464,7 @@ void PDI_Timer_Interrupt(void)
 	SysTick->VAL  = SysTick->LOAD;
 	SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk | SysTick_CTRL_TICKINT_Msk;
 	NVIC_EnableIRQ(SysTick_IRQn);
+    PDI_Init_SYSTick_Interrupt();
 }
 
 /*******************************************************************************
@@ -585,7 +556,5 @@ void HW_SetLed(UINT8 RunLed, UINT8 ErrLed)
 *******************************************************************************/
 void EtherCATInit()
 {
-	//EtherCATSpiEnable();
 	LAN9252_Init();
-    //SPIreadWriteTest();
 }

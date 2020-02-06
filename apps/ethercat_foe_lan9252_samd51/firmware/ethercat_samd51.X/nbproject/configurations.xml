@@ -8,7 +8,7 @@
         <logicalFolder name="f1" displayName="ethercat_samd51" projectFiles="true">
           <logicalFolder name="f2" displayName="driver" projectFiles="true">
             <logicalFolder name="f1" displayName="lan9252" projectFiles="true">
-              <itemPath>../src/config/ethercat_samd51/driver/lan9252/9252_HW.h</itemPath>
+              <itemPath>../src/config/ethercat_samd51/driver/lan9252/drv_lan9252.h</itemPath>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f1" displayName="peripheral" projectFiles="true">
@@ -147,6 +147,7 @@
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
                    projectFiles="true">
+      <itemPath>../src/ethercat_foe.ld</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -155,7 +156,7 @@
         <logicalFolder name="f1" displayName="ethercat_samd51" projectFiles="true">
           <logicalFolder name="f3" displayName="driver" projectFiles="true">
             <logicalFolder name="f1" displayName="lan9252" projectFiles="true">
-              <itemPath>../src/config/ethercat_samd51/driver/lan9252/9252_HW.c</itemPath>
+              <itemPath>../src/config/ethercat_samd51/driver/lan9252/drv_lan9252.c</itemPath>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="f1" displayName="peripheral" projectFiles="true">
@@ -309,7 +310,7 @@
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
         <property key="make-warnings-into-errors" value="true"/>
-        <property key="optimization-level" value=""/>
+        <property key="optimization-level" value="-O1"/>
         <property key="place-data-into-section" value="true"/>
         <property key="post-instruction-scheduling" value="default"/>
         <property key="pre-instruction-scheduling" value="default"/>

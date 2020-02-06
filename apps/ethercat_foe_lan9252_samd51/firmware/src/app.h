@@ -46,7 +46,23 @@ extern "C" {
 // Section: Type Definitions
 // *****************************************************************************
 // *****************************************************************************
+// ATSAMD51 BANK B start address 
+#define APP_NVM_BANKB_START_ADDRESS     0x40000
+// Number of pages for BANK B for the device ATSAM D51    
+#define APP_FLASH_PAGES_BANKB           FLASH_PAGE_SIZE/2
 
+// Total size for the BANK B 
+#define APP_MAX_NVM_BANK_SIZE           0x40000
+    
+// Bootloader space size reserved     
+#define APP_BOOTLOADER_SIZE             0
+// Application Page size
+#define APP_PAGE_SIZE                   FLASH_PAGE_SIZE
+#define APP_ERASE_BLOCK_SIZE            8192
+#define APP_PAGES_IN_ERASE_BLOCK        APP_ERASE_BLOCK_SIZE/APP_PAGE_SIZE
+
+#define APP_DATA_SIZE                   APP_ERASE_BLOCK_SIZE
+#define WORDS(x)                        ((int)((x) / sizeof(uint32_t)))    
 // *****************************************************************************
 /* Application states
 
@@ -170,6 +186,32 @@ void APP_Initialize ( void );
 
 void APP_Tasks( void );
 
+/*******************************************************************************
+  Function:
+void APP_FlashWrite( UINT32 startAddress, UINT8 *flash_data )
+
+  Summary:
+    MPLAB Harmony NVM write  application function
+
+  Description:
+    This routine is used to write the flash data to the specific BANK address 
+    location. This routine writes 8192 bytes at a time.
+
+  Precondition:
+    The system and application initialization ("SYS_Initialize") should be
+    called before calling this.
+
+  Parameters:
+    None.
+
+  Returns:
+    None.
+
+  Remarks:
+    This routine is called from the slave stack sample application FoE write
+    function.
+ */
+void APP_FlashWrite( uint32_t startAddress, uint8_t *flash_data );
 
 
 #endif /* _APP_H */
