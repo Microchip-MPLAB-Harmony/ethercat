@@ -28,7 +28,7 @@ ethercatSSCDirMyPath.setLabel("Configure Slave Stack directory path")
 ethercatSSCDirMyPath.setVisible(False)
 ethercatSSCDirMyPath.setDescription("Configure Slave Stack directory path")
 ethercatSSCDirMyPath.setDefaultValue(Module.getPath() + "slave_stack")
-ethercatSSCDirMyPath.setDependencies(ethercatSSCMyPathVisible, ["TCPIP_HTTP_NET_ssc_DIRECTORY_PATH"])
+ethercatSSCDirMyPath.setDependencies(ethercatSSCMyPathVisible, ["ETHERCAT_SLAVESTACK_DIRECTORY_PATH"])
 
 def sscPathParsing(path):
 	import re
@@ -39,42 +39,40 @@ def sscPathParsing(path):
 	# Get the Root PATH 
 	ORG_PATH = path
 	clearFileSymbols()
+	#split slave stack path details
+	slaveStackPath = path.split("\\")
+	#get the last directory from the given path
+	lastDirectory = slaveStackPath[len(slaveStackPath)-1]
+	#get the current root slave stack directory path
+	slaveStackRootPath = ORG_PATH.split(lastDirectory)[0]
 	for (root, dirs, fileNames) in os.walk(ORG_PATH):
 		for fileName in fileNames:
-			file = os.path.join(root,fileName)
-			#file = file[file.find(ORG_PATH):]
+			relativeFilePath = os.path.join(root,fileName)
 			#Replace the module path from the Root path with empty string
-			file = file.replace(Module.path, "")
+			file = relativeFilePath.replace(slaveStackRootPath, "")
 			sepSSCDir = file[file.find(os.path.sep):]
 			htmFile = sepSSCDir.replace(os.path.sep, "",1)
 			srcFile = htmFile.rfind(".c")
 			if srcFile == -1:
-				print("Header file found")
 				srcFileFound = 0
 			else:
-				print("Source file found")
 				srcFileFound = 1
 			# Get the ssc file symbol and each symbol is for the each file
 			sscListFile = createSSCFileSymbol(count)
+			# To allow the web pages outside the EtherCAT repo
+			sscListFile.setRelative(False)
 			#Set the source path
-			sscListFile.setSourcePath(file)
+			sscListFile.setSourcePath(relativeFilePath)
 			sscListFile.setOutputName(htmFile)
-			print(file)
-			print("htmFile : ")
-			print(htmFile)
 			fileList = file.split(os.path.sep)
 			#set the destination path , the location where the ssc file will be copied
-			#destPath = ".."+os.path.sep+".."+os.path.sep+fileList[0]
 			destPath = ".."+os.path.sep+".."+os.path.sep+"slave_stack"
-			#print("destination path: "+ destPath)
 			sscListFile.setDestPath(destPath)
 			fileList = fileList[0:len(fileList)-1]
+			fileList[0] = "slave_stack"
 			folderPath = ""
-			print("fileStr : ")
 			for fileStr in fileList:
-				print(fileStr)
 				folderPath += fileStr+os.path.sep
-				print(folderPath)
 			#set the project path , ssc diretory will be added to the project	
 			sscListFile.setProjectPath(folderPath)
 			if srcFileFound == 1:
