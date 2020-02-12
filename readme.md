@@ -32,7 +32,8 @@ reference information.
 | ---        | ---                                                       |
 | apps        | Example applications for EtherCAT library components      |
 | config     | EtherCAT module configuration file                        |
-| docs       | EtherCAT library help documentation                       |
+| doc        | EtherCAT library help documentation(chm format)           |
+| docs  	 | EtherCAT library help documentation (html format)         |
 | drivers    | Driver/Firmware files for different products              |
 
 
