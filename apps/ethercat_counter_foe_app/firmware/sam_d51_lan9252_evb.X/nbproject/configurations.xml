@@ -453,6 +453,8 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="0-7ffff"/>
         <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmerToGoFilePath"
+                  value="D:/microchip/h3/ethercat/apps/ethercat_counter_foe_app/firmware/sam_d51_lan9252_evb.X/debug/sam_d51_lan9252_evb/sam_d51_lan9252_evb_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.ledbrightness" value="5"/>

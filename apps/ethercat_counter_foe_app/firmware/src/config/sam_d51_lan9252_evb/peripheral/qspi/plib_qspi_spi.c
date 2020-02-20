@@ -64,7 +64,7 @@ void QSPI_Initialize(void)
     QSPI_REGS->QSPI_CTRLB = QSPI_CTRLB_MODE_SPI | QSPI_CTRLB_CSMODE_NORELOAD | QSPI_CTRLB_DATALEN(0x0) | QSPI_CTRLB_LOOPEN(0);
 
     // Set serial clock register
-    QSPI_REGS->QSPI_BAUD = (QSPI_BAUD_BAUD(7))  ;
+    QSPI_REGS->QSPI_BAUD = (QSPI_BAUD_BAUD(11))  ;
 
     // Enable the qspi Module
     /* LASTXFER = 0 */
@@ -190,7 +190,7 @@ bool QSPI_TransferSetup (QSPI_TRANSFER_SETUP * setup, uint32_t spiSourceClock )
     if(spiSourceClock == 0)
     {
         // Fetch Master Clock Frequency directly
-        spiSourceClock = 15000000;
+        spiSourceClock = 10000000;
     }
 
     scbr = spiSourceClock/setup->clockFrequency;

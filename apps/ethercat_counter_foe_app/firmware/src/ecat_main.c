@@ -46,15 +46,17 @@
 #include "drv_lan9252.h"
 #include "ecat_main.h"
 
-#define TIMER_INTERVAL 1 // ms
-
-struct io_descriptor *io;
-void *EtherCAT_Sercom = NULL;
 void PDI_Init_SYSTick_Interrupt();
      
-     
-volatile int      processorStatus_eic0 = 0;        // lock protection counter
-volatile int      processorStatus_eic7 = 0;        // lock protection counter
+
+volatile char    gEtherCATQSPITransmission = false;
+
+
+void EtherCAT_TransmissionFlagClear(void);
+void EtherCAT_QSPI_CallbackRegistration(void);
+bool EtherCAT_QSPITransmissionBusy(void);
+
+
 void ECAT_SPI_Write_EnterAndLeave_Critical(void* pTransmitData, size_t txSize)
 {
     int sysIntStatus=0;
@@ -70,22 +72,18 @@ void ECAT_SPI_Read_EnterAndLeave_Critical(void* pReceiveData, size_t rxSize)
     QSPI_Write(pReceiveData, rxSize);
     SYS_INT_Restore(sysIntStatus);
 }
-#ifdef DC_SUPPORTED
+
 void CRITICAL_SECTION_ENTER(void)
 {
-    //processorStatus = SYS_INT_Disable();
-    //processorStatus_eic0 =  SYS_INT_SourceDisable(EIC_EXTINT_0_IRQn);
-   // processorStatus_eic7 =  SYS_INT_SourceDisable(EIC_EXTINT_7_IRQn);
     __set_BASEPRI(4 << (8 - __NVIC_PRIO_BITS));
 }
 
 void CRITICAL_SECTION_LEAVE(void)
 {
-    //SYS_INT_Restore( processorStatus );
-    //SYS_INT_SourceRestore(EIC_EXTINT_0_IRQn,processorStatus_eic0);
-    //SYS_INT_SourceRestore(EIC_EXTINT_7_IRQn,processorStatus_eic7);
     __set_BASEPRI(0U); // remove the BASEPRI masking
 }
+
+#ifdef DC_SUPPORTED
 /*******************************************************************************
     Function:
         void ether_cat_sync0_cb()
@@ -96,11 +94,7 @@ void CRITICAL_SECTION_LEAVE(void)
 void ether_cat_sync0_cb()
 {
 	CRITICAL_SECTION_ENTER();
-
 	Sync0_Isr();
-    while(QSPI_IsBusy())
-    {
-    }
 	CRITICAL_SECTION_LEAVE();
 }
 
@@ -113,15 +107,9 @@ void ether_cat_sync0_cb()
 *******************************************************************************/
 void ether_cat_sync1_cb()
 {
-	//CRITICAL_SECTION_ENTER();
-
+	CRITICAL_SECTION_ENTER();
 	Sync1_Isr();
-  
-    while(QSPI_IsBusy())
-    {
-    }
-	//CRITICAL_SECTION_LEAVE();
-   
+  	CRITICAL_SECTION_LEAVE();   
 }
 
 /*******************************************************************************
@@ -150,14 +138,8 @@ void PDI_Init_SYNC_Interrupts()
 void ether_cat_escirq_cb()
 {
 	CRITICAL_SECTION_ENTER();
-
 	PDI_Isr();    
-
-    while(QSPI_IsBusy())
-    {        
-    }
 	CRITICAL_SECTION_LEAVE();
-   
 }
 
 /*******************************************************************************
@@ -224,21 +206,26 @@ void EtherCATTestPinClr(void)
 void SPIreadWriteTest(void)
 {
     uint16_t adr=0x1500;
-    uint32_t data=0x11223344;
-    uint32_t rdData=0;
     uint32_t count =0;
+    uint8_t countArr[16]= {0,1,2,3,4,5,6,7,8,9,0xa,0xb,0xc,0xd,0xe,0xf};
+    uint8_t countArr1[16];
+    uint8_t addrInc=0;
     
-    for(count =0;count<100;)
+    for(addrInc=0;addrInc<8;addrInc++)
     {
-        HW_EscWrite((MEM_ADDR*)&data,adr+count,4);
-        HW_EscRead((MEM_ADDR*)&rdData,adr+count,4);
-        if(data != rdData)
+        for(count =1;count<16;)
         {
-            break;
+            HW_EscWrite((MEM_ADDR*)countArr,adr+addrInc,count);
+            HW_EscRead((MEM_ADDR*)countArr1,adr+addrInc,count);
+            if(memcmp(countArr,countArr1,count) != 0)
+            {
+                break;
+            }
+            count= count+1;
         }
-        count= count+4;
     }
 }
+
 /*******************************************************************************
     Function:
         void SPIWrite()
@@ -255,20 +242,26 @@ void SPIWrite(uint16_t adr, uint8_t *data)
     txData[0] = CMD_SERIAL_WRITE;
     txData[1] = (uint8_t)(adr >> 8);
     txData[2] = (uint8_t)adr;
+    
     SPIChipSelectClr();
     
-    CRITICAL_SECTION_ENTER();
     while(QSPI_IsBusy());
-	
     QSPI_Write(txData,3);
+    while(EtherCAT_QSPITransmissionBusy())
+    {        
+    }
+    EtherCAT_TransmissionFlagClear();
     
     while(QSPI_IsBusy());
-
     QSPI_Write(data, len);
-   
-    while(QSPI_IsBusy());
-    CRITICAL_SECTION_LEAVE();
+    while(EtherCAT_QSPITransmissionBusy())
+    {        
+    }
+    EtherCAT_TransmissionFlagClear();
+    
+    while(QSPI_IsBusy());    
     SPIChipSelectSet();
+
 }
 
 /*******************************************************************************
@@ -285,24 +278,31 @@ void SPIRead(uint16_t adr, uint8_t *data)
     uint8_t  txData[4]={0,0,0,0};
     uint8_t  rxData[4]={0,0,0,0};
     
-    SPIChipSelectClr();
-    CRITICAL_SECTION_ENTER();
 	txData[0] = CMD_SERIAL_READ;
     txData[1] = (uint8_t)(adr >> 8);
     txData[2] = (uint8_t)adr;
     
+    SPIChipSelectClr();
     while(QSPI_IsBusy());
     QSPI_Write(txData, 3);
+    while(EtherCAT_QSPITransmissionBusy())
+    {        
+    }
+    EtherCAT_TransmissionFlagClear();
     
-    while(QSPI_IsBusy());
-	
+    while(QSPI_IsBusy());	
     QSPI_Read(rxData, len);
+    while(EtherCAT_QSPITransmissionBusy())
+    {        
+    }
+    EtherCAT_TransmissionFlagClear();
     
     while(QSPI_IsBusy());
     
     memcpy(data,rxData,len);
-    CRITICAL_SECTION_LEAVE();
+    
 	SPIChipSelectSet();
+
  }
 
 void ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len) 
@@ -327,28 +327,38 @@ void ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
 		EndAlignSize = (((EndAlignSize + 4) & 0xC) - EndAlignSize);
 	}
 
-	SPIChipSelectClr();
-    
-    CRITICAL_SECTION_ENTER();
+
+        
     txData[0] = CMD_SERIAL_READ;
     txData[1] = (uint8_t)0;
     txData[2] = (uint8_t)0x04;
 	
+    SPIChipSelectClr();
     while(QSPI_IsBusy());    
     QSPI_Write(txData, 3);
+    while(EtherCAT_QSPITransmissionBusy())
+    {        
+    }
+    EtherCAT_TransmissionFlagClear();
     
-    while(QSPI_IsBusy());
-    
+    while(QSPI_IsBusy());    
     while (startAlignSize--)
 	{
-		QSPI_Read(&dummy,1);        
+		QSPI_Read(&dummy,1);
+        while(EtherCAT_QSPITransmissionBusy())
+        {        
+        }
+        EtherCAT_TransmissionFlagClear();
         while(QSPI_IsBusy());
 	}
     
     while (Len--)
 	{
 		QSPI_Read(rxData,1);
-    
+        while(EtherCAT_QSPITransmissionBusy())
+        {        
+        }
+        EtherCAT_TransmissionFlagClear();
         while(QSPI_IsBusy());
         *pData++ = rxData[0];
 	}
@@ -356,12 +366,16 @@ void ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
 
     while (EndAlignSize--)
 	{
-    	QSPI_Read(&dummy,1);        
+    	QSPI_Read(&dummy,1);
+        while(EtherCAT_QSPITransmissionBusy())
+        {        
+        }
+        EtherCAT_TransmissionFlagClear();
         while(QSPI_IsBusy());
 	}
-    CRITICAL_SECTION_LEAVE();
-	SPIChipSelectSet();
     
+	SPIChipSelectSet();
+
 }
 
 void WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len) 
@@ -385,21 +399,29 @@ void WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
 	if (EndAlignSize & 3){
 		EndAlignSize = (((EndAlignSize + 4) & 0xC) - EndAlignSize);
 	}
-    /* Writing to FIFO */
-    SPIChipSelectClr();
 
-    CRITICAL_SECTION_ENTER();
+    /* Writing to FIFO */    
 	txData[0] = CMD_SERIAL_WRITE;
     txData[1] = (uint8_t)0;
     txData[2] = (uint8_t)0x20;
 
+    SPIChipSelectClr();
     while(QSPI_IsBusy());
     
     QSPI_Write(txData, 3);
+    while(EtherCAT_QSPITransmissionBusy())
+    {        
+    }
+    EtherCAT_TransmissionFlagClear();
+    
     while(QSPI_IsBusy());
     while (startAlignSize--)
 	{
         QSPI_Write(&dummy,1);
+        while(EtherCAT_QSPITransmissionBusy())
+        {        
+        }
+        EtherCAT_TransmissionFlagClear();
         while((QSPI_IsBusy()));
 	}
     
@@ -407,6 +429,10 @@ void WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
 	{        
         txData[0] = *pData;
 		QSPI_Write(txData,1);
+        while(EtherCAT_QSPITransmissionBusy())
+        {        
+        }
+        EtherCAT_TransmissionFlagClear();
         while(QSPI_IsBusy());
         pData++;
 	}
@@ -415,9 +441,13 @@ void WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
 	{        
         txData[0] = dummy;
 		QSPI_Write(txData,1);
+        while(EtherCAT_QSPITransmissionBusy())
+        {        
+        }
+        EtherCAT_TransmissionFlagClear();
         while(QSPI_IsBusy());
 	}
-    CRITICAL_SECTION_LEAVE();
+    
     SPIChipSelectSet();
 }
 /*******************************************************************************
@@ -459,11 +489,6 @@ void PDI_ClearTimer(void)
 *******************************************************************************/
 void PDI_Timer_Interrupt(void)
 {
-	SysTick->CTRL = 0;
-	SysTick->LOAD = (SYSTICK_FREQ / 1000u) * TIMER_INTERVAL;
-	SysTick->VAL  = SysTick->LOAD;
-	SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk | SysTick_CTRL_TICKINT_Msk;
-	NVIC_EnableIRQ(SysTick_IRQn);
     PDI_Init_SYSTick_Interrupt();
 }
 
@@ -478,11 +503,10 @@ void PDI_Timer_Interrupt(void)
 *******************************************************************************/
 void ECAT_SysTick_Handler(uintptr_t context)
 {
-	SysTick->LOAD = (SYSTICK_FREQ / 1000u) * TIMER_INTERVAL;
-	SysTick->VAL  = SysTick->LOAD;
-
 	EtherCATTestPinSet();
+    CRITICAL_SECTION_ENTER();
 	ECAT_CheckTimer();
+    CRITICAL_SECTION_LEAVE();
 	EtherCATTestPinClr();
 }
 
@@ -556,5 +580,29 @@ void HW_SetLed(UINT8 RunLed, UINT8 ErrLed)
 *******************************************************************************/
 void EtherCATInit()
 {
+    // Ethercat QSPI Callback registration 
+    EtherCAT_QSPI_CallbackRegistration();
 	LAN9252_Init();
+}
+
+void ECAT_SPI_Callback(uintptr_t context)
+{
+    // transmission completed
+    gEtherCATQSPITransmission = true;
+}
+
+void EtherCAT_TransmissionFlagClear(void)
+{
+    // clear transmission flag to false
+    gEtherCATQSPITransmission = false;
+}
+
+bool EtherCAT_QSPITransmissionBusy(void)
+{
+    return (gEtherCATQSPITransmission==false);
+}
+
+void EtherCAT_QSPI_CallbackRegistration(void)
+{
+    QSPI_CallbackRegister(ECAT_SPI_Callback,0);
 }

@@ -95,8 +95,8 @@
 #define ECAT_TIMER_INC_P_MS 312 /**< \brief 312 ticks per ms*/
 
 ///* Interrupt and Timer DEFINES */
-#define PDI_Restore_Global_Interrupt()  //CRITICAL_SECTION_LEAVE()
-#define PDI_Disable_Global_Interrupt()  //CRITICAL_SECTION_ENTER()
+#define PDI_Restore_Global_Interrupt()  CRITICAL_SECTION_LEAVE()
+#define PDI_Disable_Global_Interrupt()  CRITICAL_SECTION_ENTER()
 
 #ifndef DISABLE_ESC_INT
 #define DISABLE_ESC_INT() PDI_Disable_Global_Interrupt()
