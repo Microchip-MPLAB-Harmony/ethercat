@@ -30,10 +30,10 @@ reference information.
 
 | Folder     | Description                                               |
 | ---        | ---                                                       |
-| apps        | Example applications for EtherCAT library components      |
+| apps       | Example applications for EtherCAT library components      |
 | config     | EtherCAT module configuration file                        |
 | doc        | EtherCAT library help documentation(chm format)           |
-| docs  	 | EtherCAT library help documentation (html format)         |
+| docs 	     | EtherCAT library help documentation (html format)         |
 | drivers    | Driver/Firmware files for different products              |
 
 

@@ -2,26 +2,31 @@
 ![Harmony logo small](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_mplab_harmony_logo_small.png)
 
 # Microchip MPLAB® Harmony 3 Release Notes (February, 2020)
-
 ## EtherCAT Release v3.0.0
+
 ### New Features
-- EtherCAT component is added in Harmony 3 to enable customer to develop EtherCAT Applications with Harmony 3 framework using LAN9252 device. 
+- EtherCAT component is added in Harmony 3 to enable customer to develop EtherCAT Applications with Harmony 3 framework using LAN9252 device.
 
 - **Development kit and demo application support** - This release include demo application that demontrates firmware update over EtherCAT on SAM D51 with LAN925x Evaluation board.
-	| Development kits                                              | Application Description 																|
-	| ------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-	| EVB-LAN925x SAMD51                     						| Formware update over EtherCAT 														|
-	
+		
+	| Development kits   	| Applications Description												|
+	| ---					| ---																	|
+	| EVB-LAN9252x SAMD51	| Process Trigger and Counter Index With Firmware Update Over EtherCAT	|
+
 
 ### Known Issues
 
-The current known issues are as follows:
-
-* Distributed Clock Synchronization is currently not supported. 
+None
 
 ### Development Tools
 
 * [MPLAB® X IDE v5.30](https://www.microchip.com/mplab/mplab-x-ide)
 * [MPLAB® XC32 C/C++ Compiler v2.30](https://www.microchip.com/mplab/compilers)
 * MPLAB® X IDE plug-ins:
-    * MPLAB® Harmony Configurator (MHC) v3.3.0.0 and above.
+    * MPLAB® Harmony Configurator (MHC) v3.3.5 and above.
+
+### Dependent Components
+* [CSP v3.6.0](https://github.com/Microchip-MPLAB-Harmony/csp/tree/v3.6.0)
+* [CORE v3.6.0](https://github.com/Microchip-MPLAB-Harmony/core/tree/v3.6.0)
+* [DEV_PACKS v3.6.0](https://github.com/Microchip-MPLAB-Harmony/dev_packs/tree/v3.6.0)
+* [MHC v3.3.5](https://github.com/Microchip-MPLAB-Harmony/mhc/tree/v3.3.5)
