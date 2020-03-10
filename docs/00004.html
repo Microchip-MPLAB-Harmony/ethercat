@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Using the Library</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="Doc-O-Matic" />
+    <meta name="save" content="history" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <link rel="STYLESHEET" href="default.css" type="text/css" />
+
+<script type="text/javascript" src="scripts.js"></script>
+</head>
+<body class="Element700" onload="onBodyLoad();" onmousedown="onBodyMouseDown();">
+<div id="persistenceDiv" style="display:none; behavior:url(#default#userData);"></div>
+
+<!-- Begin Popups -->
+
+<!-- End Popups -->
+
+<!-- Begin Page Header -->
+<div class="Element710" id="areafixed">
+<div class="Element94">
+<a href="00002.html">EtherCAT Library Help</a> &gt; <a href="00004.html">Using the Library</a></div>
+<div class="Element92">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="33%">
+<div class="Element1">
+EtherCAT Library Help</div>
+</td><td width="34%">
+<div class="Element2">
+<a href="contents.htm">Contents</a> | <a href="idx.html">Index</a> | <a href="00002.html">Home</a></div>
+</td><td width="33%">
+<div class="Element90">
+<a href="00003.html">Previous</a> | <a href="00002.html">Up</a> | <a href="00010.html">Next</a></div>
+</td></tr></table><div class="Element5">
+Using the Library</div>
+</div>
+</div>
+
+<!-- End Page Header -->
+
+<!-- Begin Client Area -->
+<div class="Element720" id="areascroll">
+<div class="Element721">
+
+<!-- Begin Page Content -->
+<div class="Element58">
+<a name="4465736372697074696F6E"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+<span style="color: #0000FF">File over EtherCAT -</span>&nbsp;</p>
+<p class="Element10">
+<span style="color: #0000FF">Architecture – Host/Slave interaction states for firmware update</span>&nbsp;</p>
+<p class="Element10">
+<img src="Firmware_upgrade.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<img src="D51Bankdetails.png" border="0" alt="" title=""></p>
+<ol class="Element630">
+<li value="1" class="Element600"><span style="color: #0000FF">Master changes from INIT to BOOT, then download of a file initiated. Wen state changes from INIT to BOOT, slave or the FoE application is ready to write the New FW or bin file at the BankB location. Flag gFirmwareDownload_Started set to 1.</span></li>
+<li value="2" class="Element600"><span style="color: #0000FF">Master initiates Download command with password value as 0x11223344 and bin file (this file is generated from the existing D51 foe studio project). In the slave FOE_FILEDOWNLOAD_PASSWORD is set to 0x11223344. FoE_Write() checks file name size ( limited to 16) and checks password value and then proceed to FoE_WriteData().</span></li>
+<li value="3" class="Element600"><span style="color: #0000FF">Once Master completes bin file transfer, then Master need to change the state from BOOT to INIT. In the FW application or slave code, APP_FW_GetDownloadStateFinished() changes state to gFirmwareDownload_Started = 0 and APP_FW_StateBOOTtoINIT() changes gFirmwareDownload_Finished = 1.</span></li>
+<li value="4" class="Element600"><span style="color: #0000FF">Once State changes from BOOT to INIT, Slave application initiates bank switch application(APP_BankSwitch()) and software reset(run_application()). Then Bank A moves to BANK B location and the new application stored in BANK B , moved to BANK A with flash location 0x0. The new application starts running from flash location 0x0 and will be ready with new application.</span></li>
+<li value="5" class="Element600"><span style="color: #0000FF">SSC tool FoE configuration -</span></li>
+</ol><p class="Element10">
+<img src="SSCtool_FoE_configuration.png" border="0" alt="" title=""></p></div>
+</div>
+</div>
+<!-- End Page Content -->
+
+<!-- Begin Page Footer -->
+<div class="Element95">
+<a href="00002.html">EtherCAT Library Help</a> &gt; <a href="00004.html">Using the Library</a></div>
+<div class="Element93">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="100%">
+<div class="Element3">
+ EtherCAT Library Help</div>
+</td></tr><tr><td width="100%">
+<div class="Element4">
+<a href="contents.htm">Contents</a> | <a href="idx.html">Index</a> | <a href="00002.html">Home</a></div>
+</td></tr><tr><td width="100%">
+<div class="Element97">
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: EtherCAT Library Using the Library Topic Title: Using the Library)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com">Microchip Support</a></div>
+</td></tr></table></div>
+
+<!-- End Page Footer -->
+</div>
+</div>
+
+<!-- End Client Area -->
+</body></html>

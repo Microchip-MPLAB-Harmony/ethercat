@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Configuring the Library</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="Doc-O-Matic" />
+    <meta name="save" content="history" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <link rel="STYLESHEET" href="default.css" type="text/css" />
+
+<script type="text/javascript" src="scripts.js"></script>
+</head>
+<body class="Element700" onload="onBodyLoad();" onmousedown="onBodyMouseDown();">
+<div id="persistenceDiv" style="display:none; behavior:url(#default#userData);"></div>
+
+<!-- Begin Popups -->
+
+<!-- End Popups -->
+
+<!-- Begin Page Header -->
+<div class="Element710" id="areafixed">
+<div class="Element94">
+<a href="00002.html">EtherCAT Library Help</a> &gt; <a href="00000.html">Configuring the Library</a></div>
+<div class="Element92">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="33%">
+<div class="Element1">
+EtherCAT Library Help</div>
+</td><td width="34%">
+<div class="Element2">
+<a href="contents.htm">Contents</a> | <a href="idx.html">Index</a> | <a href="00002.html">Home</a></div>
+</td><td width="33%">
+<div class="Element90">
+<a href="00001.html">Previous</a> | <a href="00002.html">Up</a> | <a href="00003.html">Next</a></div>
+</td></tr></table><div class="Element5">
+Configuring the Library</div>
+</div>
+</div>
+
+<!-- End Page Header -->
+
+<!-- Begin Client Area -->
+<div class="Element720" id="areascroll">
+<div class="Element721">
+
+<!-- Begin Page Content -->
+<div class="Element58">
+<a name="4465736372697074696F6E"></a><div class="Element11">
+<div class="Element10">
+<p class="Element10">
+Configure the peripheral library using the MHC.&nbsp;</p>
+<p class="Element10">
+<strong><u>EtherCAT Slave Device</u></strong>&nbsp;</p>
+<p class="Element10">
+<strong><u>Indicators</u></strong>&nbsp;</p>
+<p class="Element10">
+This section describes the LAN9252 driver and EtherCAT trigger and counter variables are used to support visual inspection and troubleshooting of the driver and networks<strong>.</strong>&nbsp;</p>
+<p class="Element10">
+<strong><u>1. PDO ( Process Data Object Trigger and Counter )</u></strong>&nbsp;</p>
+<p class="Element10">
+The PDO protocol is used for communication with External interrupt IRQ<strong><u>.</u></strong> </p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table1">
+<tr>
+<td class="Element65" valign="top" width="13%">
+<div class="Element66">
+Index&nbsp;</div></td><td class="Element65" valign="top" width="26%">
+<div class="Element66">
+Object&nbsp;</div></td><td class="Element65" valign="top" width="37%">
+<div class="Element66">
+Type&nbsp;</div></td><td class="Element65" valign="top" width="24%">
+<div class="Element66">
+Direction&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="13%">
+<div class="Element68">
+1&nbsp;</div></td><td class="Element67" valign="top" width="26%">
+<div class="Element68">
+0x6000&nbsp;</div></td><td class="Element67" valign="top" width="37%">
+<div class="Element68">
+32bit Counter&nbsp;</div></td><td class="Element67" valign="top" width="24%">
+<div class="Element68">
+TX&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<strong><u>2. Receive PDO Mapping ( Outputs )</u></strong>&nbsp;</p>
+<p class="Element10">
+The PDO protocol is used for communication with External interrupt IRQ<strong><u>.</u></strong> </p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table1">
+<tr>
+<td class="Element65" valign="top" width="13%">
+<div class="Element66">
+Index&nbsp;</div></td><td class="Element65" valign="top" width="26%">
+<div class="Element66">
+Object&nbsp;</div></td><td class="Element65" valign="top" width="37%">
+<div class="Element66">
+Type&nbsp;</div></td><td class="Element65" valign="top" width="24%">
+<div class="Element66">
+Direction&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="13%">
+<div class="Element68">
+1&nbsp;</div></td><td class="Element67" valign="top" width="26%">
+<div class="Element68">
+0x7010&nbsp;</div></td><td class="Element67" valign="top" width="37%">
+<div class="Element68">
+32bit Trigger&nbsp;</div></td><td class="Element67" valign="top" width="24%">
+<div class="Element68">
+RX&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<strong><u>3. Synchronization -</u></strong>&nbsp;</p>
+<p class="Element10">
+The Beckhoff Slave Stack Code supports different modes of synchronization which are based on three physical signals: (PDI_)IRQ, Sync0 and Sync1&nbsp;</p>
+<p class="Element10">
+Microchip EtherCAT device also supports different modes ( But in this release only Master/Slave synchronous mode is supported)</p>
+<ol class="Element630">
+<li value="1" class="Element600">Master and Slaves for synchronization: Free run The Master cycle time and Slave cycle time are independent. <strong>&lt; This mode is Supported &gt;</strong></li>
+<li value="2" class="Element600"> IRQ interrupt event tiggers Master and Slave for Synchron Synchronization. &lt;<strong>This mode is supported&gt;</strong></li>
+<li value="3" class="Element600">Synchronization with distributed clocks ( Both IRQ and SYNC0 event occurs), the Master cycle time and Slave cycle time are synchronized. <strong>&lt; This mode is supported&gt;</strong></li>
+</ol></div>
+</div>
+</div>
+<!-- End Page Content -->
+
+<!-- Begin Page Footer -->
+<div class="Element95">
+<a href="00002.html">EtherCAT Library Help</a> &gt; <a href="00000.html">Configuring the Library</a></div>
+<div class="Element93">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="100%">
+<div class="Element3">
+ EtherCAT Library Help</div>
+</td></tr><tr><td width="100%">
+<div class="Element4">
+<a href="contents.htm">Contents</a> | <a href="idx.html">Index</a> | <a href="00002.html">Home</a></div>
+</td></tr><tr><td width="100%">
+<div class="Element97">
+<a href="mailto:docerrors@microchip.com&subject=MPLAB Harmony Documentation Feedback (Topic ID: EtherCAT Library Configuring the Library Topic Title: Configuring the Library)&body=Thank you for your feedback! Please include a description of your feedback, and indicate whether you are reporting an an error in the documentation or an enhancement.">Documentation Feedback</a><br> <a href="http://support.microchip.com">Microchip Support</a></div>
+</td></tr></table></div>
+
+<!-- End Page Footer -->
+</div>
+</div>
+
+<!-- End Client Area -->
+</body></html>
