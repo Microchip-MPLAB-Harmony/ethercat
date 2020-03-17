@@ -43,8 +43,8 @@
           <Name dnOrder="1">ecat_main.c</Name>
           <LogicalPath dnOrder="2"/>
           <PhysicalPath dnOrder="3">/../../</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">43666E454BDA62DE749D0D0288D5468C</GeneratedChecksum>
-          <UserChecksum dnOrder="5">5FB15005846BD87592507303DDBA2DA8</UserChecksum>
+          <GeneratedChecksum dnOrder="4">8468ACDF0DEAAF34871A8A29D66FBE16</GeneratedChecksum>
+          <UserChecksum dnOrder="5">8468ACDF0DEAAF34871A8A29D66FBE16</UserChecksum>
         </File>
         <File dnOrder="5">
           <Type dnOrder="0">SOURCE</Type>
@@ -76,7 +76,7 @@
           <LogicalPath dnOrder="2">slave_stack/</LogicalPath>
           <PhysicalPath dnOrder="3">/../../slave_stack/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">6B80EEF13B9B248CFB6EF9AD0F6C3909</GeneratedChecksum>
-          <UserChecksum dnOrder="5">8E8DEC0596E33C5963BDA2C5F986A2AB</UserChecksum>
+          <UserChecksum dnOrder="5">6B80EEF13B9B248CFB6EF9AD0F6C3909</UserChecksum>
         </File>
         <File dnOrder="9">
           <Type dnOrder="0">SOURCE</Type>
@@ -211,8 +211,8 @@
           <Name dnOrder="1">plib_qspi_spi.c</Name>
           <LogicalPath dnOrder="2">config/sam_d51_lan9252_evb/peripheral/qspi/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/qspi/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">4ABA5428226EC66C70F8DF5CA3C9CC34</GeneratedChecksum>
-          <UserChecksum dnOrder="5">4ABA5428226EC66C70F8DF5CA3C9CC34</UserChecksum>
+          <GeneratedChecksum dnOrder="4">3412DE393B6735E2D63BEF3A94388100</GeneratedChecksum>
+          <UserChecksum dnOrder="5">3412DE393B6735E2D63BEF3A94388100</UserChecksum>
         </File>
         <File dnOrder="26">
           <Type dnOrder="0">SOURCE</Type>
@@ -228,7 +228,7 @@
           <LogicalPath dnOrder="2">slave_stack/</LogicalPath>
           <PhysicalPath dnOrder="3">/../../slave_stack/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">C3692DEE2DD127EF9A1ED881B35047D2</GeneratedChecksum>
-          <UserChecksum dnOrder="5">018C2B4372E294506A41E51933159925</UserChecksum>
+          <UserChecksum dnOrder="5">C3692DEE2DD127EF9A1ED881B35047D2</UserChecksum>
         </File>
         <File dnOrder="28">
           <Type dnOrder="0">SOURCE</Type>
@@ -467,7 +467,7 @@
           <Name dnOrder="1">drv_lan9252.h</Name>
           <LogicalPath dnOrder="2">config/sam_d51_lan9252_evb/driver/lan9252/</LogicalPath>
           <PhysicalPath dnOrder="3">/driver/lan9252/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">215560DA4BC8348994A9B2385BA82121</GeneratedChecksum>
+          <GeneratedChecksum dnOrder="4">18EA53669CC94A9B1304A5D98EC2FFEF</GeneratedChecksum>
           <UserChecksum dnOrder="5">18EA53669CC94A9B1304A5D98EC2FFEF</UserChecksum>
         </File>
         <File dnOrder="58">
@@ -985,7 +985,7 @@
       <Setting dnOrder="2" key="FORCE_OPTIMIZATION" value="false"/>
       <Setting dnOrder="3" key="GENERATE_BACKUP" value="true"/>
       <Setting dnOrder="4" key="MERGE_STRATEGY" value="ALL"/>
-      <Setting dnOrder="5" key="PackageFilter" value="bsp;core;crypto;csp;ethercat;net;usb;wireless;"/>
+      <Setting dnOrder="5" key="PackageFilter" value="aws_cloud;bsp;core;crypto;csp;ethercat;net;usb;wireless;"/>
     </Settings>
   </Configurator>
 </Configuration>

@@ -58,7 +58,10 @@ THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 
 
 UINT32  gTriggerCounterValMeasure=0;
-UINT32  gFOETestFrameSize=1;
+// configure this variable to generate the counter value w.r.t to that value.
+// if the gFOETestFrameSize == 1, then the counter value will increase by 1000
+// if the gFOETestFrameSize == 1000, the the counter value will increase by 1
+UINT32  gFOETestFrameSize=1000;
 
 #if defined(ETHERCAT_USE_FOE)
 #define FOE_FILEDOWNLOAD_PASSWORD ETHERCAT_FOE_FILE_DOWNLOAD_PASSWORD
