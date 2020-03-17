@@ -126,6 +126,37 @@ Running The Application</div>
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
+<strong>NOTE :- These following files are part of the Demo application and these files will be used while generating SSC source code.</strong> </p><div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table1">
+<tr>
+<td class="Element65" valign="top" width="56%">
+<div class="Element66">
+SSC required files&nbsp;</div></td><td class="Element65" valign="top" width="44%">
+<div class="Element66">
+File Path&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="56%">
+<div class="Element68">
+sample_app.xlsx ( The file with Counter and Tigger index details)&nbsp;</div></td><td class="Element67" valign="top" width="44%">
+<div class="Element68">
+&lt;ethercatrepo&gt;\ethercat\apps\ethercat_counter_foe_app\firmware\src\slave_stack&nbsp;</div></td></tr><tr>
+<td class="Element67" valign="top" width="56%">
+<div class="Element68">
+Microchip-SAMD51-EtherCAT-Slave_SSC_Config.xml (the Slave code executes on an Microchip development board for the SAMD51 With Bootloader support )&nbsp;</div></td><td class="Element67" valign="top" width="44%">
+<div class="Element68">
+&lt;ethercatrepo&gt;\ethercat\apps\ethercat_counter_foe_app\firmware\src\slave_stack&nbsp;</div></td></tr></table></div></div>
+<div class="Element63">
+<div class="TableDiv">
+<table cellspacing="0" class="Table1">
+<tr>
+<td class="Element65" valign="top" width="45%">
+<div class="Element66">
+SAMD51_EtherCAT_Slave.xml (This XML file is generated from SSC tool )&nbsp;</div></td><td class="Element65" valign="top" width="55%">
+<div class="Element66">
+&lt;ethercatrepo&gt;\ethercat\apps\ethercat_counter_foe_app\firmware\src\slave_stack&nbsp;</div></td></tr></table></div></div>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
 <strong>3. Click Import to import the SSC Tool configuration file Microchip-SAMD51-EtherCAT-Slave_SSC_Config.xml from the EtherCAT Git root path.</strong>&nbsp;</p>
 <p class="Element10">
 <img src="Import_SSC_Project.png" border="0" alt="" title="">&nbsp;</p>
@@ -154,7 +185,7 @@ Running The Application</div>
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
-<strong>9. Select the file sample_app.xlsx which can be found in the EtherCAT root directory (&lt;install-dir&gt;\ethercat\sample_app\). This file is an object file which contains the information about application objects.</strong>&nbsp;</p>
+<strong>9. Select the file sample_app.xlsx which can be found in the EtherCAT root directory (&lt;install-dir&gt;\ethercat\app\&lt;demo&gt;\firmware\src\slave_stack). This file is an object file which contains the information about application objects.</strong>&nbsp;</p>
 <p class="Element10">
 <strong>10. Once the file is selected, status message will be displayed as shown below. Then click OK to continue</strong>&nbsp;</p>
 <p class="Element10">
@@ -188,7 +219,7 @@ Running The Application</div>
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
-<strong>Note: sample_app.c file can be modified as per user requirement.</strong>&nbsp;</p>
+<strong>Note: sample_app.c file is modified as per the present &lt;ethercat_counter_foe_app&gt; demo. Counter and Trigger value configuration and FoE Read/Write API are included to the sample_app.c file.</strong>&nbsp;</p>
 <p class="Element10">
 <strong>1. The default generated sample_app.c , does not have the counter and trigger configuration details. So, the user can add the modifying code for the counter and trigger.</strong>&nbsp;</p>
 <p class="Element10">
@@ -198,7 +229,7 @@ Running The Application</div>
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
-<strong> 3. For this demo application , trigger,counter and FoE configured sample application files are already part of the EtherCAT repo root directory. (&lt;install-dir&gt;\ethercat\sample_app). Sample application files are copied to the &quot;&lt;install-dir&gt;\ethercat\apps\ethercat_counter_foe_app\firmware\src\slave_stack\&quot;</strong></p>
+<strong> 3. For this &lt;ethercat_counter_foe_app&gt; demo application , trigger,counter and FoE configured sample application files are already part of the EtherCAT demo application. Sample application files are present with updated information in the path (&lt;install-dir&gt;\ethercat\app\&lt;demo&gt;\firmware\src\slave_stack).</strong></p>
 <ol class="Element630">
 <li value="3" class="Element600"><strong>Scanning EtherCAT Slaves</strong></li>
 </ol><p class="Element10">
@@ -260,7 +291,7 @@ Running The Application</div>
 <p class="Element10">
 <strong>To use this feature from TwinCAT, EtherCAT Slave Information (ESI) file need to be updated to have the FoE feature enabled.</strong>&nbsp;</p>
 <p class="Element10">
-<strong>Sample “SAMD51_EtherCAT_Slave.xml” file is provided in the ATE folder and the attached project is based on only for the FOE configuration.</strong>&nbsp;</p>
+<strong>Sample “SAMD51_EtherCAT_Slave.xml” file is part of the &quot;&lt;install-dir&gt;\ethercat\app\&lt;demo&gt;\firmware\src\slave_stack&quot; folder and the attached project is based on only for the FoE configuration.</strong>&nbsp;</p>
 <p class="Element10">
 <strong>&lt;Mailbox DataLinkLayer=&quot;true&quot;&gt;</strong>&nbsp;</p>
 <p class="Element10">
@@ -276,7 +307,7 @@ Running The Application</div>
 <p class="Element10">
 <img src="Twincat_BootStrap_Mode.png" border="0" alt="" title="">&nbsp;</p>
 <p class="Element10">
-<strong>4. Locate the new firmware to be dowloaded click 'Open'. Select the file that need to be downloaded from the path “ethercat\FoE_Hex_imagefiles”.</strong>&nbsp;</p>
+<strong>4. Locate the new firmware to be dowloaded click 'Open'. Select the file that need to be downloaded from the path “&lt;install-dir&gt;\ethercat\app\&lt;demo&gt;\firmware\src\FoE_Hex_imagefiles”.</strong>&nbsp;</p>
 <p class="Element10">
 <strong>FoE demonstrates the bank switching . Slave application initiates bank switch application(APP_BankSwitch()) and software reset(run_application()). Then Bank A moves to BANK B location and the new application stored in BANK B , moved to BANK A with flash location 0x0. The new application starts running from flash location 0x0 and will be ready with new application.</strong>&nbsp;</p>
 <p class="Element10">
