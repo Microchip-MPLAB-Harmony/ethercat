@@ -50,7 +50,7 @@
 /* Includes */
 #include "esc.h"
 #include "ecatappl.h"
-#include "ecat_main.h"
+#include "drv_lan9252_ecat_util.h"
 
 /* 9252 HW DEFINES */
 #define ECAT_REG_BASE_ADDR 0x0300

@@ -54,9 +54,10 @@
 #include "peripheral/port/plib_port.h"
 #include "peripheral/clock/plib_clock.h"
 #include "peripheral/nvic/plib_nvic.h"
-#include "peripheral/systick/plib_systick.h"
 #include "peripheral/cmcc/plib_cmcc.h"
 #include "peripheral/eic/plib_eic.h"
+#include "peripheral/tc/plib_tc0.h"
+#include "driver/lan9252/drv_lan9252_ecat_util.h"
 #include "system/int/sys_int.h"
 #include "system/ports/sys_ports.h"
 #include "app.h"
@@ -181,7 +182,10 @@ void SYS_Tasks ( void );
 
 typedef struct
 {
-    char RESERVED;
+	/* LAN9252 Driver EtherCAT Adapter Object */
+	uintptr_t drvLAN9252ECATUtil;
+
+
 } SYSTEM_OBJECTS;
 
 

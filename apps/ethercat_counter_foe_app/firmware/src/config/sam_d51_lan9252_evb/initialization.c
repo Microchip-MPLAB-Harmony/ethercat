@@ -63,6 +63,48 @@
 // Section: Driver Initialization Data
 // *****************************************************************************
 // *****************************************************************************
+// <editor-fold defaultstate="collapsed" desc="EtherCAT Main Initialization Data">
+
+/* SPI or SQI PLIB Interface Initialization for ethercat LAN driver */
+const DRV_LAN9252_UTIL_SPI_PLIB_INTERFACE drvLAN9252SpiPlibAPI = {
+
+	/* SPI PLIB WriteRead function */
+	.spiWriteRead = (DRV_LAN9252_SPI_PLIB_WRITE_READ)QSPI_WriteRead,
+
+	/* SPI PLIB Write function */
+	.spiWrite = (DRV_LAN9252_SPI_PLIB_WRITE)QSPI_Write,
+
+	/* SPI PLIB Read function */
+	.spiRead = (DRV_LAN9252_SPI_PLIB_READ)QSPI_Read,
+
+	/* SPI PLIB Transfer Status function */
+	.spiIsBusy = (DRV_LAN9252_SPI_PLIB_IS_BUSY)QSPI_IsBusy,
+
+	/* SPI PLIB Callback Register */
+	.spiCallbackRegister = (DRV_LAN9252_SPI_PLIB_CALLBACK_REGISTER)QSPI_CallbackRegister,
+};
+
+const DRV_LAN9252_UTIL_TMR_PLIB_INTERFACE drvLAN9252TimerPlibAPI = {
+
+	.timerCallbackSet = (DRV_LAN9252_TMR_PLIB_CALLBACK_REGISTER)TC0_TimerCallbackRegister,
+	
+	.timerStart = (DRV_LAN9252_TMR_PLIB_START)TC0_TimerStart,
+	
+	.timerStop = (DRV_LAN9252_TMR_PLIB_STOP)TC0_TimerStop,
+};
+
+/* LAN9252 Driver Initialization Data */
+const DRV_LAN9252_UTIL_INIT drvLAN9252InitData = {
+
+	/* SPI PLIB API  interface*/
+	.spiPlib = &drvLAN9252SpiPlibAPI,
+
+	/* Timer PLIB API Interface */
+	.timerPlib = &drvLAN9252TimerPlibAPI,
+
+};
+
+// </editor-fold>
 
 
 // *****************************************************************************
@@ -114,10 +156,12 @@ void SYS_Initialize ( void* data )
 
     EVSYS_Initialize();
 
-	SYSTICK_TimerInitialize();
     EIC_Initialize();
 
+    TC0_TimerInitialize();
 
+
+	ECAT_Util_Initialize(0, (void *)&drvLAN9252InitData);
 
 
 

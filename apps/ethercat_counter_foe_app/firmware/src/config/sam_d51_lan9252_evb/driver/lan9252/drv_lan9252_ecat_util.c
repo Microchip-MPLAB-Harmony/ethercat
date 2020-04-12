@@ -5,7 +5,7 @@
     Microchip Technology Inc.
 
   File Name
-    ecat_main.c
+    drv_lan9252_ecat_adpt.c
 
   Summary
     ETherCAT source file which interface between EtherCAT driver and the 
@@ -44,17 +44,20 @@
 // DOM-IGNORE-END
 
 #include "drv_lan9252.h"
-#include "ecat_main.h"
+#include "drv_lan9252_ecat_util.h"
+#include "drv_lan9252_definitions.h"
 
 void PDI_Init_SYSTick_Interrupt();
      
 
 volatile char    gEtherCATQSPITransmission = false;
 
+/* This is the driver instance object array. */
+static DRV_LAN9252_UTIL_OBJ gDrvLan9252UtilObj;
 
-void EtherCAT_TransmissionFlagClear(void);
-void EtherCAT_QSPI_CallbackRegistration(void);
-bool EtherCAT_QSPITransmissionBusy(void);
+void ECAT_QSPI_TransmissionFlagClear(void);
+void ECAT_QSPI_CallbackRegistration(void);
+bool ECAT_QSPI_TransmissionBusy(void);
 
 
 void CRITICAL_SECTION_ENTER(void)
@@ -70,12 +73,12 @@ void CRITICAL_SECTION_LEAVE(void)
 #ifdef DC_SUPPORTED
 /*******************************************************************************
     Function:
-        void ether_cat_sync0_cb()
+        void ethercat_sync0_cb()
 
     Summary:
         Interrupt service routine for the interrupt from SYNC0
 *******************************************************************************/
-void ether_cat_sync0_cb()
+void ethercat_sync0_cb()
 {
 	CRITICAL_SECTION_ENTER();
 	Sync0_Isr();
@@ -84,12 +87,12 @@ void ether_cat_sync0_cb()
 
 /*******************************************************************************
     Function:
-        void ether_cat_sync1_cb()
+        void ethercat_sync1_cb()
 
     Summary:
         Interrupt service routine for the interrupt from SYNC1
 *******************************************************************************/
-void ether_cat_sync1_cb()
+void ethercat_sync1_cb()
 {
 	CRITICAL_SECTION_ENTER();
 	Sync1_Isr();
@@ -106,9 +109,9 @@ void ether_cat_sync1_cb()
 void PDI_Init_SYNC_Interrupts()
 {
     // SYNC0 interrupt callback 
-    EIC_CallbackRegister(EIC_PIN_0,ether_cat_sync0_cb, 0);
+    EIC_CallbackRegister(EIC_PIN_0,ethercat_sync0_cb, 0);
     // SYNC1 interrupt callback 
-    EIC_CallbackRegister(EIC_PIN_1,ether_cat_sync1_cb, 0);
+    EIC_CallbackRegister(EIC_PIN_1,ethercat_sync1_cb, 0);
 }
 #endif // DC_SUPPORTED
 
@@ -119,7 +122,7 @@ void PDI_Init_SYNC_Interrupts()
     Summary:
         Interrupt service routine for the interrupt from ESC
 *******************************************************************************/
-void ether_cat_escirq_cb()
+void ethercat_escirq_cb()
 {
 	CRITICAL_SECTION_ENTER();
 	PDI_Isr();    
@@ -136,7 +139,7 @@ void ether_cat_escirq_cb()
 void PDI_IRQ_Interrupt()
 {
     // External interrupt callback 
-    EIC_CallbackRegister(EIC_PIN_7,ether_cat_escirq_cb, 0);
+    EIC_CallbackRegister(EIC_PIN_7,ethercat_escirq_cb, 0);
 }
 
 /*******************************************************************************
@@ -228,22 +231,21 @@ void SPIWrite(uint16_t adr, uint8_t *data)
     txData[2] = (uint8_t)adr;
     
     SPIChipSelectClr();
-    
-    while(QSPI_IsBusy());
-    QSPI_Write(txData,3);
-    while(EtherCAT_QSPITransmissionBusy())
+    while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());
+    gDrvLan9252UtilObj.spiPlib->spiWrite(txData,3);
+    while(ECAT_QSPI_TransmissionBusy())
     {        
     }
-    EtherCAT_TransmissionFlagClear();
+    ECAT_QSPI_TransmissionFlagClear();
     
-    while(QSPI_IsBusy());
-    QSPI_Write(data, len);
-    while(EtherCAT_QSPITransmissionBusy())
+    while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());
+    gDrvLan9252UtilObj.spiPlib->spiWrite(data, len);
+    while(ECAT_QSPI_TransmissionBusy())
     {        
     }
-    EtherCAT_TransmissionFlagClear();
+    ECAT_QSPI_TransmissionFlagClear();
     
-    while(QSPI_IsBusy());    
+    while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());   
     SPIChipSelectSet();
 
 }
@@ -267,21 +269,21 @@ void SPIRead(uint16_t adr, uint8_t *data)
     txData[2] = (uint8_t)adr;
     
     SPIChipSelectClr();
-    while(QSPI_IsBusy());
-    QSPI_Write(txData, 3);
-    while(EtherCAT_QSPITransmissionBusy())
+    while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());
+    gDrvLan9252UtilObj.spiPlib->spiWrite(txData, 3);
+    while(ECAT_QSPI_TransmissionBusy())
     {        
     }
-    EtherCAT_TransmissionFlagClear();
+    ECAT_QSPI_TransmissionFlagClear();
     
-    while(QSPI_IsBusy());	
-    QSPI_Read(rxData, len);
-    while(EtherCAT_QSPITransmissionBusy())
+    while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());	
+    gDrvLan9252UtilObj.spiPlib->spiRead(rxData, len);
+    while(ECAT_QSPI_TransmissionBusy())
     {        
     }
-    EtherCAT_TransmissionFlagClear();
+    ECAT_QSPI_TransmissionFlagClear();
     
-    while(QSPI_IsBusy());
+    while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());
     
     memcpy(data,rxData,len);
     
@@ -318,44 +320,44 @@ void ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
     txData[2] = (uint8_t)0x04;
 	
     SPIChipSelectClr();
-    while(QSPI_IsBusy());    
-    QSPI_Write(txData, 3);
-    while(EtherCAT_QSPITransmissionBusy())
+    while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());
+    gDrvLan9252UtilObj.spiPlib->spiWrite(txData, 3);
+    while(ECAT_QSPI_TransmissionBusy())
     {        
     }
-    EtherCAT_TransmissionFlagClear();
+    ECAT_QSPI_TransmissionFlagClear();
     
-    while(QSPI_IsBusy());    
+    while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());
     while (startAlignSize--)
 	{
-		QSPI_Read(&dummy,1);
-        while(EtherCAT_QSPITransmissionBusy())
+		gDrvLan9252UtilObj.spiPlib->spiRead(&dummy,1);
+        while(ECAT_QSPI_TransmissionBusy())
         {        
         }
-        EtherCAT_TransmissionFlagClear();
-        while(QSPI_IsBusy());
+        ECAT_QSPI_TransmissionFlagClear();
+        while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());
 	}
     
     while (Len--)
 	{
-		QSPI_Read(rxData,1);
-        while(EtherCAT_QSPITransmissionBusy())
+		gDrvLan9252UtilObj.spiPlib->spiRead(rxData,1);
+        while(ECAT_QSPI_TransmissionBusy())
         {        
         }
-        EtherCAT_TransmissionFlagClear();
-        while(QSPI_IsBusy());
+        ECAT_QSPI_TransmissionFlagClear();
+        while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());
         *pData++ = rxData[0];
 	}
     
 
     while (EndAlignSize--)
 	{
-    	QSPI_Read(&dummy,1);
-        while(EtherCAT_QSPITransmissionBusy())
+    	gDrvLan9252UtilObj.spiPlib->spiRead(&dummy,1);
+        while(ECAT_QSPI_TransmissionBusy())
         {        
         }
-        EtherCAT_TransmissionFlagClear();
-        while(QSPI_IsBusy());
+        ECAT_QSPI_TransmissionFlagClear();
+        while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());
 	}
     
 	SPIChipSelectSet();
@@ -390,46 +392,46 @@ void WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
     txData[2] = (uint8_t)0x20;
 
     SPIChipSelectClr();
-    while(QSPI_IsBusy());
+    while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());
     
-    QSPI_Write(txData, 3);
-    while(EtherCAT_QSPITransmissionBusy())
+    gDrvLan9252UtilObj.spiPlib->spiWrite(txData, 3);
+    while(ECAT_QSPI_TransmissionBusy())
     {        
     }
-    EtherCAT_TransmissionFlagClear();
+    ECAT_QSPI_TransmissionFlagClear();
     
-    while(QSPI_IsBusy());
+    while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());
     while (startAlignSize--)
 	{
-        QSPI_Write(&dummy,1);
-        while(EtherCAT_QSPITransmissionBusy())
+        gDrvLan9252UtilObj.spiPlib->spiWrite(&dummy,1);
+        while(ECAT_QSPI_TransmissionBusy())
         {        
         }
-        EtherCAT_TransmissionFlagClear();
-        while((QSPI_IsBusy()));
+        ECAT_QSPI_TransmissionFlagClear();
+        while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());
 	}
     
     while (Len--)
 	{        
         txData[0] = *pData;
-		QSPI_Write(txData,1);
-        while(EtherCAT_QSPITransmissionBusy())
+		gDrvLan9252UtilObj.spiPlib->spiWrite(txData,1);
+        while(ECAT_QSPI_TransmissionBusy())
         {        
         }
-        EtherCAT_TransmissionFlagClear();
-        while(QSPI_IsBusy());
+        ECAT_QSPI_TransmissionFlagClear();
+        while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());
         pData++;
 	}
 
     while (EndAlignSize--)
 	{        
         txData[0] = dummy;
-		QSPI_Write(txData,1);
-        while(EtherCAT_QSPITransmissionBusy())
+		gDrvLan9252UtilObj.spiPlib->spiWrite(txData,1);
+        while(ECAT_QSPI_TransmissionBusy())
         {        
         }
-        EtherCAT_TransmissionFlagClear();
-        while(QSPI_IsBusy());
+        ECAT_QSPI_TransmissionFlagClear();
+        while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());
 	}
     
     SPIChipSelectSet();
@@ -503,54 +505,10 @@ void ECAT_SysTick_Handler(uintptr_t context)
 *******************************************************************************/
 void PDI_Init_SYSTick_Interrupt()
 {
-    SYSTICK_TimerCallbackSet(ECAT_SysTick_Handler,(uintptr_t) NULL);
-    SYSTICK_TimerStart();
-}
-/*******************************************************************************
-    Function:
-        void stop_timer(void)
-
-    Summary:
-        Disable SysTick ISR
-    Description:
-        This routine disable SysTick Interrupt.
-*******************************************************************************/
-void stop_timer(void)
-{
-	NVIC_DisableIRQ(SysTick_IRQn);
-}
-
-/*******************************************************************************
-    Function:
-        void start_timer(void)
-
-    Summary:
-        Enable SysTick ISR
-    Description:
-        This routine enable SysTick Interrupt.
-*******************************************************************************/
-void start_timer(void)
-{
-	NVIC_EnableIRQ(SysTick_IRQn);
-}
-
-/*******************************************************************************
-    Function:
-    void HW_SetLed(UINT8 RunLed,UINT8 ErrLed)
-
-    Summary:
-     This function set the Error LED if it is required.
-
-    Description:
-    LAN9252 does not support error LED. So this feature has to be enabled by PDI SOC if it is needed.
-
-    Parameters:
-        RunLed	- It is not used. This will be set by LAN9252.
-        ErrLed	- 1- ON, 0-0FF.
-*******************************************************************************/
-void HW_SetLed(UINT8 RunLed, UINT8 ErrLed)
-{
-	/* Here RunLed is not used. Because on chip supported RUN Led is available*/
+//    SYSTICK_TimerCallbackSet(ECAT_SysTick_Handler,(uintptr_t) NULL);
+//    SYSTICK_TimerStart();
+    gDrvLan9252UtilObj.timerPlib->timerCallbackSet(ECAT_SysTick_Handler,(uintptr_t) NULL);
+    gDrvLan9252UtilObj.timerPlib->timerStart();
 }
 
 /*******************************************************************************
@@ -565,29 +523,49 @@ void HW_SetLed(UINT8 RunLed, UINT8 ErrLed)
 void EtherCATInit()
 {
     // Ethercat QSPI Callback registration 
-    EtherCAT_QSPI_CallbackRegistration();
+    ECAT_QSPI_CallbackRegistration();
 	LAN9252_Init();
 }
 
-void ECAT_SPI_Callback(uintptr_t context)
+// *****************************************************************************
+// *****************************************************************************
+// Section: DRV_LAN9252 Driver Global Functions
+// *****************************************************************************
+// *****************************************************************************
+
+void ECAT_Util_Initialize(
+    const unsigned short int drvIndex,
+    const void * const init
+)
+{
+    DRV_LAN9252_UTIL_INIT* lan9252UtilInit  = (DRV_LAN9252_UTIL_INIT *)init;
+
+   
+    gDrvLan9252UtilObj.spiTransferStatus    = DRV_LAN9252_UTIL_SPI_TRANSFER_STATUS_COMPLETED;
+    gDrvLan9252UtilObj.spiPlib              = lan9252UtilInit->spiPlib;
+    
+    // Timer PLIB initialization for LAN9252 driver 
+    gDrvLan9252UtilObj.timerPlib            = lan9252UtilInit->timerPlib;
+}
+
+void ECAT_QSPI_Callback(uintptr_t context)
 {
     // transmission completed
-    gEtherCATQSPITransmission = true;
+    gDrvLan9252UtilObj.spiTransferStatus = DRV_LAN9252_UTIL_SPI_TRANSFER_STATUS_COMPLETED;
 }
 
-void EtherCAT_TransmissionFlagClear(void)
+void ECAT_QSPI_TransmissionFlagClear(void)
 {
     // clear transmission flag to false
-    gEtherCATQSPITransmission = false;
+    gDrvLan9252UtilObj.spiTransferStatus = DRV_LAN9252_UTIL_SPI_TRANSFER_STATUS_BUSY;
 }
 
-bool EtherCAT_QSPITransmissionBusy(void)
+bool ECAT_QSPI_TransmissionBusy(void)
 {
-    return (gEtherCATQSPITransmission==false);
+    return (gDrvLan9252UtilObj.spiTransferStatus == DRV_LAN9252_UTIL_SPI_TRANSFER_STATUS_BUSY);
 }
 
-void EtherCAT_QSPI_CallbackRegistration(void)
+void ECAT_QSPI_CallbackRegistration(void)
 {
-    QSPI_CallbackRegister(ECAT_SPI_Callback,0);
+    gDrvLan9252UtilObj.spiPlib->spiCallbackRegister(ECAT_QSPI_Callback,0);
 }
-
