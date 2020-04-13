@@ -54,19 +54,30 @@ volatile char    gEtherCATQSPITransmission = false;
 
 /* This is the driver instance object array. */
 static DRV_LAN9252_UTIL_OBJ gDrvLan9252UtilObj;
-
+/*Global interrupt enable and disable  */
 void ECAT_QSPI_TransmissionFlagClear(void);
 void ECAT_QSPI_CallbackRegistration(void);
 bool ECAT_QSPI_TransmissionBusy(void);
-
+volatile uint32_t processorStatus;
 
 void CRITICAL_SECTION_ENTER(void)
 {
+//<#if __PROCESSOR?matches("PIC32M.*") == true>
+//    processorStatus = __builtin_disable_interrupts();
+//<else>
+//    processorStatus = __get_PRIMASK();
+//    __disable_irq();
+//</#if>        
     __set_BASEPRI(4 << (8 - __NVIC_PRIO_BITS));
 }
 
 void CRITICAL_SECTION_LEAVE(void)
 {
+//<#if __PROCESSOR?matches("PIC32M.*") == true>
+//    __builtin_mtc0(12, 0, processorStatus);
+//<else>
+//    __set_PRIMASK( processorStatus );
+//</#if>
     __set_BASEPRI(0U); // remove the BASEPRI masking
 }
 
@@ -505,35 +516,10 @@ void ECAT_SysTick_Handler(uintptr_t context)
 *******************************************************************************/
 void PDI_Init_SYSTick_Interrupt()
 {
-    SYSTICK_TimerCallbackSet(ECAT_SysTick_Handler,(uintptr_t) NULL);
-    SYSTICK_TimerStart();
-}
-/*******************************************************************************
-    Function:
-        void stop_timer(void)
-
-    Summary:
-        Disable SysTick ISR
-    Description:
-        This routine disable SysTick Interrupt.
-*******************************************************************************/
-void stop_timer(void)
-{
-	NVIC_DisableIRQ(SysTick_IRQn);
-}
-
-/*******************************************************************************
-    Function:
-        void start_timer(void)
-
-    Summary:
-        Enable SysTick ISR
-    Description:
-        This routine enable SysTick Interrupt.
-*******************************************************************************/
-void start_timer(void)
-{
-	NVIC_EnableIRQ(SysTick_IRQn);
+    /* SYSTICK_TimerCallbackSet(ECAT_SysTick_Handler,(uintptr_t) NULL);
+    SYSTICK_TimerStart(); */
+	gDrvLan9252UtilObj.timerPlib->timerCallbackSet(ECAT_SysTick_Handler,(uintptr_t) NULL);
+    gDrvLan9252UtilObj.timerPlib->timerStart();
 }
 
 /*******************************************************************************
@@ -587,6 +573,9 @@ void ECAT_Util_Initialize(
    
     gDrvLan9252UtilObj.spiTransferStatus    = DRV_LAN9252_UTIL_SPI_TRANSFER_STATUS_COMPLETED;
     gDrvLan9252UtilObj.spiPlib              = lan9252UtilInit->spiPlib;
+	
+	// Timer PLIB initialization for LAN9252 driver 
+    gDrvLan9252UtilObj.timerPlib            = lan9252UtilInit->timerPlib;
     
 }
 

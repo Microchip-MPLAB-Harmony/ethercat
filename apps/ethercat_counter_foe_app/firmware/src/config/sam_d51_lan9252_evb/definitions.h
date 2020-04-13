@@ -182,7 +182,7 @@ void SYS_Tasks ( void );
 
 typedef struct
 {
-	/* LAN9252 Driver EtherCAT Adapter Object */
+	/* LAN9252 Driver EtherCAT Util Object */
 	uintptr_t drvLAN9252ECATUtil;
 
 

@@ -98,7 +98,7 @@ const DRV_LAN9252_UTIL_INIT drvLAN9252InitData = {
 
 	/* SPI PLIB API  interface*/
 	.spiPlib = &drvLAN9252SpiPlibAPI,
-
+	
 	/* Timer PLIB API Interface */
 	.timerPlib = &drvLAN9252TimerPlibAPI,
 

@@ -43,8 +43,8 @@
           <Name dnOrder="1">drv_lan9252_ecat_util.c</Name>
           <LogicalPath dnOrder="2">config/sam_d51_lan9252_evb/driver/lan9252/</LogicalPath>
           <PhysicalPath dnOrder="3">/driver/lan9252/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">3245E725F8BE829A5C0130AA63F4B353</GeneratedChecksum>
-          <UserChecksum dnOrder="5">745D00949A31215C12CA598C46A482EF</UserChecksum>
+          <GeneratedChecksum dnOrder="4">519EA1DABB03AC80416A680937B090E3</GeneratedChecksum>
+          <UserChecksum dnOrder="5">7066C5E43BED51142C81FF09E4DDF2DE</UserChecksum>
         </File>
         <File dnOrder="5">
           <Type dnOrder="0">SOURCE</Type>
@@ -211,8 +211,8 @@
           <Name dnOrder="1">plib_qspi_spi.c</Name>
           <LogicalPath dnOrder="2">config/sam_d51_lan9252_evb/peripheral/qspi/</LogicalPath>
           <PhysicalPath dnOrder="3">/peripheral/qspi/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">18347F743682C6AD3E97FB7AACAD129F</GeneratedChecksum>
-          <UserChecksum dnOrder="5">4ABA5428226EC66C70F8DF5CA3C9CC34</UserChecksum>
+          <GeneratedChecksum dnOrder="4">3412DE393B6735E2D63BEF3A94388100</GeneratedChecksum>
+          <UserChecksum dnOrder="5">3412DE393B6735E2D63BEF3A94388100</UserChecksum>
         </File>
         <File dnOrder="26">
           <Type dnOrder="0">SOURCE</Type>
@@ -427,8 +427,8 @@
           <Name dnOrder="1">definitions.h</Name>
           <LogicalPath dnOrder="2">config/sam_d51_lan9252_evb/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">C73B74B95782176D901AE1662F94D9AF</GeneratedChecksum>
-          <UserChecksum dnOrder="5">89E962A667F9AA0CE5716A3356598DAF</UserChecksum>
+          <GeneratedChecksum dnOrder="4">3565AAF889102E4E67FCA0E17255E6BF</GeneratedChecksum>
+          <UserChecksum dnOrder="5">3565AAF889102E4E67FCA0E17255E6BF</UserChecksum>
         </File>
         <File dnOrder="53">
           <Type dnOrder="0">HEADER</Type>
@@ -475,7 +475,7 @@
           <Name dnOrder="1">drv_lan9252_ecat_util.h</Name>
           <LogicalPath dnOrder="2">config/sam_d51_lan9252_evb/driver/lan9252/</LogicalPath>
           <PhysicalPath dnOrder="3">/driver/lan9252/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">8CB2B1A9BC81E7F845EEDC0912A44C4B</GeneratedChecksum>
+          <GeneratedChecksum dnOrder="4">BB7C55AA3B34B3D5D530F221653E89AD</GeneratedChecksum>
           <UserChecksum dnOrder="5">BB7C55AA3B34B3D5D530F221653E89AD</UserChecksum>
         </File>
         <File dnOrder="59">

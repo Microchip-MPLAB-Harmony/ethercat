@@ -133,6 +133,8 @@ def onAttachmentConnected(source, target):
 		lan9252PlibId = remoteID.upper()
 		plibUsed.setValue(lan9252PlibId.upper())
 		Database.setSymbolValue(lan9252PlibId, "SPI_DRIVER_CONTROLLED", True)
+		print "SPI RemoteComponetID = " + remoteID
+		
 	if (connectID == "LAN9252_TMR_Dependency"):
 		plibUsed = localComponent.getSymbolByID("DRV_LAN9252_TIMER_PLIB")
 		plibUsed.clearValue()

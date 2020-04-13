@@ -120,8 +120,8 @@ typedef struct
 
     /* SPI peripheral communication transfer status */
     volatile DRV_LAN9252_UTIL_SPI_TRANSFER_STATUS       spiTransferStatus;
-    
-    /* Timer PLIB API list that will be used by the driver to access the hardware */
+	
+	/* Timer PLIB API list that will be used by the driver to access the hardware */
     const DRV_LAN9252_UTIL_TMR_PLIB_INTERFACE*  timerPlib;
 
 } DRV_LAN9252_UTIL_OBJ;

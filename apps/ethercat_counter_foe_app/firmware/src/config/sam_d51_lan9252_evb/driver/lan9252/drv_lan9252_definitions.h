@@ -169,8 +169,8 @@ typedef struct
 {
     /* Identifies the SPI or SQI PLIB API set to be used by the driver to access the
      * peripheral. */
-    const DRV_LAN9252_UTIL_SPI_PLIB_INTERFACE*      spiPlib;
-    
+    const DRV_LAN9252_UTIL_SPI_PLIB_INTERFACE*      spiPlib;    
+
     /* Identifies the Timer PLIB API set to be used by the driver to access the
      * peripheral. */
     const DRV_LAN9252_UTIL_TMR_PLIB_INTERFACE*      timerPlib;

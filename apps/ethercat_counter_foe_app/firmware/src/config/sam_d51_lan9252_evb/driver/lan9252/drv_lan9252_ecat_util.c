@@ -54,20 +54,35 @@ volatile char    gEtherCATQSPITransmission = false;
 
 /* This is the driver instance object array. */
 static DRV_LAN9252_UTIL_OBJ gDrvLan9252UtilObj;
-
+/*Global interrupt enable and disable  */
 void ECAT_QSPI_TransmissionFlagClear(void);
 void ECAT_QSPI_CallbackRegistration(void);
 bool ECAT_QSPI_TransmissionBusy(void);
+volatile uint32_t processorStatus;
 
 
 void CRITICAL_SECTION_ENTER(void)
 {
-    __set_BASEPRI(4 << (8 - __NVIC_PRIO_BITS));
+//<#if __PROCESSOR?matches("PIC32M.*") == true>
+//    processorStatus = __builtin_disable_interrupts();
+//<else>
+//    processorStatus = __get_PRIMASK();
+//    __disable_irq();
+//</#if>
+    processorStatus = __get_PRIMASK();
+    __disable_irq();    
+    //__set_BASEPRI(4 << (8 - __NVIC_PRIO_BITS));
 }
 
 void CRITICAL_SECTION_LEAVE(void)
 {
-    __set_BASEPRI(0U); // remove the BASEPRI masking
+//<#if __PROCESSOR?matches("PIC32M.*") == true>
+//    __builtin_mtc0(12, 0, processorStatus);
+//<else>
+//    __set_PRIMASK( processorStatus );
+//</#if>
+    __set_PRIMASK( processorStatus );
+   // __set_BASEPRI(0U); // remove the BASEPRI masking
 }
 
 #ifdef DC_SUPPORTED
@@ -505,10 +520,29 @@ void ECAT_SysTick_Handler(uintptr_t context)
 *******************************************************************************/
 void PDI_Init_SYSTick_Interrupt()
 {
-//    SYSTICK_TimerCallbackSet(ECAT_SysTick_Handler,(uintptr_t) NULL);
-//    SYSTICK_TimerStart();
+    /* SYSTICK_TimerCallbackSet(ECAT_SysTick_Handler,(uintptr_t) NULL);
+    SYSTICK_TimerStart(); */
     gDrvLan9252UtilObj.timerPlib->timerCallbackSet(ECAT_SysTick_Handler,(uintptr_t) NULL);
     gDrvLan9252UtilObj.timerPlib->timerStart();
+}
+
+/*******************************************************************************
+    Function:
+    void HW_SetLed(UINT8 RunLed,UINT8 ErrLed)
+
+    Summary:
+     This function set the Error LED if it is required.
+
+    Description:
+    LAN9252 does not support error LED. So this feature has to be enabled by PDI SOC if it is needed.
+
+    Parameters:
+        RunLed	- It is not used. This will be set by LAN9252.
+        ErrLed	- 1- ON, 0-0FF.
+*******************************************************************************/
+void HW_SetLed(UINT8 RunLed, UINT8 ErrLed)
+{
+	/* Here RunLed is not used. Because on chip supported RUN Led is available*/
 }
 
 /*******************************************************************************

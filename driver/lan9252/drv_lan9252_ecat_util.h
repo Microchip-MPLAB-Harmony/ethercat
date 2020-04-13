@@ -115,7 +115,7 @@ typedef struct
     /* Flag to indicate this object is in use  */
     bool                                   inUse;
 
-    /* PLIB API list that will be used by the driver to access the hardware */
+    /* SPI PLIB API list that will be used by the driver to access the hardware */
     const DRV_LAN9252_UTIL_SPI_PLIB_INTERFACE*  spiPlib;
 
     /* SPI peripheral communication transfer status */
