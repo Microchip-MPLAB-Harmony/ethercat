@@ -50,7 +50,6 @@
 // *****************************************************************************
 
 #include <device.h>
-#include "system/ports/sys_ports.h"
 
 
 // DOM-IGNORE-BEGIN

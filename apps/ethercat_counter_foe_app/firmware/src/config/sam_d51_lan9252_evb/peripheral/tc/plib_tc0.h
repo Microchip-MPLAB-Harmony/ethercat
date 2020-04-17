@@ -96,16 +96,15 @@ void TC0_TimerStop( void );
 uint32_t TC0_TimerFrequencyGet( void );
 
 
-void TC0_Timer16bitPeriodSet( uint16_t period );
+void TC0_Timer32bitPeriodSet( uint32_t period );
 
-uint16_t TC0_Timer16bitPeriodGet( void );
+uint32_t TC0_Timer32bitPeriodGet( void );
 
-uint16_t TC0_Timer16bitCounterGet( void );
+uint32_t TC0_Timer32bitCounterGet( void );
 
-void TC0_Timer16bitCounterSet( uint16_t count );
+void TC0_Timer32bitCounterSet( uint32_t count );
 
-void TC0_Timer16bitCompareSet( uint16_t compare );
-
+void TC0_Timer32bitCompareSet( uint32_t compare );
 
 
 void TC0_TimerCallbackRegister( TC_TIMER_CALLBACK callback, uintptr_t context );

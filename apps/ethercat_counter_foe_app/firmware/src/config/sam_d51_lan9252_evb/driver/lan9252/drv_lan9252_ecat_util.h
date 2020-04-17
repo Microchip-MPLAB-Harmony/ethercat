@@ -64,7 +64,18 @@
 
 #endif
 // DOM-IGNORE-END
-        
+/* Cortex-M specific definitions. */
+#ifdef __NVIC_PRIO_BITS
+  /* __NVIC_PRIO_BITS will be specified when CMSIS is being used. */
+  #define ETHERCAT_INT_PRIO_BITS     __NVIC_PRIO_BITS
+#else
+  /* 15 priority levels */
+  #define ETHERCAT_INT_PRIO_BITS     3
+#endif
+/* This is the lowest interrupt priority for SAM devices and Highest for PIC32M devices that can be used in a call to a "set priority" function. */
+#define ETHERCAT_CONFIG_MAX_INTERRUPT_PRIORITY 		4
+
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Data Types
@@ -123,6 +134,7 @@ typedef struct
 	
 	/* Timer PLIB API list that will be used by the driver to access the hardware */
     const DRV_LAN9252_UTIL_TMR_PLIB_INTERFACE*  timerPlib;
+	
 
 } DRV_LAN9252_UTIL_OBJ;
 
@@ -194,37 +206,11 @@ typedef union {
 
 } UINT32_VAL;
 
-// *****************************************************************************
-/* EIC Interrupt Pin Callback Function for EthercAT external interrupt IRQ.
 
-  Summary:
-    Defines the External interrupt interface for Process data interface (PDI) 
-
-  Description:
-    This interrupt service routine is used for the External PDI interrupt .
-
-  Function:
-    void PDI_IRQ_Interrupt(void)
-
-  Precondition:
-    EIC_Initialize must have been called for the given EIC
-    peripheral instance and EIC_CallbackRegister must have been
-    called to set the function to be called.EIC peripheral  interrupt should be 
-    enabled. 
-    For this ISR, EIC Interrupt 7 is enabled.
-
-  Parameters:
-    none
-
-  Returns:
-    None.  
-  Remarks:
-    None.
-*/
 void    PDI_IRQ_Interrupt(void);
 
-void    SPIChipSelectSet(void);
-void    SPIChipSelectClr(void);
+void    ethercat_chipSelectSet(void);
+void    ethercat_chipSelectClear(void);
 void	SPIWrite(uint16_t adr, uint8_t *data);
 void	SPIRead(uint16_t adr, uint8_t *data);
 void	ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len);

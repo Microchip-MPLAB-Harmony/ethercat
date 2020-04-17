@@ -1,4 +1,3 @@
-<#--
 /*******************************************************************************
   EtherCAT Freemarker Template File
 
@@ -6,7 +5,7 @@
     Microchip Technology Inc.
 
   File Name:
-    ethercat_conf.h.ftl
+    ethercat_configuration.h
 
   Summary:
     EtherCAT Freemarker Template File
@@ -14,10 +13,9 @@
   Description:
 
 *******************************************************************************/
--->
-
-<#----------------------------------------------------------------------------
- Copyright (C) 2014-2018 Microchip Technology Inc. and its subsidiaries.
+// DOM-IGNORE-BEGIN
+/*******************************************************************************
+Copyright (C) 2014-2018 Microchip Technology Inc. and its subsidiaries.
 
 Microchip Technology Inc. and its subsidiaries.
 
@@ -39,18 +37,17 @@ BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
 FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN 
 ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY, 
 THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
------------------------------------------------------------------------------>
+*******************************************************************************/
+// DOM-IGNORE-END
 
-<#if ETHERCAT_FOE_ENABLE == true>
+#ifndef ETHERCAT_CONFIGURATION_H
+#define ETHERCAT_CONFIGURATION_H
+
 /*** ETHERCAT Configuration ***/
 #define ETHERCAT_USE_FOE
-#define ETHERCAT_FOE_FILE_NAME_LENGTH 			0x${ETHERCAT_FOE_FILE_NAME_LENGTH}
-#define ETHERCAT_FOE_FILE_DOWNLOAD_PASSWORD    	0x${ETHERCAT_FOE_FILE_DOWNLOAD_PASSWORD}
+#define ETHERCAT_FOE_FILE_NAME_LENGTH 			0x16
+#define ETHERCAT_FOE_FILE_DOWNLOAD_PASSWORD    	0x11223344
 
-</#if>
 
-<#--
-/*******************************************************************************
- End of File
-*/
--->
+
+#endif

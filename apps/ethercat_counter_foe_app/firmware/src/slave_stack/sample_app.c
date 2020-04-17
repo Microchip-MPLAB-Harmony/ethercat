@@ -53,7 +53,7 @@ THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 #undef _SAMPLE_APP_
 
 #include "bootmode.h"
-#include "configuration.h"
+#include "ethercat_configuration.h"
 #include "app.h"
 
 
