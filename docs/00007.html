@@ -48,15 +48,21 @@ MPLAB Harmony Configurations</div>
 <a name="4465736372697074696F6E"></a><div class="Element11">
 <div class="Element10">
 <p class="Element10">
- &nbsp;</p>
-<p class="Element10">
 The following Project Graph diagram shows the Harmony components included for the EtherCAT demonstration application.&nbsp;</p>
 <p class="Element10">
-<img src="ethercat_project.png" border="0" alt="" title="">&nbsp;</p>
+&nbsp;</p>
+<p class="Element10">
+<img src="ethercat_project_graph.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
 <p class="Element10">
 EtherCAT configuration option -&nbsp;</p>
 <p class="Element10">
 <img src="ethercat_configuration.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10">
+EtherCAT LAN9252 driver configuration w.r.t External Interrupt PIN configuration and SPI CHIP select PIn configuration-&nbsp;</p>
+<p class="Element10">
+<img src="lan9252_drv_extpin_configuration.png" border="0" alt="" title="">&nbsp;</p>
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
@@ -70,11 +76,12 @@ Right side is the EtherCAT project with supported SSC stack files.&nbsp;</p>
 <p class="Element10">
 <img src="EtherCAT_MHC_Generated_project.png" border="0" alt="" title="">&nbsp;</p>
 <p class="Element10">
-&nbsp;</p><div class="Element15">
+NOTE - Though SSC tool generates sample_app.c ( &lt;userdefined&gt;_app.c) file., ethercat_counter_foe_app repo uses this sample_app.c file for FoE ( file over ethercat), trigger/counter operation. Please find the sample_app.c file for the reference ,apps\ethercat_counter_foe_app\firmware\src\slave_stack\sample_app.c.</p><div class="Element15">
 Components Used</div>
 
 <ul class="Element630">
 <li class="Element600">QSPI peripheral</li>
+<li class="Element600">Timer peripheral</li>
 <li class="Element600">EIC , NVIC, NVMCtrl peripheral</li>
 <li class="Element600">LAN 9252 driver</li>
 <li class="Element600">ETherCAT Slave stack code</li>
