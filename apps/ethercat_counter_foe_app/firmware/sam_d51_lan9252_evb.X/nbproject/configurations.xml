@@ -116,8 +116,6 @@
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="f2" displayName="slave_stack" projectFiles="true">
-        <itemPath>../src/slave_stack/sample_app.h</itemPath>
-        <itemPath>../src/slave_stack/sample_appObjects.h</itemPath>
         <itemPath>../src/slave_stack/applInterface.h</itemPath>
         <itemPath>../src/slave_stack/bootmode.h</itemPath>
         <itemPath>../src/slave_stack/coeappl.h</itemPath>

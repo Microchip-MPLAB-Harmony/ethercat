@@ -219,7 +219,7 @@
           <Name dnOrder="1">sample_app.c</Name>
           <LogicalPath dnOrder="2">slave_stack/</LogicalPath>
           <PhysicalPath dnOrder="3">/../../slave_stack/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">E49E51E794CF82CC958FB24B8DC23040</GeneratedChecksum>
+          <GeneratedChecksum dnOrder="4">8C098C3B25954E434BDD4B7995BCA3A2</GeneratedChecksum>
           <UserChecksum dnOrder="5">E49E51E794CF82CC958FB24B8DC23040</UserChecksum>
         </File>
         <File dnOrder="27">
@@ -396,7 +396,7 @@
           <LogicalPath dnOrder="2">config/sam_d51_lan9252_evb/</LogicalPath>
           <PhysicalPath dnOrder="3">/</PhysicalPath>
           <GeneratedChecksum dnOrder="4">C58A1A1E31C7F3AF6D0D2DE231192876</GeneratedChecksum>
-          <UserChecksum dnOrder="5">7FAFDF64AC0A55D568AA90B852C38CA6</UserChecksum>
+          <UserChecksum dnOrder="5">C58A1A1E31C7F3AF6D0D2DE231192876</UserChecksum>
         </File>
         <File dnOrder="49">
           <Type dnOrder="0">HEADER</Type>
@@ -491,7 +491,7 @@
           <Name dnOrder="1">ecatslv.h</Name>
           <LogicalPath dnOrder="2">slave_stack/</LogicalPath>
           <PhysicalPath dnOrder="3">/../../slave_stack/</PhysicalPath>
-          <GeneratedChecksum dnOrder="4">F9141B92D2ABC6F0DB359ABE994F7CC1</GeneratedChecksum>
+          <GeneratedChecksum dnOrder="4">01648BFD55B349A0E1576D39C181B55B</GeneratedChecksum>
           <UserChecksum dnOrder="5">F9141B92D2ABC6F0DB359ABE994F7CC1</UserChecksum>
         </File>
         <File dnOrder="61">

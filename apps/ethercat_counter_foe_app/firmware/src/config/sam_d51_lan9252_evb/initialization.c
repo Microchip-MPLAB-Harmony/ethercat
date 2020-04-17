@@ -161,10 +161,6 @@ void SYS_Initialize ( void* data )
 	ECAT_Util_Initialize(0, (void *)&drvLAN9252InitData);
 
 
-
-    APP_Initialize();
-
-
     NVIC_Initialize();
 
 }

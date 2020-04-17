@@ -52,12 +52,12 @@ def instantiateComponent(ethercatLan9252Component):
 	
 	# Lan9252 Set Interrupt priority level and disable interrupts upto this value for SAM devices and after that value for PIC32M devices.
 	lan9252InterruptPriority = ethercatLan9252Component.createIntegerSymbol("DRV_LAN9252_INT_PRIO", None)
-	lan9252InterruptPriority.setLabel("External Interrupt Priority Level")
-	lan9252InterruptPriority.setDescription("External Interrupt Priority Level")
+	lan9252InterruptPriority.setLabel("EtherCAT Interrupt Priority Level")
+	lan9252InterruptPriority.setDescription("EtherCAT Interrupt Priority Level to disable interrupt during critical section")
 	lan9252InterruptPriority.setDefaultValue(4)
 	lan9252InterruptPriority.setMax(7)
 	lan9252InterruptPriority.setMin(0)
-	lan9252InterruptPriority.setVisible(False)
+	lan9252InterruptPriority.setVisible(True)
 	
 	periphNode = ATDF.getNode("/avr-tools-device-file/devices/device/peripherals")
 	modules = periphNode.getChildren()
