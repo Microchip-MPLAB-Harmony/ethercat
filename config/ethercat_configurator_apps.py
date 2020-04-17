@@ -92,12 +92,15 @@ def instantiateComponent(etherCatComponent):
 	foeFileDownloadPassword.setDefaultValue(0x11223344)	
 	foeFileDownloadPassword.setDependencies(ethercatFoEAttrVisible, ["ETHERCAT_FOE_ENABLE"])
 	
-	#Add to configuration.h
+	#Add to ethercat_configuration.h
 	ethercatConfigurationHeaderFtl = etherCatComponent.createFileSymbol(None, None)
-	ethercatConfigurationHeaderFtl.setSourcePath("config/ethercat_config.h.ftl")
-	ethercatConfigurationHeaderFtl.setOutputName("core.LIST_SYSTEM_CONFIG_H_MIDDLEWARE_CONFIGURATION")
+	ethercatConfigurationHeaderFtl.setSourcePath("config/ethercat_template/ethercat_config.h.ftl")
+	ethercatConfigurationHeaderFtl.setOutputName("ethercat_configuration.h")
+	ethercatConfigurationHeaderFtl.setDestPath("")
+	ethercatConfigurationHeaderFtl.setProjectPath("config/" + configName + "/")
+	ethercatConfigurationHeaderFtl.setType("HEADER")
+	ethercatConfigurationHeaderFtl.setOverwrite(True)
 	ethercatConfigurationHeaderFtl.setMarkup(True)
-	ethercatConfigurationHeaderFtl.setType("STRING")
 	
 	
 	# Message to provide the source web page path which will be used for the webpage.py
