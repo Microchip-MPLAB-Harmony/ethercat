@@ -1,7 +1,7 @@
 ﻿![Microchip logo](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_logo.png)
 ![Harmony logo small](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_mplab_harmony_logo_small.png)
 
-# Microchip MPLAB® Harmony 3 Release Notes (February, 2020)
+# Microchip MPLAB® Harmony 3 Release Notes (April, 2020)
 ## EtherCAT Release v3.0.0
 
 ### New Features
@@ -20,13 +20,13 @@ None
 
 ### Development Tools
 
-* [MPLAB® X IDE v5.30](https://www.microchip.com/mplab/mplab-x-ide)
-* [MPLAB® XC32 C/C++ Compiler v2.30](https://www.microchip.com/mplab/compilers)
+* [MPLAB® X IDE v5.35](https://www.microchip.com/mplab/mplab-x-ide)
+* [MPLAB® XC32 C/C++ Compiler v2.40](https://www.microchip.com/mplab/compilers)
 * MPLAB® X IDE plug-ins:
     * MPLAB® Harmony Configurator (MHC) v3.3.5 and above.
 
 ### Dependent Components
-* [CSP v3.6.0](https://github.com/Microchip-MPLAB-Harmony/csp/tree/v3.6.0)
-* [CORE v3.6.0](https://github.com/Microchip-MPLAB-Harmony/core/tree/v3.6.0)
-* [DEV_PACKS v3.6.0](https://github.com/Microchip-MPLAB-Harmony/dev_packs/tree/v3.6.0)
+* [CSP v3.6.1](https://github.com/Microchip-MPLAB-Harmony/csp/tree/v3.6.1)
+
+* [DEV_PACKS v3.6.1](https://github.com/Microchip-MPLAB-Harmony/dev_packs/tree/v3.6.1)
 * [MHC v3.3.5](https://github.com/Microchip-MPLAB-Harmony/mhc/tree/v3.3.5)
