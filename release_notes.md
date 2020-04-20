@@ -27,5 +27,4 @@ None
 
 ### Dependent Components
 * [CSP v3.6.1](https://github.com/Microchip-MPLAB-Harmony/csp/tree/v3.6.1)
-
 * [MHC v3.3.5](https://github.com/Microchip-MPLAB-Harmony/mhc/tree/v3.3.5)
