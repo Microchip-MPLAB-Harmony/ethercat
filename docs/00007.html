@@ -60,10 +60,26 @@ EtherCAT configuration option -&nbsp;</p>
 <p class="Element10">
 <img src="ethercat_configuration.png" border="0" alt="" title="">&nbsp;</p>
 <p class="Element10">
-EtherCAT LAN9252 driver configuration w.r.t External Interrupt PIN configuration and SPI CHIP select PIn configuration-&nbsp;</p>
+EtherCAT LAN9252 driver configuration w.r.t External Interrupt PIN configuration , SPI CHIP select PIN configuration and also EtherCAT priority level setting.&nbsp;</p>
 <p class="Element10">
 <img src="lan9252_drv_extpin_configuration.png" border="0" alt="" title="">&nbsp;</p>
+<ul class="Element630">
+<li class="Element600"><strong>&quot;EtherCAT Interrupt Priority level&quot; </strong>- This configuration allows to disable interrupts more specifically. The default value is 4 and maximum configured value is 7. These values refers to the priority values.</li>
+</ul><p class="Element10">
+- For <strong>ARMv7-M (Cortex-M3/M4/M4F) </strong>provides additionally the BASEPRI special register, which allows to disable interrupts more selectively. Specifically this configuration parameter disable interrupts only with urgency lower than a certain level ( i,e priority 4,5,6 and 7 configured interrupts will be disabled) and leave the higher-urgency interrupts( I,e, priority 0, 1, 2,3 configured interrupts) not disabled at all.&nbsp;</p>
 <p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+- For<strong> MIPS</strong> devices, which also allows to disable interrupts more selectively. IPL is [0 to 7] with 7 being the highest level. If &quot;EtherCAT Interrupt Priority level&quot; set to 4, for example then only interrupts with IPL &gt; 4 will be active, the rest will be masked.&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<ul class="Element630">
+<li class="Element600"><strong>LAN9252 SYSTEM interrupt PIN configuration -</strong></li>
+</ul><p class="Element10">
+There are three different Interrupt external events are recorded for LAN9252 device. Those are IRQ, SYNC0 and SYNC1 events. With respect to the interrupts, the MHC provides EIC/GPIO/PIO pin selection for External event registration and event handler processing.</p>
+<ul class="Element630">
+<li class="Element600"> LAN9252 MHC configuration also supports <strong>SPI chip select PIN selection</strong>. This PIN can be PIO/PORT/GPIO according to the device.</li>
+</ul><p class="Element10">
 &nbsp;</p>
 <p class="Element10">
 This following diagram presents the One Click generated EtherCAT project, which is without Slave stack code.&nbsp;</p>
