@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SscToolConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SSCVersion="5.12" VendorID="#xE00004D8" VendorName="Microchip">
 	<Configurations>
-		<Configuration Name="Microchip - SAMD51 EtherCAT Slave FoE" Version="0.0.1.1" Info="Shall be set if the Slave code executes on an Microchip development board for the SAMD51 With Bootloader support">
+		<Configuration Name="Microchip - EtherCAT Slave Controller" Version="0.0.1.2" Info="Shall be set if the Slave code executes on an Microchip development board for the SAMD51 With FoE support">
 			<Setting CodeDefine="MCI_HW" Value="0">
 				<Flags Visible="True"/>
 			</Setting>
@@ -87,7 +87,7 @@
 			<Setting CodeDefine="ESC_EEPROM_EMULATION" Value="0"/>
 			<Setting CodeDefine="USE_DEFAULT_MAIN" Value="0"/>
 			<Setting CodeDefine="ESC_CONFIG_DATA" Value="800E00CC8813ff00000000800000"/>
-			<Setting CodeDefine="HW_ACCESS_FILE" Value="#include &quot;9252_HW.h&quot;"/>
+			<Setting CodeDefine="HW_ACCESS_FILE" Value="#include &quot;drv_lan9252.h&quot;"/>
 			<Setting CodeDefine="STRUCT_PACKED_END" Value="__attribute__((packed))"/>
 			<Setting CodeDefine="MBX_STRUCT_PACKED_END" Value="__attribute__((packed))"/>
 			<Setting CodeDefine="MAKE_HUGE_PTR" Value=""/>
@@ -103,8 +103,8 @@
 			<Setting CodeDefine="DEVICE_HW_VERSION" Value="1.0"/>
 			<Setting CodeDefine="DEVICE_PROFILE_TYPE" Value="0x00000192"/>
 			<Setting CodeDefine="DEVICE_HW_VERSION_LEN" Value="0x3"/>
-			<Setting CodeDefine="DEVICE_SW_VERSION" Value="1.0"/>
-			<Setting CodeDefine="DEVICE_SW_VERSION_LEN" Value="0x3"/>
+			<Setting CodeDefine="DEVICE_SW_VERSION" Value="3.0.0"/>
+			<Setting CodeDefine="DEVICE_SW_VERSION_LEN" Value="0x5"/>
 			<Setting CodeDefine="MIN_PD_WRITE_ADDRESS" Value="0x1000"/>
 			<Setting CodeDefine="MAX_PD_WRITE_ADDRESS" Value="0x1FFF"/>
 			<Setting CodeDefine="MIN_PD_READ_ADDRESS" Value="0x1000"/>
@@ -123,16 +123,16 @@
 			<Setting CodeDefine="PD_OUTPUT_CALC_AND_COPY_TIME" Value="0"/>
 			<Setting CodeDefine="PD_INPUT_CALC_AND_COPY_TIME" Value="0"/>
 			<Setting CodeDefine="PD_INPUT_DELAY_TIME" Value="0"/>
-			<File Name="9252_HW.c" Type="source" Path="Common\">
-				<Flags HwFile="true"/>This file is included in the Microchip SDK</File>
-			<File Name="9252_HW.h" Type="header" Path="Common\">
-				<Flags HwFile="true"/>This file is included in the Microchip SDK</File>
+			<File Name="drv_lan9252.c" Type="source" Path="Common\">
+				<Flags HwFile="true"/>This file is included in the Microchip Harmony3</File>
+			<File Name="drv_lan9252.h" Type="header" Path="Common\">
+				<Flags HwFile="true"/>This file is included in the Microchip Harmony3</File>
 			<ESI>
 				<Value>
 					<Descriptions>
 						<Groups>
 							<Group SortOrder="0">
-								<Type>Microchip SAMD51 Slaves FoE</Type>
+								<Type>Microchip - EtherCAT Slave Controller</Type>
 								<Name LcId="1031">Microchip SAMD51 Slaves</Name>
 								<Name LcId="1033">Microchip SAMD51 Slaves</Name>
 								<ImageData16x14>424DF8010000000000003600000028000000100000000E0000000100100000000000C2010000120B0000120B00000000000000000000FF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7F397B8C75C6748474A5744A75947AFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7F8B7521746374847420706374837441746374FF7FFF7FFF7FFF7FFF7FFF7FFF7F00708374A47400709C7FA47463744274E674FF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7F00702074CD79FF7FFF7F00740070FF7FFF7FFF7FFF7FFF7FFF7F5A7FFF7FFF7F947A0070FF7FFF7FFF7F0070D67AFF7FFF7FD67AFF7FFF7FFF7F0070FF7FFF7F00709C7FFF7FFF7FCD796274FF7FFF7FFF7F00705A7FFF7FFF7F6274E774AD754975FF7FFF7FFF7F0070FF7FFF7FFF7FA5740875FF7FFF7FFF7F497541740070FF7FFF7FFF7F0070187FFF7FFF7FF77A2174FF7FFF7FFF7FFF7F937A217400709C7FFF7F317A0070C674FF7FFF7F00705A7FFF7FFF7FFF7FFF7FFF7F087541740070397B0070A4742170EF790775297DFF7FFF7FFF7FFF7FFF7FFF7FFF7FAC79007000708474A47484742170A57CFF7F7B6FFF7FFF7FFF7FFF7FFF7FFF7FFF7F397F8B75C6748474C574AC75FF7FD6561863FF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7FFF7F0000</ImageData16x14>
@@ -144,7 +144,7 @@
 			</ESI>
 			<ESI Path="/EtherCATInfo/Descriptions/Devices/Device">
 				<Value>
-					<GroupType>Microchip SAMD51 Slaves FoE</GroupType>
+					<GroupType>Microchip - EtherCAT Slave Controller</GroupType>
 				</Value>
 				<!--Device Group-->
 			</ESI>

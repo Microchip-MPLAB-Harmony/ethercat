@@ -123,10 +123,25 @@ Running The Application</div>
 <strong>2. In the menu bar, click File and then New to continue</strong>&nbsp;</p>
 <p class="Element10">
 <img src="New_EtherCAT_Slave.png" border="0" alt="" title="">&nbsp;</p>
+
+<ul class="Element630">
+<li class="Element600">The shared &quot;Microchip-SAMD51-LAN925x-SSC_Config.xml&quot; with Name=&quot;Microchip - EtherCAT Slave Controller&quot; Version=&quot;0.0.1.2&quot;.</li>
+</ul><p class="Element10">
+- The older version of the &quot;&quot;Microchip-SAMD51-LAN925x-SSC_Config.xml&quot; file need to be removed.&nbsp;</p>
+<p class="Element10">
+ssc-&gt;tool-&gt;option-&gt;configuration&nbsp;</p>
+<p class="Element10">
+<img src="removeAndAdd_ssc_input_configurationfile.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10">
+Remove the old &quot;Microchip-SAMD51-LAN925x-SSC_Config.xml&quot;&nbsp;</p>
+<p class="Element10">
+- <img src="ssc_input_configurationfile.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10">
+we can see the different version in the&nbsp;</p>
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
-<strong>NOTE :- These following files are part of the Demo application and these files will be used while generating SSC source code.</strong> </p><div class="Element63">
+<strong>NOTE :- These following files are part of the Demo application and these files will be used while generating SSC source code.</strong> &nbsp;</p><div class="Element63">
 <div class="TableDiv">
 <table cellspacing="0" class="Table1">
 <tr>
@@ -157,23 +172,43 @@ SAMD51_EtherCAT_Slave.xml (This XML file is generated from SSC tool )&nbsp;</div
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
-<strong>3. Click Import to import the SSC Tool configuration file Microchip-SAMD51-EtherCAT-Slave_SSC_Config.xml from the EtherCAT Git root path.</strong>&nbsp;</p>
+<strong>3. Click Import to import the SSC Tool configuration file &quot;Microchip-SAMD51-LAN925x-SSC_Config.xml&quot; from the EtherCAT Git root path.</strong>&nbsp;</p>
 <p class="Element10">
 <img src="Import_SSC_Project.png" border="0" alt="" title="">&nbsp;</p>
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
-<strong>4. After selecting the file, click Open to import the SSC Tool configuration file.</strong>&nbsp;</p>
-<p class="Element10">
-<strong>5. Once imported, check the Custom drop-down box, select Microchip – SAME54 EtherCAT Slave FoE configuration and then click OK.</strong>&nbsp;</p>
-<p class="Element10">
-<img src="Custom_SSCFile_selected.png" border="0" alt="" title="">&nbsp;</p>
+<img src="default_ssc_new_project_setting.png" border="0" alt="" title="">&nbsp;</p>
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
-<strong>6. After selecting the configuration SSC will prompt for 9252_HW.c file. Click “OK” and choose “9252_HW.c” file from EtherCAT driver folder path.</strong>&nbsp;</p>
+<strong>4. After selecting the file, click Open to import the SSC Tool configuration file.</strong>&nbsp;</p>
+<p class="Element10">
+<strong>5. Once imported, check the Custom drop-down box, select Microchip – EtherCAT Slave Controller and then click OK.</strong>&nbsp;</p>
+<p class="Element10">
+<img src="Custom_SSCFile_selected.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10">
+<strong>New input configuration file is selected with new version 0.0.1.2</strong>&nbsp;</p>
+<p class="Element10">
+<img src="new_ssc_inputconfiguration_file_selected.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<strong>6. After selecting the configuration SSC will prompt for drv_lan9252.c file. Click “OK” and choose “drv_lan9252.c” file from EtherCAT driver folder path.</strong>&nbsp;</p>
+<p class="Element10">
+<img src="drv_lan9252_selection.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
+<p class="Element10">
+<strong>Select drv_lan9252.c file from the ethercat-&gt;driver-&gt;lan9252-&gt;src-&gt;drv_lan9252</strong>&nbsp;</p>
+<p class="Element10">
+<img src="drv_lan9252_selectioned_ethercat_drv_path.png" border="0" alt="" title="">&nbsp;</p>
 <p class="Element10">
 <strong>7. All listed parameters under Slave Information tab can be changed as shown below</strong>&nbsp;</p>
+<p class="Element10">
+<strong>Slave settings with the used version -</strong>&nbsp;</p>
+<p class="Element10">
+<img src="slaveStack_setting_details_after_drv_addition.png" border="0" alt="" title="">&nbsp;</p>
 <p class="Element10">
 <img src="Slave_Information_Setting.png" border="0" alt="" title="">&nbsp;</p>
 <p class="Element10">
@@ -187,21 +222,29 @@ SAMD51_EtherCAT_Slave.xml (This XML file is generated from SSC tool )&nbsp;</div
 <p class="Element10">
 <strong>9. Select the file sample_app.xlsx which can be found in the EtherCAT root directory (&lt;install-dir&gt;\ethercat\app\&lt;demo&gt;\firmware\src\slave_stack). This file is an object file which contains the information about application objects.</strong>&nbsp;</p>
 <p class="Element10">
+<img src="sample_application_ExcelfilePath.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10">
 <strong>10. Once the file is selected, status message will be displayed as shown below. Then click OK to continue</strong>&nbsp;</p>
 <p class="Element10">
-<img src="Status_Message.png" border="0" alt="" title="">&nbsp;</p>
+<img src="sample_app_status_message.png" border="0" alt="" title="">&nbsp;</p>
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
 <strong>11. Click the Project drop-down menu in the tool bar and select Create New Slave Files. The pop-up windows</strong>&nbsp;</p>
 <p class="Element10">
-<img src="Create_New_Slave_Files.png" border="0" alt="" title="">&nbsp;</p>
+<img src="select_create_new_slave_files.png" border="0" alt="" title="">&nbsp;</p>
+<p class="Element10">
+<strong>Below is the Default ESI path is selected to save the &quot;SAMD51_EtherCAT_Slave.xml&quot; and the default folder path is selected to generate Slave stack Source files. user can modify as per the requirement.</strong>&nbsp;</p>
+<p class="Element10">
+<img src="new_slaveFile_selectionpath.png" border="0" alt="" title="">&nbsp;</p>
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
 <strong>12. Click the Start button to create a new project file, Src folder, and ESI file (Slave Information file) in the desired directory path.</strong>&nbsp;</p>
 <p class="Element10">
 <strong>13. A pop-up window will indicate that the files have been successfully created. Click OK to continue.</strong>&nbsp;</p>
+<p class="Element10">
+<img src="ssc_fielsGenerated_successfully.png" border="0" alt="" title="">&nbsp;</p>
 <p class="Element10">
 <strong>14. Along with generated new slave files, ESI file (.xml file) also will be generated. This ESI file will have information about new Vendor ID and object configuration. This ESI file is used to be programmed using &quot;EEPROM Programming&quot;.</strong>&nbsp;</p>
 <p class="Element10">
@@ -223,13 +266,15 @@ SAMD51_EtherCAT_Slave.xml (This XML file is generated from SSC tool )&nbsp;</div
 <p class="Element10">
 <strong>1. The default generated sample_app.c , does not have the counter and trigger configuration details. So, the user can add the modifying code for the counter and trigger.</strong>&nbsp;</p>
 <p class="Element10">
-<strong>2. Generated application files will not have the code for modifying the Output Counter. Modifying the Output Counter based on the Input trigger value in the sample application provided, is required to run the demonstration application.</strong>&nbsp;</p>
+<strong>2. Generated application files will not have the code for modifying the Output Counter. Modifying the Output Counter based on the Input trigger value in the sample application provided, is required to run the demonstration application. This sample_app.c file also doesn't have the FoE read and write APIs .</strong>&nbsp;</p>
 <p class="Element10">
 <img src="sample_application_file.png" border="0" alt="" title="">&nbsp;</p>
 <p class="Element10">
 &nbsp;</p>
 <p class="Element10">
-<strong> 3. For this &lt;ethercat_counter_foe_app&gt; demo application , trigger,counter and FoE configured sample application files are already part of the EtherCAT demo application. Sample application files are present with updated information in the path (&lt;install-dir&gt;\ethercat\app\&lt;demo&gt;\firmware\src\slave_stack).</strong></p>
+<strong> 3. For this &lt;ethercat_counter_foe_app&gt; demo application , trigger,counter and FoE configured sample application files are already part of the EtherCAT demo application. Sample application files are present with updated information in the path (&lt;install-dir&gt;\ethercat\app\&lt;demo&gt;\firmware\src\slave_stack).</strong>&nbsp;</p>
+<p class="Element10">
+&nbsp;</p>
 <ol class="Element630">
 <li value="3" class="Element600"><strong>Scanning EtherCAT Slaves</strong></li>
 </ol><p class="Element10">

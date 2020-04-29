@@ -53,9 +53,13 @@ def sscPathParsing(path):
 			sepSSCDir = file[file.find(os.path.sep):]
 			htmFile = sepSSCDir.replace(os.path.sep, "",1)
 			srcFile = htmFile.rfind(".c")
-			if srcFile == -1:
+			headerFile = htmFile.rfind(".h")
+			drvFile = htmFile.find("drv_",0,4)
+			if drvFile !=  -1:
+				continue
+			if headerFile != -1:
 				srcFileFound = 0
-			else:
+			elif srcFile != -1:
 				srcFileFound = 1
 			# Get the ssc file symbol and each symbol is for the each file
 			sscListFile = createSSCFileSymbol(count)
