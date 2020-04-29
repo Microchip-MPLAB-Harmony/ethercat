@@ -11,7 +11,7 @@
 		
 	| Development kits   	| Applications Description												|
 	| ---					| ---																	|
-	| EVB-LAN9252x SAMD51	| Process Trigger and Counter Index With Firmware Update Over EtherCAT	|
+	| EVB-LAN925x SAMD51	| Process Trigger and Counter Index With Firmware Update Over EtherCAT	|
 
 
 ### Known Issues
@@ -24,7 +24,10 @@ None
 * [MPLAB® XC32 C/C++ Compiler v2.40](https://www.microchip.com/mplab/compilers)
 * MPLAB® X IDE plug-ins:
     * MPLAB® Harmony Configurator (MHC) v3.3.5 and above.
+* TwinCAT Manager:
+    * TC31-Full-Setup.3.1.4024.7x and above. (https://www.beckhoff.com/english.asp?download/tc3-downloads.htm)
 
 ### Dependent Components
 * [CSP v3.6.1](https://github.com/Microchip-MPLAB-Harmony/csp/tree/v3.6.1)
 * [MHC v3.3.5](https://github.com/Microchip-MPLAB-Harmony/mhc/tree/v3.3.5)
+* [EtherCAT Slave Stack Code (SSC) v5.12](https://www.ethercat.org/en/downloads/downloads_01DCC32A10294F2EA866F7E46FB0285F.htm)
