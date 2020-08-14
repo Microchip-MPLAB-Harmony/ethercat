@@ -12,5 +12,5 @@
 *.chm -text
 *.gif -text
 *.png -text
-*.xslx -text
+*.xlsx -text
 *.bin -text
