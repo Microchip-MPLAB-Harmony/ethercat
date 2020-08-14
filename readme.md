@@ -1,9 +1,10 @@
-﻿---
+---
 title: EtherCAT Library and Applications
 has_children: true
 has_toc: false
 nav_order: 1
 ---
+
 ![Microchip logo](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_logo.png)
 ![Harmony logo small](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_mplab_harmony_logo_small.png)
 
@@ -38,7 +39,6 @@ reference information.
 | ---        | ---                                                       |
 | apps       | Example applications for EtherCAT library components      |
 | config     | EtherCAT module configuration file                        |
-| doc        | EtherCAT library help documentation(chm format)           |
 | docs 	     | EtherCAT library help documentation (html format)         |
 | drivers    | Driver/Firmware files for different products              |
 
@@ -46,7 +46,7 @@ reference information.
 
 To clone or download the repo from https://github.com/Microchip-MPLAB-Harmony/ethercat , go to the main page of this repository and then click Clone button to clone this repo or download as zip file. This content can also be download using content manager by following https://github.com/Microchip-MPLAB-Harmony/EtherCAT/wiki.
 
-**NOTE** - Prior to using the EtherCAT demonstration, it is recommended to review the MPLAB® Harmony Release Notes (release_notes.md) for any known issues. It is located in the ethercat folder.
+**NOTE** - Prior to using the EtherCAT demonstration, it is recommended to review the MPLAB® Harmony Release Notes (release_notes.md) for any known issues.
 
 ## EtherCAT Library and Demo Application
 
