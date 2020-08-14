@@ -1,4 +1,10 @@
-﻿![Microchip logo](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_logo.png)
+﻿---
+title: EtherCAT Library and Applications
+has_children: true
+has_toc: false
+nav_order: 1
+---
+![Microchip logo](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_logo.png)
 ![Harmony logo small](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_mplab_harmony_logo_small.png)
 
 # MPLAB® Harmony 3 EtherCAT
@@ -14,9 +20,9 @@ and microprocessor devices.  Refer to the following links for more information.
 - [Microchip MPLAB® Harmony Pages](https://microchip-mplab-harmony.github.io/)
 
 This repository contains the MPLAB® Harmony 3 EtherCAT solutions and example applications.
-Quickly incorporate connectivity to your designs with EtherCAT ICs, modules, 
+Quickly incorporate connectivity to your designs with EtherCAT ICs, modules,
 software and development kits that make connecting effortless for your customers.
-Our comprehensive EtherCAT portfolio has the technology to meet your range, 
+Our comprehensive EtherCAT portfolio has the technology to meet your range,
 data rate, interoperability, frequency and topology needs. Refer to
 the following links for release notes, training materials, and interface
 reference information.
@@ -36,6 +42,26 @@ reference information.
 | docs 	     | EtherCAT library help documentation (html format)         |
 | drivers    | Driver/Firmware files for different products              |
 
+# Cloning EtherCAT Microchip-MPLAB-Harmony github repo
+
+To clone or download the repo from https://github.com/Microchip-MPLAB-Harmony/ethercat , go to the main page of this repository and then click Clone button to clone this repo or download as zip file. This content can also be download using content manager by following https://github.com/Microchip-MPLAB-Harmony/EtherCAT/wiki.
+
+**NOTE** - Prior to using the EtherCAT demonstration, it is recommended to review the MPLAB® Harmony Release Notes (release_notes.md) for any known issues. It is located in the ethercat folder.
+
+## EtherCAT Library and Demo Application
+
+This distribution package contains MPLAB Harmony EtherCAT firmware project that demonstrate the capabilities of Process Data Objects( counter and Trigger objects) and FoE( File Over EtherCAT ,Firmware upgrade feature) . The project describes its hardware setup and requirements.
+
+All the EtherCAT applications are available in ethercat/apps folder.
+All the drivers are located in the ethercat/drivers folder.
+The distribution package also contains details about EtherCAT Slave stack code generation tool and also it contains details of EtherCAT manager ,where the demo is verified with TwinCAT manager.
+
+| Name      | Description  |
+| --------  | -----------  |
+| [ethercat_library_lan925x](driver/readme.md) | This library explains about EtherCAT slave controller Interface layer w.r.t LAN9252 device |
+| [ethercat_counter_foe_app](apps/ethercat_counter_foe_app/readme.md)| This example application demonstrates the capable of doing firmware updates via FoE (File over EtherCAT) and EtherCAT Master slave communication with SAMD51 micro-controller. |
+
+
 
 ____
 
@@ -54,5 +80,3 @@ ____
 
 [![](https://img.shields.io/github/stars/Microchip-MPLAB-Harmony/ethercat.svg?style=social)]()
 [![](https://img.shields.io/github/watchers/Microchip-MPLAB-Harmony/ethercat.svg?style=social)]()
-
-
