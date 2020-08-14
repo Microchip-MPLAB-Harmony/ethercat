@@ -1,14 +1,22 @@
-﻿![Microchip logo](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_logo.png)
+![Microchip logo](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_logo.png)
 ![Harmony logo small](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_mplab_harmony_logo_small.png)
 
-# Microchip MPLAB® Harmony 3 Release Notes (April, 2020)
+# Microchip MPLAB® Harmony 3 EtherCAT Release Notes  (August 2020)
+## EtherCAT Release v3.0.1
+### ADDITIONS AND UPDATES FOR  3.0.1:
+- Updated Library and application Documentation  from CHM file to Markdown file.
+
+### Known Issues
+None
+
+# Microchip MPLAB® Harmony 3 EtherCAT Release Notes (April, 2020)
 ## EtherCAT Release v3.0.0
 
 ### New Features
 - EtherCAT component is added in Harmony 3 to enable customer to develop EtherCAT Applications with Harmony 3 framework using LAN9252 device.
 
-- **Development kit and demo application support** - This release include demo application that demontrates firmware update over EtherCAT on SAM D51 with LAN925x Evaluation board.
-		
+- **Development kit and demo application support** - This release include demo application that demonstrates firmware update over EtherCAT on SAM D51 with LAN925x Evaluation board.
+
 	| Development kits   	| Applications Description												|
 	| ---					| ---																	|
 	| EVB-LAN925x SAMD51	| Process Trigger and Counter Index With Firmware Update Over EtherCAT	|
