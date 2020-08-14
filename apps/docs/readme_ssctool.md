@@ -1,4 +1,5 @@
 ---
+parent: EtherCAT Library and Applications
 title: Slave Stack Code Generation
 has_children: false
 has_toc: false
