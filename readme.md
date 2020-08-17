@@ -1,4 +1,4 @@
----
+﻿---
 title: EtherCAT Library and Applications
 has_children: true
 has_toc: false
@@ -51,6 +51,10 @@ To clone or download the repo from https://github.com/Microchip-MPLAB-Harmony/et
 ## EtherCAT Library and Demo Application
 
 This distribution package contains MPLAB Harmony EtherCAT firmware project that demonstrate the capabilities of Process Data Objects( counter and Trigger objects) and FoE( File Over EtherCAT ,Firmware upgrade feature) . The project describes its hardware setup and requirements.
+
+The EVB-LAN9252_SAM D51 Evaluation Board is an EtherCAT slave controller with dual integrated Ethernet PHYs. Each Ethernet PHY contains a Full-Duplex 100BASE-TX transceiver and supports 100 Mbps (100BASE-TX) operation.
+
+ * [SAMD51 LAN9252 EVB ( Evaluation page of **EVB_LAN9252_SAMD51** )](http://ww1.microchip.com/downloads/en/DeviceDoc/EVB-LAN9252_SAM-D51-Evaluation-Board-Users-Guide-50003012A.pdf)
 
 All the EtherCAT applications are available in ethercat/apps folder.
 All the drivers are located in the ethercat/drivers folder.
