@@ -564,7 +564,28 @@ void PDI_Init_SYSTick_Interrupt()
 *******************************************************************************/
 void HW_SetLed(UINT8 RunLed, UINT8 ErrLed)
 {
-	/* Here RunLed is not used. Because on chip supported RUN Led is available*/
+	if(ErrLed == false)
+	{
+/* Error Select PIN set */
+<#if CHIP_SELECT_PORT_PLIB == "GPIO">
+		GPIO_PinSet((GPIO_PIN)${DRV_LAN9252_ERROR_SELECT_PIN});
+<#elseif CHIP_SELECT_PORT_PLIB == "PIO">
+		PIO_PinSet((PIO_PIN)${DRV_LAN9252_ERROR_SELECT_PIN});
+<#elseif CHIP_SELECT_PORT_PLIB == "PORT">
+		PORT_PinSet((PORT_PIN)${DRV_LAN9252_ERROR_SELECT_PIN});
+</#if>
+	}
+	else
+	{
+/* Error Select PIN Clear */
+<#if CHIP_SELECT_PORT_PLIB == "GPIO">
+		GPIO_PinClear((GPIO_PIN)${DRV_LAN9252_ERROR_SELECT_PIN});
+<#elseif CHIP_SELECT_PORT_PLIB == "PIO">
+		PIO_PinClear((PIO_PIN)${DRV_LAN9252_ERROR_SELECT_PIN});
+<#elseif CHIP_SELECT_PORT_PLIB == "PORT">
+		PORT_PinClear((PORT_PIN)${DRV_LAN9252_ERROR_SELECT_PIN});
+</#if>
+	}
 }
 
 /*******************************************************************************

@@ -33,7 +33,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include "ethercat_configuration.h"
-#include "drv_lan9252_ecat_util.h"
+#include "drv_lan9253_ecat_util.h"
 #include "slave_stack/applInterface.h"
 #include "slave_stack/sample_app.h"
 

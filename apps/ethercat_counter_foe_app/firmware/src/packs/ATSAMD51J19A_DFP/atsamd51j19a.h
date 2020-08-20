@@ -1,7 +1,7 @@
 /**
  * \brief Header file for ATSAMD51J19A
  *
- * Copyright (c) 2019 Microchip Technology Inc. and its subsidiaries.
+ * Copyright (c) 2020 Microchip Technology Inc. and its subsidiaries.
  *
  * Subject to your compliance with these terms, you may use Microchip software and any derivatives
  * exclusively with Microchip products. It is your responsibility to comply with third party license
@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2019-12-06T17:53:12Z */
+/* file generated from device description version 2020-03-12T17:25:42Z */
 #ifndef _SAMD51J19A_H_
 #define _SAMD51J19A_H_
 
@@ -569,12 +569,12 @@ void SDHC0_Handler                 ( void );
 #include "component/freqm.h"
 #include "component/gclk.h"
 #include "component/hmatrixb.h"
-#include "component/icm.h"
 #include "component/i2s.h"
+#include "component/icm.h"
 #include "component/mclk.h"
 #include "component/nvmctrl.h"
-#include "component/oscctrl.h"
 #include "component/osc32kctrl.h"
+#include "component/oscctrl.h"
 #include "component/pac.h"
 #include "component/pcc.h"
 #include "component/pdec.h"
@@ -849,7 +849,7 @@ void SDHC0_Handler                 ( void );
 /* ************************************************************************** */
 /**  DEVICE SIGNATURES FOR SAMD51J19A                                         */
 /* ************************************************************************** */
-#define DSU_DID                        _UL_(0X60060305)
+#define CHIP_DSU_DID                   _UL_(0X60060305)
 
 /* ************************************************************************** */
 /**  ELECTRICAL DEFINITIONS FOR SAMD51J19A                                    */

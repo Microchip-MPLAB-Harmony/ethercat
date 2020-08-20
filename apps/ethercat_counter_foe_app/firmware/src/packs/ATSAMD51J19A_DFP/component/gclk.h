@@ -1,7 +1,7 @@
 /**
  * \brief Component description for GCLK
  *
- * Copyright (c) 2019 Microchip Technology Inc. and its subsidiaries.
+ * Copyright (c) 2020 Microchip Technology Inc. and its subsidiaries.
  *
  * Subject to your compliance with these terms, you may use Microchip software and any derivatives
  * exclusively with Microchip products. It is your responsibility to comply with third party license
@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2019-12-06T17:53:26Z */
+/* file generated from device description version 2020-03-12T17:26:00Z */
 #ifndef _SAMD51_GCLK_COMPONENT_H_
 #define _SAMD51_GCLK_COMPONENT_H_
 

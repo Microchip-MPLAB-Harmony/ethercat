@@ -39,7 +39,12 @@ def instantiateComponent(ethercatLan9252Component):
 	print("Ethercat LAN 9252 Driver Component")
 	configName = Variables.get("__CONFIGURATION_NAME")
 	
-		
+	lan9252PLIBUse = ethercatlan9252Component.createBooleanSymbol("DRV_LAN9252_USE", None)
+	lan9252PLIBUse.setLabel("Driver LAN9252 is Used")
+	lan9252PLIBUse.setReadOnly(True)
+	lan9252PLIBUse.setVisible(False)
+	lan9252PLIBUse.setDefaultValue(True)
+	
 	lan9252SPIPLIB = ethercatLan9252Component.createStringSymbol("DRV_LAN9252_PLIB", None)
 	lan9252SPIPLIB.setLabel("PLIB Used")
 	lan9252SPIPLIB.setReadOnly(True)
@@ -109,10 +114,15 @@ def instantiateComponent(ethercatLan9252Component):
 	
 	# Lan9252 SPI Chip Select pin
 	lan9252ChipSelectPin = ethercatLan9252Component.createKeyValueSetSymbol("DRV_LAN9252_CHIP_SELECT_PIN", None)
-	lan9252ChipSelectPin.setLabel("Chip Select Pin")
+	lan9252ChipSelectPin.setLabel("SPI Chip Select Pin")
 	lan9252ChipSelectPin.setOutputMode("Key")
 	lan9252ChipSelectPin.setDisplayMode("Description")
 	
+	# Lan9252 Driver Error Select pin
+	lan9252ErrorSelectPin = ethercatLan9252Component.createKeyValueSetSymbol("DRV_LAN9252_ERROR_SELECT_PIN", None)
+	lan9252ErrorSelectPin.setLabel("Error Select Pin")
+	lan9252ErrorSelectPin.setOutputMode("Key")
+	lan9252ErrorSelectPin.setDisplayMode("Description")
 	
 
 	# Send message to core to get available pins
@@ -161,6 +171,7 @@ def instantiateComponent(ethercatLan9252Component):
 			value = list(chipSelectavailablePinDictionary.keys())[list(chipSelectavailablePinDictionary.values()).index(pad)]
 			description = pad
 			lan9252ChipSelectPin.addKey(key, value, description)
+			lan9252ErrorSelectPin.addKey(key, value, description)
 
 	
 	# driver/lan9252/drv_lan9252.h to config/<configName>/driver/lan9252/drv_lan9252.h

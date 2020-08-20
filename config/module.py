@@ -13,7 +13,8 @@ def loadModule():
 	ethercatLan9252Component.addDependency("LAN9252_TMR_Dependency", "TMR", None, False, False)
 	
 	###########  ETHERCAT LAN 9253 driver componet ###########   
-	#ethercatLan9253Component = Module.CreateComponent("ethercat_lan9253", "LAN 9253", "/Harmony/Drivers/EtherCAT Driver/Internal/", "config/drv_lan9253.py")
-	#ethercatLan9253Component.addCapability("drvEthercatLan9253","LAN_DRV", False)
-	#ethercatLan9253Component.addDependency("LAN9253_SPI_Dependency", "SPI", None, False, False)
+	ethercatLan9253Component = Module.CreateComponent("ethercat_lan9253", "LAN 9253", "/Harmony/Drivers/EtherCAT Driver/Internal/", "driver/lan9253/config/drv_lan9253.py")
+	ethercatLan9253Component.addCapability("drvEthercatLan9253","LAN_DRV", False)
+	ethercatLan9253Component.addDependency("LAN9253_SPI_Dependency", "SPI", None, False, False)
+	ethercatLan9253Component.addDependency("LAN9253_TMR_Dependency", "TMR", None, False, False)
 	
