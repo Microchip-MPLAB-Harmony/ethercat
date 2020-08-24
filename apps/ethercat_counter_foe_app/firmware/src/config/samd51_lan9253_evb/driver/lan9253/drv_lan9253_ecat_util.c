@@ -704,7 +704,7 @@ void LAN9253SPI_Write(uint16_t wAddr, uint8_t *pbyData, uint32_t dwLength)
 #endif
     uint8_t  txData[DWORD_LENGTH]={0,0,0,0}; 
     uint8_t  rxData[DWORD_LENGTH]={0,0,0,0};
-    
+        
 	/* Core CSR and Process RAM accesses can have any alignment and length */
 	if (wAddr < 0x3000)
 	{
@@ -803,7 +803,7 @@ void LAN9253SPI_Read(uint16_t wAddr, uint8_t *pbydata, uint32_t dwLength)
 #endif
     uint8_t  txData[DWORD_LENGTH]={0,0,0,0};
     uint8_t  rxData[DWORD_LENGTH]={0,0,0,0};
-    
+
 	/* Core CSR and Process RAM accesses can have any alignment and length */
 	if (wAddr < 0x3000)
 	{
@@ -913,7 +913,7 @@ void LAN9253SPI_Read(uint16_t wAddr, uint8_t *pbydata, uint32_t dwLength)
 */
 
 void LAN9253SPI_FastRead(uint16_t wAddr, uint8_t *pbyData, uint32_t dwLength)
-{ 		
+{
  		
 	UINT8 byDummy = 0, byStartAlignSize = 0, byItr, byTmp;
 	UINT16 wXfrLen = 0;

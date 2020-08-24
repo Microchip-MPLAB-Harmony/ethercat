@@ -186,6 +186,8 @@ def instantiateComponent(ethercatlan9253Component):
 			lan9253ChipSelectPin.addKey(key, value, description)
 			lan9253ErrorSelectPin.addKey(key, value, description)
 
+	lan9253ChipConfigComment = ethercatlan9253Component.createCommentSymbol("DRV_LAN9253_PINS_CONFIG_COMMENT", None)
+	lan9253ChipConfigComment.setLabel("***Above selected pins must be configured in Pin Manager***")
 	
 	# driver/lan9253/drv_lan9253.h to config/<configName>/driver/lan9253/drv_lan9253.h
 	lan9253HeaderFile = ethercatlan9253Component.createFileSymbol(None, None)

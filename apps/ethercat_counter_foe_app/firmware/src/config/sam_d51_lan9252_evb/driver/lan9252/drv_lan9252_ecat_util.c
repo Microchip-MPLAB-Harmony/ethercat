@@ -505,7 +505,16 @@ void PDI_Init_SYSTick_Interrupt()
 *******************************************************************************/
 void HW_SetLed(UINT8 RunLed, UINT8 ErrLed)
 {
-	/* Here RunLed is not used. Because on chip supported RUN Led is available*/
+	if(ErrLed == false)
+	{
+/* Error Select PIN set */
+		PORT_PinSet((PORT_PIN)PORT_PIN_PB31);
+	}
+	else
+	{
+/* Error Select PIN Clear */
+		PORT_PinClear((PORT_PIN)PORT_PIN_PB31);
+	}
 }
 
 /*******************************************************************************

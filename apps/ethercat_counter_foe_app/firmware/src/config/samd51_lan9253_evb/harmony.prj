@@ -40,7 +40,7 @@
           <Security dnOrder="2">NON_SECURE</Security>
           <LogicalPath dnOrder="3">config/samd51_lan9253_evb/driver/lan9253/</LogicalPath>
           <PhysicalPath dnOrder="4">/driver/lan9253/</PhysicalPath>
-          <GeneratedChecksum dnOrder="5">3C0E418D0B05387DD5B94002A381AFE5</GeneratedChecksum>
+          <GeneratedChecksum dnOrder="5">FDF6B9ED705A48A0646C91E62298DAE2</GeneratedChecksum>
           <UserChecksum dnOrder="6">FDF6B9ED705A48A0646C91E62298DAE2</UserChecksum>
         </File>
         <File dnOrder="4">

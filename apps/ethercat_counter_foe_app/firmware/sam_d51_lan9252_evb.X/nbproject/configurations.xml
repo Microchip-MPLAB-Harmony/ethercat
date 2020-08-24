@@ -95,6 +95,7 @@
             <itemPath>../src/packs/ATSAMD51J19A_DFP/pio/samd51j19a.h</itemPath>
           </logicalFolder>
           <itemPath>../src/packs/ATSAMD51J19A_DFP/device.h</itemPath>
+          <itemPath>../src/packs/ATSAMD51J19A_DFP/atsamd51j19a_compat.h</itemPath>
           <itemPath>../src/packs/ATSAMD51J19A_DFP/atsamd51j19a.h</itemPath>
         </logicalFolder>
         <logicalFolder name="f2" displayName="CMSIS" projectFiles="true">
@@ -210,6 +211,8 @@
                    displayName="Important Files"
                    projectFiles="false">
       <itemPath>Makefile</itemPath>
+      <itemPath>../src/config/sam_d51_lan9252_evb/harmony.prj</itemPath>
+      <itemPath>../src/config/sam_d51_lan9252_evb/sam_d51_lan9252_evb.xml</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
@@ -223,15 +226,17 @@
         <targetDevice>ATSAMD51J19A</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>ICD4Tool</platformTool>
+        <platformTool>noID</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>2.40</languageToolchainVersion>
+        <languageToolchainVersion>2.41</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="SAMD51_DFP" vendor="Microchip" version="3.2.55"/>
         <pack name="CMSIS" vendor="ARM" version="5.4.0"/>
+        <pack name="SAMD51_DFP" vendor="Microchip" version="3.2.55"/>
       </packs>
+      <ScriptingSettings>
+      </ScriptingSettings>
       <compileType>
         <linkerTool>
           <linkerLibItems>
@@ -289,7 +294,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src/slave_stack;../src;../src/config/sam_d51_lan9252_evb;../src/packs/ATSAMD51J19A_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/arm;../src/config/sam_d51_lan9252_evb/driver/lan9252"/>
+                  value="../src/slave_stack;../src;../src/config/sam_d51_lan9252_evb;../src/packs/ATSAMD51J19A_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/config/sam_d51_lan9252_evb/driver/lan9252"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>

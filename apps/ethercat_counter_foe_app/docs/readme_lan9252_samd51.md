@@ -91,6 +91,7 @@ The **csp, dev_packs, mhc and ethercat** repositories should be cloned. The repo
         | Other Usage       |   Port Pin     |
         |:-----------------:|:--------------:|
         | SPI Chip Select   |  PORT RB11     |
+        | Error Select Pin  |  PORT RB31     |
 
     **NOTE** - As per the Microcontroller and LAN9252 interrupt support,  EIC/GPIO/PIO pins can be selected for External event registration and event handler processing.
 
@@ -107,6 +108,7 @@ The **csp, dev_packs, mhc and ethercat** repositories should be cloned. The repo
         | QSPI_MISO         |  QSPI_DATA1      |    PA09      |
         | QSPI_SCK          |  QSPI_SCK        |    PB10      |
         | SPI_CS            |   GPIO           |    PB11      |
+        | Ethercat_error_pin|   GPIO           |    PB31      |
 
     * **PIN Configuration for EtherCAT External Interrupt Pins for EVB_LAN9252_SAMD51**
 

@@ -39,7 +39,7 @@ def instantiateComponent(ethercatLan9252Component):
 	print("Ethercat LAN 9252 Driver Component")
 	configName = Variables.get("__CONFIGURATION_NAME")
 	
-	lan9252PLIBUse = ethercatlan9252Component.createBooleanSymbol("DRV_LAN9252_USE", None)
+	lan9252PLIBUse = ethercatLan9252Component.createBooleanSymbol("DRV_LAN9252_USE", None)
 	lan9252PLIBUse.setLabel("Driver LAN9252 is Used")
 	lan9252PLIBUse.setReadOnly(True)
 	lan9252PLIBUse.setVisible(False)
@@ -93,6 +93,10 @@ def instantiateComponent(ethercatLan9252Component):
 	lan9252ChipSelectPortPlib = ethercatLan9252Component.createStringSymbol("CHIP_SELECT_PORT_PLIB", None)
 	lan9252ChipSelectPortPlib.setDefaultValue(chipSelectPortPlib)
 	lan9252ChipSelectPortPlib.setVisible(False)
+	
+	lan9252ErrorPinSelectPortPlib = ethercatLan9252Component.createStringSymbol("DRV_LAN9252_ERROR_SELECT_PORT_PLIB", None)
+	lan9252ErrorPinSelectPortPlib.setDefaultValue(chipSelectPortPlib)
+	lan9252ErrorPinSelectPortPlib.setVisible(False)
 	
 	# Lan9252 External interrupt SYNC0 Select pin
 	lan9252Sync0Pin = ethercatLan9252Component.createKeyValueSetSymbol("DRV_LAN9252_SYNC0_INT", None)
@@ -173,6 +177,8 @@ def instantiateComponent(ethercatLan9252Component):
 			lan9252ChipSelectPin.addKey(key, value, description)
 			lan9252ErrorSelectPin.addKey(key, value, description)
 
+	lan9252ChipConfigComment = ethercatLan9252Component.createCommentSymbol("DRV_LAN9252_PINS_CONFIG_COMMENT", None)
+	lan9252ChipConfigComment.setLabel("***Above selected pins must be configured in Pin Manager***")
 	
 	# driver/lan9252/drv_lan9252.h to config/<configName>/driver/lan9252/drv_lan9252.h
 	lan9252HeaderFile = ethercatLan9252Component.createFileSymbol(None, None)

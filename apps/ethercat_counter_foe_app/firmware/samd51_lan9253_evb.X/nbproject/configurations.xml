@@ -204,7 +204,7 @@
         <itemPath>../src/slave_stack/sample_app.c</itemPath>
         <itemPath>../src/slave_stack/sdoserv.c</itemPath>
       </logicalFolder>
-      <itemPath>../src/app.c</itemPath>
+      <itemPath>../src/app_lan9253.c</itemPath>
       <itemPath>../src/main.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"

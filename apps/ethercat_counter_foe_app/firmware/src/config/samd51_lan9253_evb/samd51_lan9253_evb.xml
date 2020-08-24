@@ -1960,32 +1960,77 @@
     </UniqueComponent>
     <UniqueComponent dnOrder="8" id="qspi">
       <Symbols dnOrder="0">
-        <Integer dnOrder="0" id="QSPI_BAUD_RATE">
+        <File dnOrder="0" id="QSPISPI_HEADER2">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+        </File>
+        <File dnOrder="1" id="QSPISPI_SOURCE2">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+        </File>
+        <Integer dnOrder="2" id="QSPI_BAUD_RATE">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="qspi" value="66000000"/>
             <User dnOrder="1" value="40000000"/>
           </Values>
         </Integer>
-        <KeyValueSet dnOrder="1" id="QSPI_CPOL">
+        <KeyValueSet dnOrder="3" id="QSPI_CPOL">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="qspi" value="0"/>
           </Values>
         </KeyValueSet>
-        <KeyValueSet dnOrder="2" id="QSPI_DATALEN">
-          <Values dnOrder="0">
+        <KeyValueSet dnOrder="4" id="QSPI_DATALEN">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="visible">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+          <Values dnOrder="1">
             <User dnOrder="0" value="4"/>
           </Values>
         </KeyValueSet>
-        <Integer dnOrder="3" id="QSPI_SCBR">
+        <File dnOrder="5" id="QSPI_HEADER2">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">false</Value>
+            </Boolean>
+          </Attributes>
+        </File>
+        <KeyValueSet dnOrder="6" id="QSPI_LOOPEN">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="visible">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+        </KeyValueSet>
+        <Integer dnOrder="7" id="QSPI_SCBR">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="qspi" value="2"/>
           </Values>
         </Integer>
-        <KeyValueSet dnOrder="4" id="QSPI_SMM">
-          <Values dnOrder="0">
+        <KeyValueSet dnOrder="8" id="QSPI_SMM">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="readOnly">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+          <Values dnOrder="1">
             <Dynamic dnOrder="0" id="qspi" value="0"/>
           </Values>
         </KeyValueSet>
+        <File dnOrder="9" id="QSPI_SOURCE1">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">false</Value>
+            </Boolean>
+          </Attributes>
+        </File>
       </Symbols>
       <Attachments dnOrder="1">
         <DirectCapability dnOrder="0" id="QSPI_SPI">
@@ -1996,6 +2041,13 @@
             <String dnOrder="1" id="targetAttachmentID">
               <Value dnOrder="0">LAN9253_SPI_Dependency</Value>
             </String>
+          </Attributes>
+        </DirectCapability>
+        <DirectCapability dnOrder="1" id="QSPI_SQI">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">false</Value>
+            </Boolean>
           </Attributes>
         </DirectCapability>
       </Attachments>
@@ -2115,7 +2167,7 @@
         <ElementPosition dnOrder="2" id="dfp" x="300" y="20"/>
         <ElementPosition dnOrder="3" id="eic" x="30" y="312"/>
         <ElementPosition dnOrder="4" id="ethercat_apps_config" x="394" y="164"/>
-        <ElementPosition dnOrder="5" id="ethercat_lan9253" x="234" y="177"/>
+        <ElementPosition dnOrder="5" id="ethercat_lan9253" x="235" y="182"/>
         <ElementPosition dnOrder="6" id="evsys" x="160" y="20"/>
         <ElementPosition dnOrder="7" id="nvmctrl" x="20" y="20"/>
         <ElementPosition dnOrder="8" id="qspi" x="30" y="136"/>
