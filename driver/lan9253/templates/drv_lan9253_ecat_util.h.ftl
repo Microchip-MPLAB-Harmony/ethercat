@@ -86,17 +86,17 @@
 
 
 <#if DRV_LAN9253_SPI_MODE_ACCESS_TYPE 		== "ETHERCAT_SPI_INDIRECT_MODE_ACCESS">
+/* EtherCAT SPI Indirect mode enabled */
 #define ETHERCAT_SPI_INDIRECT_MODE_ACCESS				1
 <#elseif DRV_LAN9253_SPI_MODE_ACCESS_TYPE 	== "ETHERCAT_SPI_DIRECT_MODE_ACCESS">
+/* EtherCAT SPI Direct mode enabled */
 #define ETHERCAT_SPI_DIRECT_MODE_ACCESS					1
 <#elseif DRV_LAN9253_SPI_MODE_ACCESS_TYPE 	== "ETHERCAT_SPI_BECKHOFF_MODE_ACCESS">
+/* EtherCAT SPI Beckhoff mode enabled */
 #define ETHERCAT_SPI_BECKHOFF_MODE_ACCESS				1
 </#if>
 
-#define MCHP_ESF_PDI_EIRQ_INIT()						
-
-#define MCHP_ESF_PDI_INIT()								ESF_PDI_Init()
-#define ETHERCAT_LAN9253_IS_PDI_FUNCTIONAL(pdata)		ethercat_lan9253_PDI_isFunctional(pdata)
+#define MCHP_ESF_IS_PDI_FUNCTIONAL(pdata)		ethercat_lan9253_PDI_isFunctional(pdata)
 
 #ifdef ETHERCAT_SPI_INDIRECT_MODE_ACCESS
 /* SPI Indirect mode Access */
