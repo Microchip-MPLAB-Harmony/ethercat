@@ -1,7 +1,7 @@
 ---
 parent: EtherCAT Library and Applications
 title: EtherCAT LAN925x Library
-has_children: false
+has_children: true
 has_toc: false
 nav_order: 1
 ---
@@ -15,11 +15,11 @@ Ethernet for Control Automation Technology (EtherCAT) was developed by Beckhoff.
 
 The LAN925x is a 2/3-port EtherCAT slave controller with dual integrated Ethernet PHYs which each contain a fullduplex 100BASE-TX transceiver and support 100Mbps (100BASE-TX) operation.
 
-EtherCAT Slave Controller Interface layer is designed for Microchip MCUs to communicate with LAN9252 EtherCAT Slave controller. This EtherCAT framework is configured with the communication interfaces (QSPI ( SPI mode), GPIO). This communication Interface layer which will acts like bridge between EtherCAT Slave Stack Code (SSC) and Host peripherals to communicate with LAN9252. SSC Stack (generated from standard SSC tool) have feature to transfer the File over EtherCAT (FoE) for MCU firmware upgrade from TwinCAT tool.
+EtherCAT Slave Controller Interface layer is designed for Microchip MCUs to communicate with LAN925x EtherCAT Slave controller. This EtherCAT framework is configured with the communication interfaces (QSPI (SPI mode), GPIO). This communication Interface layer which will acts like bridge between EtherCAT Slave Stack Code (SSC) and Host peripherals to communicate with LAN925x. SSC Stack (generated from standard SSC tool) have feature to transfer the File over EtherCAT (FoE) for MCU firmware upgrade from TwinCAT tool.
 
-![Ethercat Technology](docs/EtherCAT_module_diagram.png)
+![Ethercat Technology](docs/images/EtherCAT_module_diagram.png)
 
-Use of the Microchip EVB-LAN9252 (and similar EtherCAT interface devices) requires use of the Beckhoff EtherCAT Slave Stack Code (SSC) and its associated configuration and code generation tool.
+Use of the Microchip EVB-LAN925x (and similar EtherCAT interface devices) requires use of the Beckhoff EtherCAT Slave Stack Code (SSC) and its associated configuration and code generation tool.
 
 * The **interrupts** have to be configured during hardware initialization.
     *   **PDI Interrupt** -
@@ -55,25 +55,30 @@ Use of the Microchip EVB-LAN9252 (and similar EtherCAT interface devices) requir
     3. Synchronization -
     The Beckhoff Slave Stack Code supports different modes of synchronization which are based on three physical signals: (PDI_)IRQ, Sync0 and Sync1
     Microchip EtherCAT device also supports different modes.
-        * Master and Slaves for synchronization: Free run The Master cycle time and Slave cycle time are independent. < This mode is Supported >
-        * IRQ interrupt event is triggered from Master for SM-Synchron Synchronization. < This mode is supported >
-        * Both IRQ and SYNC0 event occurs for the DC-Synchron operation mode and SYNC0 and SYNC1 unit cycle time is configured 1000µs. < This mode is supported >
+        * Master and Slaves for synchronization: Free run The Master cycle time and Slave cycle time are independent. 
 
+        * IRQ interrupt event is triggered from Master for SM-Synchron Synchronization.
+
+        * Both IRQ and SYNC0 event occurs for the DC-Synchron operation mode and SYNC0 and SYNC1 unit cycle time is configured 1000µs.
+
+* **LAN9253 EtherCAT Framework**
+    
+    [Link to LAN9253 EtherCAT Framework ](docs/readme_drvlan9253.md)
 
 * **Using Library**
 
     File over EtherCAT (FoE) -
     Architecture – Host/Slave interaction states for firmware update
 
-    ![library usage](docs/Firmware_upgrade.png)
+    ![library usage](docs/images/Firmware_upgrade.png)
 
     FOE demostartion with respect to ATSAMD51J19A device -
 
-    ![library usage](docs/D51Bankdetails.png)
+    ![library usage](docs/images/D51Bankdetails.png)
 
     * Master changes from INIT to BOOT, then download of a file initiated. Wen state changes from INIT to BOOT, slave or the FoE application is ready to write the New FW or bin file at the BankB location. Flag gFirmwareDownload_Started set to 1.
 
-    * Master initiates Download command with password value as 0x11223344 and bin file (this file is generated from the existing D51 foe studio project). In the slave FOE_FILEDOWNLOAD_PASSWORD is set to 0x11223344. FoE_Write() checks file name size ( limited to 16) and checks password value and then proceed to FoE_WriteData().
+    * Master initiates Download command with default password value as **0x11223344** and bin file (this file is generated from the existing D51 foe studio project). In the slave FOE_FILEDOWNLOAD_PASSWORD is set to 0x11223344 and can be modified from EtherCAT MHC componet configuration. FoE_Write() checks file name size ( limited to 16) and checks password value and then proceed to FoE_WriteData().
 
     * Once Master completes bin file transfer, then Master need to change the state from BOOT to INIT. In the FW application or slave code, APP_FW_GetDownloadStateFinished() changes state to gFirmwareDownload_Started = 0 and APP_FW_StateBOOTtoINIT() changes gFirmwareDownload_Finished = 1.
 
@@ -81,6 +86,6 @@ Use of the Microchip EVB-LAN9252 (and similar EtherCAT interface devices) requir
 
     SSC tool FoE configuration -
 
-    ![library usage](docs/SSCtool_FoE_configuration.png)
+    ![library usage](docs/images/SSCtool_FoE_configuration.png)
 
 

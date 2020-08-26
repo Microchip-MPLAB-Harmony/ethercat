@@ -18,3 +18,5 @@ Microchip's EtherCAT provides the information about how to configure and run the
 | Target Development board  | Description |
 |:-------------------------:|:-----------:|
 |[EVB_LAN9252_SAMD51](docs/readme_lan9252_samd51.md)|ETherCAT evaluation board with LAN9252|
+|[EVB_LAN9253_SAMD51](docs/readme_lan9253_samd51.md)|ETherCAT evaluation board with LAN9253|
+
