@@ -14,6 +14,20 @@
 ### Known Issues
 None
 
+### Development Tools
+
+* [MPLAB® X IDE v5.40](https://www.microchip.com/mplab/mplab-x-ide)
+* [MPLAB® XC32 C/C++ Compiler v2.40](https://www.microchip.com/mplab/compilers)
+* MPLAB® X IDE plug-ins:
+    * MPLAB® Harmony Configurator (MHC) v3.5.0 and above.
+* TwinCAT Manager:
+    * TC31-Full-Setup.3.1.4024.7x and above. (https://www.beckhoff.com/english.asp?download/tc3-downloads.htm)
+
+### Dependent Components
+* [CSP v3.8.0](https://github.com/Microchip-MPLAB-Harmony/csp/tree/v3.8.0)
+* [MHC v3.5.0](https://github.com/Microchip-MPLAB-Harmony/mhc/tree/v3.5.0)
+* [EtherCAT Slave Stack Code (SSC) v5.12](https://www.ethercat.org/en/downloads/downloads_01DCC32A10294F2EA866F7E46FB0285F.htm)
+
 # Microchip MPLAB® Harmony 3 EtherCAT Release Notes (April, 2020)
 ## EtherCAT Release v3.0.0
 
@@ -41,6 +55,6 @@ None
     * TC31-Full-Setup.3.1.4024.7x and above. (https://www.beckhoff.com/english.asp?download/tc3-downloads.htm)
 
 ### Dependent Components
-* [CSP v3.7.1](https://github.com/Microchip-MPLAB-Harmony/csp/tree/v3.6.1)
-* [MHC v3.5.0](https://github.com/Microchip-MPLAB-Harmony/mhc/tree/v3.3.5)
+* [CSP v3.6.1](https://github.com/Microchip-MPLAB-Harmony/csp/tree/v3.6.1)
+* [MHC v3.3.5](https://github.com/Microchip-MPLAB-Harmony/mhc/tree/v3.3.5)
 * [EtherCAT Slave Stack Code (SSC) v5.12](https://www.ethercat.org/en/downloads/downloads_01DCC32A10294F2EA866F7E46FB0285F.htm)
