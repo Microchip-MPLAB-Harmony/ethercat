@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------
- * MPLAB XC32 Compiler -  ATSAMD51J19A linker script
+ * MPLAB XC32 Compiler -  ethercat_linker_foe linker script
  * 
- * Copyright (c) 2019, Microchip Technology Inc. and its subsidiaries ("Microchip")
+ * Copyright (c) 2020, Microchip Technology Inc. and its subsidiaries ("Microchip")
  * All rights reserved.
  * 
  * This software is developed by Microchip Technology Inc. and its
@@ -64,12 +64,19 @@ ENTRY(__XC32_RESET_HANDLER_NAME)
 #ifndef ROM_ORIGIN
 #  define ROM_ORIGIN 0x0
 #endif
+<#if ETHERCAT_FOE_ENABLE == true>
 #ifndef ROM_LENGTH
 #  define ROM_LENGTH 0x40000
 #elif (ROM_LENGTH > 0x40000)
+#  error ROM_LENGTH is greater than the max size of 0x40000
+#endif
+<#else>
+#ifndef ROM_LENGTH
+#  define ROM_LENGTH 0x80000
+#elif (ROM_LENGTH > 0x80000)
 #  error ROM_LENGTH is greater than the max size of 0x80000
 #endif
-
+</#if>
 #ifndef RAM_ORIGIN
 #  define RAM_ORIGIN 0x20000000
 #endif
@@ -84,10 +91,10 @@ ENTRY(__XC32_RESET_HANDLER_NAME)
 #endif
 #ifndef __XC32_TCM_LENGTH
 #  define __XC32_TCM_LENGTH 0x0
-#elif (defined(__XC32_TCM_LENGTH)  && __XC32_TCM_LENGTH != 0x800 && __XC32_TCM_LENGTH != 0xc00 && __XC32_TCM_LENGTH != 0x1000 && __XC32_TCM_LENGTH != 0x0)
-#  warning Non-standard ITCM length, using default 0x800
+#elif (defined(__XC32_TCM_LENGTH)  && __XC32_TCM_LENGTH != 0x0 && __XC32_TCM_LENGTH != 0x800 && __XC32_TCM_LENGTH != 0xc00 && __XC32_TCM_LENGTH != 0x1000)
+#  warning Non-standard ITCM length, using default 0x1000
 #  undef __XC32_TCM_LENGTH
-#  define __XC32_TCM_LENGTH 0x800
+#  define __XC32_TCM_LENGTH 0x1000
 #endif
 
 
@@ -117,7 +124,7 @@ MEMORY
  * CODE_REGION defaults to 'rom', if rom is present (non-zero length),
  * and 'ram' otherwise.
  * DATA_REGION defaults to 'ram', which must be present.
- * VECTOR_REGION defaults to CODE_REGION.
+ * VECTOR_REGION defaults to CODE_REGION, unless 'boot_rom' is present.
  */
 #ifndef CODE_REGION
 # if ROM_LENGTH > 0
