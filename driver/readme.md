@@ -68,7 +68,7 @@ Use of the Microchip EVB-LAN925x (and similar EtherCAT interface devices) requir
 * **Using Library**
 
     File over EtherCAT (FoE) -
-    Architecture – Host/Slave interaction states for firmware update
+    Architecture – Host/Slave interaction states for firmware update. The Dual Bank feature enables a firmware to execute from the NVM and at the same time the program to the flash with a new version of itself.After programming is completed the APP_BankSwitch() application function is used to swap the banks and to reset the device.
 
     ![library usage](docs/images/Firmware_upgrade.png)
 
@@ -76,7 +76,7 @@ Use of the Microchip EVB-LAN925x (and similar EtherCAT interface devices) requir
 
     ![library usage](docs/images/D51Bankdetails.png)
 
-    * Master changes from INIT to BOOT, then download of a file initiated. Wen state changes from INIT to BOOT, slave or the FoE application is ready to write the New FW or bin file at the BankB location. Flag gFirmwareDownload_Started set to 1.
+    * Master changes from INIT to BOOT, then download of a file initiated. When state changes from INIT to BOOT, slave or the FoE application is ready to write the new FW or bin file at the BankB location( 0x40000 Bank B location for ATSAMD51j19A device ). Flag gFirmwareDownload_Started set to 1.
 
     * Master initiates Download command with default password value as **0x11223344** and bin file (this file is generated from the existing D51 foe studio project). In the slave FOE_FILEDOWNLOAD_PASSWORD is set to 0x11223344 and can be modified from EtherCAT MHC componet configuration. FoE_Write() checks file name size ( limited to 16) and checks password value and then proceed to FoE_WriteData().
 

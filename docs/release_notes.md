@@ -1,13 +1,32 @@
 ![Microchip logo](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_logo.png)
 ![Harmony logo small](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_mplab_harmony_logo_small.png)
 
-# Microchip MPLAB® Harmony 3 EtherCAT Release Notes  (August 2020)
-## EtherCAT Release v3.0.1
-### ADDITIONS AND UPDATES FOR  3.0.1:
+# Microchip MPLAB® Harmony 3 EtherCAT Release Notes  (September 2020)
+## EtherCAT Release v3.1.0
+### ADDITIONS AND UPDATES FOR  3.1.0:
 - Updated Library and application Documentation  from CHM file to Markdown file.
+- EtherCAT Applications with Harmony 3 framework using LAN9253 device. 
+- Error LED is used to for these following  error status 
+	* Indicates EEPROM loading error
+    * Indicates the failure EtherCAT slave connectivity link
+    * Application Layer Event (AL Event) error indication
 
 ### Known Issues
 None
+
+### Development Tools
+
+* [MPLAB® X IDE v5.40](https://www.microchip.com/mplab/mplab-x-ide)
+* [MPLAB® XC32 C/C++ Compiler v2.40](https://www.microchip.com/mplab/compilers)
+* MPLAB® X IDE plug-ins:
+    * MPLAB® Harmony Configurator (MHC) v3.5.0 and above.
+* TwinCAT Manager:
+    * TC31-Full-Setup.3.1.4024.7x and above. (https://www.beckhoff.com/english.asp?download/tc3-downloads.htm)
+
+### Dependent Components
+* [CSP v3.8.0](https://github.com/Microchip-MPLAB-Harmony/csp/tree/v3.8.0)
+* [MHC v3.5.0](https://github.com/Microchip-MPLAB-Harmony/mhc/tree/v3.5.0)
+* [EtherCAT Slave Stack Code (SSC) v5.12](https://www.ethercat.org/en/downloads/downloads_01DCC32A10294F2EA866F7E46FB0285F.htm)
 
 # Microchip MPLAB® Harmony 3 EtherCAT Release Notes (April, 2020)
 ## EtherCAT Release v3.0.0
