@@ -1,3 +1,4 @@
+# coding: utf-8
 """*****************************************************************************
 * Copyright (C) 2019 Microchip Technology Inc. and its subsidiaries.
 *
@@ -29,6 +30,19 @@ global lan9253Sync1Pin
 global lan9253IrqPin
 
 ETHERCAT_DRV_LAN9253_MODE_ACCESS_TYPE = ["ETHERCAT_SPI_INDIRECT_MODE_ACCESS", "ETHERCAT_SPI_DIRECT_MODE_ACCESS", "ETHERCAT_SPI_BECKHOFF_MODE_ACCESS"]
+
+
+def handleMessage(messageID, args):
+
+	result_dict = {}
+
+	if (messageID == "REQUEST_CONFIG_PARAMS"):
+		if args.get("localComponentID") != None:
+			result_dict = Database.sendMessage(args["localComponentID"], "SPI_MASTER_MODE", {"isReadOnly":True, "isEnabled":True})
+			result_dict = Database.sendMessage(args["localComponentID"], "SPI_MASTER_INTERRUPT_MODE", {"isReadOnly":True, "isEnabled":True})
+			result_dict = Database.sendMessage(args["localComponentID"], "SPI_MASTER_HARDWARE_CS", {"isReadOnly":True, "isEnabled":False})
+
+	return result_dict
 
 def sort_alphanumeric(l):
 	import re
@@ -274,25 +288,19 @@ def onAttachmentConnected(source, target):
 	remoteComponent = target["component"]
 	remoteID = remoteComponent.getID()
 	connectID = source["id"]
-	targetID = target["id"]
-	sysTimeDict = {"ID":"sys_time"}
 
 	if connectID == "LAN9253_SPI_Dependency":
 		plibUsed = localComponent.getSymbolByID("DRV_LAN9253_PLIB")
 		plibUsed.clearValue()
 		lan9253PlibId = remoteID.upper()
 		plibUsed.setValue(lan9253PlibId.upper())
-		Database.setSymbolValue(lan9253PlibId, "SPI_DRIVER_CONTROLLED", True)
-		print "SPI RemoteComponetID = " + remoteID
 		
 	if (connectID == "LAN9253_TMR_Dependency"):
 		plibUsed = localComponent.getSymbolByID("DRV_LAN9253_TIMER_PLIB")
 		plibUsed.clearValue()
 		lan9253PlibId = remoteID.upper()
 		plibUsed.setValue(lan9253PlibId)
-		#Request PLIB to publish it's capabilities
-		sysTimeDict = Database.sendMessage(remoteID, "SYS_TIME_PUBLISH_CAPABILITIES", sysTimeDict)
-		print "RemoteComponentID = " + remoteID
+		
 		
 def onAttachmentDisconnected(source, target):
 
@@ -305,10 +313,14 @@ def onAttachmentDisconnected(source, target):
 	if connectID == "LAN9253_SPI_Dependency":
 		plibUsed = localComponent.getSymbolByID("DRV_LAN9253_PLIB")
 		plibUsed.clearValue()
-		lan9253PlibId = remoteID.upper()
-		Database.setSymbolValue(lan9253PlibId, "SPI_DRIVER_CONTROLLED", False)
+		
+		dummyDict = {}
+		dummyDict = Database.sendMessage(remoteID, "SPI_MASTER_MODE", {"isReadOnly":False})
+		dummyDict = Database.sendMessage(remoteID, "SPI_MASTER_INTERRUPT_MODE", {"isReadOnly":False})
+		dummyDict = Database.sendMessage(remoteID, "SPI_MASTER_HARDWARE_CS", {"isReadOnly":False})
+		
 	if (connectID == "LAN9253_TMR_Dependency"):
 		plibUsed = localComponent.getSymbolByID("DRV_lan9253_TIMER_PLIB")
 		plibUsed.clearValue()
-		plibUsed.setValue("")
+
 		

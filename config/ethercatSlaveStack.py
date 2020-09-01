@@ -83,7 +83,6 @@ def sscPathParsing(path):
 				sscListFile.setType("SOURCE")
 			else:
 				sscListFile.setType("HEADER")
-			sscListFile.setMarkup(False)
 			sscListFile.setEnabled(True)
 			count += 1
 

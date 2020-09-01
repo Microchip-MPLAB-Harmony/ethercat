@@ -72,7 +72,7 @@ UINT8 LAN9253_Init(void)
 #if ETHERCAT_SPI_INDIRECT_MODE_ACCESS
 	do
 	{
-		ETHERCAT_LAN9253_IS_PDI_FUNCTIONAL((uint8_t *)&data);
+		MCHP_ESF_IS_PDI_FUNCTIONAL((uint8_t *)&data);
 	} while (0x87654321 != data);
 	
 	// Disable interrupt Interrupt Enable register -->
@@ -157,7 +157,7 @@ UINT8 LAN9253_Init(void)
 
 	do
 	{
-		ETHERCAT_LAN9253_IS_PDI_FUNCTIONAL((uint8_t *)&data);
+		MCHP_ESF_IS_PDI_FUNCTIONAL((uint8_t *)&data);
 	} while (0x87654321 != data);
 
 	MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_EN, (uint8_t*)&data, DWORD_LENGTH);
