@@ -65,27 +65,43 @@
 // *****************************************************************************
 // *****************************************************************************
 
-  
+/*** Macros for QSPI_MOSI pin ***/
+#define QSPI_MOSI_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 8)) & 0x01)
+#define QSPI_MOSI_PIN                  PORT_PIN_PA08
+
+/*** Macros for QSPI_MISO pin ***/
+#define QSPI_MISO_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 9)) & 0x01)
+#define QSPI_MISO_PIN                  PORT_PIN_PA09
+
 /*** Macros for SPI_CS pin ***/
 #define SPI_CS_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = 1 << 11)
 #define SPI_CS_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = 1 << 11)
 #define SPI_CS_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = 1 << 11)
-#define SPI_CS_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 11)) & 0x01)
 #define SPI_CS_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = 1 << 11)
 #define SPI_CS_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = 1 << 11)
+#define SPI_CS_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 11)) & 0x01)
 #define SPI_CS_PIN                  PORT_PIN_PB11
+
+/*** Macros for SYNC0_isr pin ***/
+#define SYNC0_isr_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 16)) & 0x01)
+#define SYNC0_isr_PIN                  PORT_PIN_PB16
+
+/*** Macros for SYNC1_isr pin ***/
+#define SYNC1_isr_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 17)) & 0x01)
+#define SYNC1_isr_PIN                  PORT_PIN_PB17
+
+/*** Macros for ECAT_EXT_IRQ pin ***/
+#define ECAT_EXT_IRQ_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 23)) & 0x01)
+#define ECAT_EXT_IRQ_PIN                  PORT_PIN_PB23
 
 /*** Macros for Ethercat_error_pin pin ***/
 #define Ethercat_error_pin_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = 1 << 31)
 #define Ethercat_error_pin_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = 1 << 31)
 #define Ethercat_error_pin_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = 1 << 31)
-#define Ethercat_error_pin_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 31)) & 0x01)
 #define Ethercat_error_pin_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = 1 << 31)
 #define Ethercat_error_pin_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = 1 << 31)
+#define Ethercat_error_pin_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 31)) & 0x01)
 #define Ethercat_error_pin_PIN                  PORT_PIN_PB31
-
-
-
 // *****************************************************************************
 /* PORT Group
 
@@ -892,7 +908,7 @@ void PORT_GroupToggle(PORT_GROUP group, uint32_t mask);
     void PORT_GroupInputEnable(PORT_GROUP group, uint32_t mask)
 
   Summary:
-    Confgiures the selected IO pins of a group as input.
+    Configures the selected IO pins of a group as input.
 
   Description:
     This function configures the selected IO pins of a group as input. The pins
@@ -931,7 +947,7 @@ void PORT_GroupInputEnable(PORT_GROUP group, uint32_t mask);
     void PORT_GroupOutputEnable(PORT_GROUP group, uint32_t mask)
 
   Summary:
-    Confgiures the selected IO pins of a group as output.
+    Configures the selected IO pins of a group as output.
 
   Description:
     This function configures the selected IO pins of a group as output. The pins

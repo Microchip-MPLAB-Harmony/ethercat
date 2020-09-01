@@ -13,7 +13,7 @@
   Description
 
   Remarks:
-    
+
 *******************************************************************************/
 
 // DOM-IGNORE-BEGIN
@@ -183,10 +183,10 @@ bool QSPI_TransferSetup (QSPI_TRANSFER_SETUP * setup, uint32_t spiSourceClock )
     {
         return false;
     }
-    
+
     /* Disable the module */
     QSPI_REGS->QSPI_CTRLA &= ~QSPI_CTRLA_ENABLE_Msk;
-    
+
     if(spiSourceClock == 0)
     {
         // Fetch Master Clock Frequency directly
@@ -208,12 +208,12 @@ bool QSPI_TransferSetup (QSPI_TRANSFER_SETUP * setup, uint32_t spiSourceClock )
 
     /* Enable the module */
     QSPI_REGS->QSPI_CTRLA = QSPI_CTRLA_ENABLE_Msk;
-    
+
     while((QSPI_REGS->QSPI_STATUS & QSPI_STATUS_ENABLE_Msk) != QSPI_STATUS_ENABLE_Msk)
     {
         /* Wait for QSPI enable flag to set */
     }
-    
+
     return true;
 }
 
@@ -223,7 +223,7 @@ void QSPI_CallbackRegister (QSPI_CALLBACK callback, uintptr_t context)
     qspiObj.context = context;
 }
 
-bool QSPI_IsBusy()
+bool QSPI_IsBusy(void)
 {
     return ((qspiObj.transferIsBusy) || ((QSPI_REGS->QSPI_INTFLAG & QSPI_INTFLAG_DRE_Msk ) == 0));
 }

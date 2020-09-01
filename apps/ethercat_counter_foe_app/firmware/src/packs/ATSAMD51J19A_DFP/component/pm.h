@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2020-03-12T17:26:00Z */
+/* file generated from device description version 2020-06-22T15:30:21Z */
 #ifndef _SAMD51_PM_COMPONENT_H_
 #define _SAMD51_PM_COMPONENT_H_
 

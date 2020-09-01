@@ -87,9 +87,7 @@ bool QSPI_TransferSetup (QSPI_TRANSFER_SETUP * setup, uint32_t spiSourceClock );
 
 void QSPI_CallbackRegister (QSPI_CALLBACK callback, uintptr_t context);
 
-bool QSPI_IsBusy();
-
-void QSPI_Handler(void);
+bool QSPI_IsBusy(void);
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus // Provide C++ Compatibility

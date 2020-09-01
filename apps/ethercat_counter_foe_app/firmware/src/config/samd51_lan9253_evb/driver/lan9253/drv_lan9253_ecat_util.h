@@ -76,7 +76,10 @@
 /* This is the lowest interrupt priority for SAM devices and Highest for PIC32M devices that can be used in a call to a "set priority" function. */
 #define ETHERCAT_CONFIG_MAX_INTERRUPT_PRIORITY 		4
 
-#define ETHERCAT_SPI_DIRECT_MODE_ACCESS					1
+
+
+/* EtherCAT SPI Indirect mode enabled */
+#define ETHERCAT_SPI_INDIRECT_MODE_ACCESS				1
 
 #define MCHP_ESF_IS_PDI_FUNCTIONAL(pdata)		ethercat_lan9253_PDI_isFunctional(pdata)
 
