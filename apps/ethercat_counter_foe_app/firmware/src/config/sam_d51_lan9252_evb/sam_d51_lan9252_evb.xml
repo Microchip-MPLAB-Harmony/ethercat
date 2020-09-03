@@ -2422,65 +2422,44 @@
     </UniqueComponent>
     <UniqueComponent dnOrder="8" id="qspi">
       <Symbols dnOrder="0">
-        <File dnOrder="0" id="QSPISPI_HEADER2">
-          <Attributes dnOrder="0">
-            <Boolean dnOrder="0" id="enabled">
-              <Value dnOrder="0">true</Value>
-            </Boolean>
-          </Attributes>
-        </File>
-        <File dnOrder="1" id="QSPISPI_SOURCE2">
-          <Attributes dnOrder="0">
-            <Boolean dnOrder="0" id="enabled">
-              <Value dnOrder="0">true</Value>
-            </Boolean>
-          </Attributes>
-        </File>
-        <Integer dnOrder="2" id="QSPI_BAUD_RATE">
+        <Integer dnOrder="0" id="QSPI_BAUD_RATE">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="qspi" value="66000000"/>
             <User dnOrder="1" value="15000000"/>
           </Values>
         </Integer>
-        <KeyValueSet dnOrder="3" id="QSPI_CPOL">
+        <KeyValueSet dnOrder="1" id="QSPI_CPOL">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="qspi" value="0"/>
           </Values>
         </KeyValueSet>
-        <KeyValueSet dnOrder="4" id="QSPI_DATALEN">
-          <Values dnOrder="0">
-            <User dnOrder="0" value="4"/>
-          </Values>
-        </KeyValueSet>
-        <File dnOrder="5" id="QSPI_HEADER2">
+        <KeyValueSet dnOrder="2" id="QSPI_DATALEN">
           <Attributes dnOrder="0">
-            <Boolean dnOrder="0" id="enabled">
-              <Value dnOrder="0">false</Value>
-            </Boolean>
-          </Attributes>
-        </File>
-        <Integer dnOrder="6" id="QSPI_SCBR">
-          <Values dnOrder="0">
-            <Dynamic dnOrder="0" id="qspi" value="7"/>
-          </Values>
-        </Integer>
-        <KeyValueSet dnOrder="7" id="QSPI_SMM">
-          <Attributes dnOrder="0">
-            <Boolean dnOrder="0" id="readOnly">
+            <Boolean dnOrder="0" id="visible">
               <Value dnOrder="0">true</Value>
             </Boolean>
           </Attributes>
           <Values dnOrder="1">
+            <User dnOrder="0" value="4"/>
+          </Values>
+        </KeyValueSet>
+        <KeyValueSet dnOrder="3" id="QSPI_LOOPEN">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="visible">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+        </KeyValueSet>
+        <Integer dnOrder="4" id="QSPI_SCBR">
+          <Values dnOrder="0">
+            <Dynamic dnOrder="0" id="qspi" value="7"/>
+          </Values>
+        </Integer>
+        <KeyValueSet dnOrder="5" id="QSPI_SMM">
+          <Values dnOrder="0">
             <Dynamic dnOrder="0" id="qspi" value="0"/>
           </Values>
         </KeyValueSet>
-        <File dnOrder="8" id="QSPI_SOURCE1">
-          <Attributes dnOrder="0">
-            <Boolean dnOrder="0" id="enabled">
-              <Value dnOrder="0">false</Value>
-            </Boolean>
-          </Attributes>
-        </File>
       </Symbols>
       <Attachments dnOrder="1">
         <DirectCapability dnOrder="0" id="QSPI_SPI">
@@ -2491,13 +2470,6 @@
             <String dnOrder="1" id="targetAttachmentID">
               <Value dnOrder="0">LAN9252_SPI_Dependency</Value>
             </String>
-          </Attributes>
-        </DirectCapability>
-        <DirectCapability dnOrder="1" id="QSPI_SQI">
-          <Attributes dnOrder="0">
-            <Boolean dnOrder="0" id="enabled">
-              <Value dnOrder="0">false</Value>
-            </Boolean>
           </Attributes>
         </DirectCapability>
       </Attachments>
@@ -2612,8 +2584,7 @@
     </UniqueComponent>
   </Components>
   <UserData>
-    <GraphSettings canvasHeight="400" canvasWidth="400" dnOrder="0"/>
-    <ComponentGraph dnOrder="1" id="__ROOTVIEW">
+    <ComponentGraph dnOrder="0" id="__ROOTVIEW">
       <ElementPositions dnOrder="0">
         <ElementPosition dnOrder="0" id="cmsis" x="30" y="100"/>
         <ElementPosition dnOrder="1" id="core" x="340" y="20"/>
@@ -2627,5 +2598,6 @@
         <ElementPosition dnOrder="9" id="tc0" x="21" y="218"/>
       </ElementPositions>
     </ComponentGraph>
+    <GraphSettings canvasHeight="400" canvasWidth="400" dnOrder="1"/>
   </UserData>
 </Configuration>

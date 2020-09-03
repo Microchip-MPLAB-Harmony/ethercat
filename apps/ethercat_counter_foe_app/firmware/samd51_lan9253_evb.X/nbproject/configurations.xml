@@ -214,6 +214,7 @@
       <itemPath>Makefile</itemPath>
       <itemPath>../src/config/samd51_lan9253_evb/harmony.prj</itemPath>
       <itemPath>../src/config/samd51_lan9253_evb/samd51_lan9253_evb.xml</itemPath>
+      <itemPath>../src/config/samd51_lan9253_evb/harmony-manifest-success.yml</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
@@ -227,7 +228,7 @@
         <targetDevice>ATSAMD51J19A</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>noID</platformTool>
+        <platformTool></platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>2.41</languageToolchainVersion>
         <platform>3</platform>
@@ -295,7 +296,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src/slave_stack;../src;../src/config/samd51_lan9253_evb;../src/packs/ATSAMD51J19A_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/config/samd51_lan9253_evb/driver/lan9253"/>
+                  value="../src/config/samd51_lan9253_evb/driver/lan9253;../src;../src/config/samd51_lan9253_evb;../src/packs/ATSAMD51J19A_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/slave_stack"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -391,7 +392,7 @@
         <property key="exceptions" value="true"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/samd51_lan9253_evb;../src/packs/ATSAMD51J19A_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/"/>
+                  value="../src;../src/config/samd51_lan9253_evb;../src/packs/ATSAMD51J19A_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>

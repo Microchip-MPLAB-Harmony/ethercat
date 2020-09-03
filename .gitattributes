@@ -14,3 +14,8 @@
 *.png -text
 *.xlsx -text
 *.bin -text
+*.yml -text
+*.htm -text
+*.html -text
+*.ico  -text
+
