@@ -87,7 +87,7 @@
 			<Setting CodeDefine="ESC_EEPROM_EMULATION" Value="0"/>
 			<Setting CodeDefine="USE_DEFAULT_MAIN" Value="0"/>
 			<Setting CodeDefine="ESC_CONFIG_DATA" Value="820E04CC8813FF00000040C00000"/>
-			<Setting CodeDefine="HW_ACCESS_FILE" Value="#include &quot;LAN925x.h&quot;"/>
+			<Setting CodeDefine="HW_ACCESS_FILE" Value="#include &quot;drv_lan9253.h&quot;"/>
 			<Setting CodeDefine="STRUCT_PACKED_END" Value="__attribute__((packed))"/>
 			<Setting CodeDefine="MBX_STRUCT_PACKED_END" Value="__attribute__((packed))"/>
 			<Setting CodeDefine="MAKE_HUGE_PTR" Value=""/>
@@ -123,9 +123,9 @@
 			<Setting CodeDefine="PD_OUTPUT_CALC_AND_COPY_TIME" Value="0"/>
 			<Setting CodeDefine="PD_INPUT_CALC_AND_COPY_TIME" Value="0"/>
 			<Setting CodeDefine="PD_INPUT_DELAY_TIME" Value="0"/>
-			<File Name="LAN925x.c" Type="source" Path="Common\">
+			<File Name="drv_lan9253.c" Type="source" Path="Common\">
 				<Flags HwFile="true"/>This file is included in the Microchip SDK</File>
-			<File Name="LAN925x.h" Type="header" Path="Common\">
+			<File Name="drv_lan9253.h" Type="header" Path="Common\">
 				<Flags HwFile="true"/>This file is included in the Microchip SDK</File>
 			<ESI>
 				<Value>
