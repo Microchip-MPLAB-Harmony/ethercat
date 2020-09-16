@@ -81,8 +81,37 @@
 </#if>
 /* This is the lowest interrupt priority for SAM devices and Highest for PIC32M devices that can be used in a call to a "set priority" function. */
 #define ETHERCAT_CONFIG_MAX_INTERRUPT_PRIORITY 		${DRV_LAN9252_INT_PRIO}
+#define MCHP_ESF_IS_PDI_FUNCTIONAL(pdata)		ethercat_lan9253_PDI_isFunctional(pdata)
+
+#ifdef ETHERCAT_SPI_INDIRECT_MODE_ACCESS
+/* SPI Indirect mode Access. These APIs can also be used for LAN9252 device */
+#define MCHP_ESF_PDI_WRITE(addr, pdata, len)            ECAT_Lan925x_SPIWrite(addr, pdata, len)
+#define MCHP_ESF_PDI_READ(addr, pdata, len)             ECAT_Lan925x_SPIRead(addr, pdata, len)
+#define MCHP_ESF_PDI_FASTREAD(addr, pdata, len)         ECAT_Lan925x_SPIFastRead(addr, pdata, len)
+#define MCHP_ESF_PDI_READ_PDRAM(pdata, addr, len)		ECAT_Lan925x_SPIReadPDRAM(pdata, addr, len)
+#define MCHP_ESF_PDI_FASTREAD_PDRAM(pdata, addr, len)	ECAT_Lan925x_SPIFastReadPDRAM(pdata, addr, len)
+#define MCHP_ESF_PDI_WRITE_PDRAM(pdata, addr, len)		ECAT_Lan925x_SPIWritePDRAM(pdata, addr, len)
+
+/* Timer functions */
+
+#define MCHP_ESF_PDI_TIMER_CONFIG()						ECAT_PDI_TimerInterrupt()
+#define MCHP_ESF_PDI_GET_TIMER()						ECAT_PDI_TimerGet()
+#define MCHP_ESF_PDI_CLR_TIMER()						ECAT_PDI_TimerClear()
+#define MCHP_ESF_PDI_START_TIMER()						ECAT_PDI_TimerStart()
+#define MCHP_ESF_PDI_STOP_TIMER()						ECAT_PDI_TimerStop()
 
 
+
+#define MCHP_ESF_CRITICAL_SECTION_ENTER()				CRITICAL_SECTION_ENTER()
+#define MCHP_ESF_CRITICAL_SECTION_LEAVE()				CRITICAL_SECTION_LEAVE()        
+        
+#define PDI_Init_SYNC_Interrupts()                      ECAT_SyncInterruptsInitialization()
+#define PDI_IRQ_Interrupt()                             ECAT_ESCIRQInitialization()
+        
+#define HW_SetLed(RunLed, ErrLed)                       ECAT_HWSetlED(RunLed, ErrLed)     
+        
+#define PDI_Timer_Interrupt()                           ECAT_PDI_TimerInterrupt()
+        
 // *****************************************************************************
 // *****************************************************************************
 // Section: Data Types
@@ -151,38 +180,40 @@ typedef struct
 */
 /* Global Data Types */
 /* EtherCAT SPI Read Command */
-#define CMD_SERIAL_READ 0x03
+#define CMD_SERIAL_READ 					0x03
 /* EtherCAT SPI Fast read command */
-#define CMD_FAST_READ 0x0B
-#define CMD_DUAL_OP_READ 0x3B
-#define CMD_DUAL_IO_READ 0xBB
-#define CMD_QUAD_OP_READ 0x6B
-#define CMD_QUAD_IO_READ 0xEB
+#define CMD_FAST_READ 						0x0B
+#define CMD_DUAL_OP_READ 					0x3B
+#define CMD_DUAL_IO_READ 					0xBB
+#define CMD_QUAD_OP_READ 					0x6B
+#define CMD_QUAD_IO_READ 					0xEB
         
 /* EtherCAT SPI Write Command */
-#define CMD_SERIAL_WRITE 0x02
-#define CMD_DUAL_DATA_WRITE 0x32
-#define CMD_DUAL_ADDR_DATA_WRITE 0xB2
-#define CMD_QUAD_DATA_WRITE 0x62
-#define CMD_QUAD_ADDR_DARA_WRITE 0xE2
+#define CMD_SERIAL_WRITE 					0x02
+#define CMD_DUAL_DATA_WRITE 				0x32
+#define CMD_DUAL_ADDR_DATA_WRITE 			0xB2
+#define CMD_QUAD_DATA_WRITE 				0x62
+#define CMD_QUAD_ADDR_DARA_WRITE 			0xE2
 
-#define CMD_SERIAL_READ_DUMMY 0
-#define CMD_FAST_READ_DUMMY 1
-#define CMD_DUAL_OP_READ_DUMMY 1
-#define CMD_DUAL_IO_READ_DUMMY 2
-#define CMD_QUAD_OP_READ_DUMMY 1
-#define CMD_QUAD_IO_READ_DUMMY 4
-#define CMD_SERIAL_WRITE_DUMMY 0
-#define CMD_DUAL_DATA_WRITE_DUMMY 0
-#define CMD_DUAL_ADDR_DATA_WRITE_DUMMY 0
-#define CMD_QUAD_DATA_WRITE_DUMMY 0
-#define CMD_QUAD_ADDR_DARA_WRITE_DUMMY 0
+#define CMD_SERIAL_READ_DUMMY 				0
+#define CMD_FAST_READ_DUMMY 				1
+#define CMD_DUAL_OP_READ_DUMMY 				1
+#define CMD_DUAL_IO_READ_DUMMY 				2
+#define CMD_QUAD_OP_READ_DUMMY 				1
+#define CMD_QUAD_IO_READ_DUMMY 				4
+#define CMD_SERIAL_WRITE_DUMMY 				0
+#define CMD_DUAL_DATA_WRITE_DUMMY 			0
+#define CMD_DUAL_ADDR_DATA_WRITE_DUMMY 		0
+#define CMD_QUAD_DATA_WRITE_DUMMY 			0
+#define CMD_QUAD_ADDR_DARA_WRITE_DUMMY 		0
 
-#define ESC_CSR_CMD_REG 0x304
-#define ESC_CSR_DATA_REG 0x300
-#define ESC_WRITE_BYTE 0x80
-#define ESC_READ_BYTE 0xC0
-#define ESC_CSR_BUSY 0x80
+#define ESC_CSR_CMD_REG 					0x304
+#define ESC_CSR_DATA_REG 					0x300
+#define ESC_WRITE_BYTE 						0x80
+#define ESC_READ_BYTE 						0xC0
+#define ESC_CSR_BUSY 						0x80
+
+#define DWORD_LENGTH                                4
 
 // *****************************************************************************
 /* EtherCAT UNIT32 bit type
@@ -211,27 +242,27 @@ typedef union {
 		uint8_t MB;
 	} byte;
 
-} UINT32_VAL;
+}UINT32_VAL;
 
 
-void    PDI_IRQ_Interrupt(void);
+void    ECAT_SyncInterruptsInitialization(void);
 
-void    ethercat_chipSelectSet(void);
-void    ethercat_chipSelectClear(void);
+void    _ECAT_ChipSelectDisable(void);
+void    _ECAT_ChipSelectEnable(void);
 void	SPIWrite(uint16_t adr, uint8_t *data);
 void	SPIRead(uint16_t adr, uint8_t *data);
 void	ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len);
 void	WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len);
-UINT16	PDI_GetTimer();
-void	PDI_ClearTimer(void);
-void    PDI_Timer_Interrupt(void);
-void    PDI_Init_SYNC_Interrupts();
-void	stop_timer(void);
-void	start_timer(void);
-void	HW_SetLed(UINT8 RunLed, UINT8 ErrLed);
-void	EtherCATInit();
-void CRITICAL_SECTION_ENTER(void);
-void CRITICAL_SECTION_LEAVE(void);
+UINT16	ECAT_PDI_TimerGet();
+void	ECAT_PDI_TimerClear(void);
+void    ECAT_PDI_TimerInterrupt(void);
+void    ECAT_ESCIRQInitialization();
+void	ECAT_PDI_TimerStop(void);
+void	ECAT_PDI_TimerStart(void);
+void	ECAT_HWSetlED(UINT8 RunLed, UINT8 ErrLed);
+void	ECAT_Initialization();
+void 	CRITICAL_SECTION_ENTER(void);
+void 	CRITICAL_SECTION_LEAVE(void);
 
 // *****************************************************************************
 /* Function:

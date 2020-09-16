@@ -99,27 +99,27 @@
 #define MCHP_ESF_IS_PDI_FUNCTIONAL(pdata)		ethercat_lan9253_PDI_isFunctional(pdata)
 
 #ifdef ETHERCAT_SPI_INDIRECT_MODE_ACCESS
-/* SPI Indirect mode Access */
-#define MCHP_ESF_PDI_WRITE(addr, pdata, len)            LAN9252SPI_Write(addr, pdata, len)
-#define MCHP_ESF_PDI_READ(addr, pdata, len)             LAN9252SPI_Read(addr, pdata, len)
-#define MCHP_ESF_PDI_FASTREAD(addr, pdata, len)         LAN9252SPI_FastRead(addr, pdata, len)
-#define MCHP_ESF_PDI_READ_PDRAM(pdata, addr, len)		LAN9252SPI_ReadPDRAM(pdata, addr, len)
-#define MCHP_ESF_PDI_FASTREAD_PDRAM(pdata, addr, len)	LAN9252SPI_FastReadPDRAM(pdata, addr, len)
-#define MCHP_ESF_PDI_WRITE_PDRAM(pdata, addr, len)		LAN9252SPI_WritePDRAM(pdata, addr, len)
+/* SPI Indirect mode Access. These APIs can also be used for LAN9252 device */
+#define MCHP_ESF_PDI_WRITE(addr, pdata, len)            ECAT_Lan925x_SPIWrite(addr, pdata, len)
+#define MCHP_ESF_PDI_READ(addr, pdata, len)             ECAT_Lan925x_SPIRead(addr, pdata, len)
+#define MCHP_ESF_PDI_FASTREAD(addr, pdata, len)         ECAT_Lan925x_SPIFastRead(addr, pdata, len)
+#define MCHP_ESF_PDI_READ_PDRAM(pdata, addr, len)		ECAT_Lan925x_SPIReadPDRAM(pdata, addr, len)
+#define MCHP_ESF_PDI_FASTREAD_PDRAM(pdata, addr, len)	ECAT_Lan925x_SPIFastReadPDRAM(pdata, addr, len)
+#define MCHP_ESF_PDI_WRITE_PDRAM(pdata, addr, len)		ECAT_Lan925x_SPIWritePDRAM(pdata, addr, len)
 
 #elif ETHERCAT_SPI_DIRECT_MODE_ACCESS
 /* SPI Direct mode Access */
-#define MCHP_ESF_PDI_WRITE(addr, pdata, len)            LAN9253SPI_Write (addr, pdata, len)
-#define MCHP_ESF_PDI_READ(addr, pdata, len)             LAN9253SPI_Read (addr, pdata, len)
-#define MCHP_ESF_PDI_FASTREAD(addr, pdata, len)			LAN9253SPI_FastRead (addr, pdata, len)
+#define MCHP_ESF_PDI_WRITE(addr, pdata, len)            ECAT_Lan9253_SPIWrite (addr, pdata, len)
+#define MCHP_ESF_PDI_READ(addr, pdata, len)             ECAT_Lan9253_SPIRead (addr, pdata, len)
+#define MCHP_ESF_PDI_FASTREAD(addr, pdata, len)			ECAT_Lan9253_SPIFastRead (addr, pdata, len)
 #define MCHP_ESF_PDI_READ_PDRAM(pdata, addr, len)		
 #define MCHP_ESF_PDI_FASTREAD_PDRAM(pdata, addr, len)	
 #define MCHP_ESF_PDI_WRITE_PDRAM(pdata, addr, len)		
 
 #elif ETHERCAT_SPI_BECKHOFF_MODE_ACCESS
 /* SPI Beckhoff mode Access */
-#define MCHP_ESF_PDI_WRITE(addr, pdata, len)            BeckhoffSPI_Write (addr, pdata, len)
-#define MCHP_ESF_PDI_READ(addr, pdata, len)				BeckhoffSPI_Read (addr, pdata, len)
+#define MCHP_ESF_PDI_WRITE(addr, pdata, len)            ECAT_Lan9253_Beckhoff_SPIWrite (addr, pdata, len)
+#define MCHP_ESF_PDI_READ(addr, pdata, len)				ECAT_Lan9253_Beckhoff_SPIRead (addr, pdata, len)
 #define MCHP_ESF_PDI_FASTREAD(addr, pdata)			
 #define MCHP_ESF_PDI_READ_PDRAM(pdata, addr, len)		
 #define MCHP_ESF_PDI_FASTREAD_PDRAM(pdata, addr, len)	
@@ -128,18 +128,23 @@
 
 /* Timer functions */
 
-#define MCHP_ESF_PDI_TIMER_CONFIG()						PDI_Timer_Interrupt()
-#define MCHP_ESF_PDI_GET_TIMER()						PDI_GetTimer()
-#define MCHP_ESF_PDI_CLR_TIMER()						PDI_ClearTimer()
-#define MCHP_ESF_PDI_START_TIMER()						start_timer()
-#define MCHP_ESF_PDI_STOP_TIMER()						stop_timer()
+#define MCHP_ESF_PDI_TIMER_CONFIG()						ECAT_PDI_TimerInterrupt()
+#define MCHP_ESF_PDI_GET_TIMER()						ECAT_PDI_TimerGet()
+#define MCHP_ESF_PDI_CLR_TIMER()						ECAT_PDI_TimerClear()
+#define MCHP_ESF_PDI_START_TIMER()						ECAT_PDI_TimerStart()
+#define MCHP_ESF_PDI_STOP_TIMER()						ECAT_PDI_TimerStop()
 
 
 
 #define MCHP_ESF_CRITICAL_SECTION_ENTER()				CRITICAL_SECTION_ENTER()
 #define MCHP_ESF_CRITICAL_SECTION_LEAVE()				CRITICAL_SECTION_LEAVE()        
         
+#define PDI_Init_SYNC_Interrupts()                      ECAT_SyncInterruptsInitialization()
+#define PDI_IRQ_Interrupt()                             ECAT_ESCIRQInitialization()
         
+#define HW_SetLed(RunLed, ErrLed)                       ECAT_HWSetlED(RunLed, ErrLed)     
+        
+#define PDI_Timer_Interrupt()                           ECAT_PDI_TimerInterrupt()
         
 // *****************************************************************************
 // *****************************************************************************
@@ -260,13 +265,6 @@ typedef struct
 #define ESC_WR                                      0x04
 #define ESC_RD_WAIT_STATE                           0x03
 
-
-#define EtherCAT_QSPI_Sync_Wait()    {\
-                                while(ECAT_QSPI_TransmissionBusy()) {\
-                                    ;\
-                                }\
-                                ECAT_QSPI_TransmissionFlagClear();\
-                            }
 // *****************************************************************************
 /* EtherCAT UNIT32 bit type
 
@@ -297,26 +295,20 @@ typedef union {
 }UINT32_VAL;
 
 
-void    PDI_IRQ_Interrupt(void);
-void    ethercat_lan9253_PDI_isFunctional(uint8_t *pbyData);
-void    ethercat_chipSelectSet(void);
-void    ethercat_chipSelectClear(void);
-UINT16	PDI_GetTimer();
-void	PDI_ClearTimer(void);
-void    PDI_Timer_Interrupt(void);
-void    PDI_Init_SYNC_Interrupts();
-void	stop_timer(void);
-void	start_timer(void);
-void	HW_SetLed(UINT8 RunLed, UINT8 ErrLed);
-void	EtherCATInit();
+void    ECAT_SyncInterruptsInitialization(void);
+void    ECAT_Lan9253_IsPDIFunctional(uint8_t *pbyData);
+void    _ECAT_ChipSelectDisable(void);
+void    _ECAT_ChipSelectEnable(void);
+UINT16	ECAT_PDI_TimerGet();
+void	ECAT_PDI_TimerClear(void);
+void    ECAT_PDI_TimerInterrupt(void);
+void    ECAT_ESCIRQInitialization();
+void	ECAT_PDI_TimerStop(void);
+void	ECAT_PDI_TimerStart(void);
+void	ECAT_HWSetlED(UINT8 RunLed, UINT8 ErrLed);
+void	ECAT_Initialization();
 void    CRITICAL_SECTION_ENTER(void);
 void    CRITICAL_SECTION_LEAVE(void);
-
-
-/*Global interrupt enable and disable  */
-void ECAT_QSPI_TransmissionFlagClear(void);
-void ECAT_QSPI_CallbackRegistration(void);
-bool ECAT_QSPI_TransmissionBusy(void);
 
 // *****************************************************************************
 /* Function:
@@ -349,23 +341,23 @@ void ECAT_Util_Initialize(const unsigned short int drvIndex,  const void * const
 
 #ifdef ETHERCAT_SPI_BECKHOFF_MODE_ACCESS
 	/* Function Prototypes */
-	void BeckhoffSPI_Write(uint16_t wAddr, uint8_t *pbyData, uint32_t dwLength);
-	void BeckhoffSPI_Read(uint16_t wAddr, uint8_t *pbyData, uint32_t dwLength);
+	void ECAT_Lan9253_Beckhoff_SPIWrite(uint16_t wAddr, uint8_t *pbyData, uint32_t dwLength);
+	void ECAT_Lan9253_Beckhoff_SPIRead(uint16_t wAddr, uint8_t *pbyData, uint32_t dwLength);
 #endif
 #ifdef ETHERCAT_SPI_DIRECT_MODE_ACCESS
 	/* Function Prototypes */
-	void LAN9253SPI_Write(uint16_t wAddr, uint8_t *pbyData, uint32_t dwLength);
-	void LAN9253SPI_Read(uint16_t wAddr, uint8_t *pbydata, uint32_t dwLength);
-	void LAN9253SPI_FastRead(uint16_t wAddr, uint8_t *pbyData, uint32_t dwLength);
+	void ECAT_Lan9253_SPIWrite(uint16_t wAddr, uint8_t *pbyData, uint32_t dwLength);
+	void ECAT_Lan9253_SPIRead(uint16_t wAddr, uint8_t *pbydata, uint32_t dwLength);
+	void ECAT_Lan9253_SPIFastRead(uint16_t wAddr, uint8_t *pbyData, uint32_t dwLength);
 #endif
 #ifdef ETHERCAT_SPI_INDIRECT_MODE_ACCESS
 	/* Function Prototypes */
-	void LAN9252SPI_Write(uint16_t wAdddr, uint8_t *pbyData, uint8_t wLen);
-	void LAN9252SPI_Read(uint16_t wAddr, uint8_t *pbyData, uint8_t wLen);
-	void LAN9252SPI_FastRead(uint16_t wAddr, uint8_t *pbyData, uint8_t wLen);
-	void LAN9252SPI_ReadPDRAM(UINT8 *pbyData, UINT16 wAddr, UINT16 wLen);
-	void LAN9252SPI_FastReadPDRAM(UINT8 *pbyData, UINT16 wAddr, UINT16 wLen);
-	void LAN9252SPI_WritePDRAM(UINT8 *pbyData, UINT16 wAddr, UINT16 wLen);
+	void ECAT_Lan925x_SPIWrite(uint16_t wAdddr, uint8_t *pbyData, uint8_t wLen);
+	void ECAT_Lan925x_SPIRead(uint16_t wAddr, uint8_t *pbyData, uint8_t wLen);
+	void ECAT_Lan925x_SPIFastRead(uint16_t wAddr, uint8_t *pbyData, uint8_t wLen);
+	void ECAT_Lan925x_SPIReadPDRAM(UINT8 *pbyData, UINT16 wAddr, UINT16 wLen);
+	void ECAT_Lan925x_SPIFastReadPDRAM(UINT8 *pbyData, UINT16 wAddr, UINT16 wLen);
+	void ECAT_Lan925x_SPIWritePDRAM(UINT8 *pbyData, UINT16 wAddr, UINT16 wLen);
 #endif
 
 #ifdef __cplusplus
