@@ -14,18 +14,15 @@ nav_order: 1
 EtherCAT LAN925x slave device software utility framework is a layered software framework that enables other PIC and Cortex Microcontroller peripherals to work together.
 
 * **LAN925x EtherCAT Framework**
+
     | EtherCAT Slave Framework    |Description                |
     |:---------------------------:|:-------------------------:|
     | [LAN9252 EtherCAT Framework](docs/readme_drvlan9252.md)   |    The Framework explains about EtherCAT slave controller Interface layer w.r.t LAN9252 device    |
     | [LAN9253 EtherCAT Framework](docs/readme_drvlan9253.md)   |     The Framework explains about EtherCAT slave controller Interface layer w.r.t LAN9253 device     |
-    
+
 Ethernet for Control Automation Technology (EtherCAT) was developed by Beckhoff. EtherCAT is a fast and deterministic network, and processes data using dedicated hardware and software. It uses a full duplex, master-slave configuration.
 
 The LAN925x is a 2/3-port EtherCAT slave controller with dual integrated Ethernet PHYs which each contain a fullduplex 100BASE-TX transceiver and support 100Mbps (100BASE-TX) operation.
-
-EtherCAT Slave Controller Interface layer is designed for Microchip MCUs to communicate with LAN925x EtherCAT Slave controller. This EtherCAT framework is configured with the communication interfaces (QSPI (SPI mode), GPIO). This communication Interface layer which will act like bridge between EtherCAT Slave Stack Code (SSC) and Host peripherals to communicate with LAN925x. SSC Stack (generated from standard SSC tool) have feature to transfer the File over EtherCAT (FoE) for MCU firmware upgrade from TwinCAT tool.
-
-![Ethercat Technology](docs/images/EtherCAT_module_diagram.png)
 
 Use of the Microchip EVB-LAN925x (and similar EtherCAT interface devices) requires use of the Beckhoff EtherCAT Slave Stack Code (SSC) and its associated configuration and code generation tool.
 
@@ -41,7 +38,7 @@ Use of the Microchip EVB-LAN925x (and similar EtherCAT interface devices) requir
     SSC will access EtherCAT core registers from both interrupt context and polling mode. So, the ECAT_CSR_CMD and ECAT_CSR_DATA registers has to be protected against simultaneous access which can corrupt the state machine inside the slave stack code.
 
 * **Configure of Library**
-   
+
     Configure the peripheral library using the MHC.
     EtherCAT Slave Device Indicators
     This section describes the LAN925x driver and EtherCAT trigger and counter variables are used to support visual inspection and troubleshooting of the driver and networks.
@@ -55,7 +52,7 @@ Use of the Microchip EVB-LAN925x (and similar EtherCAT interface devices) requir
 
     2. **Receive PDO Mapping ( Outputs )** -
     The PDO protocol is used for communication with External interrupt IRQ.
-        
+
         | Index  |  Object | Type           | Direction |
         |:------:|:-------:|:--------------:|:---------:|
         |1       |0x7010   |32bit Counter   |RX         |
@@ -63,7 +60,7 @@ Use of the Microchip EVB-LAN925x (and similar EtherCAT interface devices) requir
     3. Synchronization -
     The Beckhoff Slave Stack Code supports different modes of synchronization which are based on three physical signals: (PDI_)IRQ, Sync0 and Sync1
     Microchip EtherCAT device also supports different modes.
-        * Master and Slaves for synchronization: Free run The Master cycle time and Slave cycle time are independent. 
+        * Master and Slaves for synchronization: Free run The Master cycle time and Slave cycle time are independent.
 
         * IRQ interrupt event is triggered from Master for SM-Synchron Synchronization.
 
@@ -73,7 +70,7 @@ Use of the Microchip EVB-LAN925x (and similar EtherCAT interface devices) requir
 * **Using Library**
 
     File over EtherCAT (FoE) -
-    Architecture – Host/Slave interaction states for firmware update. The Dual Bank feature enables a firmware to execute from the NVM and at the same time the program to the flash with a new version of itself.After programming is completed the APP_BankSwitch() application function is used to swap the banks and to reset the device.
+    Architecture – Host/Slave interaction states for firmware update. The Dual Bank feature enables a firmware to execute from the NVM and at the same time the program to the flash with a new version of itself. After programming is completed the APP_BankSwitch() application function is used to swap the banks and to reset the device.
 
     ![library usage](docs/images/Firmware_upgrade.png)
 
@@ -83,7 +80,7 @@ Use of the Microchip EVB-LAN925x (and similar EtherCAT interface devices) requir
 
     * Master changes from INIT to BOOT, then download of a file initiated. When state changes from INIT to BOOT, slave or the FoE application is ready to write the new FW or bin file at the BankB location( 0x40000 Bank B location for ATSAMD51j19A device ). Flag gFirmwareDownload_Started set to 1.
 
-    * Master initiates Download command with default password value as **0x11223344** and bin file (this file is generated from the existing D51 foe studio project). In the slave FOE_FILEDOWNLOAD_PASSWORD is set to 0x11223344 and can be modified from EtherCAT MHC componet configuration. FoE_Write() checks file name size ( limited to 16) and checks password value and then proceed to FoE_WriteData().
+    * Master initiates Download command with default password value as **0x11223344** and bin file (this file is generated from the existing D51 foe studio project). In the slave FOE_FILEDOWNLOAD_PASSWORD is set to 0x11223344 and can be modified from EtherCAT MHC component configuration. FoE_Write() checks file name size ( limited to 16) and checks password value and then proceed to FoE_WriteData().
 
     * Once Master completes bin file transfer, then Master need to change the state from BOOT to INIT. In the FW application or slave code, APP_FW_GetDownloadStateFinished() changes state to gFirmwareDownload_Started = 0 and APP_FW_StateBOOTtoINIT() changes gFirmwareDownload_Finished = 1.
 
@@ -92,5 +89,3 @@ Use of the Microchip EVB-LAN925x (and similar EtherCAT interface devices) requir
     SSC tool FoE configuration -
 
     ![library usage](docs/images/SSCtool_FoE_configuration.png)
-
-
