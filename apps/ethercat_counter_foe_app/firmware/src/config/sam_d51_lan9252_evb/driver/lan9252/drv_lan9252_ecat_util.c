@@ -48,7 +48,7 @@
 #include "drv_lan9252_definitions.h"
 #include "definitions.h"
 
-void PDI_Init_SYSTick_Interrupt();
+void PDI_Init_Timer_interrupt();
      
 
 volatile char    gEtherCATQSPITransmission = false;
@@ -58,7 +58,7 @@ static DRV_LAN9252_UTIL_OBJ gDrvLan9252UtilObj;
 /*Global interrupt enable and disable  */
 void ECAT_QSPI_TransmissionFlagClear(void);
 void ECAT_QSPI_CallbackRegistration(void);
-bool ECAT_QSPI_TransmissionBusy(void);
+bool ECAT_QSPI_TransmissionIsBusy(void);
 volatile uint32_t processorStatus;
 
 void CRITICAL_SECTION_ENTER(void)
@@ -75,11 +75,11 @@ void CRITICAL_SECTION_LEAVE(void)
 
 #ifdef DC_SUPPORTED
 /*******************************************************************************
-    Function:
-        void ethercat_sync0_cb()
+Function:
+    void ethercat_sync0_cb()
 
-    Summary:
-        Interrupt service routine for the interrupt from SYNC0
+Summary:
+    Interrupt service routine for the interrupt from SYNC0
 *******************************************************************************/
 void ethercat_sync0_cb(uintptr_t context)
 {
@@ -89,11 +89,11 @@ void ethercat_sync0_cb(uintptr_t context)
 }
 
 /*******************************************************************************
-    Function:
-        void ethercat_sync1_cb()
+Function:
+    void ethercat_sync1_cb()
 
-    Summary:
-        Interrupt service routine for the interrupt from SYNC1
+Summary:
+    Interrupt service routine for the interrupt from SYNC1
 *******************************************************************************/
 void ethercat_sync1_cb(uintptr_t context)
 {
@@ -103,11 +103,11 @@ void ethercat_sync1_cb(uintptr_t context)
 }
 
 /*******************************************************************************
-    Function:
-        void PDI_Init_SYNC_Interrupts()
+Function:
+    void PDI_Init_SYNC_Interrupts()
 
-    Summary:
-        Register Callback function for PDI SYNC0 and SYNC1 interrupts
+Summary:
+    Register Callback function for PDI SYNC0 and SYNC1 interrupts
 *******************************************************************************/
 void PDI_Init_SYNC_Interrupts()
 {
@@ -119,11 +119,11 @@ void PDI_Init_SYNC_Interrupts()
 #endif // DC_SUPPORTED
 
 /*******************************************************************************
-    Function:
-        void ether_cat_escirq_cb()
+Function:
+    void ether_cat_escirq_cb()
 
-    Summary:
-        Interrupt service routine for the interrupt from ESC
+Summary:
+    Interrupt service routine for the interrupt from ESC
 *******************************************************************************/
 void ethercat_escirq_cb(uintptr_t context)
 {
@@ -196,11 +196,11 @@ void SPIreadWriteTest(void)
 }
 
 /*******************************************************************************
-    Function:
-        void SPIWrite()
+Function:
+    void SPIWrite()
 
-    Summary:
-        API for SPI one byte write.
+Summary:
+    API for SPI one byte write.
 *******************************************************************************/
 
 void SPIWrite(uint16_t adr, uint8_t *data)
@@ -215,14 +215,14 @@ void SPIWrite(uint16_t adr, uint8_t *data)
     ethercat_chipSelectClear();
     while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());
     gDrvLan9252UtilObj.spiPlib->spiWrite(txData,3);
-    while(ECAT_QSPI_TransmissionBusy())
+    while(ECAT_QSPI_TransmissionIsBusy())
     {        
     }
     ECAT_QSPI_TransmissionFlagClear();
     
     while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());
     gDrvLan9252UtilObj.spiPlib->spiWrite(data, len);
-    while(ECAT_QSPI_TransmissionBusy())
+    while(ECAT_QSPI_TransmissionIsBusy())
     {        
     }
     ECAT_QSPI_TransmissionFlagClear();
@@ -253,14 +253,14 @@ void SPIRead(uint16_t adr, uint8_t *data)
     ethercat_chipSelectClear();
     while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());
     gDrvLan9252UtilObj.spiPlib->spiWrite(txData, 3);
-    while(ECAT_QSPI_TransmissionBusy())
+    while(ECAT_QSPI_TransmissionIsBusy())
     {        
     }
     ECAT_QSPI_TransmissionFlagClear();
     
     while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());	
     gDrvLan9252UtilObj.spiPlib->spiRead(rxData, len);
-    while(ECAT_QSPI_TransmissionBusy())
+    while(ECAT_QSPI_TransmissionIsBusy())
     {        
     }
     ECAT_QSPI_TransmissionFlagClear();
@@ -304,7 +304,7 @@ void ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
     ethercat_chipSelectClear();
     while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());
     gDrvLan9252UtilObj.spiPlib->spiWrite(txData, 3);
-    while(ECAT_QSPI_TransmissionBusy())
+    while(ECAT_QSPI_TransmissionIsBusy())
     {        
     }
     ECAT_QSPI_TransmissionFlagClear();
@@ -313,7 +313,7 @@ void ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
     while (startAlignSize--)
 	{
 		gDrvLan9252UtilObj.spiPlib->spiRead(&dummy,1);
-        while(ECAT_QSPI_TransmissionBusy())
+        while(ECAT_QSPI_TransmissionIsBusy())
         {        
         }
         ECAT_QSPI_TransmissionFlagClear();
@@ -323,7 +323,7 @@ void ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
     while (Len--)
 	{
 		gDrvLan9252UtilObj.spiPlib->spiRead(rxData,1);
-        while(ECAT_QSPI_TransmissionBusy())
+        while(ECAT_QSPI_TransmissionIsBusy())
         {        
         }
         ECAT_QSPI_TransmissionFlagClear();
@@ -335,7 +335,7 @@ void ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
     while (EndAlignSize--)
 	{
     	gDrvLan9252UtilObj.spiPlib->spiRead(&dummy,1);
-        while(ECAT_QSPI_TransmissionBusy())
+        while(ECAT_QSPI_TransmissionIsBusy())
         {        
         }
         ECAT_QSPI_TransmissionFlagClear();
@@ -377,7 +377,7 @@ void WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
     while(gDrvLan9252UtilObj.spiPlib->spiIsBusy());
     
     gDrvLan9252UtilObj.spiPlib->spiWrite(txData, 3);
-    while(ECAT_QSPI_TransmissionBusy())
+    while(ECAT_QSPI_TransmissionIsBusy())
     {        
     }
     ECAT_QSPI_TransmissionFlagClear();
@@ -386,7 +386,7 @@ void WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
     while (startAlignSize--)
 	{
         gDrvLan9252UtilObj.spiPlib->spiWrite(&dummy,1);
-        while(ECAT_QSPI_TransmissionBusy())
+        while(ECAT_QSPI_TransmissionIsBusy())
         {        
         }
         ECAT_QSPI_TransmissionFlagClear();
@@ -397,7 +397,7 @@ void WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
 	{        
         txData[0] = *pData;
 		gDrvLan9252UtilObj.spiPlib->spiWrite(txData,1);
-        while(ECAT_QSPI_TransmissionBusy())
+        while(ECAT_QSPI_TransmissionIsBusy())
         {        
         }
         ECAT_QSPI_TransmissionFlagClear();
@@ -409,7 +409,7 @@ void WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
 	{        
         txData[0] = dummy;
 		gDrvLan9252UtilObj.spiPlib->spiWrite(txData,1);
-        while(ECAT_QSPI_TransmissionBusy())
+        while(ECAT_QSPI_TransmissionIsBusy())
         {        
         }
         ECAT_QSPI_TransmissionFlagClear();
@@ -419,13 +419,13 @@ void WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
     ethercat_chipSelectSet();
 }
 /*******************************************************************************
-    Function:
-        UINT16 PDI_GetTimer(void)
+Function:
+    UINT16 PDI_GetTimer(void)
 
-    Summary:
-        Get the 1ms current timer value
-    Description:
-        This routine gets the 1ms current timer value.
+Summary:
+    Get the 1ms current timer value
+Description:
+    This routine gets the 1ms current timer value.
 *******************************************************************************/
 UINT16 PDI_GetTimer()
 {
@@ -433,43 +433,43 @@ UINT16 PDI_GetTimer()
 }
 
 /*******************************************************************************
-    Function:
-        void PDI_ClearTimer(void)
+Function:
+    void PDI_ClearTimer(void)
 
-    Summary:
-        Clear the 1ms current timer value
-    Description:
-        This routine clears the 1ms current timer value.
+Summary:
+    Clear the 1ms current timer value
+Description:
+    This routine clears the 1ms current timer value.
 *******************************************************************************/
 void PDI_ClearTimer(void)
 {
 }
 
 /*******************************************************************************
-    Function:
-    void PDI_Timer_Interrupt(void)
+Function:
+void PDI_Timer_Interrupt(void)
 
-    Summary:
-     This function configure and enable the TIMER interrupt for 1ms
+Summary:
+ This function configure and enable the TIMER interrupt for 1ms
 
-    Description:
-    This function configure and enable the TIMER interrupt for 1ms
+Description:
+This function configure and enable the TIMER interrupt for 1ms
 *******************************************************************************/
 void PDI_Timer_Interrupt(void)
 {
-    PDI_Init_SYSTick_Interrupt();
+    PDI_Init_Timer_interrupt();
 }
 
 /*******************************************************************************
-    Function:
-        void SysTick_Handler(void)
+Function:
+    void ECAT_Framework_Timer_Handler(void)
 
-    Summary:
-        SysTick ISR Handler
-    Description:
-        This routine load the SysTick LOAD register and perform EtherCAT check opration.
+Summary:
+    SysTick ISR Handler
+Description:
+    This routine load the SysTick LOAD register and perform EtherCAT check opration.
 *******************************************************************************/
-void ECAT_SysTick_Handler(uintptr_t context)
+void ECAT_Framework_Timer_Handler(uintptr_t context)
 {
     CRITICAL_SECTION_ENTER();
 	ECAT_CheckTimer();
@@ -477,31 +477,31 @@ void ECAT_SysTick_Handler(uintptr_t context)
 }
 
 /*******************************************************************************
-    Function:
-        void PDI_Init_SYSTick_Interrupt()
+Function:
+    void PDI_Init_Timer_interrupt()
 
-    Summary:
-        Register Callback function for PDI SYS_Tick interrupt
+Summary:
+    Register Callback function for PDI SYS_Tick interrupt
 *******************************************************************************/
-void PDI_Init_SYSTick_Interrupt()
+void PDI_Init_Timer_interrupt()
 {
-    gDrvLan9252UtilObj.timerPlib->timerCallbackSet(ECAT_SysTick_Handler,(uintptr_t) NULL);
+    gDrvLan9252UtilObj.timerPlib->timerCallbackSet(ECAT_Framework_Timer_Handler,(uintptr_t) NULL);
     gDrvLan9252UtilObj.timerPlib->timerStart();
 }
 
 /*******************************************************************************
-    Function:
-    void HW_SetLed(UINT8 RunLed,UINT8 ErrLed)
+Function:
+void HW_SetLed(UINT8 RunLed,UINT8 ErrLed)
 
-    Summary:
-     This function set the Error LED if it is required.
+Summary:
+ This function set the Error LED if it is required.
 
-    Description:
-    LAN9252 does not support error LED. So this feature has to be enabled by PDI SOC if it is needed.
+Description:
+LAN9252 does not support error LED. So this feature has to be enabled by PDI SOC if it is needed.
 
-    Parameters:
-        RunLed	- It is not used. This will be set by LAN9252.
-        ErrLed	- 1- ON, 0-0FF.
+Parameters:
+    RunLed	- It is not used. This will be set by LAN9252.
+    ErrLed	- 1- ON, 0-0FF.
 *******************************************************************************/
 void HW_SetLed(UINT8 RunLed, UINT8 ErrLed)
 {
@@ -518,13 +518,13 @@ void HW_SetLed(UINT8 RunLed, UINT8 ErrLed)
 }
 
 /*******************************************************************************
-    Function:
-        void ether_cat_init(void)
+Function:
+    void ether_cat_init(void)
 
-    Summary:
-        Initialize EtherCAT
-    Description:
-        This routine enable SPI module and initialize LAN9252
+Summary:
+    Initialize EtherCAT
+Description:
+    This routine enable SPI module and initialize LAN9252
 *******************************************************************************/
 void EtherCATInit()
 {
@@ -567,7 +567,7 @@ void ECAT_QSPI_TransmissionFlagClear(void)
     gDrvLan9252UtilObj.spiTransferStatus = DRV_LAN9252_UTIL_SPI_TRANSFER_STATUS_BUSY;
 }
 
-bool ECAT_QSPI_TransmissionBusy(void)
+bool ECAT_QSPI_TransmissionIsBusy(void)
 {
     return (gDrvLan9252UtilObj.spiTransferStatus == DRV_LAN9252_UTIL_SPI_TRANSFER_STATUS_BUSY);
 }

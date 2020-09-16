@@ -1315,7 +1315,7 @@
       <Symbols dnOrder="0">
         <String dnOrder="0" id="ETHERCAT_SLAVESTACK_DIRECTORY_PATH">
           <Values dnOrder="0">
-            <User dnOrder="0" value="D:\microchip\h3\ssc_gen_files\Src2"/>
+            <User dnOrder="0" value="D:\microchip\h3\etherat_rel\ethercat\slave_stack"/>
           </Values>
         </String>
         <File dnOrder="1" id="SSC_LIST_FILE0">
@@ -1336,7 +1336,7 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/applInterface.h</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/applInterface.h</Value>
             </String>
             <String dnOrder="6" id="type">
               <Value dnOrder="0">HEADER</Value>
@@ -1361,7 +1361,7 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/bootmode.c</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/bootmode.c</Value>
             </String>
           </Attributes>
         </File>
@@ -1383,7 +1383,7 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/ecatfoe.h</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/ecatfoe.h</Value>
             </String>
             <String dnOrder="6" id="type">
               <Value dnOrder="0">HEADER</Value>
@@ -1408,7 +1408,7 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/ecatslv.c</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/ecatslv.c</Value>
             </String>
           </Attributes>
         </File>
@@ -1430,7 +1430,7 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/ecatslv.h</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/ecatslv.h</Value>
             </String>
             <String dnOrder="6" id="type">
               <Value dnOrder="0">HEADER</Value>
@@ -1455,7 +1455,7 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/ecat_def.h</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/ecat_def.h</Value>
             </String>
             <String dnOrder="6" id="type">
               <Value dnOrder="0">HEADER</Value>
@@ -1480,7 +1480,7 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/emcy.c</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/emcy.c</Value>
             </String>
           </Attributes>
         </File>
@@ -1502,7 +1502,7 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/emcy.h</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/emcy.h</Value>
             </String>
             <String dnOrder="6" id="type">
               <Value dnOrder="0">HEADER</Value>
@@ -1527,7 +1527,7 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/esc.h</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/esc.h</Value>
             </String>
             <String dnOrder="6" id="type">
               <Value dnOrder="0">HEADER</Value>
@@ -1552,7 +1552,7 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/foeappl.c</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/foeappl.c</Value>
             </String>
           </Attributes>
         </File>
@@ -1574,7 +1574,7 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/foeappl.h</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/foeappl.h</Value>
             </String>
             <String dnOrder="6" id="type">
               <Value dnOrder="0">HEADER</Value>
@@ -1599,7 +1599,7 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/mailbox.c</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/mailbox.c</Value>
             </String>
           </Attributes>
         </File>
@@ -1621,7 +1621,7 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/bootmode.h</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/bootmode.h</Value>
             </String>
             <String dnOrder="6" id="type">
               <Value dnOrder="0">HEADER</Value>
@@ -1646,7 +1646,7 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/mailbox.h</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/mailbox.h</Value>
             </String>
             <String dnOrder="6" id="type">
               <Value dnOrder="0">HEADER</Value>
@@ -1671,7 +1671,7 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/objdef.c</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/objdef.c</Value>
             </String>
           </Attributes>
         </File>
@@ -1693,7 +1693,7 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/objdef.h</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/objdef.h</Value>
             </String>
             <String dnOrder="6" id="type">
               <Value dnOrder="0">HEADER</Value>
@@ -1701,6 +1701,31 @@
           </Attributes>
         </File>
         <File dnOrder="17" id="SSC_LIST_FILE23">
+          <Attributes dnOrder="0">
+            <String dnOrder="0" id="dest">
+              <Value dnOrder="0">../../slave_stack</Value>
+            </String>
+            <Boolean dnOrder="1" id="enabled">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+            <String dnOrder="2" id="name">
+              <Value dnOrder="0">SAMD51_EtherCAT_Slave.esp</Value>
+            </String>
+            <String dnOrder="3" id="project">
+              <Value dnOrder="0">slave_stack\</Value>
+            </String>
+            <Boolean dnOrder="4" id="relative">
+              <Value dnOrder="0">false</Value>
+            </Boolean>
+            <String dnOrder="5" id="source">
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/SAMD51_EtherCAT_Slave.esp</Value>
+            </String>
+            <String dnOrder="6" id="type">
+              <Value dnOrder="0">HEADER</Value>
+            </String>
+          </Attributes>
+        </File>
+        <File dnOrder="18" id="SSC_LIST_FILE24">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
@@ -1718,11 +1743,14 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/sample_app.c</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/sample_app.c</Value>
+            </String>
+            <String dnOrder="6" id="type">
+              <Value dnOrder="0">SOURCE</Value>
             </String>
           </Attributes>
         </File>
-        <File dnOrder="18" id="SSC_LIST_FILE24">
+        <File dnOrder="19" id="SSC_LIST_FILE25">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
@@ -1740,14 +1768,14 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/sample_app.h</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/sample_app.h</Value>
             </String>
             <String dnOrder="6" id="type">
               <Value dnOrder="0">HEADER</Value>
             </String>
           </Attributes>
         </File>
-        <File dnOrder="19" id="SSC_LIST_FILE25">
+        <File dnOrder="20" id="SSC_LIST_FILE26">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
@@ -1765,14 +1793,14 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/sample_appObjects.h</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/sample_appObjects.h</Value>
             </String>
             <String dnOrder="6" id="type">
               <Value dnOrder="0">HEADER</Value>
             </String>
           </Attributes>
         </File>
-        <File dnOrder="20" id="SSC_LIST_FILE26">
+        <File dnOrder="21" id="SSC_LIST_FILE27">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
@@ -1790,11 +1818,14 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/sdoserv.c</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/sdoserv.c</Value>
+            </String>
+            <String dnOrder="6" id="type">
+              <Value dnOrder="0">SOURCE</Value>
             </String>
           </Attributes>
         </File>
-        <File dnOrder="21" id="SSC_LIST_FILE27">
+        <File dnOrder="22" id="SSC_LIST_FILE28">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
@@ -1812,14 +1843,14 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/sdoserv.h</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/sdoserv.h</Value>
             </String>
             <String dnOrder="6" id="type">
               <Value dnOrder="0">HEADER</Value>
             </String>
           </Attributes>
         </File>
-        <File dnOrder="22" id="SSC_LIST_FILE3">
+        <File dnOrder="23" id="SSC_LIST_FILE3">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
@@ -1837,11 +1868,11 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/coeappl.c</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/coeappl.c</Value>
             </String>
           </Attributes>
         </File>
-        <File dnOrder="23" id="SSC_LIST_FILE4">
+        <File dnOrder="24" id="SSC_LIST_FILE4">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
@@ -1859,14 +1890,14 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/coeappl.h</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/coeappl.h</Value>
             </String>
             <String dnOrder="6" id="type">
               <Value dnOrder="0">HEADER</Value>
             </String>
           </Attributes>
         </File>
-        <File dnOrder="24" id="SSC_LIST_FILE5">
+        <File dnOrder="25" id="SSC_LIST_FILE5">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
@@ -1884,11 +1915,11 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/ecatappl.c</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/ecatappl.c</Value>
             </String>
           </Attributes>
         </File>
-        <File dnOrder="25" id="SSC_LIST_FILE6">
+        <File dnOrder="26" id="SSC_LIST_FILE6">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
@@ -1906,14 +1937,14 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/ecatappl.h</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/ecatappl.h</Value>
             </String>
             <String dnOrder="6" id="type">
               <Value dnOrder="0">HEADER</Value>
             </String>
           </Attributes>
         </File>
-        <File dnOrder="26" id="SSC_LIST_FILE7">
+        <File dnOrder="27" id="SSC_LIST_FILE7">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
@@ -1931,11 +1962,11 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/ecatcoe.c</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/ecatcoe.c</Value>
             </String>
           </Attributes>
         </File>
-        <File dnOrder="27" id="SSC_LIST_FILE8">
+        <File dnOrder="28" id="SSC_LIST_FILE8">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
@@ -1953,14 +1984,14 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/ecatcoe.h</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/ecatcoe.h</Value>
             </String>
             <String dnOrder="6" id="type">
               <Value dnOrder="0">HEADER</Value>
             </String>
           </Attributes>
         </File>
-        <File dnOrder="28" id="SSC_LIST_FILE9">
+        <File dnOrder="29" id="SSC_LIST_FILE9">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
@@ -1978,7 +2009,7 @@
               <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="5" id="source">
-              <Value dnOrder="0">D:/microchip/h3/ssc_gen_files/Src2/ecatfoe.c</Value>
+              <Value dnOrder="0">D:/microchip/h3/etherat_rel/ethercat/slave_stack/ecatfoe.c</Value>
             </String>
           </Attributes>
         </File>
@@ -2422,44 +2453,65 @@
     </UniqueComponent>
     <UniqueComponent dnOrder="8" id="qspi">
       <Symbols dnOrder="0">
-        <Integer dnOrder="0" id="QSPI_BAUD_RATE">
+        <File dnOrder="0" id="QSPISPI_HEADER2">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+        </File>
+        <File dnOrder="1" id="QSPISPI_SOURCE2">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+        </File>
+        <Integer dnOrder="2" id="QSPI_BAUD_RATE">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="qspi" value="66000000"/>
             <User dnOrder="1" value="15000000"/>
           </Values>
         </Integer>
-        <KeyValueSet dnOrder="1" id="QSPI_CPOL">
+        <KeyValueSet dnOrder="3" id="QSPI_CPOL">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="qspi" value="0"/>
           </Values>
         </KeyValueSet>
-        <KeyValueSet dnOrder="2" id="QSPI_DATALEN">
-          <Attributes dnOrder="0">
-            <Boolean dnOrder="0" id="visible">
-              <Value dnOrder="0">true</Value>
-            </Boolean>
-          </Attributes>
-          <Values dnOrder="1">
+        <KeyValueSet dnOrder="4" id="QSPI_DATALEN">
+          <Values dnOrder="0">
             <User dnOrder="0" value="4"/>
           </Values>
         </KeyValueSet>
-        <KeyValueSet dnOrder="3" id="QSPI_LOOPEN">
+        <File dnOrder="5" id="QSPI_HEADER2">
           <Attributes dnOrder="0">
-            <Boolean dnOrder="0" id="visible">
-              <Value dnOrder="0">true</Value>
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">false</Value>
             </Boolean>
           </Attributes>
-        </KeyValueSet>
-        <Integer dnOrder="4" id="QSPI_SCBR">
+        </File>
+        <Integer dnOrder="6" id="QSPI_SCBR">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="qspi" value="7"/>
           </Values>
         </Integer>
-        <KeyValueSet dnOrder="5" id="QSPI_SMM">
-          <Values dnOrder="0">
+        <KeyValueSet dnOrder="7" id="QSPI_SMM">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="readOnly">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+          <Values dnOrder="1">
             <Dynamic dnOrder="0" id="qspi" value="0"/>
           </Values>
         </KeyValueSet>
+        <File dnOrder="8" id="QSPI_SOURCE1">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">false</Value>
+            </Boolean>
+          </Attributes>
+        </File>
       </Symbols>
       <Attachments dnOrder="1">
         <DirectCapability dnOrder="0" id="QSPI_SPI">
@@ -2470,6 +2522,13 @@
             <String dnOrder="1" id="targetAttachmentID">
               <Value dnOrder="0">LAN9252_SPI_Dependency</Value>
             </String>
+          </Attributes>
+        </DirectCapability>
+        <DirectCapability dnOrder="1" id="QSPI_SQI">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">false</Value>
+            </Boolean>
           </Attributes>
         </DirectCapability>
       </Attachments>
@@ -2584,20 +2643,20 @@
     </UniqueComponent>
   </Components>
   <UserData>
-    <ComponentGraph dnOrder="0" id="__ROOTVIEW">
+    <GraphSettings canvasHeight="400" canvasWidth="400" dnOrder="0"/>
+    <ComponentGraph dnOrder="1" id="__ROOTVIEW">
       <ElementPositions dnOrder="0">
         <ElementPosition dnOrder="0" id="cmsis" x="30" y="100"/>
         <ElementPosition dnOrder="1" id="core" x="340" y="20"/>
         <ElementPosition dnOrder="2" id="dfp" x="170" y="80"/>
         <ElementPosition dnOrder="3" id="eic" x="0" y="295"/>
         <ElementPosition dnOrder="4" id="ethercat_apps_config" x="425" y="172"/>
-        <ElementPosition dnOrder="5" id="ethercat_lan9252" x="258" y="154"/>
+        <ElementPosition dnOrder="5" id="ethercat_lan9252" x="310" y="141"/>
         <ElementPosition dnOrder="6" id="evsys" x="180" y="20"/>
         <ElementPosition dnOrder="7" id="nvmctrl" x="20" y="20"/>
-        <ElementPosition dnOrder="8" id="qspi" x="48" y="143"/>
+        <ElementPosition dnOrder="8" id="qspi" x="47" y="143"/>
         <ElementPosition dnOrder="9" id="tc0" x="21" y="218"/>
       </ElementPositions>
     </ComponentGraph>
-    <GraphSettings canvasHeight="400" canvasWidth="400" dnOrder="1"/>
   </UserData>
 </Configuration>
