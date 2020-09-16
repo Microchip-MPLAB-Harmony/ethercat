@@ -11,22 +11,30 @@ nav_order: 1
 
 # EtherCAT LAN925x Library
 
+EtherCAT LAN925x slave device software utility framework is a layered software framework that enables other PIC and Cortex Microcontroller peripherals to work together.
+
+* **LAN925x EtherCAT Framework**
+    | EtherCAT Slave Framework    |Description                |
+    |:---------------------------:|:-------------------------:|
+    | [LAN9252 EtherCAT Framework](docs/readme_drvlan9252.md)   |    The Framework explains about EtherCAT slave controller Interface layer w.r.t LAN9252 device    |
+    | [LAN9253 EtherCAT Framework](docs/readme_drvlan9253.md)   |     The Framework explains about EtherCAT slave controller Interface layer w.r.t LAN9253 device     |
+    
 Ethernet for Control Automation Technology (EtherCAT) was developed by Beckhoff. EtherCAT is a fast and deterministic network, and processes data using dedicated hardware and software. It uses a full duplex, master-slave configuration.
 
 The LAN925x is a 2/3-port EtherCAT slave controller with dual integrated Ethernet PHYs which each contain a fullduplex 100BASE-TX transceiver and support 100Mbps (100BASE-TX) operation.
 
-EtherCAT Slave Controller Interface layer is designed for Microchip MCUs to communicate with LAN925x EtherCAT Slave controller. This EtherCAT framework is configured with the communication interfaces (QSPI (SPI mode), GPIO). This communication Interface layer which will acts like bridge between EtherCAT Slave Stack Code (SSC) and Host peripherals to communicate with LAN925x. SSC Stack (generated from standard SSC tool) have feature to transfer the File over EtherCAT (FoE) for MCU firmware upgrade from TwinCAT tool.
+EtherCAT Slave Controller Interface layer is designed for Microchip MCUs to communicate with LAN925x EtherCAT Slave controller. This EtherCAT framework is configured with the communication interfaces (QSPI (SPI mode), GPIO). This communication Interface layer which will act like bridge between EtherCAT Slave Stack Code (SSC) and Host peripherals to communicate with LAN925x. SSC Stack (generated from standard SSC tool) have feature to transfer the File over EtherCAT (FoE) for MCU firmware upgrade from TwinCAT tool.
 
 ![Ethercat Technology](docs/images/EtherCAT_module_diagram.png)
 
 Use of the Microchip EVB-LAN925x (and similar EtherCAT interface devices) requires use of the Beckhoff EtherCAT Slave Stack Code (SSC) and its associated configuration and code generation tool.
 
 * The **interrupts** have to be configured during hardware initialization.
-    *   **PDI Interrupt** -
+    *   **PDI ( Process Data Interface ) Interrupt** -
     The programmable system interrupts are generated internally by the various device sub-modules and can be configured to generate a single external host interrupt via the IRQ interrupt output pin. That is TwinCAT manager with  enabled **Synchron Synchronization** mode.
 
     * **DC - SYNC0 AND SYNC1** -
-    If the application running on the SOC requires Distributed clock, then SYNC0 and SYNC1 should be connected to the microcontroller’s interrupts lines. Refer to LAN9252 datasheet for configuration of SYNC0 and SYNC1.
+    If the application running on the SOC requires Distributed Clock, then SYNC0 and SYNC1 should be connected to the microcontroller’s interrupts lines. Refer to LAN9252 datasheet for configuration of SYNC0 and SYNC1.
 
     * **TIMER Interupt** -
     SSC has a variable which will count every millisecond, which can be implemented either timer interrupt or polling method. The interrupt/polling mode can be selected in the SSC Tool before creating the slave stack code.
@@ -36,7 +44,7 @@ Use of the Microchip EVB-LAN925x (and similar EtherCAT interface devices) requir
    
     Configure the peripheral library using the MHC.
     EtherCAT Slave Device Indicators
-    This section describes the LAN9252 driver and EtherCAT trigger and counter variables are used to support visual inspection and troubleshooting of the driver and networks.
+    This section describes the LAN925x driver and EtherCAT trigger and counter variables are used to support visual inspection and troubleshooting of the driver and networks.
 
     1. **PDO ( Process Data Object Trigger and Counter )** -
     The PDO protocol is used for communication with External interrupt IRQ.
@@ -61,9 +69,6 @@ Use of the Microchip EVB-LAN925x (and similar EtherCAT interface devices) requir
 
         * Both IRQ and SYNC0 event occurs for the DC-Synchron operation mode and SYNC0 and SYNC1 unit cycle time is configured 1000µs.
 
-* **LAN9253 EtherCAT Framework**
-    
-    [Link to LAN9253 EtherCAT Framework ](docs/readme_drvlan9253.md)
 
 * **Using Library**
 

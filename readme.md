@@ -44,7 +44,7 @@ reference information.
 
 # Cloning EtherCAT Microchip-MPLAB-Harmony github repo
 
-To clone or download the repo from https://github.com/Microchip-MPLAB-Harmony/ethercat , go to the main page of this repository and then click Clone button to clone this repo or download as zip file. This content can also be download using content manager by following https://github.com/Microchip-MPLAB-Harmony/EtherCAT/wiki.
+To clone or download the repo from https://github.com/Microchip-MPLAB-Harmony/ethercat , go to the main page of this repository and then click **code->clone** button to **Clone with HTTPS** this repo using  or download as zip file. EtherCAT , CSP , MHC and Dev Pack mdoule repositories can be downloaded using content manager by following the **MPLAB® Harmony Repository Download** of https://github.com/Microchip-MPLAB-Harmony/ethercat/wiki/create-your-first-ethercat-application.
 
 **NOTE** - Prior to using the EtherCAT demonstration, it is recommended to review the MPLAB® Harmony Release Notes (release_notes.md) for any known issues.
 
@@ -54,7 +54,7 @@ This distribution package contains MPLAB Harmony EtherCAT firmware project that 
 
 The EVB-LAN9252_SAM D51 Evaluation Board is an EtherCAT slave controller with dual integrated Ethernet PHYs. Each Ethernet PHY contains a Full-Duplex 100BASE-TX transceiver and supports 100 Mbps (100BASE-TX) operation.
 
- * [SAMD51 LAN9252 EVB ( Evaluation page of **EVB_LAN9252_SAMD51** )](http://ww1.microchip.com/downloads/en/DeviceDoc/EVB-LAN9252_SAM-D51-Evaluation-Board-Users-Guide-50003012A.pdf)
+ * [EVB LAN9252 SAMD51 (LAN9252 - EtherCAT Slave Controller evaluation kit with SAMD51 Microcontroller )](https://www.microchip.com/DevelopmentTools/ProductDetails/PartNO/EV44C93A#:~:text=EVB%2DLAN9252%2DD51%20allows%20engineers,within%20the%20Microchip%20Harmony%20Framework)
 
 All the EtherCAT applications are available in ethercat/apps folder.
 All the drivers are located in the ethercat/drivers folder.

@@ -39,7 +39,7 @@ For **Lan9253  Slave** device, there are different SSC configuration files are p
 
     ![SSC Tool](images/drv_lan9252_selection.png)
     
-    For **Lan9253 Slave** configuration file, one need to select drv_lan9253.c file from the **driver/lan9253/src/drv_lan9253.c** and remaining steps are similar to lan9252 steps.
+    **NOTE** - For **Lan9253 Slave** configuration file, one need to select drv_lan9253.c file from the **driver/lan9253/src/drv_lan9253.c** and remaining steps are similar to lan9252 steps.
 
 7.	Click on **Tools=>Application=>Import**  and select **sample_app.xlsx** application file from the path **< Harmony Directory >/ethercat/apps/ethercat_counter_foe_app/firmware/src/slave_stack** . Click OK to the next prompt
 

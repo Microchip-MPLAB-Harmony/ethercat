@@ -1,9 +1,10 @@
 ---
+grand_parent: EtherCAT Library and Applications
 parent: EtherCAT LAN925x Library
 title: EtherCAT LAN9253 Library
 has_children: false
 has_toc: false
-nav_order: 1
+nav_order: 2
 ---
 
 [![Microchip logo](https://www.microchip.com/ResourcePackages/Microchip/assets/dist/images/logo.png)](https://www.microchip.com)
@@ -64,3 +65,6 @@ EtherCAT Slave Controller Interface layer is designed for Microchip MCUs to comm
 |MCHP_ESF_PDI_READ_PDRAM |	Initiates a read process data RAM transfer to Slave Controller via selected PDI |
 |MCHP_ESF_PDI_FASTREAD_PDRAM |	Initiates a fast-read process data RAM transfer to Slave Controller via selected PDI |
 |MCHP_ESF_PDI_WRITE_PDRAM |	Initiates a write process data RAM transfer to Slave Controller via selected PDI |
+|ethercat_escirq_cb| Interrupt service routine for the interrupt from EtherCAT Slave Controller|
+|ethercat_sync0_cb|Interrupt service routine for the interrupt from SYNC0|
+|ethercat_sync1_cb|Interrupt service routine for the interrupt from SYNC1|
