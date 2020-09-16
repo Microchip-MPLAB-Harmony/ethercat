@@ -93,7 +93,7 @@ void CRITICAL_SECTION_LEAVE(void)
 #ifdef DC_SUPPORTED
 /*******************************************************************************
 Function:
-    void _ECAT_Sync0Callback()
+    void _ECAT_Sync0Callback(PIO_PIN pin, uintptr_t context)
 
 Summary:
     Interrupt service routine for the interrupt from SYNC0
@@ -113,7 +113,7 @@ void _ECAT_Sync0Callback(PIO_PIN pin, uintptr_t context)
 
 /*******************************************************************************
 Function:
-    void _ECAT_Sync1Callback()
+    void _ECAT_Sync1Callback(PIO_PIN pin, uintptr_t context)
 
 Summary:
     Interrupt service routine for the interrupt from SYNC1
@@ -133,12 +133,12 @@ void _ECAT_Sync1Callback(PIO_PIN pin, uintptr_t context)
 
 /*******************************************************************************
 Function:
-    void ECAT_SyncInterruptsInitialization()
+    void ECAT_SyncInterruptsInitialization(void)
 
 Summary:
     Register Callback function for PDI SYNC0 and SYNC1 interrupts
 *******************************************************************************/
-void PDI_Init_SYNC_Interrupts()
+void ECAT_SyncInterruptsInitialization(void)
 {
 // SYNC0 and SYNC1 interrupt callback 
 <#if PORT_PLIB == "EIC">
@@ -177,25 +177,25 @@ void _ECAT_EscInterruptRequestCallback(PIO_PIN pin, uintptr_t context)
 
 /*******************************************************************************
 Function:
-    void ECAT_ESCIRQInitialization()
+    void ECAT_ESCIRQInitialization(void)
 
 Summary:
     Register Callback function for PDI ESC(EtherCAT Slave Controller) interrupts
 *******************************************************************************/
-void PDI_IRQ_Interrupt()
+void ECAT_ESCIRQInitialization(void)
 {
 <#if PORT_PLIB == "EIC">
-	EIC_CallbackRegister(${DRV_LAN9253_IRQ_INT},ECAT_ESCIRQInitialization, 0);
+	EIC_CallbackRegister(${DRV_LAN9253_IRQ_INT},ECAT_EscInterruptRequestCallback, 0);
 <#elseif PORT_PLIB == "GPIO">
-    GPIO_PinInterruptCallbackRegister(${DRV_LAN9253_IRQ_INT}, ECAT_ESCIRQInitialization, 0);
+    GPIO_PinInterruptCallbackRegister(${DRV_LAN9253_IRQ_INT}, ECAT_EscInterruptRequestCallback, 0);
 <#elseif PORT_PLIB == "PIO">
-    PIO_PinInterruptCallbackRegister(${DRV_LAN9253_IRQ_INT}, ECAT_ESCIRQInitialization, 0);
+    PIO_PinInterruptCallbackRegister(${DRV_LAN9253_IRQ_INT}, ECAT_EscInterruptRequestCallback, 0);
 </#if>
 }
 
 /*******************************************************************************
 Function:
-    void _ECAT_ChipSelectDisable()
+    void _ECAT_ChipSelectDisable(void)
 
 Summary:
     Disable EtherCAT slave
@@ -215,7 +215,7 @@ void _ECAT_ChipSelectDisable(void)
 
 /*******************************************************************************
 Function:
-    void _ECAT_ChipSelectEnable()
+    void _ECAT_ChipSelectEnable(void)
 
 Summary:
     Enable EtherCAT slave

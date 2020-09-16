@@ -57,14 +57,18 @@ EtherCAT Slave Controller Interface layer is designed for Microchip MCUs to comm
 
 |Name	|Description|
 |:------:|:----------:|
-|MCHP_ESF_PDI_INIT|	Initialize the hardware interface (SPI) used to communicate with Slave Controller|
-|MCHP_ESF_IS_PDI_FUNCTIONAL	|Verifies the hardware interface (SPI) is functional or not |
-|MCHP_ESF_PDI_WRITE |	Initiates a write transfer to Slave Controller via selected PDI|
-|MCHP_ESF_PDI_READ |	Initiates a read transfer to Slave Controller via selected PDI |
-|MCHP_ESF_PDI_FASTREAD |	Initiates a fast-read transfer to Slave Controller via selected PDI |
-|MCHP_ESF_PDI_READ_PDRAM |	Initiates a read process data RAM transfer to Slave Controller via selected PDI |
-|MCHP_ESF_PDI_FASTREAD_PDRAM |	Initiates a fast-read process data RAM transfer to Slave Controller via selected PDI |
-|MCHP_ESF_PDI_WRITE_PDRAM |	Initiates a write process data RAM transfer to Slave Controller via selected PDI |
-|ethercat_escirq_cb| Interrupt service routine for the interrupt from EtherCAT Slave Controller|
-|ethercat_sync0_cb|Interrupt service routine for the interrupt from SYNC0|
-|ethercat_sync1_cb|Interrupt service routine for the interrupt from SYNC1|
+|ECAT_Initialization|	Initialize the hardware interface (SPI) used to communicate with Slave Controller|
+|ECAT_Lan9253_IsPDIFunctional	|Verifies the hardware interface (SPI) is functional or not |
+|ECAT_Lan925x_SPIWrite |	Initiates an *Indirect mode* write transfer to Slave Controller via selected PDI|
+|ECAT_Lan925x_SPIRead |	Initiates an *Indirect mode* read transfer to Slave Controller via selected PDI |
+|ECAT_Lan925x_SPIFastRead |	Initiates an *Indirect mode* fast-read transfer to Slave Controller via selected PDI |
+|ECAT_Lan925x_SPIReadPDRAM |	Initiates an *Indirect mode* read process data RAM transfer to Slave Controller via selected PDI |
+|ECAT_Lan925x_SPIFastReadPDRAM |	Initiates an *Indirect mode* fast-read process data RAM transfer to Slave Controller via selected PDI |
+|ECAT_Lan925x_SPIWritePDRAM |	Initiates an *Indirect mode* write process data RAM transfer to Slave Controller via selected PDI |
+|ECAT_Lan9253_SPIWrite |	Initiates a *direct mode* write transfer to Slave Controller via selected PDI|
+|ECAT_Lan9253_SPIRead |	Initiates a *direct mode* read transfer to Slave Controller via selected PDI |
+|ECAT_Lan9253_SPIFastRead |	Initiates a *direct mode* fast-read transfer to Slave Controller via selected PDI |
+|ECAT_Lan9253_Beckhoff_SPIWrite |	Initiates a *Beckhoff mode* write transfer to Slave Controller via selected PDI|
+|ECAT_Lan9253_Beckhoff_SPIRead |	Initiates a *Beckhoff mode* read transfer to Slave Controller via selected PDI |
+|ECAT_ESCIRQInitialization| Interrupt service routine initialization for the interrupt from EtherCAT Slave Controller|
+|ECAT_SyncInterruptsInitialization| Sync0 and Sync1 Interrupt service routine Initialization|

@@ -130,6 +130,7 @@
         <itemPath>../src/slave_stack/foeappl.h</itemPath>
         <itemPath>../src/slave_stack/mailbox.h</itemPath>
         <itemPath>../src/slave_stack/objdef.h</itemPath>
+        <itemPath>../src/slave_stack/SAMD51_EtherCAT_Slave.esp</itemPath>
         <itemPath>../src/slave_stack/sample_app.h</itemPath>
         <itemPath>../src/slave_stack/sample_appObjects.h</itemPath>
         <itemPath>../src/slave_stack/sdoserv.h</itemPath>
@@ -228,7 +229,7 @@
         <targetDevice>ATSAMD51J19A</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool></platformTool>
+        <platformTool>noID</platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>2.41</languageToolchainVersion>
         <platform>3</platform>
@@ -392,7 +393,7 @@
         <property key="exceptions" value="true"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/samd51_lan9253_evb;../src/packs/ATSAMD51J19A_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;"/>
+                  value="../src;../src/config/samd51_lan9253_evb;../src/packs/ATSAMD51J19A_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>

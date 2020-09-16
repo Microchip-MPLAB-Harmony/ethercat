@@ -61,7 +61,7 @@ static void ECAT_QSPI_TransmissionFlagClear(void);
 static void ECAT_QSPI_EventHandlerSet(void);
 static bool ECAT_QSPI_IsTransmissionBusy(void);
 static volatile uint32_t processorStatus;
-static void _ECAT_QSPI_SyncWait(void);
+
 
 void CRITICAL_SECTION_ENTER(void)
 {
@@ -138,7 +138,7 @@ Function:
 Summary:
     Register Callback function for PDI SYNC0 and SYNC1 interrupts
 *******************************************************************************/
-void PDI_Init_SYNC_Interrupts()
+void ECAT_SyncInterruptsInitialization()
 {
 // SYNC0 and SYNC1 interrupt callback 
 <#if PORT_PLIB == "EIC">
@@ -182,7 +182,7 @@ Function:
 Summary:
     Register Callback function for PDI ESC(EtherCAT Slave Controller) interrupts
 *******************************************************************************/
-void PDI_IRQ_Interrupt()
+void ECAT_ESCIRQInitialization()
 {
 <#if PORT_PLIB == "EIC">
 	EIC_CallbackRegister(${DRV_LAN9252_IRQ_INT},ECAT_ESCIRQInitialization, 0);
@@ -257,14 +257,14 @@ void SPIreadWriteTest(void)
 }
 #endif
 /*******************************************************************************
-    Function:
-        void SPIWrite()
+Function:
+    void SPIWrite()
 
-    Summary:
-        API for SPI one byte write.
+Summary:
+    API for SPI one byte write.
 *******************************************************************************/
 
-void SPIWrite(uint16_t adr, uint8_t *data)
+void ECAT_Lan9252_SPIWrite(uint16_t adr, uint8_t *data)
 {
 	uint8_t len = 4;
     uint8_t  txData[4]={0,0,0,0};
@@ -278,7 +278,7 @@ void SPIWrite(uint16_t adr, uint8_t *data)
     {
     }
     gDrvLan9252UtilObj.spiPlib->spiWrite(txData,3);
-    while(ECAT_QSPI_TransmissionBusy())
+    while(ECAT_QSPI_IsTransmissionBusy())
     {        
     }
     ECAT_QSPI_TransmissionFlagClear();
@@ -287,7 +287,7 @@ void SPIWrite(uint16_t adr, uint8_t *data)
     {
     }
     gDrvLan9252UtilObj.spiPlib->spiWrite(data, len);
-    while(ECAT_QSPI_TransmissionBusy())
+    while(ECAT_QSPI_IsTransmissionBusy())
     {        
     }
     ECAT_QSPI_TransmissionFlagClear();
@@ -301,15 +301,15 @@ void SPIWrite(uint16_t adr, uint8_t *data)
 
 /*******************************************************************************
 Function:
-    void SPIRead(uint16_t adr, uint8_t *data)
+    void ECAT_Lan9252_SPIRead(uint16_t adr, uint8_t *data)
 
 Summary:
     This function does Read Access to Non-EtherCAT and EtherCAT Core CSR 
-	using 'Serial Read(0x03)' command supported by LAN9252 Compatible SPI. This function shall be used
-	only when PDI is selected as LAN9252 Compatible SPI (0x80)
+	using 'Serial Read(0x03)' command supported by LAN9252 Compatible SPI. 
+    This function shall be used only when PDI is selected as 
+    LAN9252 Compatible SPI (0x80).
 *******************************************************************************/
-
-void SPIRead(uint16_t adr, uint8_t *data)
+void ECAT_Lan9252_SPIRead(uint16_t adr, uint8_t *data)
 {
 	uint8_t len = DWORD_LENGTH;
     uint8_t  txData[DWORD_LENGTH]={0,0,0,0};
@@ -324,7 +324,7 @@ void SPIRead(uint16_t adr, uint8_t *data)
     {
     }
     gDrvLan9252UtilObj.spiPlib->spiWrite(txData, 3);
-    while(ECAT_QSPI_TransmissionBusy())
+    while(ECAT_QSPI_IsTransmissionBusy())
     {        
     }
     ECAT_QSPI_TransmissionFlagClear();
@@ -333,23 +333,20 @@ void SPIRead(uint16_t adr, uint8_t *data)
     {
     }	
     gDrvLan9252UtilObj.spiPlib->spiRead(rxData, len);
-    while(ECAT_QSPI_TransmissionBusy())
+    while(ECAT_QSPI_IsTransmissionBusy())
     {        
     }
     ECAT_QSPI_TransmissionFlagClear();
     
     while(gDrvLan9252UtilObj.spiPlib->spiIsBusy())
     {
-    }
-    
-    
+    }    
     memcpy(data,rxData,len);
     
 	_ECAT_ChipSelectDisable();
-
  }
 
-void ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len) 
+void ECAT_Lan9252_SPIReadPDRAM(UINT8 *pData, UINT16 Address, UINT16 Len) 
 {
 	UINT32_VAL param32_1;
 	UINT8 startAlignSize, EndAlignSize;
@@ -383,7 +380,7 @@ void ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
     {
     }
     gDrvLan9252UtilObj.spiPlib->spiWrite(txData, 3);
-    while(ECAT_QSPI_TransmissionBusy())
+    while(ECAT_QSPI_IsTransmissionBusy())
     {        
     }
     ECAT_QSPI_TransmissionFlagClear();
@@ -394,7 +391,7 @@ void ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
     while (startAlignSize--)
 	{
 		gDrvLan9252UtilObj.spiPlib->spiRead(&dummy,1);
-        while(ECAT_QSPI_TransmissionBusy())
+        while(ECAT_QSPI_IsTransmissionBusy())
         {        
         }
         ECAT_QSPI_TransmissionFlagClear();
@@ -420,7 +417,7 @@ void ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
     while (EndAlignSize--)
 	{
     	gDrvLan9252UtilObj.spiPlib->spiRead(&dummy,1);
-        while(ECAT_QSPI_TransmissionBusy())
+        while(ECAT_QSPI_IsTransmissionBusy())
         {        
         }
         ECAT_QSPI_TransmissionFlagClear();
@@ -433,7 +430,7 @@ void ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
 
 }
 
-void WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len) 
+void ECAT_Lan9252_SPIWritePDRAM(UINT8 *pData, UINT16 Address, UINT16 Len) 
 {
 	UINT32_VAL param32_1;
 	UINT8 startAlignSize, EndAlignSize;
@@ -467,7 +464,7 @@ void WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
     }
     
     gDrvLan9252UtilObj.spiPlib->spiWrite(txData, 3);
-    while(ECAT_QSPI_TransmissionBusy())
+    while(ECAT_QSPI_IsTransmissionBusy())
     {        
     }
     ECAT_QSPI_TransmissionFlagClear();
@@ -478,7 +475,7 @@ void WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
     while (startAlignSize--)
 	{
         gDrvLan9252UtilObj.spiPlib->spiWrite(&dummy,1);
-        while(ECAT_QSPI_TransmissionBusy())
+        while(ECAT_QSPI_IsTransmissionBusy())
         {        
         }
         ECAT_QSPI_TransmissionFlagClear();
@@ -491,7 +488,7 @@ void WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
 	{        
         txData[0] = *pData;
 		gDrvLan9252UtilObj.spiPlib->spiWrite(txData,1);
-        while(ECAT_QSPI_TransmissionBusy())
+        while(ECAT_QSPI_IsTransmissionBusy())
         {        
         }
         ECAT_QSPI_TransmissionFlagClear();
@@ -506,7 +503,7 @@ void WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len)
 	{        
         txData[0] = dummy;
 		gDrvLan9252UtilObj.spiPlib->spiWrite(txData,1);
-        while(ECAT_QSPI_TransmissionBusy())
+        while(ECAT_QSPI_IsTransmissionBusy())
         {        
         }
         ECAT_QSPI_TransmissionFlagClear();

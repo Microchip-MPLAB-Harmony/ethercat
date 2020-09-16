@@ -54,12 +54,12 @@ EtherCAT Slave Controller Interface layer is designed for Microchip MCUs to comm
 
 |Name	|Description|
 |:------:|:----------:|
-|EtherCATInit| Initialize the QSPI call back registration for SPI mode and LAN 9252 driver Initialization|
+|ECAT_Initialization| Initialize the QSPI call back registration for SPI mode and LAN 9252 driver Initialization|
 |ECAT_Util_Initialize|	Initialize the hardware interface (SPI)  and Timer peripheral used for Slave Controller|
-|SPIWrite |	Initiates a write transfer to Slave Controller via selected PDI|
-|SPIRead |	Initiates a fast-read transfer to Slave Controller via selected PDI |
-|ReadPdRam|	Initiates a read process data RAM transfer to Slave Controller via selected PDI |
-|WritePdRam |	Initiates a write process data RAM transfer to Slave Controller via selected PDI |
-|ethercat_escirq_cb| Interrupt service routine for the interrupt from EtherCAT Slave Controller|
-|ethercat_sync0_cb|Interrupt service routine for the interrupt from SYNC0|
-|ethercat_sync1_cb|Interrupt service routine for the interrupt from SYNC1|
+|ECAT_Lan9252_SPIWrite |  Initiates a write transfer to Slave Controller via selected PDI|
+|ECAT_Lan9252_SPIRead |	Initiates a fast-read transfer to Slave Controller via selected PDI |
+|ECAT_Lan9252_SPIReadPDRAM|	Initiates a read process data RAM transfer to Slave Controller via selected PDI |
+|ECAT_Lan9252_SPIWritePDRAM |	Initiates a write process data RAM transfer to Slave Controller via selected PDI |
+|ECAT_ESCIRQInitialization| Interrupt service routine initialization for the interrupt from EtherCAT Slave Controller|
+|ECAT_SyncInterruptsInitialization| Sync0 and Sync1 Interrupt service routine Initialization|
+

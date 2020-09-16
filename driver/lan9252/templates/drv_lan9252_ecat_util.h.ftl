@@ -81,16 +81,13 @@
 </#if>
 /* This is the lowest interrupt priority for SAM devices and Highest for PIC32M devices that can be used in a call to a "set priority" function. */
 #define ETHERCAT_CONFIG_MAX_INTERRUPT_PRIORITY 		${DRV_LAN9252_INT_PRIO}
-#define MCHP_ESF_IS_PDI_FUNCTIONAL(pdata)		ethercat_lan9253_PDI_isFunctional(pdata)
 
-#ifdef ETHERCAT_SPI_INDIRECT_MODE_ACCESS
+
 /* SPI Indirect mode Access. These APIs can also be used for LAN9252 device */
-#define MCHP_ESF_PDI_WRITE(addr, pdata, len)            ECAT_Lan925x_SPIWrite(addr, pdata, len)
-#define MCHP_ESF_PDI_READ(addr, pdata, len)             ECAT_Lan925x_SPIRead(addr, pdata, len)
-#define MCHP_ESF_PDI_FASTREAD(addr, pdata, len)         ECAT_Lan925x_SPIFastRead(addr, pdata, len)
-#define MCHP_ESF_PDI_READ_PDRAM(pdata, addr, len)		ECAT_Lan925x_SPIReadPDRAM(pdata, addr, len)
-#define MCHP_ESF_PDI_FASTREAD_PDRAM(pdata, addr, len)	ECAT_Lan925x_SPIFastReadPDRAM(pdata, addr, len)
-#define MCHP_ESF_PDI_WRITE_PDRAM(pdata, addr, len)		ECAT_Lan925x_SPIWritePDRAM(pdata, addr, len)
+#define SPIWrite(addr, pdata)                           ECAT_Lan9252_SPIWrite(addr, pdata)
+#define SPIRead(addr, pdata)                            ECAT_Lan9252_SPIRead(addr, pdata)
+#define ReadPdRam(addr, pdata,len)                      ECAT_Lan9252_SPIReadPDRAM(addr, pdata,len)
+#define WritePdRam(pdata, addr, len)                    ECAT_Lan9252_SPIWritePDRAM(pdata, addr, len)
 
 /* Timer functions */
 
@@ -249,10 +246,10 @@ void    ECAT_SyncInterruptsInitialization(void);
 
 void    _ECAT_ChipSelectDisable(void);
 void    _ECAT_ChipSelectEnable(void);
-void	SPIWrite(uint16_t adr, uint8_t *data);
-void	SPIRead(uint16_t adr, uint8_t *data);
-void	ReadPdRam(UINT8 *pData, UINT16 Address, UINT16 Len);
-void	WritePdRam(UINT8 *pData, UINT16 Address, UINT16 Len);
+void	ECAT_Lan9252_SPIWrite(uint16_t adr, uint8_t *data);
+void	ECAT_Lan9252_SPIRead(uint16_t adr, uint8_t *data);
+void	ECAT_Lan9252_SPIReadPDRAM(UINT8 *pData, UINT16 Address, UINT16 Len);
+void	ECAT_Lan9252_SPIWritePDRAM(UINT8 *pData, UINT16 Address, UINT16 Len);
 UINT16	ECAT_PDI_TimerGet();
 void	ECAT_PDI_TimerClear(void);
 void    ECAT_PDI_TimerInterrupt(void);
