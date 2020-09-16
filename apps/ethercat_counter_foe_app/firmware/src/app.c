@@ -154,7 +154,7 @@ void APP_Tasks ( void )
             if (appInitialized)
             {
                 // EtherCAT Initialization after NVIC initialization
-                EtherCATInit();
+                ECAT_Initialization();
                 MainInit();
 #if defined(ETHERCAT_USE_FOE)  
                 BL_FOE_Application();

@@ -898,18 +898,13 @@
     </UniqueComponent>
     <UniqueComponent dnOrder="4" id="ethercat_apps_config">
       <Symbols dnOrder="0">
-        <String dnOrder="0" id="ETHERCAT_SLAVESTACK_DIRECTORY_PATH">
-          <Values dnOrder="0">
-            <User dnOrder="0" value="D:\microchip\h3\etherat_rel\ethercat\slave_stack"/>
-          </Values>
-        </String>
-        <File dnOrder="1" id="SSC_LIST_FILE0">
+        <File dnOrder="0" id="SSC_LIST_FILE0">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">applInterface.h</Value>
@@ -928,13 +923,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="2" id="SSC_LIST_FILE1">
+        <File dnOrder="1" id="SSC_LIST_FILE1">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">bootmode.c</Value>
@@ -950,13 +945,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="3" id="SSC_LIST_FILE10">
+        <File dnOrder="2" id="SSC_LIST_FILE10">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">ecatfoe.h</Value>
@@ -975,13 +970,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="4" id="SSC_LIST_FILE11">
+        <File dnOrder="3" id="SSC_LIST_FILE11">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">ecatslv.c</Value>
@@ -997,13 +992,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="5" id="SSC_LIST_FILE12">
+        <File dnOrder="4" id="SSC_LIST_FILE12">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">ecatslv.h</Value>
@@ -1022,13 +1017,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="6" id="SSC_LIST_FILE13">
+        <File dnOrder="5" id="SSC_LIST_FILE13">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">ecat_def.h</Value>
@@ -1047,13 +1042,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="7" id="SSC_LIST_FILE14">
+        <File dnOrder="6" id="SSC_LIST_FILE14">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">emcy.c</Value>
@@ -1069,13 +1064,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="8" id="SSC_LIST_FILE15">
+        <File dnOrder="7" id="SSC_LIST_FILE15">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">emcy.h</Value>
@@ -1094,13 +1089,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="9" id="SSC_LIST_FILE16">
+        <File dnOrder="8" id="SSC_LIST_FILE16">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">esc.h</Value>
@@ -1119,13 +1114,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="10" id="SSC_LIST_FILE17">
+        <File dnOrder="9" id="SSC_LIST_FILE17">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">foeappl.c</Value>
@@ -1141,13 +1136,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="11" id="SSC_LIST_FILE18">
+        <File dnOrder="10" id="SSC_LIST_FILE18">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">foeappl.h</Value>
@@ -1166,13 +1161,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="12" id="SSC_LIST_FILE19">
+        <File dnOrder="11" id="SSC_LIST_FILE19">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">mailbox.c</Value>
@@ -1188,13 +1183,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="13" id="SSC_LIST_FILE2">
+        <File dnOrder="12" id="SSC_LIST_FILE2">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">bootmode.h</Value>
@@ -1213,13 +1208,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="14" id="SSC_LIST_FILE20">
+        <File dnOrder="13" id="SSC_LIST_FILE20">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">mailbox.h</Value>
@@ -1238,13 +1233,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="15" id="SSC_LIST_FILE21">
+        <File dnOrder="14" id="SSC_LIST_FILE21">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">objdef.c</Value>
@@ -1260,13 +1255,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="16" id="SSC_LIST_FILE22">
+        <File dnOrder="15" id="SSC_LIST_FILE22">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">objdef.h</Value>
@@ -1285,13 +1280,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="17" id="SSC_LIST_FILE23">
+        <File dnOrder="16" id="SSC_LIST_FILE23">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">SAMD51_EtherCAT_Slave.esp</Value>
@@ -1310,13 +1305,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="18" id="SSC_LIST_FILE24">
+        <File dnOrder="17" id="SSC_LIST_FILE24">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">sample_app.c</Value>
@@ -1335,13 +1330,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="19" id="SSC_LIST_FILE25">
+        <File dnOrder="18" id="SSC_LIST_FILE25">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">sample_app.h</Value>
@@ -1360,13 +1355,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="20" id="SSC_LIST_FILE26">
+        <File dnOrder="19" id="SSC_LIST_FILE26">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">sample_appObjects.h</Value>
@@ -1385,13 +1380,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="21" id="SSC_LIST_FILE27">
+        <File dnOrder="20" id="SSC_LIST_FILE27">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">sdoserv.c</Value>
@@ -1410,13 +1405,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="22" id="SSC_LIST_FILE28">
+        <File dnOrder="21" id="SSC_LIST_FILE28">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">sdoserv.h</Value>
@@ -1435,13 +1430,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="23" id="SSC_LIST_FILE3">
+        <File dnOrder="22" id="SSC_LIST_FILE3">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">coeappl.c</Value>
@@ -1457,13 +1452,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="24" id="SSC_LIST_FILE4">
+        <File dnOrder="23" id="SSC_LIST_FILE4">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">coeappl.h</Value>
@@ -1482,13 +1477,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="25" id="SSC_LIST_FILE5">
+        <File dnOrder="24" id="SSC_LIST_FILE5">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">ecatappl.c</Value>
@@ -1504,13 +1499,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="26" id="SSC_LIST_FILE6">
+        <File dnOrder="25" id="SSC_LIST_FILE6">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">ecatappl.h</Value>
@@ -1529,13 +1524,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="27" id="SSC_LIST_FILE7">
+        <File dnOrder="26" id="SSC_LIST_FILE7">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">ecatcoe.c</Value>
@@ -1551,13 +1546,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="28" id="SSC_LIST_FILE8">
+        <File dnOrder="27" id="SSC_LIST_FILE8">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">ecatcoe.h</Value>
@@ -1576,13 +1571,13 @@
             </String>
           </Attributes>
         </File>
-        <File dnOrder="29" id="SSC_LIST_FILE9">
+        <File dnOrder="28" id="SSC_LIST_FILE9">
           <Attributes dnOrder="0">
             <String dnOrder="0" id="dest">
               <Value dnOrder="0">../../slave_stack</Value>
             </String>
             <Boolean dnOrder="1" id="enabled">
-              <Value dnOrder="0">true</Value>
+              <Value dnOrder="0">false</Value>
             </Boolean>
             <String dnOrder="2" id="name">
               <Value dnOrder="0">ecatfoe.c</Value>
@@ -2028,32 +2023,77 @@
     </UniqueComponent>
     <UniqueComponent dnOrder="8" id="qspi">
       <Symbols dnOrder="0">
-        <Integer dnOrder="0" id="QSPI_BAUD_RATE">
+        <File dnOrder="0" id="QSPISPI_HEADER2">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+        </File>
+        <File dnOrder="1" id="QSPISPI_SOURCE2">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+        </File>
+        <Integer dnOrder="2" id="QSPI_BAUD_RATE">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="qspi" value="66000000"/>
             <User dnOrder="1" value="40000000"/>
           </Values>
         </Integer>
-        <KeyValueSet dnOrder="1" id="QSPI_CPOL">
+        <KeyValueSet dnOrder="3" id="QSPI_CPOL">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="qspi" value="0"/>
           </Values>
         </KeyValueSet>
-        <KeyValueSet dnOrder="2" id="QSPI_DATALEN">
-          <Values dnOrder="0">
+        <KeyValueSet dnOrder="4" id="QSPI_DATALEN">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="visible">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+          <Values dnOrder="1">
             <User dnOrder="0" value="4"/>
           </Values>
         </KeyValueSet>
-        <Integer dnOrder="3" id="QSPI_SCBR">
+        <File dnOrder="5" id="QSPI_HEADER2">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">false</Value>
+            </Boolean>
+          </Attributes>
+        </File>
+        <KeyValueSet dnOrder="6" id="QSPI_LOOPEN">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="visible">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+        </KeyValueSet>
+        <Integer dnOrder="7" id="QSPI_SCBR">
           <Values dnOrder="0">
             <Dynamic dnOrder="0" id="qspi" value="2"/>
           </Values>
         </Integer>
-        <KeyValueSet dnOrder="4" id="QSPI_SMM">
-          <Values dnOrder="0">
+        <KeyValueSet dnOrder="8" id="QSPI_SMM">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="readOnly">
+              <Value dnOrder="0">true</Value>
+            </Boolean>
+          </Attributes>
+          <Values dnOrder="1">
             <Dynamic dnOrder="0" id="qspi" value="0"/>
           </Values>
         </KeyValueSet>
+        <File dnOrder="9" id="QSPI_SOURCE1">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">false</Value>
+            </Boolean>
+          </Attributes>
+        </File>
       </Symbols>
       <Attachments dnOrder="1">
         <DirectCapability dnOrder="0" id="QSPI_SPI">
@@ -2064,6 +2104,13 @@
             <String dnOrder="1" id="targetAttachmentID">
               <Value dnOrder="0">LAN9253_SPI_Dependency</Value>
             </String>
+          </Attributes>
+        </DirectCapability>
+        <DirectCapability dnOrder="1" id="QSPI_SQI">
+          <Attributes dnOrder="0">
+            <Boolean dnOrder="0" id="enabled">
+              <Value dnOrder="0">false</Value>
+            </Boolean>
           </Attributes>
         </DirectCapability>
       </Attachments>
@@ -2176,7 +2223,8 @@
     </UniqueComponent>
   </Components>
   <UserData>
-    <ComponentGraph dnOrder="0" id="__ROOTVIEW">
+    <GraphSettings canvasHeight="400" canvasWidth="400" dnOrder="0"/>
+    <ComponentGraph dnOrder="1" id="__ROOTVIEW">
       <ElementPositions dnOrder="0">
         <ElementPosition dnOrder="0" id="cmsis" x="310" y="60"/>
         <ElementPosition dnOrder="1" id="core" x="500" y="20"/>
@@ -2190,6 +2238,5 @@
         <ElementPosition dnOrder="9" id="tc0" x="33" y="215"/>
       </ElementPositions>
     </ComponentGraph>
-    <GraphSettings canvasHeight="400" canvasWidth="400" dnOrder="1"/>
   </UserData>
 </Configuration>

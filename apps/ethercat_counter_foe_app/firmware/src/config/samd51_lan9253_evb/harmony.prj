@@ -3,7 +3,7 @@
   <Configurator>
     <Name dnOrder="0" value="samd51_lan9253_evb"/>
     <Processor dnOrder="1" value="ATSAMD51J19A"/>
-    <Harmony dnOrder="2" path="../../../.."/>
+    <Harmony dnOrder="2" path="../../.."/>
     <Folder_Name dnOrder="3" value=""/>
     <Manifest dnOrder="4">
       <Files dnOrder="0">
@@ -40,8 +40,8 @@
           <Security dnOrder="2">NON_SECURE</Security>
           <LogicalPath dnOrder="3">config/samd51_lan9253_evb/driver/lan9253/</LogicalPath>
           <PhysicalPath dnOrder="4">/driver/lan9253/</PhysicalPath>
-          <GeneratedChecksum dnOrder="5">FDF6B9ED705A48A0646C91E62298DAE2</GeneratedChecksum>
-          <UserChecksum dnOrder="6">A5302B1CFFDE57DE75662A4304643B80</UserChecksum>
+          <GeneratedChecksum dnOrder="5">4D5A4BB26F6BCF3007DD9F0D8FF69EE1</GeneratedChecksum>
+          <UserChecksum dnOrder="6">4D5A4BB26F6BCF3007DD9F0D8FF69EE1</UserChecksum>
         </File>
         <File dnOrder="4">
           <Type dnOrder="0">SOURCE</Type>
@@ -248,7 +248,7 @@
           <LogicalPath dnOrder="3">slave_stack/</LogicalPath>
           <PhysicalPath dnOrder="4">/../../slave_stack/</PhysicalPath>
           <GeneratedChecksum dnOrder="5">88D08CE389AE7B65271685D060A91906</GeneratedChecksum>
-          <UserChecksum dnOrder="6">E49E51E794CF82CC958FB24B8DC23040</UserChecksum>
+          <UserChecksum dnOrder="6">3E4997DEB9589BCAFBD3F2F365249F2E</UserChecksum>
         </File>
         <File dnOrder="27">
           <Type dnOrder="0">SOURCE</Type>
@@ -517,8 +517,8 @@
           <Security dnOrder="2">NON_SECURE</Security>
           <LogicalPath dnOrder="3">config/samd51_lan9253_evb/driver/lan9253/</LogicalPath>
           <PhysicalPath dnOrder="4">/driver/lan9253/</PhysicalPath>
-          <GeneratedChecksum dnOrder="5">DAF4C5637B84CFC6B047C53CB402819E</GeneratedChecksum>
-          <UserChecksum dnOrder="6">143DF719D4DA17E4FC1F5F340B26312F</UserChecksum>
+          <GeneratedChecksum dnOrder="5">D001F705C9786155D1B25BB7D6140613</GeneratedChecksum>
+          <UserChecksum dnOrder="6">D001F705C9786155D1B25BB7D6140613</UserChecksum>
         </File>
         <File dnOrder="57">
           <Type dnOrder="0">HEADER</Type>
@@ -572,7 +572,7 @@
           <LogicalPath dnOrder="3">slave_stack/</LogicalPath>
           <PhysicalPath dnOrder="4">/../../slave_stack/</PhysicalPath>
           <GeneratedChecksum dnOrder="5">F9141B92D2ABC6F0DB359ABE994F7CC1</GeneratedChecksum>
-          <UserChecksum dnOrder="6">B70BEBF4C6DE7C8929F8387BF3588C46</UserChecksum>
+          <UserChecksum dnOrder="6">F9141B92D2ABC6F0DB359ABE994F7CC1</UserChecksum>
         </File>
         <File dnOrder="63">
           <Type dnOrder="0">HEADER</Type>
@@ -1071,7 +1071,7 @@
       <Setting dnOrder="2" key="FORCE_OPTIMIZATION" value="false"/>
       <Setting dnOrder="3" key="GENERATE_BACKUP" value="true"/>
       <Setting dnOrder="4" key="MERGE_STRATEGY" value="ALL"/>
-      <Setting dnOrder="5" key="PackageFilter" value="aws_cloud;bootloader;bsp;core;crypto;csp;ethercat;ethercat;net;usb;wireless;"/>
+      <Setting dnOrder="5" key="PackageFilter" value="aws_cloud;bootloader;bsp;core;crypto;csp;ethercat;net;usb;wireless;"/>
       <Setting dnOrder="6" key="TRUSTZONE" value="false"/>
     </Settings>
   </Configurator>

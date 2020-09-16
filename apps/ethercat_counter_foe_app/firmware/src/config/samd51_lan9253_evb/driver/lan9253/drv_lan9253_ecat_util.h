@@ -78,10 +78,10 @@
 
 
 
-/* EtherCAT SPI Beckhoff mode enabled */
-#define ETHERCAT_SPI_BECKHOFF_MODE_ACCESS				1
+/* EtherCAT SPI Indirect mode enabled */
+#define ETHERCAT_SPI_INDIRECT_MODE_ACCESS				1
 
-#define MCHP_ESF_IS_PDI_FUNCTIONAL(pdata)               ECAT_Lan9253_IsPDIFunctional(pdata)
+#define MCHP_ESF_IS_PDI_FUNCTIONAL(pdata)		ECAT_Lan9253_IsPDIFunctional(pdata)
 
 #ifdef ETHERCAT_SPI_INDIRECT_MODE_ACCESS
 /* SPI Indirect mode Access. These APIs can also be used for LAN9252 device */

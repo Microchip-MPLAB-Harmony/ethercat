@@ -3,7 +3,7 @@
   <Configurator>
     <Name dnOrder="0" value="sam_d51_lan9252_evb"/>
     <Processor dnOrder="1" value="ATSAMD51J19A"/>
-    <Harmony dnOrder="2" path="../../../.."/>
+    <Harmony dnOrder="2" path="../../.."/>
     <Folder_Name dnOrder="3" value=""/>
     <Manifest dnOrder="4">
       <Files dnOrder="0">
@@ -40,8 +40,8 @@
           <Security dnOrder="2">NON_SECURE</Security>
           <LogicalPath dnOrder="3">config/sam_d51_lan9252_evb/driver/lan9252/</LogicalPath>
           <PhysicalPath dnOrder="4">/driver/lan9252/</PhysicalPath>
-          <GeneratedChecksum dnOrder="5">355F40F61619F36BC281956400541C46</GeneratedChecksum>
-          <UserChecksum dnOrder="6">428FB9124A4EA060D3544F806A3D1A61</UserChecksum>
+          <GeneratedChecksum dnOrder="5">7AC314D74EB2BBC72B8626CD49C2B438</GeneratedChecksum>
+          <UserChecksum dnOrder="6">7AC314D74EB2BBC72B8626CD49C2B438</UserChecksum>
         </File>
         <File dnOrder="4">
           <Type dnOrder="0">SOURCE</Type>
@@ -517,8 +517,8 @@
           <Security dnOrder="2">NON_SECURE</Security>
           <LogicalPath dnOrder="3">config/sam_d51_lan9252_evb/driver/lan9252/</LogicalPath>
           <PhysicalPath dnOrder="4">/driver/lan9252/</PhysicalPath>
-          <GeneratedChecksum dnOrder="5">8D2F58CF0C15AC00504AE00851DAEBBD</GeneratedChecksum>
-          <UserChecksum dnOrder="6">8D2F58CF0C15AC00504AE00851DAEBBD</UserChecksum>
+          <GeneratedChecksum dnOrder="5">9ED3ADB1068D164B29F819251B95C0B3</GeneratedChecksum>
+          <UserChecksum dnOrder="6">9ED3ADB1068D164B29F819251B95C0B3</UserChecksum>
         </File>
         <File dnOrder="57">
           <Type dnOrder="0">HEADER</Type>
@@ -1071,7 +1071,7 @@
       <Setting dnOrder="2" key="FORCE_OPTIMIZATION" value="false"/>
       <Setting dnOrder="3" key="GENERATE_BACKUP" value="true"/>
       <Setting dnOrder="4" key="MERGE_STRATEGY" value="ALL"/>
-      <Setting dnOrder="5" key="PackageFilter" value="aws_cloud;bootloader;bsp;core;crypto;csp;ethercat;ethercat;net;usb;wireless;"/>
+      <Setting dnOrder="5" key="PackageFilter" value="aws_cloud;bootloader;bsp;core;crypto;csp;ethercat;net;usb;wireless;"/>
     </Settings>
   </Configurator>
 </Configuration>

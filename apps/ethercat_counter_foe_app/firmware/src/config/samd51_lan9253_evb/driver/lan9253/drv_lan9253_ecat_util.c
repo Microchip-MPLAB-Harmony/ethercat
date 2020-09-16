@@ -78,7 +78,7 @@ void CRITICAL_SECTION_LEAVE(void)
 #ifdef DC_SUPPORTED
 /*******************************************************************************
 Function:
-    void _ECAT_Sync0Callback()
+    void _ECAT_Sync0Callback(PIO_PIN pin, uintptr_t context)
 
 Summary:
     Interrupt service routine for the interrupt from SYNC0
@@ -92,7 +92,7 @@ void _ECAT_Sync0Callback(uintptr_t context)
 
 /*******************************************************************************
 Function:
-    void _ECAT_Sync1Callback()
+    void _ECAT_Sync1Callback(PIO_PIN pin, uintptr_t context)
 
 Summary:
     Interrupt service routine for the interrupt from SYNC1
@@ -106,12 +106,12 @@ void _ECAT_Sync1Callback(uintptr_t context)
 
 /*******************************************************************************
 Function:
-    void ECAT_SyncInterruptsInitialization()
+    void ECAT_SyncInterruptsInitialization(void)
 
 Summary:
     Register Callback function for PDI SYNC0 and SYNC1 interrupts
 *******************************************************************************/
-void ECAT_SyncInterruptsInitialization()
+void ECAT_SyncInterruptsInitialization(void)
 {
 // SYNC0 and SYNC1 interrupt callback 
     EIC_CallbackRegister(EIC_PIN_0,_ECAT_Sync0Callback, 0);
@@ -136,19 +136,19 @@ void _ECAT_EscInterruptRequestCallback(uintptr_t context)
 
 /*******************************************************************************
 Function:
-    void ECAT_ESCIRQInitialization()
+    void ECAT_ESCIRQInitialization(void)
 
 Summary:
     Register Callback function for PDI ESC(EtherCAT Slave Controller) interrupts
 *******************************************************************************/
-void ECAT_ESCIRQInitialization()
+void ECAT_ESCIRQInitialization(void)
 {
 	EIC_CallbackRegister(EIC_PIN_7,_ECAT_EscInterruptRequestCallback, 0);
 }
 
 /*******************************************************************************
 Function:
-    void _ECAT_ChipSelectDisable()
+    void _ECAT_ChipSelectDisable(void)
 
 Summary:
     Disable EtherCAT slave
@@ -162,7 +162,7 @@ void _ECAT_ChipSelectDisable(void)
 
 /*******************************************************************************
 Function:
-    void _ECAT_ChipSelectEnable()
+    void _ECAT_ChipSelectEnable(void)
 
 Summary:
     Enable EtherCAT slave
@@ -302,7 +302,7 @@ void ECAT_Lan925x_SPIWrite(uint16_t wAdddr, uint8_t *pbyData, uint8_t wLen)
 /* 
     Function: ECAT_Lan925x_SPIRead
 
-    This function does Read Access to Non-Ether CAT and Ether CAT Core CSR 
+    This function does Read Access to Non-EtherCAT and EtherCAT Core CSR 
 	using 'Serial Read(0x03)' command supported by LAN9252/LAN9253 Compatible SPI. This function shall be used
 	only when PDI is selected as LAN9252/LAN9253 Compatible SPI (0x80)
      
@@ -1309,7 +1309,7 @@ Function:
 Summary:
     Register Callback function for PDI SYS_Tick interrupt
 *******************************************************************************/
-static void ECAT_PDI_TimerInterruptInitialization()
+static void ECAT_PDI_TimerInterruptInitialization(void)
 {
     gDrvLan9253UtilObj.timerPlib->timerCallbackSet(_ECAT_TimerInterruptCallback,(uintptr_t) NULL);
     gDrvLan9253UtilObj.timerPlib->timerStart();
