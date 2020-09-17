@@ -185,11 +185,11 @@ Summary:
 void ECAT_ESCIRQInitialization(void)
 {
 <#if PORT_PLIB == "EIC">
-	EIC_CallbackRegister(${DRV_LAN9253_IRQ_INT},ECAT_EscInterruptRequestCallback, 0);
+	EIC_CallbackRegister(${DRV_LAN9253_IRQ_INT},_ECAT_EscInterruptRequestCallback, 0);
 <#elseif PORT_PLIB == "GPIO">
-    GPIO_PinInterruptCallbackRegister(${DRV_LAN9253_IRQ_INT}, ECAT_EscInterruptRequestCallback, 0);
+    GPIO_PinInterruptCallbackRegister(${DRV_LAN9253_IRQ_INT}, _ECAT_EscInterruptRequestCallback, 0);
 <#elseif PORT_PLIB == "PIO">
-    PIO_PinInterruptCallbackRegister(${DRV_LAN9253_IRQ_INT}, ECAT_EscInterruptRequestCallback, 0);
+    PIO_PinInterruptCallbackRegister(${DRV_LAN9253_IRQ_INT}, _ECAT_EscInterruptRequestCallback, 0);
 </#if>
 }
 

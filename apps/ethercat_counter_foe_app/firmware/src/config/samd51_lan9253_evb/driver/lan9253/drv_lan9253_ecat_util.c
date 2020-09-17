@@ -1332,14 +1332,14 @@ static void _ECAT_QSPI_SyncWait(void)
 
 /*******************************************************************************
 Function:
-void ECAT_HWSetlED(UINT8 RunLed,UINT8 ErrLed)
+	void ECAT_HWSetlED(UINT8 RunLed,UINT8 ErrLed)
 
 Summary:
- This function set the Error LED if it is required.
+	This function set the Error LED if it is required.
 
 Description:
-LAN9253 doesn't support Run LED. So this feature has to be enabled by PDI SOC if it is needed.
-LAN9253 supports error LED.
+	LAN9253 doesn't support Run LED. So this feature has to be enabled by PDI SOC if it is needed.
+	LAN9253 supports error LED.
 
 Parameters:
     RunLed	- It is not used. This will be set by LAN9253.
