@@ -44,13 +44,13 @@ reference information.
 
 # Cloning EtherCAT Microchip-MPLAB-Harmony github repo
 
-To clone or download the repo from https://github.com/Microchip-MPLAB-Harmony/ethercat , go to the main page of this repository and then click **code->clone** button to **Clone with HTTPS** this repo using  or download as zip file. EtherCAT , CSP , MHC and Dev Pack mdoule repositories can be downloaded using content manager by following the **MPLAB® Harmony Repository Download** of https://github.com/Microchip-MPLAB-Harmony/ethercat/wiki/create-your-first-ethercat-application.
+To clone or download the repo from https://github.com/Microchip-MPLAB-Harmony/ethercat , go to the main page of this repository and then click **code->clone** button to **Clone with HTTPS** to clone this repo using a git client or download the repository as a zip file. The EtherCAT , CSP , MHC and Dev Pack mdoule repositories can also be downloaded using content manager by following the instructions in the **MPLAB® Harmony Repository Download** section in the guide available at this link: https://github.com/Microchip-MPLAB-Harmony/ethercat/wiki/create-your-first-ethercat-application.
 
 **NOTE** - Prior to using the EtherCAT demonstration, it is recommended to review the MPLAB® Harmony Release Notes (release_notes.md) for any known issues.
 
 ## EtherCAT Library and Demo Application
 
-This distribution package contains MPLAB Harmony EtherCAT firmware project that demonstrate the capabilities of Process Data Objects( counter and Trigger objects) and FoE( File Over EtherCAT ,Firmware upgrade feature) . The project describes its hardware setup and requirements.
+This distribution package contains MPLAB Harmony EtherCAT firmware project that demonstrates the capabilities of Process Data Objects (counter and Trigger objects) and FoE (File Over EtherCAT, Firmware upgrade feature) . The project describes its hardware setup and requirements.
 
 The EVB-LAN9252_SAM D51 Evaluation Board is an EtherCAT slave controller with dual integrated Ethernet PHYs. Each Ethernet PHY contains a Full-Duplex 100BASE-TX transceiver and supports 100 Mbps (100BASE-TX) operation.
 
@@ -58,7 +58,7 @@ The EVB-LAN9252_SAM D51 Evaluation Board is an EtherCAT slave controller with du
 
 All the EtherCAT applications are available in ethercat/apps folder.
 All the drivers are located in the ethercat/drivers folder.
-The distribution package also contains details about EtherCAT Slave stack code generation tool and also it contains details of EtherCAT manager ,where the demo is verified with TwinCAT manager.
+The distribution package also contains details about EtherCAT Slave stack code generation tool and EtherCAT manager (required to verify the operation of the demo).
 
 | Name      | Description  |
 | --------  | -----------  |

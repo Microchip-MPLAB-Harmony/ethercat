@@ -11,16 +11,16 @@ nav_order: 1
 
 # EtherCAT LAN925x Library
 
-EtherCAT LAN925x slave device software utility framework is a layered software framework that enables other PIC and Cortex Microcontroller peripherals to work together.
+EtherCAT LAN925x slave device software utility framework is a layered software framework designed to operate with different PIC and Cortex Microcontroller peripherals.
 
 * **LAN925x EtherCAT Framework**
 
     | EtherCAT Slave Framework    |Description                |
     |:---------------------------:|:-------------------------:|
-    | [LAN9252 EtherCAT Framework](docs/readme_drvlan9252.md)   |    The Framework explains about EtherCAT slave controller Interface layer w.r.t LAN9252 device    |
-    | [LAN9253 EtherCAT Framework](docs/readme_drvlan9253.md)   |     The Framework explains about EtherCAT slave controller Interface layer w.r.t LAN9253 device     |
+    | [LAN9252 EtherCAT Framework](docs/readme_drvlan9252.md)   |    This Framework implements a EtherCAT Slave Controller Interface layer for the LAN9252 device    |
+    | [LAN9253 EtherCAT Framework](docs/readme_drvlan9253.md)   |     This Framework implements a EtherCAT Slave Controller Interface layer for the LAN9253 device     |
 
-Ethernet for Control Automation Technology (EtherCAT) was developed by Beckhoff. EtherCAT is a fast and deterministic network, and processes data using dedicated hardware and software. It uses a full duplex, master-slave configuration.
+Ethernet for Control Automation Technology (EtherCAT) was developed by Beckhoff. EtherCAT is a fast and deterministic network. It processes data using dedicated hardware and software. It is based on a full duplex, master-slave configuration.
 
 The LAN925x is a 2/3-port EtherCAT slave controller with dual integrated Ethernet PHYs which each contain a fullduplex 100BASE-TX transceiver and support 100Mbps (100BASE-TX) operation.
 
@@ -28,20 +28,18 @@ Use of the Microchip EVB-LAN925x (and similar EtherCAT interface devices) requir
 
 * The **interrupts** have to be configured during hardware initialization.
     *   **PDI ( Process Data Interface ) Interrupt** -
-    The programmable system interrupts are generated internally by the various device sub-modules and can be configured to generate a single external host interrupt via the IRQ interrupt output pin. That is TwinCAT manager with  enabled **Synchron Synchronization** mode.
+    This is a programmable interrupt. It is triggered via the TwinCAT manager by enabling the **Synchron Synchronization** mode. There are various operational modes in the LAN925x device that can cause this interrupt. 
 
     * **DC - SYNC0 AND SYNC1** -
-    If the application running on the SOC requires Distributed Clock, then SYNC0 and SYNC1 should be connected to the microcontroller’s interrupts lines. Refer to LAN9252 datasheet for configuration of SYNC0 and SYNC1.
+    If the application running on the micrcontroller requires Distributed Clock, then LAN925x SYNC0 and SYNC1 pins should be connected to the microcontroller’s external interrupt lines. Refer to LAN9252 datasheet for configuration of SYNC0 and SYNC1.
 
     * **TIMER Interupt** -
-    SSC has a variable which will count every millisecond, which can be implemented either timer interrupt or polling method. The interrupt/polling mode can be selected in the SSC Tool before creating the slave stack code.
-    SSC will access EtherCAT core registers from both interrupt context and polling mode. So, the ECAT_CSR_CMD and ECAT_CSR_DATA registers has to be protected against simultaneous access which can corrupt the state machine inside the slave stack code.
+    The SSC employs a variable that counts up every one millisecond by default. This variable can be accessed via an interrupt or a polling method. If accessed via an interrupt, the interrupt occurs every one millisecond.  The interrupt/polling mode can be selected in the SSC Tool before generating the slave stack code.
+    It should be noted that the SSC will access EtherCAT ECAT_CSR_CMD and ECAT_CSR_DATA core registers from both interrupt context and polling mode. This can corrupt the SSC state machine. These registers should therefore be protected against simultaneous access.
 
-* **Configure of Library**
+* **SSC Library Configuration**
 
-    Configure the peripheral library using the MHC.
-    EtherCAT Slave Device Indicators
-    This section describes the LAN925x driver and EtherCAT trigger and counter variables are used to support visual inspection and troubleshooting of the driver and networks.
+    The SSC provides a set of EtherCAT Slave Device Indicators. These indicators are composed of an Ethercat Trigger and counter variable. These indicators support visual inspection and troubleshooting of the driver and the Ethercat Network. This section contains additional details about these indicators.
 
     1. **PDO ( Process Data Object Trigger and Counter )** -
     The PDO protocol is used for communication with External interrupt IRQ.
@@ -57,34 +55,27 @@ Use of the Microchip EVB-LAN925x (and similar EtherCAT interface devices) requir
         |:------:|:-------:|:--------------:|:---------:|
         |1       |0x7010   |32bit Counter   |RX         |
 
-    3. Synchronization -
-    The Beckhoff Slave Stack Code supports different modes of synchronization which are based on three physical signals: (PDI_)IRQ, Sync0 and Sync1
-    Microchip EtherCAT device also supports different modes.
-        * Master and Slaves for synchronization: Free run The Master cycle time and Slave cycle time are independent.
+* **Using the Library**
 
-        * IRQ interrupt event is triggered from Master for SM-Synchron Synchronization.
+    This section provides details about the File Over EtherCAT (FoE) protocol implementation in this library. 
 
-        * Both IRQ and SYNC0 event occurs for the DC-Synchron operation mode and SYNC0 and SYNC1 unit cycle time is configured 1000µs.
-
-
-* **Using Library**
-
-    File over EtherCAT (FoE) -
-    Architecture – Host/Slave interaction states for firmware update. The Dual Bank feature enables a firmware to execute from the NVM and at the same time the program to the flash with a new version of itself. After programming is completed the APP_BankSwitch() application function is used to swap the banks and to reset the device.
+    The below flowchart depicts the Host/Slave intreraction during a Firmware Update operation. The microcontroller Flash Dual Bank feature enables a firmware to execute from one bank while the other Flash bank is programmed with a Firmware Update. The APP_BankSwitch() application function is called to swap the banks and to reset the device when the programming is complete.
 
     ![library usage](docs/images/Firmware_upgrade.png)
 
-    FOE demostartion with respect to ATSAMD51J19A device -
+    The below figure shows the Dual Bank organization used by FOE demonstartion on a ATSAMD51J19A device.
 
     ![library usage](docs/images/D51Bankdetails.png)
 
-    * Master changes from INIT to BOOT, then download of a file initiated. When state changes from INIT to BOOT, slave or the FoE application is ready to write the new FW or bin file at the BankB location( 0x40000 Bank B location for ATSAMD51j19A device ). Flag gFirmwareDownload_Started set to 1.
+    The firmware upgrade is performed as follows:
 
-    * Master initiates Download command with default password value as **0x11223344** and bin file (this file is generated from the existing D51 foe studio project). In the slave FOE_FILEDOWNLOAD_PASSWORD is set to 0x11223344 and can be modified from EtherCAT MHC component configuration. FoE_Write() checks file name size ( limited to 16) and checks password value and then proceed to FoE_WriteData().
+    * Selecting the Bootstrap option in the the TwinCAT manager changes the state machine state from INIT to BOOT and initiates a file download.  The SSC code receives intimation to change mode from INIT to BOOT and gets ready to write the new firmware to Bank B location (0x40000 on the ATSAMD51j19A device ). The gFirmwareDownload_Started flag set to 1.
 
-    * Once Master completes bin file transfer, then Master need to change the state from BOOT to INIT. In the FW application or slave code, APP_FW_GetDownloadStateFinished() changes state to gFirmwareDownload_Started = 0 and APP_FW_StateBOOTtoINIT() changes gFirmwareDownload_Finished = 1.
+    * The TwinCAT manager downloads the password (default value as **0x11223344**) and the firrmware binary file. This file is generated from the existing ATSAMD51J19A FoE ATMEL Studio IDE project. In the SSC stack, the FOE_FILEDOWNLOAD_PASSWORD configuration constant is set to 0x11223344. This constant can be modified through the EtherCAT component in MPLAB Harmony Configurator (MHC). The FoE_Write() function checks the file name size (this is limited to 16 characters), verifies the password and then proceeds to call the FoE_WriteData() function.
 
-    * Once State changes from BOOT to INIT, Slave application initiates bank switch application(APP_BankSwitch()) and software reset(run_application()). Then Bank A moves to BANK B location and the new application stored in BANK B , moved to BANK A with flash location 0x0. The new application starts running from flash location 0x0 and will be ready with new application.
+    * After completing the file transfer, the TwinCAT manager state is changed from BOOT to INIT. This triggers the APP_FW_GetDownloadStateFinished() function in the slave firmware changes. The gFirmwareDownload_Started flag is cleared and the APP_FW_StateBOOTtoINIT() function sets the gFirmwareDownload_Finished flag to 1.
+
+    * After the state change from BOOT to INIT is complete, the Slave application initiates a bank switch ( by calling the APP_BankSwitch() function) and then performs a software reset(by calling the run_application() function). This causes the execution of the application stored in BANK B location. The Bank B location is now treated as Bank A and the start location of Bank B is treated as location 0x0 of Bank A. The execution of the downloaded updated application will start.
 
     SSC tool FoE configuration -
 
