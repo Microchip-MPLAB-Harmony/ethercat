@@ -12,8 +12,11 @@ nav_order: 1
 
 # EtherCAT Counter FoE Application for EVM_LAN9252_SAMD51
 
-This EtherCAT example application demonstrates the capable of doing firmware updates via FoE (File over EtherCAT) and EtherCAT Master ( TwinCAT Master ) slave ( EtherCAT LAN9252) communication with EVB_LAN9252_SAMD51 micro-controller.
-Microchip's EtherCAT provides the information about how to configure and run the application on different EtherCAT platform.
+This EtherCAT example application demonstrates Firmware Update over EtherCAT capability. The firmware update is performed via FoE (File over EtherCAT). It is triggered byt the EtherCAT Master ( TwinCAT Master ) which then download the firmware onto the EtherCAT slave (LAN9252) on the  EVB_LAN9252_SAMD51 board.
+
+**Note :** The EtherCAT Library can be configured to also execute on other EthertCAT development boards availabe from Microchip. Additional instruction at available in the [Create your first EtherCAT Application](https://github.com/Microchip-MPLAB-Harmony/ethercat/wiki/create-your-first-ethercat-application) section. 
+
+This demonstration help document contains the following sections: 
 
 1. MPLAB® Harmony Software Setup
 2. Hardware Setup
@@ -27,25 +30,25 @@ Microchip's EtherCAT provides the information about how to configure and run the
         3. File over EtherCAT communication
 
 ## **MPLAB® Harmony Software Setup**
-The following MPLAB® software components are a prerequisite for the rest of the steps in this demonstration. Please follow the download and installation instructions available at below links.
+The following MPLAB® software components are a prerequisite for the subsequent steps in this demonstration. Please follow the download and installation instructions available at below links.
   * [MPLAB® X Integrated Development Environment](https://www.microchip.com/mplab/mplab-x-ide)
   * [MPLAB® XC32/32++ C Compiler](https://www.microchip.com/mplab/compilers)
   * [MPLAB® Harmony Configurator](https://github.com/Microchip-MPLAB-Harmony/)
-  * On the management PC, download and Install on the TwinCAT 3 Engineering Full Setup at https://www.beckhoff.com/english.asp?download/tc3-download-xae.htm. Select the latest TwinCAT 3.1 Version and click on the link. Note the dialog box shows the TwinCAT tool that will be installed **TC31-Full-Setup.3.1.XXXX.XX** and click on "Start Download". Follow instructions to download.
+  * On the management PC, download and install the TwinCAT 3 Engineering Full Setup at https://www.beckhoff.com/english.asp?download/tc3-download-xae.htm. Select the latest TwinCAT 3.1 Version and click on the link. Note the dialog box that shows the TwinCAT tool to be installed **TC31-Full-Setup.3.1.XXXX.XX** and click on "Start Download". Follow instructions to download.
 
 ## **Hardware Setup**
 The following tools will be used to program and debug the application on the target hardware.
  * [MPLAB® ICD4]( https://www.microchip.com/DevelopmentTools/ProductDetails/DV164045) + ICD4/PICKIT 3 Target Adapter Board using JTAG interface.
 
-The following development board will be used for EtherCAT application development and run the application.
+The following development board will be used to develop and execute the EtherCAT application.
 
   * [LAN9252 - EtherCAT Slave Controller evaluation kit with SAMD51 Microcontroller](https://www.microchip.com/DevelopmentTools/ProductDetails/PartNO/EV44C93A#additional-summary)
 
     The instructions in this guide are also  applicable to other development boards with LAN9252 EtherCAT slave device. Hardware settings are board dependent and may vary between boards.
 
-  * Connect a micro USB cable to J8 port for power source.
-  * For programming, Connect a ICD4 JTAG cable to the J10 port of the EVB_LAN9252_SAMD51.
-  * RJ45 connector is connected to the TwinCAT Manager using J1 port.
+  * Connect a micro USB cable to port J8 to power the board..
+  * For programming, connect a ICD4 JTAG cable to port J10 of the EVB_LAN9252_SAMD51 board.
+  * Connect RJ45 connector J1 to the TwinCAT Manager.
 
   * Block diagram of the EVB_LAN9252_SAMD51 board -
 
@@ -63,20 +66,20 @@ The required repositories can be cloned from the github (or gitee) by using a lo
 
 The **csp, dev_packs, mhc and ethercat** repositories should be cloned. The required repositories can also be cloned (downloaded) or previously downloaded repositories can also be updated by using the MPLAB® Harmony 3 Content Manager. The following sections provide details on using the MPLAB® Harmony 3 Content Manager to download the repositories.
 
-1. Refer to the EtherCAT **MPLAB® Harmony Software Setup** https://github.com/Microchip-MPLAB-Harmony/ethercat/wiki/create-your-first-ethercat-application details to create a EtherCAT project.
+1. Refer to the EtherCAT **MPLAB® Harmony Software Setup** https://github.com/Microchip-MPLAB-Harmony/ethercat/wiki/create-your-first-ethercat-application for details about creating an EtherCAT project.
 
-2. The following Project Graph diagram shows the required Harmony components those are included for the present EtherCAT application for the EVB_LAN9252_SAMD51.
+2. The following Project Graph diagram shows the MPLAB Harmony Library components that are required by the FoE EtherCAT application on the EVB_LAN9252_SAMD51 board.
 
     ![ethercat_mhc_image](images/ethercat_project.png)
 
 3. Click on the EtherCAT Stack in the Project Graph window. In the Configuration window,   
-    * The **Slave Stack source directory path** points to the folder that contains the files generated by the SSC tool.
-    * **Enable FoE** checkbox enables **File over EtherCAT** feature.
+    * The **Slave Stack source directory path** should point to the folder that contains the files generated by the SSC tool.
+    * The **Enable FoE** checkbox enables **File over EtherCAT** feature.
 
     ![ethercat_mhc_image](images/ethercat_slave_object_configuration.png)
 
 4. Click on **LAN9252** component from the project graph.
-    * **EtherCAT Interrupt Priority Level** :- This is the range, equal to or more than this value, all the interrupts will be disabled during EtherCAT interrupt handler in process.
+    * **EtherCAT Interrupt Priority Level** :- This defines a interrupt priority range. All application interrupts whose priority is more than or equal to this level will be disabled during an EtherCAT interrupt service routine execution.
     * Following table maps EtherCAT interrupt name with respective peripheral channel selection. **EIC interrupt handler and the SPI chip select Configuration for EVB_LAN9252_SAMD51**
 
         | Interrupt  Name   |   EIC Channel  |    
@@ -90,13 +93,13 @@ The **csp, dev_packs, mhc and ethercat** repositories should be cloned. The requ
         | SPI Chip Select   |  PORT RB11     |
         | Error Select Pin  |  PORT RB31     |
 
-    **NOTE** - As per the Microcontroller and LAN9252 interrupt support,  EIC/GPIO/PIO pins can be selected for External event registration and event handler processing.
+    **NOTE** - EIC/GPIO/PIO pins for External event registration and event handler processing can be selected based on the micrcontroller and LAN9252 interrupt support.
 
     ![ethercat_mhc_image](images/lan925x_configuration_option.png)
 
 5. **EIC**, **QSPI** and **TC0** are configured as per the application requirement.
 
-6. These are the below PINs configured for the application
+6. The below PINs are configured for the application
 
     * **QSPI PIN Configuration for EVB_LAN9252_SAMD51**
 
@@ -117,32 +120,32 @@ The **csp, dev_packs, mhc and ethercat** repositories should be cloned. The requ
 
     ![ethercat_mhc_image](images/required_pin_configuration.png)
 
-7. Open **NVIC configuration** window from MHC→Tools. The QSPI Interrupt Priority Level to 2 and it is below to the configured parameter of the **EtherCAT Interrupt Priority Level** from **LAN9252** component .
+7. Open **NVIC configuration** window from MHC→Tools. Set the QSPI Interrupt Priority Level to 2. This interrupt priority level is selected to be less than value of the **EtherCAT Interrupt Priority Level** configuration option in the **LAN9252** component.
 
     ![ethercat_mhc_image](images/nvic_QSPI_priority_change.png)
 
 8. The application will use the default clock options. No changes are required in clock settings.
 
-9.  The application use a customized linker file which is used for FOE application. **ROM_LENGTH** of the linker file is modified to 0x40000 for ATSAMD51J19A. The memory mapped for Bank A is from 0x00000 to 0x3FFFF and the memory mapped for Bank B is from 0x40000 to 0x7FFFF.
+9.  The FoE application uses a customized linker file. The **ROM_LENGTH** attribute in the linker file is modified to 0x40000 for ATSAMD51J19A. Bank A memory range is configured between 0x00000 to 0x3FFFF. Bank B memory range is configured between 0x40000 to 0x7FFFF.
 
-    The **Dual Bank** feature enables a FoE firmware to be executed from the NVM and at the same time the program to the flash with a new version of itself.After programming is completed, the APP_BankSwitch() application function is used to swap the banks and to reset the device. APP_RunApplication() is used to run the new firmware to be executed.
+    The **Dual Bank** feature enables the FoE firmware to be executed from one bank while an updated version of the firmware is programmed into the other bank. The APP_BankSwitch() application function is called to swap the banks and to reset the device when the programming is complete. The APP_RunApplication() function is called to execute the new firmware. 
 
-    Customized linker file can be selected after unchecking the **Add linker file to project** option and this option is present at MHC project graph **System>Project Configuration>Tool Chain Selections>Add linker file** to project
+    To add a customized linker file to the project, uncheck the **Add linker file to project** option. Navigate to **System>Project Configuration>Tool Chain Selections>Add linker file** in the MHC Project graph to add the customized linked script file.
 
-    See the below screen shots:    
+    See the below screen capture:    
     ![ethercat_mhc_image](images/foe_linkerfile_toProject.png)
 
 10. Generate the code by clicking the **Generate Code** button (marked in red).
 
     ![ethercat_mhc_image](images/ethercat_demo_project_generation_1.png)
 
-11. The following diagram presents the One Click generated EtherCAT project, which is without Slave stack code except **sample_app.c** file. Slave stack code will be generated using SSC tool with the required configuration and Microchip-SAMD51-EtherCAT-Slave_SSC_Config.xml file. Right side is the EtherCAT project with supported SSC stack files.
+11. The following diagram shows the generated EtherCAT project. This contains the **sample_app.c** file. It does not contain the Slave stack code. The Slave Stack Code should be generated using the SSC tool with the required configuration and the Microchip-SAMD51-EtherCAT-Slave_SSC_Config.xml file. The folder view on the right side in the below figure shows the EtherCAT project with SSC stack files added to the folder.
 
     ![ethercat_mhc_image](images/generated_slave_stack_code.png)
 
-## **Building The EtherCAT Application**
+## **Completing The EtherCAT Application**
 
-This section demonstrates the MPLAB X IDE projects for the **ethercat_counter_foe_app** application. The following table list the MPLAB X projects available for the demonstration. The path for the following project which is part of this project table, is available at **< install-dir >/ethercat/apps/ethercat_counter_foe_app/firmware**.
+At this point, the FoE application MPLABX IDE project is ready along with the SSC Tool generated code.  This section describes the steps to be followed to update the FoE application files.  The following table list the MPLAB X projects available for the demonstration. The path for the following project which is part of this project table, is available at **< install-dir >/ethercat/apps/ethercat_counter_foe_app/firmware**.
 
 1. MPLABx project table
 
