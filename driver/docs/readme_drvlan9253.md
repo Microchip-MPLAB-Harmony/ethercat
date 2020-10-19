@@ -24,7 +24,7 @@ The EtherCAT LAN9253 Library contains a EtherCAT Slave Controller Interface laye
 * Supports the LAN9253 EtherCAT Slave Controller device
 * Enables interfacing with different 32-bit microcontroller devices
 * Contains File over EtherCAT and Trigger & Counter demonstration applications.
-* Demonstration applications are targetted for EVB-LAN9253-SAMD51 Evaluation Board.
+* Demonstration applications are targeted for EVB-LAN9253-SAMD51 Evaluation Board.
 * Demonstration applications are configured to use the SSC Error LED feature. This feature is implemented through the ERROR LED indicator on the board. When the ERRRO LED is ON, this indicates either of the following conditions:
     * EEPROM loading error
     * EtherCAT slave connectivity link failure

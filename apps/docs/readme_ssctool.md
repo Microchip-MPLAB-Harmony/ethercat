@@ -19,8 +19,9 @@ nav_order: 3
     ![SSC Tool](images/ssc_import_configuration_file.png)
 
 5. For **Lan9252 Slave** device	Import “Microchip-SAMD51-LAN9252-SSC_Config.xml” configuration file from **< Harmony Directory >/ethercat/apps/ethercat_counter_foe_app/firmware/src/slave_stack/lan9252/**.
-For **Lan9253  Slave** device, there are different SSC configuration files are present at **< Harmony Directory >/ethercat/apps/ethercat_counter_foe_app/firmware/src/slave_stack/lan9253/** , please find the below table for the avavilable configuration file LAN9253 device -
-    
+
+    For **Lan9253  Slave** device, there are different SSC configuration files are present at **< Harmony Directory >/ethercat/apps/ethercat_counter_foe_app/firmware/src/slave_stack/lan9253/** , please find the below table for the available configuration file LAN9253 device -
+
     | SSC Configuration file  |   Mode         |    Supported or Not Supported    |
     |-------------------------|:--------------:|:--------------:|
     | Microchip-SAMD51-EtherCAT-Slave_SSC_Config_SPI_Indirect_mode.xml   |  SPI Indirect mode   |   Supported   |
@@ -31,21 +32,23 @@ For **Lan9253  Slave** device, there are different SSC configuration files are p
 
     ![SSC Tool](images/custom_sscfile_selected.png)
 
-    Select this and click OK. Click Yes to the next two prompts
+    Select **Microchip - EtherCAT Slave Controller < Microchip >** and click OK. Click Yes to the next two prompts
 
     ![SSC Tool](images/ssc_import_configuration_file_2.png)
 
 6.	The driver **drv_lan9252.c** is required for Lan9252 slave configuration and to select file , Click **yes**. In the SSC tool navigate to the **< Harmony Directory >/ethercat/apps/ethercat_counter_foe_app/firmware/src/config/sam_d51_lan9252_evb/driver/lan9252** directory to point to the **drv_lan9252.c** file and click Open. This will load the code.
 
     ![SSC Tool](images/drv_lan9252_selection.png)
-    
-    **NOTE** - For **Lan9253 Slave** configuration file, one need to select drv_lan9253.c file from the **driver/lan9253/src/drv_lan9253.c** and remaining steps are similar to lan9252 steps.
 
-7.	Click on **Tools=>Application=>Import**  and select **sample_app.xlsx** application file from the path **< Harmony Directory >/ethercat/apps/ethercat_counter_foe_app/firmware/src/slave_stack** . Click OK to the next prompt
+    **NOTE** - For **Lan9253 Slave** configuration file, select drv_lan9253.c file from the **driver/lan9253/src/drv_lan9253.c** and remaining steps are similar to lan9252 steps.
+
+7.	Click on **Tools=>Application=>Import**  and select **sample_app.xlsx** application file from the path **< Harmony Directory >/ethercat/apps/ethercat_counter_foe_app/firmware/src/slave_stack/lan9252** . Click OK to the next prompt
 
     ![SSC Tool](images/ssc_import_configuration_file_3.png)
 
-8.	Click on **Tools=>Create New Slave Files**. When prompted to save the project, save the project in the directory provided with name **SAMD51_EtherCAT_Slave.esp**.
+    **NOTE** - For **Lan9253 Slave** configuration file, select **sample_app.xlsx** application file from the path **< Harmony Directory >/ethercat/apps/ethercat_counter_foe_app/firmware/src/slave_stack/lan9253**
+
+8.	Click on **Project=>Create New Slave Files**. When prompted to save the project, save the project in the directory provided with name **SAMD51_EtherCAT_Slave.esp**.
     *  Click the Project drop-down menu in the tool bar and select Create New Slave Files. The pop-up windows open the newly slave file project ( SAMD51_EtherCAT_Slave.esp ),
 
         ![SSC Tool](images/ssc_import_configuration_file_4.png)

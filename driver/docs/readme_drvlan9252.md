@@ -24,7 +24,7 @@ The EtherCAT LAN9252 Library contains a EtherCAT Slave Controller Interface laye
 * Supports the LAN9252 EtherCAT Slave Controller device
 * Enables interfacing with different 32-bit microcontroller devices
 * Contains File over EtherCAT and Trigger & Counter demonstration applications.
-* Demonstration applications are targetted for EVB-LAN9252-SAMD51 Evaluation Board.
+* Demonstration applications are targeted for EVB-LAN9252-SAMD51 Evaluation Board.
 * Demonstration applications are configured to use the SSC Error LED feature. This feature is implemented through the ERROR LED indicator on the board. When the ERRRO LED is ON, this indicates either of the following conditions:
     * EEPROM loading error
     * EtherCAT slave connectivity link failure
@@ -65,4 +65,3 @@ The EtherCAT LAN9252 Library contains a EtherCAT Slave Controller Interface laye
 |ECAT_Lan9252_SPIWritePDRAM |	Initiates a write process data RAM transfer to Slave Controller via selected PDI |
 |ECAT_ESCIRQInitialization| Interrupt service routine initialization for the interrupt from EtherCAT Slave Controller|
 |ECAT_SyncInterruptsInitialization| Sync0 and Sync1 Interrupt service routine Initialization|
-
