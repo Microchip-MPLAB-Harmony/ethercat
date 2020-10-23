@@ -40,8 +40,8 @@
           <Security dnOrder="2">NON_SECURE</Security>
           <LogicalPath dnOrder="3">config/sam_d51_lan9252_evb/driver/lan9252/</LogicalPath>
           <PhysicalPath dnOrder="4">/driver/lan9252/</PhysicalPath>
-          <GeneratedChecksum dnOrder="5">7AC314D74EB2BBC72B8626CD49C2B438</GeneratedChecksum>
-          <UserChecksum dnOrder="6">7AC314D74EB2BBC72B8626CD49C2B438</UserChecksum>
+          <GeneratedChecksum dnOrder="5">E53921B63DEEE6C7B77260A39D233C1D</GeneratedChecksum>
+          <UserChecksum dnOrder="6">E53921B63DEEE6C7B77260A39D233C1D</UserChecksum>
         </File>
         <File dnOrder="4">
           <Type dnOrder="0">SOURCE</Type>
@@ -607,8 +607,8 @@
           <Security dnOrder="2">NON_SECURE</Security>
           <LogicalPath dnOrder="3">config/sam_d51_lan9252_evb/</LogicalPath>
           <PhysicalPath dnOrder="4">/</PhysicalPath>
-          <GeneratedChecksum dnOrder="5">AAD53333A1EC0A7B287782E487496CE2</GeneratedChecksum>
-          <UserChecksum dnOrder="6">AAD53333A1EC0A7B287782E487496CE2</UserChecksum>
+          <GeneratedChecksum dnOrder="5">7F81D2E68B6A018087087B3EB51DB145</GeneratedChecksum>
+          <UserChecksum dnOrder="6">7F81D2E68B6A018087087B3EB51DB145</UserChecksum>
         </File>
         <File dnOrder="67">
           <Type dnOrder="0">HEADER</Type>

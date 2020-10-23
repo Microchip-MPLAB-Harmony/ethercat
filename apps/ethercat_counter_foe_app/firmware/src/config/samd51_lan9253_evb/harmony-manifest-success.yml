@@ -4,7 +4,7 @@
 
 
 project: ethercat_counter_foe_app
-creation_date: 2020-10-19T17:01:36.505+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2020-10-22T16:14:43.194+05:30[Asia/Calcutta]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Windows 10
 mhc_mode: IDE            # [IDE|Standalone|Headless]
 mplabx_version: v5.40        # if MPLAB X plugin only
@@ -14,6 +14,6 @@ compiler: XC32 (2.41)
 modules:
     - {name: "csp", version: "v3.8.1"}
     - {name: "dev_packs", version: "v3.8.0"}
-    - {name: "ethercat", version: "unknown"}
-    - {name: "mhc", version: "v3.6.0-tc.4"}
+    - {name: "ethercat", version: "v3.1.0-rc.2"}
+    - {name: "mhc", version: "v3.5.1"}
 

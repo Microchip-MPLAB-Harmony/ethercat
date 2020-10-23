@@ -143,7 +143,7 @@ Summary:
 *******************************************************************************/
 void ECAT_ESCIRQInitialization()
 {
-	EIC_CallbackRegister(EIC_PIN_7,ECAT_ESCIRQInitialization, 0);
+	EIC_CallbackRegister(EIC_PIN_7,_ECAT_EscInterruptRequestCallback, 0);
 }
 
 /*******************************************************************************
