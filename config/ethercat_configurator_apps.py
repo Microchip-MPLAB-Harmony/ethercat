@@ -90,7 +90,7 @@ def instantiateComponent(etherCatComponent):
 	foeFileSIzeLength =  etherCatComponent.createIntegerSymbol("ETHERCAT_FOE_FILE_NAME_LENGTH",ethercatFOEEnable)
 	foeFileSIzeLength.setVisible(True)
 	foeFileSIzeLength.setLabel("Download File Name length")
-	foeFileSIzeLength.setDescription("Download File Name length")
+	foeFileSIzeLength.setDescription("Download File Name length in Decimal")
 	foeFileSIzeLength.setDefaultValue(16)
 	foeFileSIzeLength.setDependencies(ethercatFoEAttrVisible, ["ETHERCAT_FOE_ENABLE"])
 	
