@@ -1,0 +1,60 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: qspi}
+children:
+- type: Symbols
+  children:
+  - type: Integer
+    attributes: {id: QSPI_BAUD_RATE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: qspi, value: '66000000'}
+      - type: User
+        attributes: {value: '15000000'}
+  - type: KeyValueSet
+    attributes: {id: QSPI_CPOL}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: qspi, value: '0'}
+  - type: KeyValueSet
+    attributes: {id: QSPI_DATALEN}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '4'}
+  - type: Integer
+    attributes: {id: QSPI_SCBR}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: qspi, value: '7'}
+  - type: KeyValueSet
+    attributes: {id: QSPI_SMM}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: qspi, value: '0'}
+- type: Attachments
+  children:
+  - type: DirectCapability
+    attributes: {id: QSPI_SPI}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: ethercat_lan9253}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: LAN9253_SPI_Dependency}
+- type: ElementPosition
+  attributes: {x: '30', y: '136', id: qspi}

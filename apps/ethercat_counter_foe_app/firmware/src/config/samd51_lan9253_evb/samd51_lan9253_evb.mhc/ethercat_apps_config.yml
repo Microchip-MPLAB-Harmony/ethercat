@@ -1,0 +1,715 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: ethercat_apps_config}
+children:
+- type: Symbols
+  children:
+  - type: Integer
+    attributes: {id: ETHERCAT_FOE_FILE_NAME_LENGTH}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '32'}
+  - type: File
+    attributes: {id: SSC_LIST_FILE0}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: applInterface.h}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/applInterface.h'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: HEADER}
+  - type: File
+    attributes: {id: SSC_LIST_FILE1}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: bootmode.c}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/bootmode.c'}
+  - type: File
+    attributes: {id: SSC_LIST_FILE10}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: ecatfoe.h}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/ecatfoe.h'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: HEADER}
+  - type: File
+    attributes: {id: SSC_LIST_FILE11}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: ecatslv.c}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/ecatslv.c'}
+  - type: File
+    attributes: {id: SSC_LIST_FILE12}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: ecatslv.h}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/ecatslv.h'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: HEADER}
+  - type: File
+    attributes: {id: SSC_LIST_FILE13}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: ecat_def.h}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/ecat_def.h'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: HEADER}
+  - type: File
+    attributes: {id: SSC_LIST_FILE14}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: emcy.c}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/emcy.c'}
+  - type: File
+    attributes: {id: SSC_LIST_FILE15}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: emcy.h}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/emcy.h'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: HEADER}
+  - type: File
+    attributes: {id: SSC_LIST_FILE16}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: esc.h}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/esc.h'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: HEADER}
+  - type: File
+    attributes: {id: SSC_LIST_FILE17}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: foeappl.c}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/foeappl.c'}
+  - type: File
+    attributes: {id: SSC_LIST_FILE18}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: foeappl.h}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/foeappl.h'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: HEADER}
+  - type: File
+    attributes: {id: SSC_LIST_FILE19}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: mailbox.c}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/mailbox.c'}
+  - type: File
+    attributes: {id: SSC_LIST_FILE2}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: bootmode.h}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/bootmode.h'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: HEADER}
+  - type: File
+    attributes: {id: SSC_LIST_FILE20}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: mailbox.h}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/mailbox.h'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: HEADER}
+  - type: File
+    attributes: {id: SSC_LIST_FILE21}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: objdef.c}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/objdef.c'}
+  - type: File
+    attributes: {id: SSC_LIST_FILE22}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: objdef.h}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/objdef.h'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: HEADER}
+  - type: File
+    attributes: {id: SSC_LIST_FILE23}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: SAMD51_EtherCAT_Slave.esp}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/SAMD51_EtherCAT_Slave.esp'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: HEADER}
+  - type: File
+    attributes: {id: SSC_LIST_FILE24}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: sample_app.c}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/sample_app.c'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: SOURCE}
+  - type: File
+    attributes: {id: SSC_LIST_FILE25}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: sample_app.h}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/sample_app.h'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: HEADER}
+  - type: File
+    attributes: {id: SSC_LIST_FILE26}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: sample_appObjects.h}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/sample_appObjects.h'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: HEADER}
+  - type: File
+    attributes: {id: SSC_LIST_FILE27}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: sdoserv.c}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/sdoserv.c'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: SOURCE}
+  - type: File
+    attributes: {id: SSC_LIST_FILE28}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: sdoserv.h}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/sdoserv.h'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: HEADER}
+  - type: File
+    attributes: {id: SSC_LIST_FILE3}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: coeappl.c}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/coeappl.c'}
+  - type: File
+    attributes: {id: SSC_LIST_FILE4}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: coeappl.h}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/coeappl.h'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: HEADER}
+  - type: File
+    attributes: {id: SSC_LIST_FILE5}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: ecatappl.c}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/ecatappl.c'}
+  - type: File
+    attributes: {id: SSC_LIST_FILE6}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: ecatappl.h}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/ecatappl.h'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: HEADER}
+  - type: File
+    attributes: {id: SSC_LIST_FILE7}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: ecatcoe.c}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/ecatcoe.c'}
+  - type: File
+    attributes: {id: SSC_LIST_FILE8}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: ecatcoe.h}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/ecatcoe.h'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: HEADER}
+  - type: File
+    attributes: {id: SSC_LIST_FILE9}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: ecatfoe.c}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/ecatfoe.c'}
+- type: Attachments
+  children:
+  - type: DirectDependency
+    attributes: {id: EtherCAT_LANDRV_Dependency}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: ethercat_lan9253}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: drvEthercatLan9253}
+- type: ElementPosition
+  attributes: {x: '393', y: '166', id: ethercat_apps_config}

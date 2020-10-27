@@ -1,0 +1,14 @@
+configName: samd51_lan9253_evb
+folderName: ''
+format_version: v1.0
+frameworkPath: ../../..
+processor: ATSAMD51J19A
+projectName: ''
+settings:
+  PackageFilter: aws_cloud;bootloader;bsp;core;crypto;csp;ethercat;net;usb;wireless;
+  FORCE_OPTIMIZATION: 'false'
+  GENERATE_BACKUP: 'true'
+  TRUSTZONE: 'false'
+  CMSISPath: .\dev_packs\arm\CMSIS\5.7.0
+  MERGE_STRATEGY: ALL
+  DFPPath: .\dev_packs\Microchip\SAMD51_DFP\3.3.68\samd51a\atdf\ATSAMD51J19A.atdf
