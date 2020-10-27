@@ -161,7 +161,7 @@ This section demonstrates the MPLAB® X IDE projects for the **ethercat_counter_
 
     | Project Name  |  Target Device | Target Development board  | Description |
     |:-------------:|:--------------:|:------------------------:|:-----------:|
-    |sam_d51_lan9253_evb.X|ATSAMD51J19A|EVB-LAN9253_SAMD51|ETherCAT evaluation board with LAN9253|
+    |samd51_lan9253_evb.X|ATSAMD51J19A|EVB-LAN9253_SAMD51|ETherCAT evaluation board with LAN9253|
 
 2. The project contains the MPLAB® Harmony components that are required for an EtherCAT application. The application files need to be added to the project.
 

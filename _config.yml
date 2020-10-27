@@ -85,6 +85,8 @@ exclude:
   - "*.xlsx"
   - "*.yml"
   - "*.bak"
+  - "*.esp"
+  - "*.txt"
 
 # Aux links for the upper right navigation
 aux_links:
