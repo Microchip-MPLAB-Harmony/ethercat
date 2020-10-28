@@ -1,0 +1,91 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: ethercat_lan9252}
+children:
+- type: Symbols
+  children:
+  - type: KeyValueSet
+    attributes: {id: DRV_LAN9252_CHIP_SELECT_PIN}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '40'}
+  - type: KeyValueSet
+    attributes: {id: DRV_LAN9252_ERROR_SELECT_PIN}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '50'}
+  - type: KeyValueSet
+    attributes: {id: DRV_LAN9252_IRQ_INT}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '7'}
+  - type: String
+    attributes: {id: DRV_LAN9252_PLIB}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: ethercat_lan9252, value: QSPI}
+  - type: KeyValueSet
+    attributes: {id: DRV_LAN9252_SYNC1_INT}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '1'}
+  - type: String
+    attributes: {id: DRV_LAN9252_TIMER_PLIB}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: ethercat_lan9252, value: TC0}
+- type: Attachments
+  children:
+  - type: DirectDependency
+    attributes: {id: LAN9252_SPI_Dependency}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: qspi}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: QSPI_SPI}
+  - type: DirectDependency
+    attributes: {id: LAN9252_TMR_Dependency}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: tc0}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: TC0_TMR}
+  - type: DirectCapability
+    attributes: {id: drvEthercatLan9252}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: ethercat_apps_config}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: EtherCAT_LANDRV_Dependency}
+- type: ElementPosition
+  attributes: {x: '240', y: '177', id: ethercat_lan9252}
