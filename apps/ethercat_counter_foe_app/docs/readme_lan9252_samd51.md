@@ -12,20 +12,20 @@ nav_order: 1
 
 # EtherCAT Trigger & Counter and FoE Application for EVM_LAN9252_SAMD51
 
-This EtherCAT example application demonstrates Firmware Update over EtherCAT capability.The Counter and Trigger parameters are configured in the **< ethercat repo >/apps/ethercat_counter_foe_app/firmware/src/slave_stack/lan9252** and demonstrates the communication between the EtherCAT Master ( TwinCAT Master ) and the EtherCAT slave ( EtherCAT LAN9252). The firmware update is performed by FoE (File over EtherCAT) protocol. It is triggered by the EtherCAT Master ( TwinCAT Master ) which then download the firmware onto the EtherCAT slave (LAN9252) on the  EVB_LAN9252_SAMD51 board.
+This EtherCAT example application demonstrates Firmware Update over EtherCAT capability.The Counter and Trigger parameters are configured in the **< ethercat repo >/apps/ethercat_counter_foe_app/firmware/src/slave_stack/lan9252** and demonstrates the communication between the EtherCAT Manager (TwinCAT Manager) and the EtherCAT Client (EtherCAT LAN9252). The firmware update is performed by FoE (File over EtherCAT) protocol. It is triggered by the EtherCAT Manager (TwinCAT Manager) which then download the firmware onto the EtherCAT Client (LAN9252) on the  EVB_LAN9252_SAMD51 board.
 
-**Note :** The EtherCAT Library can also be configured to  execute on other EthertCAT development boards availabe from Microchip. Additional instruction at available in the [Create your first EtherCAT Application](https://github.com/Microchip-MPLAB-Harmony/ethercat/wiki/create-your-first-ethercat-application) section.
+**Note :** The EtherCAT Library can also be configured to  execute on other EthertCAT development boards available from Microchip. Additional instruction at available in the [Create your first EtherCAT Application](https://github.com/Microchip-MPLAB-Harmony/ethercat/wiki/create-your-first-ethercat-application) section.
 
 This demonstration help document contains the following sections:
 
 1. MPLAB® Harmony Software Setup
 2. Hardware Setup
-3. Slave Stack Code (SSC) Generation
+3. Beckhoff Slave Stack Code (SSC) Generation
 4. MPLAB® Harmony Project Configuration
 5. Completing The EtherCAT Application
 6. Running The Application
-    1. TwinCAT Manager and Microchip EtherCAT Slave communication
-        1. TwinCAT EtherCAT interface detect and EEPROM Programming
+    1. TwinCAT Manager and Microchip EtherCAT Client communication
+        1. EtherCAT interface detect and EEPROM Programming
         2. Trigger and Counter Demonstration
         3. File over EtherCAT communication
 
@@ -42,9 +42,9 @@ The following tools will be used to program and debug the application on the tar
 
 The following development board will be used to develop and execute the EtherCAT application.
 
-  * [LAN9252 - EtherCAT Slave Controller evaluation kit with SAMD51 Microcontroller](https://www.microchip.com/DevelopmentTools/ProductDetails/PartNO/EV44C93A#additional-summary)
+  * [LAN9252 - EtherCAT Client Controller evaluation kit with SAMD51 Microcontroller](https://www.microchip.com/DevelopmentTools/ProductDetails/PartNO/EV44C93A#additional-summary)
 
-    The instructions in this guide are also  applicable to other development boards with LAN9252 EtherCAT slave device. Hardware settings are board dependent and may vary between boards.
+    The instructions in this guide are also  applicable to other development boards with LAN9252 EtherCAT client device. Hardware settings are board dependent and may vary between boards.
 
   * Connect a micro USB cable to port J8 to power the board..
   * For programming, connect a ICD4 JTAG cable to port J10 of the EVB_LAN9252_SAMD51 board.
@@ -54,9 +54,9 @@ The following development board will be used to develop and execute the EtherCAT
 
     ![EVB_LAN9252_SAMD51](images/evb_lan925x_samd51_block_diagram.png)
 
-## 3. **Slave Stack Code (SSC) Generation**
+## 3. **Beckhoff Slave Stack Code (SSC) Generation**
 
-Follow instruction at this link to generate Slave Stack Code: [Steps to generate Slave Stack Code  ](../../docs/readme_ssctool.md)
+Follow instruction at this link to generate Beckhoff Slave Stack Code: [Steps to generate Beckhoff Slave Stack Code  ](../../docs/readme_ssctool.md)
 
 ## **MPLAB® Harmony Project Configuration**
 There are two options available for downloading/installing the MPLAB® Harmony Software Repositories from github & gitee.
@@ -142,7 +142,7 @@ The **csp, dev_packs, mhc and ethercat** repositories should be cloned. The requ
 
     ![ethercat_mhc_image](images/ethercat_demo_project_generation_1.png)
 
-11. The following diagram shows the generated EtherCAT project. This contains the **sample_app.c** file. It does not contain the Slave stack code. The Slave Stack Code should be generated using the SSC tool with the required configuration and the Microchip-SAMD51-EtherCAT-Slave_SSC_Config.xml file. The folder view on the right side in the below figure shows the EtherCAT project with SSC stack files added to the folder.
+11. The following diagram shows the generated EtherCAT project. This contains the **sample_app.c** file. It does not contain the Beckhoff Slave stack code. The Beckhoff Slave Stack Code should be generated using the SSC tool with the required configuration and the Microchip-SAMD51-EtherCAT-Slave_SSC_Config.xml file. The folder view on the right side in the below figure shows the EtherCAT project with SSC stack files added to the folder.
 
     ![ethercat_mhc_image](images/generated_slave_stack_code.png)
 
@@ -176,9 +176,9 @@ At this point, the FoE application MPLAB® X IDE project is ready along with the
 
 ## 5. **Running The Application**
 
-### 1. **TwinCAT Manager and Microchip EtherCAT Slave communication**
+### 1. **TwinCAT Manager and Microchip EtherCAT Client communication**
 
-#### 1. TwinCAT EtherCAT interface detect and EEPROM Programming
+#### 1. EtherCAT interface detect and EEPROM Programming
 
 1. Upon successful installation of the TwinCAT Manager, the network adapter will be moved to Installed and ready to use devices section as shown in the following figure.
 
@@ -190,7 +190,7 @@ At this point, the FoE application MPLAB® X IDE project is ready along with the
 
     ![Application_Execute](images/twincat_new_project.png)
 
-3. Connect port zero (J1 connector) of the EVB_LAN9252_SAMD51 board to the TwinCAT master using a RJ45 Ethernet cable, and then power up the board. The Link/Act LED should be ON at Port zero when the cable is connected. If the Link/Act LED is not ON, then this indicates that there is an issue with the connection or the cable.
+3. Connect port zero (J1 connector) of the EVB_LAN9252_SAMD51 board to the TwinCAT Server using a RJ45 Ethernet cable, and then power up the board. The Link/Act LED should be ON at Port zero when the cable is connected. If the Link/Act LED is not ON, then this indicates that there is an issue with the connection or the cable.
 
 4. Expand the IO option in the TwinCAT XAE project window and right click on Devices. Select Scan.
 

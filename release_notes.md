@@ -8,7 +8,7 @@
 - Added EtherCAT Applications for LAN9253 with Harmony 3 framework.
 - Added Error LED support to indicate these following errors 
 	* EEPROM loading error
-    * The failure EtherCAT slave connectivity link
+    * The failure EtherCAT Client connectivity link
     * Application Layer Error Event (AL Event)
 
 ### Known Issues
@@ -24,7 +24,7 @@ None
 ### Dependent Components
 * [CSP v3.8.1](https://github.com/Microchip-MPLAB-Harmony/csp/tree/v3.8.1)
 * [MHC v3.6.0](https://github.com/Microchip-MPLAB-Harmony/mhc/tree/v3.6.0)
-* [EtherCAT Slave Stack Code (SSC) v5.12](https://www.ethercat.org/en/downloads/downloads_01DCC32A10294F2EA866F7E46FB0285F.htm)
+* [EtherCAT Beckhoff Slave Stack Code (SSC) v5.12](https://www.ethercat.org/en/downloads/downloads_01DCC32A10294F2EA866F7E46FB0285F.htm)
 
 # Microchip MPLAB® Harmony 3 EtherCAT Release Notes (April, 2020)
 ## EtherCAT Release v3.0.0
@@ -55,4 +55,4 @@ None
 ### Dependent Components
 * [CSP v3.6.1](https://github.com/Microchip-MPLAB-Harmony/csp/tree/v3.6.1)
 * [MHC v3.3.5](https://github.com/Microchip-MPLAB-Harmony/mhc/tree/v3.3.5)
-* [EtherCAT Slave Stack Code (SSC) v5.12](https://www.ethercat.org/en/downloads/downloads_01DCC32A10294F2EA866F7E46FB0285F.htm)
+* [EtherCAT Beckhoff Slave Stack Code (SSC) v5.12](https://www.ethercat.org/en/downloads/downloads_01DCC32A10294F2EA866F7E46FB0285F.htm)

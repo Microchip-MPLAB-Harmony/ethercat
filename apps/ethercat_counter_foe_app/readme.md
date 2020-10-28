@@ -12,11 +12,10 @@ nav_order: 2
 
 # EtherCAT Counter FoE Application
 
-This EtherCAT example application demonstrates the capable of doing firmware updates via FoE (File over EtherCAT) and EtherCAT Master ( TwinCAT Master ) slave ( EtherCAT LAN925x) communication with EVB_LAN925x_SAMD51 micro-controller.
+This EtherCAT example application demonstrates the capable of doing firmware updates via FoE (File over EtherCAT).The communication between EtherCAT Manager (TwinCAT Manager) and Client (EtherCAT LAN925x) communication with EVB_LAN925x_SAMD51 micro-controller.
 Microchip's EtherCAT provides the information about how to configure and run the application on different EtherCAT platform.
 
 | Target Development board  | Description |
 |:-------------------------:|:-----------:|
 |[EVB_LAN9252_SAMD51](docs/readme_lan9252_samd51.md)|ETherCAT evaluation board with LAN9252|
 |[EVB_LAN9253_SAMD51](docs/readme_lan9253_samd51.md)|ETherCAT evaluation board with LAN9253|
-

@@ -64,6 +64,6 @@ nav_order: 3
 9. Browse to the directory where the new files were created, as shown in the example:
     * Src (Folder): This folder contains the Beckhoff Slave Stack code.
     * SAMD51_EtherCAT_Slave (ESP): This is the SSC Tool project file.
-    * SAMD51_EtherCAT_Slave (XML): This is the EtherCAT® slave information file that must be used as an input to the EtherCAT master tool to configure EtherCAT® slave controllers.
+    * SAMD51_EtherCAT_Slave (XML): This is the EtherCAT Client information file that must be used as an input to the EtherCAT Master tool to configure EtherCAT® slave controllers.
 
 10. The generated sample_app.c , does not have the counter, trigger configuration details and FoE read/write operations. So, the present **sample_app.c, sample_app.h, sample_appObject.h** can be updated from the location **< Harmony Directory >/ethercat/apps/ethercat_counter_foe_app/firmware/src/slave_stack**.

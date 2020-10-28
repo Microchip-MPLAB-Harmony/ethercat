@@ -44,7 +44,7 @@ reference information.
 
 # Cloning EtherCAT Microchip-MPLAB-Harmony github repo
 
-To clone or download the repo from https://github.com/Microchip-MPLAB-Harmony/ethercat , go to the main page of this repository and then click **code->clone** button to **Clone with HTTPS** to clone this repo using a git client or download the repository as a zip file. The EtherCAT , CSP , MHC and Dev Pack mdoule repositories can also be downloaded using content manager by following the instructions in the **MPLAB® Harmony Repository Download** section in the guide available at this link: https://github.com/Microchip-MPLAB-Harmony/ethercat/wiki/create-your-first-ethercat-application.
+To clone or download the repo from https://github.com/Microchip-MPLAB-Harmony/ethercat , go to the main page of this repository and then click **code->clone** button to **Clone with HTTPS** to clone this repo using a git client or download the repository as a zip file. The EtherCAT , CSP , MHC and Dev Pack module repositories can also be downloaded using content manager by following the instructions in the **MPLAB® Harmony Repository Download** section in the guide available at this link: https://github.com/Microchip-MPLAB-Harmony/ethercat/wiki/create-your-first-ethercat-application.
 
 **NOTE** - Prior to using the EtherCAT demonstration, it is recommended to review the MPLAB® Harmony Release Notes (release_notes.md) for any known issues.
 
@@ -52,18 +52,18 @@ To clone or download the repo from https://github.com/Microchip-MPLAB-Harmony/et
 
 This distribution package contains MPLAB Harmony EtherCAT firmware project that demonstrates the capabilities of Process Data Objects (counter and Trigger objects) and FoE (File Over EtherCAT, Firmware upgrade feature) . The project describes its hardware setup and requirements.
 
-The EVB-LAN9252_SAM D51 Evaluation Board is an EtherCAT slave controller with dual integrated Ethernet PHYs. Each Ethernet PHY contains a Full-Duplex 100BASE-TX transceiver and supports 100 Mbps (100BASE-TX) operation.
+The EVB-LAN9252_SAM D51 Evaluation Board is an EtherCAT Client controller with dual integrated Ethernet PHYs. Each Ethernet PHY contains a Full-Duplex 100BASE-TX transceiver and supports 100 Mbps (100BASE-TX) operation.
 
- * [EVB LAN9252 SAMD51 (LAN9252 - EtherCAT Slave Controller evaluation kit with SAMD51 Microcontroller )](https://www.microchip.com/DevelopmentTools/ProductDetails/PartNO/EV44C93A#:~:text=EVB%2DLAN9252%2DD51%20allows%20engineers,within%20the%20Microchip%20Harmony%20Framework)
+ * [EVB LAN9252 SAMD51 (LAN9252 - EtherCAT Client Controller evaluation kit with SAMD51 Microcontroller )](https://www.microchip.com/DevelopmentTools/ProductDetails/PartNO/EV44C93A#:~:text=EVB%2DLAN9252%2DD51%20allows%20engineers,within%20the%20Microchip%20Harmony%20Framework)
 
 All the EtherCAT applications are available in ethercat/apps folder.
 All the drivers are located in the ethercat/drivers folder.
-The distribution package also contains details about EtherCAT Slave stack code generation tool and EtherCAT manager (required to verify the operation of the demo).
+The distribution package also contains details about EtherCAT Beckhoff Slave stack code generation tool and EtherCAT manager (required to verify the operation of the demo).
 
 | Name      | Description  |
 | --------  | -----------  |
-| [ethercat_library_lan925x](driver/readme.md) | This library explains about EtherCAT slave controller Interface layer w.r.t LAN9252 device |
-| [ethercat_counter_foe_app](apps/ethercat_counter_foe_app/readme.md)| This example application demonstrates the capable of doing firmware updates via FoE (File over EtherCAT) and EtherCAT Master slave communication with SAMD51 micro-controller. |
+| [ethercat_library_lan925x](driver/readme.md) | This library explains about EtherCAT Client controller Interface layer w.r.t LAN9252 device |
+| [ethercat_counter_foe_app](apps/ethercat_counter_foe_app/readme.md)| This example application demonstrates the capable of doing firmware updates via FoE (File over EtherCAT).This also demonstrates  EtherCAT TwinCAT manager and  LAN925x Client communication with SAMD51 micro-controller. |
 
 
 
