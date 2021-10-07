@@ -1,7 +1,7 @@
 /**
  * \brief Component description for DAC
  *
- * Copyright (c) 2020 Microchip Technology Inc. and its subsidiaries.
+ * Copyright (c) 2021 Microchip Technology Inc. and its subsidiaries.
  *
  * Subject to your compliance with these terms, you may use Microchip software and any derivatives
  * exclusively with Microchip products. It is your responsibility to comply with third party license
@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2020-06-22T15:30:21Z */
+/* file generated from device description version 2020-11-23T12:27:44Z */
 #ifndef _SAMD51_DAC_COMPONENT_H_
 #define _SAMD51_DAC_COMPONENT_H_
 
@@ -408,10 +408,18 @@
 #define DAC_STATUS_REG_OFST            (0x07)              /**< (DAC_STATUS) Status Offset */
 #define DAC_SYNCBUSY_REG_OFST          (0x08)              /**< (DAC_SYNCBUSY) Synchronization Busy Offset */
 #define DAC_DACCTRL_REG_OFST           (0x0C)              /**< (DAC_DACCTRL) DAC n Control Offset */
+#define DAC_DACCTRL0_REG_OFST          (0x0C)              /**< (DAC_DACCTRL0) DAC n Control Offset */
+#define DAC_DACCTRL1_REG_OFST          (0x0E)              /**< (DAC_DACCTRL1) DAC n Control Offset */
 #define DAC_DATA_REG_OFST              (0x10)              /**< (DAC_DATA) DAC n Data Offset */
+#define DAC_DATA0_REG_OFST             (0x10)              /**< (DAC_DATA0) DAC n Data Offset */
+#define DAC_DATA1_REG_OFST             (0x12)              /**< (DAC_DATA1) DAC n Data Offset */
 #define DAC_DATABUF_REG_OFST           (0x14)              /**< (DAC_DATABUF) DAC n Data Buffer Offset */
+#define DAC_DATABUF0_REG_OFST          (0x14)              /**< (DAC_DATABUF0) DAC n Data Buffer Offset */
+#define DAC_DATABUF1_REG_OFST          (0x16)              /**< (DAC_DATABUF1) DAC n Data Buffer Offset */
 #define DAC_DBGCTRL_REG_OFST           (0x18)              /**< (DAC_DBGCTRL) Debug Control Offset */
 #define DAC_RESULT_REG_OFST            (0x1C)              /**< (DAC_RESULT) Filter Result Offset */
+#define DAC_RESULT0_REG_OFST           (0x1C)              /**< (DAC_RESULT0) Filter Result Offset */
+#define DAC_RESULT1_REG_OFST           (0x1E)              /**< (DAC_RESULT1) Filter Result Offset */
 
 #if !(defined(__ASSEMBLER__) || defined(__IAR_SYSTEMS_ASM__))
 /** \brief DAC register API structure */

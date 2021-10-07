@@ -1,7 +1,7 @@
 /**
  * \brief Component description for RTC
  *
- * Copyright (c) 2020 Microchip Technology Inc. and its subsidiaries.
+ * Copyright (c) 2021 Microchip Technology Inc. and its subsidiaries.
  *
  * Subject to your compliance with these terms, you may use Microchip software and any derivatives
  * exclusively with Microchip products. It is your responsibility to comply with third party license
@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2020-06-22T15:30:21Z */
+/* file generated from device description version 2020-11-23T12:27:44Z */
 #ifndef _SAMD51_RTC_COMPONENT_H_
 #define _SAMD51_RTC_COMPONENT_H_
 
@@ -1569,8 +1569,18 @@
 #define RTC_MODE2_CLOCK_REG_OFST       (0x18)              /**< (RTC_MODE2_CLOCK) MODE2 Clock Value Offset */
 #define RTC_MODE1_PER_REG_OFST         (0x1C)              /**< (RTC_MODE1_PER) MODE1 Counter Period Offset */
 #define RTC_MODE0_COMP_REG_OFST        (0x20)              /**< (RTC_MODE0_COMP) MODE0 Compare n Value Offset */
+#define RTC_MODE0_COMP0_REG_OFST       (0x20)              /**< (RTC_MODE0_COMP0) MODE0 Compare n Value Offset */
+#define RTC_MODE0_COMP1_REG_OFST       (0x24)              /**< (RTC_MODE0_COMP1) MODE0 Compare n Value Offset */
 #define RTC_MODE1_COMP_REG_OFST        (0x20)              /**< (RTC_MODE1_COMP) MODE1 Compare n Value Offset */
+#define RTC_MODE1_COMP0_REG_OFST       (0x20)              /**< (RTC_MODE1_COMP0) MODE1 Compare n Value Offset */
+#define RTC_MODE1_COMP1_REG_OFST       (0x22)              /**< (RTC_MODE1_COMP1) MODE1 Compare n Value Offset */
+#define RTC_MODE1_COMP2_REG_OFST       (0x24)              /**< (RTC_MODE1_COMP2) MODE1 Compare n Value Offset */
+#define RTC_MODE1_COMP3_REG_OFST       (0x26)              /**< (RTC_MODE1_COMP3) MODE1 Compare n Value Offset */
 #define RTC_GP_REG_OFST                (0x40)              /**< (RTC_GP) General Purpose Offset */
+#define RTC_GP0_REG_OFST               (0x40)              /**< (RTC_GP0) General Purpose Offset */
+#define RTC_GP1_REG_OFST               (0x44)              /**< (RTC_GP1) General Purpose Offset */
+#define RTC_GP2_REG_OFST               (0x48)              /**< (RTC_GP2) General Purpose Offset */
+#define RTC_GP3_REG_OFST               (0x4C)              /**< (RTC_GP3) General Purpose Offset */
 #define RTC_MODE2_ALARM0_REG_OFST      (0x20)              /**< (RTC_MODE2_ALARM0) MODE2_ALARM Alarm n Value Offset */
 #define RTC_MODE2_MASK0_REG_OFST       (0x24)              /**< (RTC_MODE2_MASK0) MODE2_ALARM Alarm n Mask Offset */
 #define RTC_MODE2_ALARM1_REG_OFST      (0x28)              /**< (RTC_MODE2_ALARM1) MODE2_ALARM Alarm n Value Offset */
@@ -1581,6 +1591,14 @@
 #define RTC_MODE2_TIMESTAMP_REG_OFST   (0x64)              /**< (RTC_MODE2_TIMESTAMP) MODE2 Timestamp Offset */
 #define RTC_TAMPID_REG_OFST            (0x68)              /**< (RTC_TAMPID) Tamper ID Offset */
 #define RTC_BKUP_REG_OFST              (0x80)              /**< (RTC_BKUP) Backup Offset */
+#define RTC_BKUP0_REG_OFST             (0x80)              /**< (RTC_BKUP0) Backup Offset */
+#define RTC_BKUP1_REG_OFST             (0x84)              /**< (RTC_BKUP1) Backup Offset */
+#define RTC_BKUP2_REG_OFST             (0x88)              /**< (RTC_BKUP2) Backup Offset */
+#define RTC_BKUP3_REG_OFST             (0x8C)              /**< (RTC_BKUP3) Backup Offset */
+#define RTC_BKUP4_REG_OFST             (0x90)              /**< (RTC_BKUP4) Backup Offset */
+#define RTC_BKUP5_REG_OFST             (0x94)              /**< (RTC_BKUP5) Backup Offset */
+#define RTC_BKUP6_REG_OFST             (0x98)              /**< (RTC_BKUP6) Backup Offset */
+#define RTC_BKUP7_REG_OFST             (0x9C)              /**< (RTC_BKUP7) Backup Offset */
 
 #if !(defined(__ASSEMBLER__) || defined(__IAR_SYSTEMS_ASM__))
 /** \brief RTC register API structure */

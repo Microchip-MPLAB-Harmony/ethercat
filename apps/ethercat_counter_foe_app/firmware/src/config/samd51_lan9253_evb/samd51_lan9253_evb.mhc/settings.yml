@@ -5,10 +5,10 @@ frameworkPath: ../../..
 processor: ATSAMD51J19A
 projectName: ''
 settings:
-  PackageFilter: aws_cloud;bootloader;bsp;core;crypto;csp;ethercat;net;usb;wireless;
+  PackageFilter: aws_cloud;bootloader;bsp;core;crypto;csp;ethercat;net;net;net;net;net;net;net;net;usb;wireless;
   FORCE_OPTIMIZATION: 'false'
   GENERATE_BACKUP: 'true'
   TRUSTZONE: 'false'
-  CMSISPath: .\dev_packs\arm\CMSIS\5.7.0
+  CMSISPath: .\dev_packs\arm\CMSIS\5.8.0
   MERGE_STRATEGY: ALL
-  DFPPath: .\dev_packs\Microchip\SAMD51_DFP\3.3.68\samd51a\atdf\ATSAMD51J19A.atdf
+  DFPPath: .\dev_packs\Microchip\SAMD51_DFP\3.4.91\samd51a\atdf\ATSAMD51J19A.atdf

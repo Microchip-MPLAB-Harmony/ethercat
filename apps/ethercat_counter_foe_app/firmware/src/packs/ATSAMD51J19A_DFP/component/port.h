@@ -1,7 +1,7 @@
 /**
  * \brief Component description for PORT
  *
- * Copyright (c) 2020 Microchip Technology Inc. and its subsidiaries.
+ * Copyright (c) 2021 Microchip Technology Inc. and its subsidiaries.
  *
  * Subject to your compliance with these terms, you may use Microchip software and any derivatives
  * exclusively with Microchip products. It is your responsibility to comply with third party license
@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2020-06-22T15:30:21Z */
+/* file generated from device description version 2020-11-23T12:27:44Z */
 #ifndef _SAMD51_PORT_COMPONENT_H_
 #define _SAMD51_PORT_COMPONENT_H_
 
@@ -207,9 +207,65 @@
 #define PORT_PMUX_PMUXE_Pos                   _U_(0)                                               /**< (PORT_PMUX) Peripheral Multiplexing for Even-Numbered Pin Position */
 #define PORT_PMUX_PMUXE_Msk                   (_U_(0xF) << PORT_PMUX_PMUXE_Pos)                    /**< (PORT_PMUX) Peripheral Multiplexing for Even-Numbered Pin Mask */
 #define PORT_PMUX_PMUXE(value)                (PORT_PMUX_PMUXE_Msk & ((value) << PORT_PMUX_PMUXE_Pos))
+#define   PORT_PMUX_PMUXE_A_Val               _U_(0x0)                                             /**< (PORT_PMUX) Peripheral function A selected  */
+#define   PORT_PMUX_PMUXE_B_Val               _U_(0x1)                                             /**< (PORT_PMUX) Peripheral function B selected  */
+#define   PORT_PMUX_PMUXE_C_Val               _U_(0x2)                                             /**< (PORT_PMUX) Peripheral function C selected  */
+#define   PORT_PMUX_PMUXE_D_Val               _U_(0x3)                                             /**< (PORT_PMUX) Peripheral function D selected  */
+#define   PORT_PMUX_PMUXE_E_Val               _U_(0x4)                                             /**< (PORT_PMUX) Peripheral function E selected  */
+#define   PORT_PMUX_PMUXE_F_Val               _U_(0x5)                                             /**< (PORT_PMUX) Peripheral function F selected  */
+#define   PORT_PMUX_PMUXE_G_Val               _U_(0x6)                                             /**< (PORT_PMUX) Peripheral function G selected  */
+#define   PORT_PMUX_PMUXE_H_Val               _U_(0x7)                                             /**< (PORT_PMUX) Peripheral function H selected  */
+#define   PORT_PMUX_PMUXE_I_Val               _U_(0x8)                                             /**< (PORT_PMUX) Peripheral function I selected  */
+#define   PORT_PMUX_PMUXE_J_Val               _U_(0x9)                                             /**< (PORT_PMUX) Peripheral function J selected  */
+#define   PORT_PMUX_PMUXE_K_Val               _U_(0xA)                                             /**< (PORT_PMUX) Peripheral function K selected  */
+#define   PORT_PMUX_PMUXE_L_Val               _U_(0xB)                                             /**< (PORT_PMUX) Peripheral function L selected  */
+#define   PORT_PMUX_PMUXE_M_Val               _U_(0xC)                                             /**< (PORT_PMUX) Peripheral function M selected  */
+#define   PORT_PMUX_PMUXE_N_Val               _U_(0xD)                                             /**< (PORT_PMUX) Peripheral function N selected  */
+#define PORT_PMUX_PMUXE_A                     (PORT_PMUX_PMUXE_A_Val << PORT_PMUX_PMUXE_Pos)       /**< (PORT_PMUX) Peripheral function A selected Position  */
+#define PORT_PMUX_PMUXE_B                     (PORT_PMUX_PMUXE_B_Val << PORT_PMUX_PMUXE_Pos)       /**< (PORT_PMUX) Peripheral function B selected Position  */
+#define PORT_PMUX_PMUXE_C                     (PORT_PMUX_PMUXE_C_Val << PORT_PMUX_PMUXE_Pos)       /**< (PORT_PMUX) Peripheral function C selected Position  */
+#define PORT_PMUX_PMUXE_D                     (PORT_PMUX_PMUXE_D_Val << PORT_PMUX_PMUXE_Pos)       /**< (PORT_PMUX) Peripheral function D selected Position  */
+#define PORT_PMUX_PMUXE_E                     (PORT_PMUX_PMUXE_E_Val << PORT_PMUX_PMUXE_Pos)       /**< (PORT_PMUX) Peripheral function E selected Position  */
+#define PORT_PMUX_PMUXE_F                     (PORT_PMUX_PMUXE_F_Val << PORT_PMUX_PMUXE_Pos)       /**< (PORT_PMUX) Peripheral function F selected Position  */
+#define PORT_PMUX_PMUXE_G                     (PORT_PMUX_PMUXE_G_Val << PORT_PMUX_PMUXE_Pos)       /**< (PORT_PMUX) Peripheral function G selected Position  */
+#define PORT_PMUX_PMUXE_H                     (PORT_PMUX_PMUXE_H_Val << PORT_PMUX_PMUXE_Pos)       /**< (PORT_PMUX) Peripheral function H selected Position  */
+#define PORT_PMUX_PMUXE_I                     (PORT_PMUX_PMUXE_I_Val << PORT_PMUX_PMUXE_Pos)       /**< (PORT_PMUX) Peripheral function I selected Position  */
+#define PORT_PMUX_PMUXE_J                     (PORT_PMUX_PMUXE_J_Val << PORT_PMUX_PMUXE_Pos)       /**< (PORT_PMUX) Peripheral function J selected Position  */
+#define PORT_PMUX_PMUXE_K                     (PORT_PMUX_PMUXE_K_Val << PORT_PMUX_PMUXE_Pos)       /**< (PORT_PMUX) Peripheral function K selected Position  */
+#define PORT_PMUX_PMUXE_L                     (PORT_PMUX_PMUXE_L_Val << PORT_PMUX_PMUXE_Pos)       /**< (PORT_PMUX) Peripheral function L selected Position  */
+#define PORT_PMUX_PMUXE_M                     (PORT_PMUX_PMUXE_M_Val << PORT_PMUX_PMUXE_Pos)       /**< (PORT_PMUX) Peripheral function M selected Position  */
+#define PORT_PMUX_PMUXE_N                     (PORT_PMUX_PMUXE_N_Val << PORT_PMUX_PMUXE_Pos)       /**< (PORT_PMUX) Peripheral function N selected Position  */
 #define PORT_PMUX_PMUXO_Pos                   _U_(4)                                               /**< (PORT_PMUX) Peripheral Multiplexing for Odd-Numbered Pin Position */
 #define PORT_PMUX_PMUXO_Msk                   (_U_(0xF) << PORT_PMUX_PMUXO_Pos)                    /**< (PORT_PMUX) Peripheral Multiplexing for Odd-Numbered Pin Mask */
 #define PORT_PMUX_PMUXO(value)                (PORT_PMUX_PMUXO_Msk & ((value) << PORT_PMUX_PMUXO_Pos))
+#define   PORT_PMUX_PMUXO_A_Val               _U_(0x0)                                             /**< (PORT_PMUX) Peripheral function A selected  */
+#define   PORT_PMUX_PMUXO_B_Val               _U_(0x1)                                             /**< (PORT_PMUX) Peripheral function B selected  */
+#define   PORT_PMUX_PMUXO_C_Val               _U_(0x2)                                             /**< (PORT_PMUX) Peripheral function C selected  */
+#define   PORT_PMUX_PMUXO_D_Val               _U_(0x3)                                             /**< (PORT_PMUX) Peripheral function D selected  */
+#define   PORT_PMUX_PMUXO_E_Val               _U_(0x4)                                             /**< (PORT_PMUX) Peripheral function E selected  */
+#define   PORT_PMUX_PMUXO_F_Val               _U_(0x5)                                             /**< (PORT_PMUX) Peripheral function F selected  */
+#define   PORT_PMUX_PMUXO_G_Val               _U_(0x6)                                             /**< (PORT_PMUX) Peripheral function G selected  */
+#define   PORT_PMUX_PMUXO_H_Val               _U_(0x7)                                             /**< (PORT_PMUX) Peripheral function H selected  */
+#define   PORT_PMUX_PMUXO_I_Val               _U_(0x8)                                             /**< (PORT_PMUX) Peripheral function I selected  */
+#define   PORT_PMUX_PMUXO_J_Val               _U_(0x9)                                             /**< (PORT_PMUX) Peripheral function J selected  */
+#define   PORT_PMUX_PMUXO_K_Val               _U_(0xA)                                             /**< (PORT_PMUX) Peripheral function K selected  */
+#define   PORT_PMUX_PMUXO_L_Val               _U_(0xB)                                             /**< (PORT_PMUX) Peripheral function L selected  */
+#define   PORT_PMUX_PMUXO_M_Val               _U_(0xC)                                             /**< (PORT_PMUX) Peripheral function M selected  */
+#define   PORT_PMUX_PMUXO_N_Val               _U_(0xD)                                             /**< (PORT_PMUX) Peripheral function N selected  */
+#define PORT_PMUX_PMUXO_A                     (PORT_PMUX_PMUXO_A_Val << PORT_PMUX_PMUXO_Pos)       /**< (PORT_PMUX) Peripheral function A selected Position  */
+#define PORT_PMUX_PMUXO_B                     (PORT_PMUX_PMUXO_B_Val << PORT_PMUX_PMUXO_Pos)       /**< (PORT_PMUX) Peripheral function B selected Position  */
+#define PORT_PMUX_PMUXO_C                     (PORT_PMUX_PMUXO_C_Val << PORT_PMUX_PMUXO_Pos)       /**< (PORT_PMUX) Peripheral function C selected Position  */
+#define PORT_PMUX_PMUXO_D                     (PORT_PMUX_PMUXO_D_Val << PORT_PMUX_PMUXO_Pos)       /**< (PORT_PMUX) Peripheral function D selected Position  */
+#define PORT_PMUX_PMUXO_E                     (PORT_PMUX_PMUXO_E_Val << PORT_PMUX_PMUXO_Pos)       /**< (PORT_PMUX) Peripheral function E selected Position  */
+#define PORT_PMUX_PMUXO_F                     (PORT_PMUX_PMUXO_F_Val << PORT_PMUX_PMUXO_Pos)       /**< (PORT_PMUX) Peripheral function F selected Position  */
+#define PORT_PMUX_PMUXO_G                     (PORT_PMUX_PMUXO_G_Val << PORT_PMUX_PMUXO_Pos)       /**< (PORT_PMUX) Peripheral function G selected Position  */
+#define PORT_PMUX_PMUXO_H                     (PORT_PMUX_PMUXO_H_Val << PORT_PMUX_PMUXO_Pos)       /**< (PORT_PMUX) Peripheral function H selected Position  */
+#define PORT_PMUX_PMUXO_I                     (PORT_PMUX_PMUXO_I_Val << PORT_PMUX_PMUXO_Pos)       /**< (PORT_PMUX) Peripheral function I selected Position  */
+#define PORT_PMUX_PMUXO_J                     (PORT_PMUX_PMUXO_J_Val << PORT_PMUX_PMUXO_Pos)       /**< (PORT_PMUX) Peripheral function J selected Position  */
+#define PORT_PMUX_PMUXO_K                     (PORT_PMUX_PMUXO_K_Val << PORT_PMUX_PMUXO_Pos)       /**< (PORT_PMUX) Peripheral function K selected Position  */
+#define PORT_PMUX_PMUXO_L                     (PORT_PMUX_PMUXO_L_Val << PORT_PMUX_PMUXO_Pos)       /**< (PORT_PMUX) Peripheral function L selected Position  */
+#define PORT_PMUX_PMUXO_M                     (PORT_PMUX_PMUXO_M_Val << PORT_PMUX_PMUXO_Pos)       /**< (PORT_PMUX) Peripheral function M selected Position  */
+#define PORT_PMUX_PMUXO_N                     (PORT_PMUX_PMUXO_N_Val << PORT_PMUX_PMUXO_Pos)       /**< (PORT_PMUX) Peripheral function N selected Position  */
 #define PORT_PMUX_Msk                         _U_(0xFF)                                            /**< (PORT_PMUX) Register Mask  */
 
 
@@ -245,7 +301,55 @@
 #define PORT_WRCONFIG_REG_OFST         (0x28)              /**< (PORT_WRCONFIG) Write Configuration Offset */
 #define PORT_EVCTRL_REG_OFST           (0x2C)              /**< (PORT_EVCTRL) Event Input Control Offset */
 #define PORT_PMUX_REG_OFST             (0x30)              /**< (PORT_PMUX) Peripheral Multiplexing Offset */
+#define PORT_PMUX0_REG_OFST            (0x30)              /**< (PORT_PMUX0) Peripheral Multiplexing Offset */
+#define PORT_PMUX1_REG_OFST            (0x31)              /**< (PORT_PMUX1) Peripheral Multiplexing Offset */
+#define PORT_PMUX2_REG_OFST            (0x32)              /**< (PORT_PMUX2) Peripheral Multiplexing Offset */
+#define PORT_PMUX3_REG_OFST            (0x33)              /**< (PORT_PMUX3) Peripheral Multiplexing Offset */
+#define PORT_PMUX4_REG_OFST            (0x34)              /**< (PORT_PMUX4) Peripheral Multiplexing Offset */
+#define PORT_PMUX5_REG_OFST            (0x35)              /**< (PORT_PMUX5) Peripheral Multiplexing Offset */
+#define PORT_PMUX6_REG_OFST            (0x36)              /**< (PORT_PMUX6) Peripheral Multiplexing Offset */
+#define PORT_PMUX7_REG_OFST            (0x37)              /**< (PORT_PMUX7) Peripheral Multiplexing Offset */
+#define PORT_PMUX8_REG_OFST            (0x38)              /**< (PORT_PMUX8) Peripheral Multiplexing Offset */
+#define PORT_PMUX9_REG_OFST            (0x39)              /**< (PORT_PMUX9) Peripheral Multiplexing Offset */
+#define PORT_PMUX10_REG_OFST           (0x3A)              /**< (PORT_PMUX10) Peripheral Multiplexing Offset */
+#define PORT_PMUX11_REG_OFST           (0x3B)              /**< (PORT_PMUX11) Peripheral Multiplexing Offset */
+#define PORT_PMUX12_REG_OFST           (0x3C)              /**< (PORT_PMUX12) Peripheral Multiplexing Offset */
+#define PORT_PMUX13_REG_OFST           (0x3D)              /**< (PORT_PMUX13) Peripheral Multiplexing Offset */
+#define PORT_PMUX14_REG_OFST           (0x3E)              /**< (PORT_PMUX14) Peripheral Multiplexing Offset */
+#define PORT_PMUX15_REG_OFST           (0x3F)              /**< (PORT_PMUX15) Peripheral Multiplexing Offset */
 #define PORT_PINCFG_REG_OFST           (0x40)              /**< (PORT_PINCFG) Pin Configuration Offset */
+#define PORT_PINCFG0_REG_OFST          (0x40)              /**< (PORT_PINCFG0) Pin Configuration Offset */
+#define PORT_PINCFG1_REG_OFST          (0x41)              /**< (PORT_PINCFG1) Pin Configuration Offset */
+#define PORT_PINCFG2_REG_OFST          (0x42)              /**< (PORT_PINCFG2) Pin Configuration Offset */
+#define PORT_PINCFG3_REG_OFST          (0x43)              /**< (PORT_PINCFG3) Pin Configuration Offset */
+#define PORT_PINCFG4_REG_OFST          (0x44)              /**< (PORT_PINCFG4) Pin Configuration Offset */
+#define PORT_PINCFG5_REG_OFST          (0x45)              /**< (PORT_PINCFG5) Pin Configuration Offset */
+#define PORT_PINCFG6_REG_OFST          (0x46)              /**< (PORT_PINCFG6) Pin Configuration Offset */
+#define PORT_PINCFG7_REG_OFST          (0x47)              /**< (PORT_PINCFG7) Pin Configuration Offset */
+#define PORT_PINCFG8_REG_OFST          (0x48)              /**< (PORT_PINCFG8) Pin Configuration Offset */
+#define PORT_PINCFG9_REG_OFST          (0x49)              /**< (PORT_PINCFG9) Pin Configuration Offset */
+#define PORT_PINCFG10_REG_OFST         (0x4A)              /**< (PORT_PINCFG10) Pin Configuration Offset */
+#define PORT_PINCFG11_REG_OFST         (0x4B)              /**< (PORT_PINCFG11) Pin Configuration Offset */
+#define PORT_PINCFG12_REG_OFST         (0x4C)              /**< (PORT_PINCFG12) Pin Configuration Offset */
+#define PORT_PINCFG13_REG_OFST         (0x4D)              /**< (PORT_PINCFG13) Pin Configuration Offset */
+#define PORT_PINCFG14_REG_OFST         (0x4E)              /**< (PORT_PINCFG14) Pin Configuration Offset */
+#define PORT_PINCFG15_REG_OFST         (0x4F)              /**< (PORT_PINCFG15) Pin Configuration Offset */
+#define PORT_PINCFG16_REG_OFST         (0x50)              /**< (PORT_PINCFG16) Pin Configuration Offset */
+#define PORT_PINCFG17_REG_OFST         (0x51)              /**< (PORT_PINCFG17) Pin Configuration Offset */
+#define PORT_PINCFG18_REG_OFST         (0x52)              /**< (PORT_PINCFG18) Pin Configuration Offset */
+#define PORT_PINCFG19_REG_OFST         (0x53)              /**< (PORT_PINCFG19) Pin Configuration Offset */
+#define PORT_PINCFG20_REG_OFST         (0x54)              /**< (PORT_PINCFG20) Pin Configuration Offset */
+#define PORT_PINCFG21_REG_OFST         (0x55)              /**< (PORT_PINCFG21) Pin Configuration Offset */
+#define PORT_PINCFG22_REG_OFST         (0x56)              /**< (PORT_PINCFG22) Pin Configuration Offset */
+#define PORT_PINCFG23_REG_OFST         (0x57)              /**< (PORT_PINCFG23) Pin Configuration Offset */
+#define PORT_PINCFG24_REG_OFST         (0x58)              /**< (PORT_PINCFG24) Pin Configuration Offset */
+#define PORT_PINCFG25_REG_OFST         (0x59)              /**< (PORT_PINCFG25) Pin Configuration Offset */
+#define PORT_PINCFG26_REG_OFST         (0x5A)              /**< (PORT_PINCFG26) Pin Configuration Offset */
+#define PORT_PINCFG27_REG_OFST         (0x5B)              /**< (PORT_PINCFG27) Pin Configuration Offset */
+#define PORT_PINCFG28_REG_OFST         (0x5C)              /**< (PORT_PINCFG28) Pin Configuration Offset */
+#define PORT_PINCFG29_REG_OFST         (0x5D)              /**< (PORT_PINCFG29) Pin Configuration Offset */
+#define PORT_PINCFG30_REG_OFST         (0x5E)              /**< (PORT_PINCFG30) Pin Configuration Offset */
+#define PORT_PINCFG31_REG_OFST         (0x5F)              /**< (PORT_PINCFG31) Pin Configuration Offset */
 
 #if !(defined(__ASSEMBLER__) || defined(__IAR_SYSTEMS_ASM__))
 /** \brief GROUP register API structure */

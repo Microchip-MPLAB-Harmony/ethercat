@@ -82,12 +82,12 @@
 #define PRAM_SPACE_AVBL_COUNT_MASK          0x1f
 #define IS_PRAM_SPACE_AVBL_MASK             0x01
 
-#define CSR_DATA_REG ECAT_REG_BASE_ADDR + CSR_DATA_REG_OFFSET
-#define CSR_CMD_REG ECAT_REG_BASE_ADDR + CSR_CMD_REG_OFFSET
-#define PRAM_READ_ADDR_LEN_REG ECAT_REG_BASE_ADDR + PRAM_READ_ADDR_LEN_OFFSET
-#define PRAM_READ_CMD_REG ECAT_REG_BASE_ADDR + PRAM_READ_CMD_OFFSET
-#define PRAM_WRITE_ADDR_LEN_REG ECAT_REG_BASE_ADDR + PRAM_WRITE_ADDR_LEN_OFFSET
-#define PRAM_WRITE_CMD_REG ECAT_REG_BASE_ADDR + PRAM_WRITE_CMD_OFFSET
+#define CSR_DATA_REG                        ECAT_REG_BASE_ADDR + CSR_DATA_REG_OFFSET
+#define CSR_CMD_REG                         ECAT_REG_BASE_ADDR + CSR_CMD_REG_OFFSET
+#define PRAM_READ_ADDR_LEN_REG              ECAT_REG_BASE_ADDR + PRAM_READ_ADDR_LEN_OFFSET
+#define PRAM_READ_CMD_REG                   ECAT_REG_BASE_ADDR + PRAM_READ_CMD_OFFSET
+#define PRAM_WRITE_ADDR_LEN_REG             ECAT_REG_BASE_ADDR + PRAM_WRITE_ADDR_LEN_OFFSET
+#define PRAM_WRITE_CMD_REG                  ECAT_REG_BASE_ADDR + PRAM_WRITE_CMD_OFFSET
 
 #define PRAM_READ_FIFO_REG                  0x04
 #define PRAM_WRITE_FIFO_REG                 0x20
@@ -109,25 +109,25 @@
 #define PRAM_SET_WRITE                      0
 
 /* Hardware timer settings */
-#define ECAT_TIMER_INC_P_MS			312 /**< \brief 312 ticks per ms*/
+#define ECAT_TIMER_INC_P_MS                 312 /**< \brief 312 ticks per ms*/
 
 /* Interrupt and Timer DEFINES */
 #define PDI_Restore_Global_Interrupt()		MCHP_ESF_CRITICAL_SECTION_LEAVE()
 #define PDI_Disable_Global_Interrupt()		MCHP_ESF_CRITICAL_SECTION_ENTER()
 
 #ifndef DISABLE_ESC_INT
-#define DISABLE_ESC_INT() PDI_Disable_Global_Interrupt()
+#define DISABLE_ESC_INT()                   PDI_Disable_Global_Interrupt()
 #endif
 #ifndef ENABLE_ESC_INT
-#define ENABLE_ESC_INT() PDI_Restore_Global_Interrupt()
+#define ENABLE_ESC_INT()                    PDI_Restore_Global_Interrupt()
 #endif
 
 #ifndef HW_GetTimer
-#define HW_GetTimer() (MCHP_ESF_PDI_GET_TIMER()) /**< \brief Access to the hardware timer*/
+#define HW_GetTimer()                       (MCHP_ESF_PDI_GET_TIMER()) /**< \brief Access to the hardware timer*/
 #endif
 
 #ifndef HW_ClearTimer
-#define HW_ClearTimer() (MCHP_ESF_PDI_CLR_TIMER()) /**< \brief Clear the hardware timer*/
+#define HW_ClearTimer()                     (MCHP_ESF_PDI_CLR_TIMER()) /**< \brief Clear the hardware timer*/
 #endif
 
 
@@ -135,13 +135,14 @@ typedef union
 {
 	uint8_t    Byte[2];
 	uint16_t   Word;
-}
-UALEVENT;
+}UALEVENT;
 
 /* Contains the content of the ALEvent register (0x220), this variable is updated on each Access to the 9253 ESC 
    using SPI PDI*/
-UALEVENT         EscALEvent; 
+extern UALEVENT         gEscALEvent; 
 
+
+extern uint8_t gau8DummyCntArr[SETCFG_MAX_DATA_BYTES];
 
 #define AL_EVENT_ENABLE 0x04
 
@@ -198,10 +199,10 @@ UALEVENT         EscALEvent;
 PROTO volatile unsigned int restore_intsts;
 
 /* Global variable to indicate if AL Event register output is enabled or not */ 
-extern BOOL gbALEvtOpEnabled;
+extern bool gbALEvtOpEnabled;
 
 /* Global functions prototype */
-PROTO UINT8 LAN9253_Init(void);
+PROTO uint8_t LAN9253_Init(void);
 PROTO void  HW_Release(void);
 
 PROTO UINT16 HW_GetALEventRegister(void);
@@ -216,10 +217,10 @@ PROTO void HW_EscReadIsr(MEM_ADDR *pData, UINT16 Address, UINT16 Len);
 PROTO void HW_EscWrite(MEM_ADDR *pData, UINT16 Address, UINT16 Len);
 PROTO void HW_EscWriteIsr(MEM_ADDR *pData, UINT16 Address, UINT16 Len);
 
-PROTO void HW_DisableSyncManChannel(UINT8 channel);
-PROTO void HW_EnableSyncManChannel(UINT8 channel);
-PROTO TSYNCMAN ESCMEM *HW_GetSyncMan(UINT8 channel);
-PROTO void HW_SetLed(UINT8 RunLed, UINT8 ErrLed);
+PROTO void HW_DisableSyncManChannel(uint8_t channel);
+PROTO void HW_EnableSyncManChannel(uint8_t channel);
+PROTO TSYNCMAN ESCMEM *HW_GetSyncMan(uint8_t channel);
+PROTO void HW_SetLed(uint8_t RunLed, uint8_t ErrLed);
 
 PROTO UINT16 PDI_GetTimer();
 PROTO void   PDI_ClearTimer();

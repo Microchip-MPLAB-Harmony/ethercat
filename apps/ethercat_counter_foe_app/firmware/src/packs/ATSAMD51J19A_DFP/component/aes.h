@@ -1,7 +1,7 @@
 /**
  * \brief Component description for AES
  *
- * Copyright (c) 2020 Microchip Technology Inc. and its subsidiaries.
+ * Copyright (c) 2021 Microchip Technology Inc. and its subsidiaries.
  *
  * Subject to your compliance with these terms, you may use Microchip software and any derivatives
  * exclusively with Microchip products. It is your responsibility to comply with third party license
@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2020-06-22T15:30:21Z */
+/* file generated from device description version 2020-11-23T12:27:44Z */
 #ifndef _SAMD51_AES_COMPONENT_H_
 #define _SAMD51_AES_COMPONENT_H_
 
@@ -240,10 +240,30 @@
 #define AES_DATABUFPTR_REG_OFST        (0x08)              /**< (AES_DATABUFPTR) Data buffer pointer Offset */
 #define AES_DBGCTRL_REG_OFST           (0x09)              /**< (AES_DBGCTRL) Debug control Offset */
 #define AES_KEYWORD_REG_OFST           (0x0C)              /**< (AES_KEYWORD) Keyword n Offset */
+#define AES_KEYWORD0_REG_OFST          (0x0C)              /**< (AES_KEYWORD0) Keyword n Offset */
+#define AES_KEYWORD1_REG_OFST          (0x10)              /**< (AES_KEYWORD1) Keyword n Offset */
+#define AES_KEYWORD2_REG_OFST          (0x14)              /**< (AES_KEYWORD2) Keyword n Offset */
+#define AES_KEYWORD3_REG_OFST          (0x18)              /**< (AES_KEYWORD3) Keyword n Offset */
+#define AES_KEYWORD4_REG_OFST          (0x1C)              /**< (AES_KEYWORD4) Keyword n Offset */
+#define AES_KEYWORD5_REG_OFST          (0x20)              /**< (AES_KEYWORD5) Keyword n Offset */
+#define AES_KEYWORD6_REG_OFST          (0x24)              /**< (AES_KEYWORD6) Keyword n Offset */
+#define AES_KEYWORD7_REG_OFST          (0x28)              /**< (AES_KEYWORD7) Keyword n Offset */
 #define AES_INDATA_REG_OFST            (0x38)              /**< (AES_INDATA) Indata Offset */
 #define AES_INTVECTV_REG_OFST          (0x3C)              /**< (AES_INTVECTV) Initialisation Vector n Offset */
+#define AES_INTVECTV0_REG_OFST         (0x3C)              /**< (AES_INTVECTV0) Initialisation Vector n Offset */
+#define AES_INTVECTV1_REG_OFST         (0x40)              /**< (AES_INTVECTV1) Initialisation Vector n Offset */
+#define AES_INTVECTV2_REG_OFST         (0x44)              /**< (AES_INTVECTV2) Initialisation Vector n Offset */
+#define AES_INTVECTV3_REG_OFST         (0x48)              /**< (AES_INTVECTV3) Initialisation Vector n Offset */
 #define AES_HASHKEY_REG_OFST           (0x5C)              /**< (AES_HASHKEY) Hash key n Offset */
+#define AES_HASHKEY0_REG_OFST          (0x5C)              /**< (AES_HASHKEY0) Hash key n Offset */
+#define AES_HASHKEY1_REG_OFST          (0x60)              /**< (AES_HASHKEY1) Hash key n Offset */
+#define AES_HASHKEY2_REG_OFST          (0x64)              /**< (AES_HASHKEY2) Hash key n Offset */
+#define AES_HASHKEY3_REG_OFST          (0x68)              /**< (AES_HASHKEY3) Hash key n Offset */
 #define AES_GHASH_REG_OFST             (0x6C)              /**< (AES_GHASH) Galois Hash n Offset */
+#define AES_GHASH0_REG_OFST            (0x6C)              /**< (AES_GHASH0) Galois Hash n Offset */
+#define AES_GHASH1_REG_OFST            (0x70)              /**< (AES_GHASH1) Galois Hash n Offset */
+#define AES_GHASH2_REG_OFST            (0x74)              /**< (AES_GHASH2) Galois Hash n Offset */
+#define AES_GHASH3_REG_OFST            (0x78)              /**< (AES_GHASH3) Galois Hash n Offset */
 #define AES_CIPLEN_REG_OFST            (0x80)              /**< (AES_CIPLEN) Cipher Length Offset */
 #define AES_RANDSEED_REG_OFST          (0x84)              /**< (AES_RANDSEED) Random Seed Offset */
 

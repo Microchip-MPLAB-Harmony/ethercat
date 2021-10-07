@@ -1,7 +1,7 @@
 /**
  * \brief Component description for OSC32KCTRL
  *
- * Copyright (c) 2020 Microchip Technology Inc. and its subsidiaries.
+ * Copyright (c) 2021 Microchip Technology Inc. and its subsidiaries.
  *
  * Subject to your compliance with these terms, you may use Microchip software and any derivatives
  * exclusively with Microchip products. It is your responsibility to comply with third party license
@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2020-06-22T15:30:21Z */
+/* file generated from device description version 2020-11-23T12:27:44Z */
 #ifndef _SAMD51_OSC32KCTRL_COMPONENT_H_
 #define _SAMD51_OSC32KCTRL_COMPONENT_H_
 
@@ -180,13 +180,10 @@
 #define OSC32KCTRL_OSCULP32K_EN1K_Pos         _U_(2)                                               /**< (OSC32KCTRL_OSCULP32K) Enable Out 1k Position */
 #define OSC32KCTRL_OSCULP32K_EN1K_Msk         (_U_(0x1) << OSC32KCTRL_OSCULP32K_EN1K_Pos)          /**< (OSC32KCTRL_OSCULP32K) Enable Out 1k Mask */
 #define OSC32KCTRL_OSCULP32K_EN1K(value)      (OSC32KCTRL_OSCULP32K_EN1K_Msk & ((value) << OSC32KCTRL_OSCULP32K_EN1K_Pos))
-#define OSC32KCTRL_OSCULP32K_CALIB_Pos        _U_(8)                                               /**< (OSC32KCTRL_OSCULP32K) Oscillator Calibration Position */
-#define OSC32KCTRL_OSCULP32K_CALIB_Msk        (_U_(0x3F) << OSC32KCTRL_OSCULP32K_CALIB_Pos)        /**< (OSC32KCTRL_OSCULP32K) Oscillator Calibration Mask */
-#define OSC32KCTRL_OSCULP32K_CALIB(value)     (OSC32KCTRL_OSCULP32K_CALIB_Msk & ((value) << OSC32KCTRL_OSCULP32K_CALIB_Pos))
 #define OSC32KCTRL_OSCULP32K_WRTLOCK_Pos      _U_(15)                                              /**< (OSC32KCTRL_OSCULP32K) Write Lock Position */
 #define OSC32KCTRL_OSCULP32K_WRTLOCK_Msk      (_U_(0x1) << OSC32KCTRL_OSCULP32K_WRTLOCK_Pos)       /**< (OSC32KCTRL_OSCULP32K) Write Lock Mask */
 #define OSC32KCTRL_OSCULP32K_WRTLOCK(value)   (OSC32KCTRL_OSCULP32K_WRTLOCK_Msk & ((value) << OSC32KCTRL_OSCULP32K_WRTLOCK_Pos))
-#define OSC32KCTRL_OSCULP32K_Msk              _U_(0x0000BF06)                                      /**< (OSC32KCTRL_OSCULP32K) Register Mask  */
+#define OSC32KCTRL_OSCULP32K_Msk              _U_(0x00008006)                                      /**< (OSC32KCTRL_OSCULP32K) Register Mask  */
 
 
 /** \brief OSC32KCTRL register offsets definitions */

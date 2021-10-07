@@ -29,7 +29,13 @@ global lan9253Sync0Pin
 global lan9253Sync1Pin
 global lan9253IrqPin
 
-ETHERCAT_DRV_LAN9253_MODE_ACCESS_TYPE = ["ETHERCAT_SPI_INDIRECT_MODE_ACCESS", "ETHERCAT_SPI_DIRECT_MODE_ACCESS", "ETHERCAT_SPI_BECKHOFF_MODE_ACCESS"]
+ETHERCAT_DRV_LAN9253_SPI_MODE_ACCESS_TYPE = ["ETHERCAT_SPI_INDIRECT_MODE_ACCESS", "ETHERCAT_SPI_DIRECT_MODE_ACCESS", "ETHERCAT_SPI_BECKHOFF_MODE_ACCESS"]
+
+ETHERCAT_DRV_LAN9253_SQI_MODE_ACCESS_TYPE = ["ETHERCAT_SQI_INDIRECT_MODE_ACCESS", "ETHERCAT_SQI_DIRECT_MODE_ACCESS"]
+
+
+lan9253ChipSelect      = ["Chip Select 0", "Chip Select 1"]
+lan9253ProtocolUsed    = ["SQI", "SPI"]
 
 
 def handleMessage(messageID, args):
@@ -52,7 +58,7 @@ def sort_alphanumeric(l):
 
 def instantiateComponent(ethercatlan9253Component):
 		
-	print("Ethercat LAN 9252 Driver Component")
+	print("Ethercat LAN 9253 Driver Component")
 	configName = Variables.get("__CONFIGURATION_NAME")
 	
 	lan9253PLIBUse = ethercatlan9253Component.createBooleanSymbol("DRV_LAN9253_USE", None)
@@ -65,9 +71,14 @@ def instantiateComponent(ethercatlan9253Component):
 	lan9253SPIPLIB.setLabel("PLIB Used")
 	lan9253SPIPLIB.setReadOnly(True)
 	lan9253SPIPLIB.setVisible(False)
+	
+	lan9253Protocol = ethercatlan9253Component.createComboSymbol("DRV_LAN9253_PROTOCOL", None, lan9253ProtocolUsed)
+	lan9253Protocol.setLabel("Communication Protocol Used")
+	lan9253Protocol.setVisible(False)
+	lan9253Protocol.setDefaultValue("SQI")
 
 	lan9253TimerPLIB = ethercatlan9253Component.createStringSymbol("DRV_LAN9253_TIMER_PLIB", None)
-	lan9253TimerPLIB.setLabel("PLIB Used")
+	lan9253TimerPLIB.setLabel("Timer PLIB Used")
 	lan9253TimerPLIB.setReadOnly(True)
 	lan9253TimerPLIB.setVisible(False)
 	
@@ -137,6 +148,7 @@ def instantiateComponent(ethercatlan9253Component):
 	lan9253ChipSelectPin.setLabel("SPI Chip Select Pin")
 	lan9253ChipSelectPin.setOutputMode("Key")
 	lan9253ChipSelectPin.setDisplayMode("Description")
+	lan9253ChipSelectPin.setVisible(False)
 	
 	# lan9253 Driver Error Select pin
 	lan9253ErrorSelectPin = ethercatlan9253Component.createKeyValueSetSymbol("DRV_LAN9253_ERROR_SELECT_PIN", None)
@@ -144,12 +156,17 @@ def instantiateComponent(ethercatlan9253Component):
 	lan9253ErrorSelectPin.setOutputMode("Key")
 	lan9253ErrorSelectPin.setDisplayMode("Description")
 	
-	lan9253SPIModeAccessType = ethercatlan9253Component.createComboSymbol("DRV_LAN9253_SPI_MODE_ACCESS_TYPE", None, ETHERCAT_DRV_LAN9253_MODE_ACCESS_TYPE)
+	lan9253SPIModeAccessType = ethercatlan9253Component.createComboSymbol("DRV_LAN9253_SPI_MODE_ACCESS_TYPE", None, ETHERCAT_DRV_LAN9253_SPI_MODE_ACCESS_TYPE)
 	lan9253SPIModeAccessType.setLabel("Driver SPI Mode Access Type")
-	lan9253SPIModeAccessType.setVisible(True)
+	lan9253SPIModeAccessType.setVisible(False)
 	lan9253SPIModeAccessType.setDescription("Select Ethercat Driver Mode Access Type")
 	lan9253SPIModeAccessType.setDefaultValue("ETHERCAT_SPI_INDIRECT_MODE_ACCESS") 
 	
+	lan9253SQIModeAccessType = ethercatlan9253Component.createComboSymbol("DRV_LAN9253_SQI_MODE_ACCESS_TYPE", None, ETHERCAT_DRV_LAN9253_SQI_MODE_ACCESS_TYPE)
+	lan9253SQIModeAccessType.setLabel("Driver SQI Mode Access Type")
+	lan9253SQIModeAccessType.setVisible(False)
+	lan9253SQIModeAccessType.setDescription("Select Ethercat Driver SQI Mode Access Type")
+	lan9253SQIModeAccessType.setDefaultValue("ETHERCAT_SQI_INDIRECT_MODE_ACCESS") 
 	
 
 	# Send message to core to get available pins
@@ -225,30 +242,31 @@ def instantiateComponent(ethercatlan9253Component):
 	
 	# file driver/lan9253/drv_lan9253_definitions.h to config/<configName>/driver/lan9253/drv_lan9253_definitions.h 
 	lan9253DefinitionHeaderFile = ethercatlan9253Component.createFileSymbol("DRV_LAN9253_DEF", None)
-	lan9253DefinitionHeaderFile.setSourcePath("driver/lan9253/drv_lan9253_definitions.h")
+	lan9253DefinitionHeaderFile.setSourcePath("driver/lan9253/templates/drv_lan9253_definitions.h.ftl")
 	lan9253DefinitionHeaderFile.setOutputName("drv_lan9253_definitions.h")
 	lan9253DefinitionHeaderFile.setDestPath("driver/lan9253")
 	lan9253DefinitionHeaderFile.setProjectPath("config/" + configName + "/driver/lan9253/")
 	lan9253DefinitionHeaderFile.setType("HEADER")
 	lan9253DefinitionHeaderFile.setOverwrite(True)
-	
+	lan9253DefinitionHeaderFile.setEnabled(True)
+	lan9253DefinitionHeaderFile.setMarkup(True)
 	
 	lan9253SystemDefFile = ethercatlan9253Component.createFileSymbol("LAN9253_DEF", None)
 	lan9253SystemDefFile.setType("STRING")
 	lan9253SystemDefFile.setOutputName("core.LIST_SYSTEM_DEFINITIONS_H_INCLUDES")
-	lan9253SystemDefFile.setSourcePath("driver/lan9253/templates/definitions.h.ftl")
+	lan9253SystemDefFile.setSourcePath("driver/lan9253/templates/system/definitions.h.ftl")
 	lan9253SystemDefFile.setMarkup(True)
 	
 	lan9253SymSystemInitDataFile = ethercatlan9253Component.createFileSymbol("DRV_LAN9253_INIT_DATA", None)
 	lan9253SymSystemInitDataFile.setType("STRING")
 	lan9253SymSystemInitDataFile.setOutputName("core.LIST_SYSTEM_INIT_C_DRIVER_INITIALIZATION_DATA")
-	lan9253SymSystemInitDataFile.setSourcePath("driver/lan9253/templates/initialize_data.c.ftl")
+	lan9253SymSystemInitDataFile.setSourcePath("driver/lan9253/templates/system/initialize_data.c.ftl")
 	lan9253SymSystemInitDataFile.setMarkup(True)
 	
 	lan9253SystemInitFile = ethercatlan9253Component.createFileSymbol("LAN9253_INIT", None)
 	lan9253SystemInitFile.setType("STRING")
 	lan9253SystemInitFile.setOutputName("core.LIST_SYSTEM_INIT_C_SYS_INITIALIZE_DRIVERS")
-	lan9253SystemInitFile.setSourcePath("driver/lan9253/templates/initialize.c.ftl")
+	lan9253SystemInitFile.setSourcePath("driver/lan9253/templates/system/initialize.c.ftl")
 	lan9253SystemInitFile.setMarkup(True)
 	
 	# set driver/lan9253 include paths
@@ -262,7 +280,7 @@ def instantiateComponent(ethercatlan9253Component):
 	
 	# driver/lan9253/drv_lan9253_ecat_util.h to lan9253 driver path
 	lan9253ecatUtilHeaderFile = ethercatlan9253Component.createFileSymbol(None, None)
-	lan9253ecatUtilHeaderFile.setSourcePath("driver/lan9253/templates/drv_lan9253_ecat_util.h.ftl")
+	lan9253ecatUtilHeaderFile.setSourcePath("driver/lan9253/templates/system/drv_lan9253_ecat_util.h.ftl")
 	lan9253ecatUtilHeaderFile.setOutputName("drv_lan9253_ecat_util.h")
 	lan9253ecatUtilHeaderFile.setDestPath("driver/lan9253/")
 	lan9253ecatUtilHeaderFile.setProjectPath("config/" + configName + "/driver/lan9253/")
@@ -273,7 +291,7 @@ def instantiateComponent(ethercatlan9253Component):
 	
 	# file driver/lan9253/drv_lan9253_ecat_util.c to the lan9253 driver path
 	lan9253ecatUtilSourceFile = ethercatlan9253Component.createFileSymbol(None, None)
-	lan9253ecatUtilSourceFile.setSourcePath("driver/lan9253/templates/drv_lan9253_ecat_util.c.ftl")
+	lan9253ecatUtilSourceFile.setSourcePath("driver/lan9253/templates/system/drv_lan9253_ecat_util.c.ftl")
 	lan9253ecatUtilSourceFile.setOutputName("drv_lan9253_ecat_util.c")
 	lan9253ecatUtilSourceFile.setOverwrite(True)
 	lan9253ecatUtilSourceFile.setDestPath("driver/lan9253/")
@@ -282,25 +300,60 @@ def instantiateComponent(ethercatlan9253Component):
 	lan9253ecatUtilSourceFile.setEnabled(True)
 	lan9253ecatUtilSourceFile.setMarkup(True)
 	
+		
 def onAttachmentConnected(source, target):
 
 	localComponent = source["component"]
 	remoteComponent = target["component"]
 	remoteID = remoteComponent.getID()
 	connectID = source["id"]
-
+	
+	lan9253PlibId = remoteID.upper()
+			
 	if connectID == "LAN9253_SPI_Dependency":
+		localComponent.getSymbolByID("DRV_LAN9253_PROTOCOL").setValue("SPI")
 		plibUsed = localComponent.getSymbolByID("DRV_LAN9253_PLIB")
 		plibUsed.clearValue()
-		lan9253PlibId = remoteID.upper()
+		
 		plibUsed.setValue(lan9253PlibId.upper())
+		plibUsed.setVisible(True)
+		print("Remote SPI PLIB connected: " + lan9253PlibId)
 		
-	if (connectID == "LAN9253_TMR_Dependency"):
-		plibUsed = localComponent.getSymbolByID("DRV_LAN9253_TIMER_PLIB")
+		localComponent.getSymbolByID("DRV_LAN9253_SPI_MODE_ACCESS_TYPE").setVisible(True)
+		localComponent.getSymbolByID("DRV_LAN9253_CHIP_SELECT_PIN").setVisible(True)
+		
+		localComponent.getSymbolByID("DRV_LAN9253_SQI_MODE_ACCESS_TYPE").setVisible(False)
+		
+		localComponent.setDependencyEnabled("LAN9253_SQI_Dependency", False)
+		
+		localComponent.setDependencyEnabled("LAN9253_SPI_Dependency", True)
+
+		
+	if connectID == "LAN9253_SQI_Dependency":
+		localComponent.getSymbolByID("DRV_LAN9253_PROTOCOL").setValue("SQI")
+		plibUsed = localComponent.getSymbolByID("DRV_LAN9253_PLIB")
 		plibUsed.clearValue()
-		lan9253PlibId = remoteID.upper()
-		plibUsed.setValue(lan9253PlibId)
+		print("Remote SQI PLIB connected: " + lan9253PlibId)
+		plibUsed.setValue(lan9253PlibId.upper())
+		plibUsed.setVisible(True)
 		
+		localComponent.getSymbolByID("DRV_LAN9253_SPI_MODE_ACCESS_TYPE").setVisible(False)
+		localComponent.getSymbolByID("DRV_LAN9253_CHIP_SELECT_PIN").setVisible(False)
+		
+		localComponent.getSymbolByID("DRV_LAN9253_SQI_MODE_ACCESS_TYPE").setVisible(True)
+		
+		localComponent.setDependencyEnabled("LAN9253_SQI_Dependency", True)
+		
+		localComponent.setDependencyEnabled("LAN9253_SPI_Dependency", False)
+	
+		
+	
+	if connectID == "LAN9253_TMR_Dependency":
+		timerPlibUsed = localComponent.getSymbolByID("DRV_LAN9253_TIMER_PLIB")
+		timerPlibUsed.clearValue()
+		lan9253PlibId = remoteID.upper()
+		timerPlibUsed.setValue(lan9253PlibId)
+
 		
 def onAttachmentDisconnected(source, target):
 
@@ -319,8 +372,29 @@ def onAttachmentDisconnected(source, target):
 		dummyDict = Database.sendMessage(remoteID, "SPI_MASTER_INTERRUPT_MODE", {"isReadOnly":False})
 		dummyDict = Database.sendMessage(remoteID, "SPI_MASTER_HARDWARE_CS", {"isReadOnly":False})
 		
-	if (connectID == "LAN9253_TMR_Dependency"):
-		plibUsed = localComponent.getSymbolByID("DRV_lan9253_TIMER_PLIB")
+		localComponent.setDependencyEnabled("LAN9253_SQI_Dependency", True)
+		
+		localComponent.setDependencyEnabled("LAN9253_SPI_Dependency", True)
+		
+		localComponent.getSymbolByID("DRV_LAN9253_SPI_MODE_ACCESS_TYPE").setVisible(False)
+		localComponent.getSymbolByID("DRV_LAN9253_CHIP_SELECT_PIN").setVisible(False)
+		
+		localComponent.getSymbolByID("DRV_LAN9253_SQI_MODE_ACCESS_TYPE").setVisible(False)
+		
+	if connectID == "LAN9253_SQI_Dependency":
+		plibUsed = localComponent.getSymbolByID("DRV_LAN9253_PLIB")
 		plibUsed.clearValue()
-
+		
+		localComponent.setDependencyEnabled("LAN9253_SQI_Dependency", True)
+		
+		localComponent.setDependencyEnabled("LAN9253_SPI_Dependency", True)
+		
+		localComponent.getSymbolByID("DRV_LAN9253_SPI_MODE_ACCESS_TYPE").setVisible(False)
+		localComponent.getSymbolByID("DRV_LAN9253_CHIP_SELECT_PIN").setVisible(False)
+		
+		localComponent.getSymbolByID("DRV_LAN9253_SQI_MODE_ACCESS_TYPE").setVisible(False)	
+		
+	if connectID == "LAN9253_TMR_Dependency":
+		timerPlibUsed = localComponent.getSymbolByID("DRV_LAN9253_TIMER_PLIB")
+		timerPlibUsed.clearValue()
 		

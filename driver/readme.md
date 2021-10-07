@@ -19,6 +19,7 @@ EtherCAT LAN925x Client device software utility framework is a layered software 
     |:---------------------------:|:-------------------------:|
     | [LAN9252 EtherCAT Framework](docs/readme_drvlan9252.md)   |    This Framework implements a EtherCAT Client Controller Interface layer for the LAN9252 device    |
     | [LAN9253 EtherCAT Framework](docs/readme_drvlan9253.md)   |     This Framework implements a EtherCAT Client Controller Interface layer for the LAN9253 device     |
+    | [LAN9255 EtherCAT Framework](docs/readme_drvlan9255.md)   |     This Framework implements a EtherCAT Client Controller Interface layer for the LAN9255 device     |
 
 Ethernet for Control Automation Technology (EtherCAT) was developed by Beckhoff. EtherCAT is a fast and deterministic network. It processes data using dedicated hardware and software. It is based on a full duplex, manager(TwinCAT Manager)-client(LAN925x Client) configuration.
 
@@ -57,7 +58,7 @@ Use of the Microchip EVB-LAN925x (and similar EtherCAT interface devices) requir
 
 * **Using the Library**
 
-    This section provides details about the File Over EtherCAT (FoE) protocol implementation in this library.
+    This section provides details about the File Over EtherCAT (FoE) protocol and EEPROM Emulation Configuration in this library.
 
     The below flowchart depicts the Host/Client interaction during a Firmware Update operation. The microcontroller Flash Dual Bank feature enables a firmware to execute from one bank while the other Flash bank is programmed with a Firmware Update. The APP_BankSwitch() application function is called to swap the banks and to reset the device when the programming is complete.
 
@@ -80,3 +81,9 @@ Use of the Microchip EVB-LAN925x (and similar EtherCAT interface devices) requir
     SSC tool FoE configuration -
 
     ![library usage](docs/images/SSCtool_FoE_configuration.png)
+
+    * For SSC tool EEPROM emulation ,select Hardware in Slave Project Navigation Window and make sure ESC_EEPROM_SIZE is 0x800, ESC_EEPROM_EMULATION is 1 & CREATE_EEPROM_CONTENT is 0.
+
+    SSC tool EEPROM Configuration -
+
+    ![library usage](docs/images/ethercat_eeprom_emulation_configuration.png)

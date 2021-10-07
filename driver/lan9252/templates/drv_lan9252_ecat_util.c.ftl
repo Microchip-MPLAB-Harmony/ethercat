@@ -593,8 +593,8 @@ Summary:
 	This function set the Error LED if it is required.
 
 Description:
-	LAN9253 doesn't support Run LED. So this feature has to be enabled by PDI SOC if it is needed.
-	LAN9253 supports error LED.
+	LAN9252 doesn't support Run LED. So this feature has to be enabled by PDI SOC if it is needed.
+	LAN9252 supports error LED.
 
 Parameters:
     RunLed	- It is not used. This will be set by LAN9253.

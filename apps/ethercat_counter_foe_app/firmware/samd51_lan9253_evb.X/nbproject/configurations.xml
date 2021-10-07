@@ -37,6 +37,7 @@
             </logicalFolder>
             <logicalFolder name="f2" displayName="qspi" projectFiles="true">
               <itemPath>../src/config/samd51_lan9253_evb/peripheral/qspi/plib_qspi_common.h</itemPath>
+              <itemPath>../src/config/samd51_lan9253_evb/peripheral/qspi/plib_qspi.h</itemPath>
               <itemPath>../src/config/samd51_lan9253_evb/peripheral/qspi/plib_qspi_spi.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f9" displayName="tc" projectFiles="true">
@@ -49,6 +50,8 @@
           <itemPath>../src/config/samd51_lan9253_evb/toolchain_specifics.h</itemPath>
           <itemPath>../src/config/samd51_lan9253_evb/definitions.h</itemPath>
           <itemPath>../src/config/samd51_lan9253_evb/device.h</itemPath>
+          <itemPath>../src/config/samd51_lan9253_evb/interrupts.h</itemPath>
+          <itemPath>../src/config/samd51_lan9253_evb/device_vectors.h</itemPath>
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="f3" displayName="packs" projectFiles="true">
@@ -92,10 +95,68 @@
             <itemPath>../src/packs/ATSAMD51J19A_DFP/component/usb.h</itemPath>
             <itemPath>../src/packs/ATSAMD51J19A_DFP/component/wdt.h</itemPath>
           </logicalFolder>
+          <logicalFolder name="f3" displayName="instance" projectFiles="true">
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/ac.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/adc0.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/adc1.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/aes.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/ccl.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/cmcc.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/dac.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/dmac.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/dsu.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/eic.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/evsys.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/freqm.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/gclk.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/hmatrix.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/i2s.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/icm.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/mclk.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/nvmctrl.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/osc32kctrl.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/oscctrl.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/pac.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/pcc.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/pdec.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/pm.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/port.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/qspi.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/ramecc.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/rstc.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/rtc.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/sdhc0.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/sdhc1.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/sercom0.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/sercom1.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/sercom2.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/sercom3.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/sercom4.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/sercom5.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/sercom6.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/sercom7.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/supc.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/tc0.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/tc1.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/tc2.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/tc3.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/tc4.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/tc5.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/tc6.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/tc7.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/tcc0.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/tcc1.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/tcc2.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/tcc3.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/tcc4.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/trng.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/usb.h</itemPath>
+            <itemPath>../src/packs/ATSAMD51J19A_DFP/instance/wdt.h</itemPath>
+          </logicalFolder>
           <logicalFolder name="f2" displayName="pio" projectFiles="true">
             <itemPath>../src/packs/ATSAMD51J19A_DFP/pio/samd51j19a.h</itemPath>
           </logicalFolder>
-          <itemPath>../src/packs/ATSAMD51J19A_DFP/atsamd51j19a.h</itemPath>
+          <itemPath>../src/packs/ATSAMD51J19A_DFP/samd51j19a.h</itemPath>
         </logicalFolder>
         <logicalFolder name="f2" displayName="CMSIS" projectFiles="true">
           <logicalFolder name="f1" displayName="CMSIS" projectFiles="true">
@@ -215,22 +276,23 @@
       <logicalFolder name="f1"
                      displayName="samd51_lan9253_evb.mhc"
                      projectFiles="true">
-        <itemPath>..\src\config\samd51_lan9253_evb\samd51_lan9253_evb.mhc\cmsis.yml</itemPath>
-        <itemPath>..\src\config\samd51_lan9253_evb\samd51_lan9253_evb.mhc\core.yml</itemPath>
-        <itemPath>..\src\config\samd51_lan9253_evb\samd51_lan9253_evb.mhc\dfp.yml</itemPath>
-        <itemPath>..\src\config\samd51_lan9253_evb\samd51_lan9253_evb.mhc\eic.yml</itemPath>
-        <itemPath>..\src\config\samd51_lan9253_evb\samd51_lan9253_evb.mhc\ethercat_apps_config.yml</itemPath>
-        <itemPath>..\src\config\samd51_lan9253_evb\samd51_lan9253_evb.mhc\ethercat_lan9253.yml</itemPath>
-        <itemPath>..\src\config\samd51_lan9253_evb\samd51_lan9253_evb.mhc\evsys.yml</itemPath>
-        <itemPath>..\src\config\samd51_lan9253_evb\samd51_lan9253_evb.mhc\GraphSettings.yml</itemPath>
-        <itemPath>..\src\config\samd51_lan9253_evb\samd51_lan9253_evb.mhc\nvmctrl.yml</itemPath>
-        <itemPath>..\src\config\samd51_lan9253_evb\samd51_lan9253_evb.mhc\project.yml</itemPath>
-        <itemPath>..\src\config\samd51_lan9253_evb\samd51_lan9253_evb.mhc\qspi.yml</itemPath>
-        <itemPath>..\src\config\samd51_lan9253_evb\samd51_lan9253_evb.mhc\settings.yml</itemPath>
-        <itemPath>..\src\config\samd51_lan9253_evb\samd51_lan9253_evb.mhc\tc0.yml</itemPath>
+        <itemPath>../src/config/samd51_lan9253_evb/samd51_lan9253_evb.mhc/cmsis.yml</itemPath>
+        <itemPath>../src/config/samd51_lan9253_evb/samd51_lan9253_evb.mhc/core.yml</itemPath>
+        <itemPath>../src/config/samd51_lan9253_evb/samd51_lan9253_evb.mhc/dfp.yml</itemPath>
+        <itemPath>../src/config/samd51_lan9253_evb/samd51_lan9253_evb.mhc/eic.yml</itemPath>
+        <itemPath>../src/config/samd51_lan9253_evb/samd51_lan9253_evb.mhc/ethercat_apps_config.yml</itemPath>
+        <itemPath>../src/config/samd51_lan9253_evb/samd51_lan9253_evb.mhc/ethercat_lan9253.yml</itemPath>
+        <itemPath>../src/config/samd51_lan9253_evb/samd51_lan9253_evb.mhc/evsys.yml</itemPath>
+        <itemPath>../src/config/samd51_lan9253_evb/samd51_lan9253_evb.mhc/GraphSettings.yml</itemPath>
+        <itemPath>../src/config/samd51_lan9253_evb/samd51_lan9253_evb.mhc/nvmctrl.yml</itemPath>
+        <itemPath>../src/config/samd51_lan9253_evb/samd51_lan9253_evb.mhc/project.yml</itemPath>
+        <itemPath>../src/config/samd51_lan9253_evb/samd51_lan9253_evb.mhc/qspi.yml</itemPath>
+        <itemPath>../src/config/samd51_lan9253_evb/samd51_lan9253_evb.mhc/settings.yml</itemPath>
+        <itemPath>../src/config/samd51_lan9253_evb/samd51_lan9253_evb.mhc/tc0.yml</itemPath>
       </logicalFolder>
       <itemPath>Makefile</itemPath>
       <itemPath>../src/config/samd51_lan9253_evb/harmony-manifest-success.yml</itemPath>
+      <itemPath>../src/config/samd51_lan9253_evb/harmony-manifest-failure.yml</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
@@ -313,12 +375,12 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src/config/samd51_lan9253_evb/driver/lan9253;../src;../src/config/samd51_lan9253_evb;../src/packs/ATSAMD51J19A_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;../src/slave_stack"/>
+                  value="../src/config/samd51_lan9253_evb/driver/lan9253;../src;../src/config/samd51_lan9253_evb;../src/packs/ATSAMD51J19A_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/slave_stack"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
         <property key="make-warnings-into-errors" value="true"/>
-        <property key="optimization-level" value="-O1"/>
+        <property key="optimization-level" value=""/>
         <property key="place-data-into-section" value="true"/>
         <property key="post-instruction-scheduling" value="default"/>
         <property key="pre-instruction-scheduling" value="default"/>
@@ -409,7 +471,7 @@
         <property key="exceptions" value="true"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/config/samd51_lan9253_evb;../src/packs/ATSAMD51J19A_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/;"/>
+                  value="../src;../src/config/samd51_lan9253_evb;../src/packs/ATSAMD51J19A_DFP;../src/packs/CMSIS/CMSIS/Core/Include;"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -465,6 +527,8 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="0-7ffff"/>
         <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmerToGoFilePath"
+                  value="D:/microchip/h3/ethercat/apps/ethercat_counter_foe_app/firmware/samd51_lan9253_evb.X/debug/samd51_lan9253_evb/samd51_lan9253_evb_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.ledbrightness" value="5"/>

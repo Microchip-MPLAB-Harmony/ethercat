@@ -1,7 +1,7 @@
 /**
  * \brief Component description for NVMCTRL
  *
- * Copyright (c) 2020 Microchip Technology Inc. and its subsidiaries.
+ * Copyright (c) 2021 Microchip Technology Inc. and its subsidiaries.
  *
  * Subject to your compliance with these terms, you may use Microchip software and any derivatives
  * exclusively with Microchip products. It is your responsibility to comply with third party license
@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2020-06-22T15:30:21Z */
+/* file generated from device description version 2020-11-23T12:27:44Z */
 #ifndef _SAMD51_NVMCTRL_COMPONENT_H_
 #define _SAMD51_NVMCTRL_COMPONENT_H_
 
@@ -492,6 +492,8 @@
 #define NVMCTRL_ADDR_REG_OFST          (0x14)              /**< (NVMCTRL_ADDR) Address Offset */
 #define NVMCTRL_RUNLOCK_REG_OFST       (0x18)              /**< (NVMCTRL_RUNLOCK) Lock Section Offset */
 #define NVMCTRL_PBLDATA_REG_OFST       (0x1C)              /**< (NVMCTRL_PBLDATA) Page Buffer Load Data x Offset */
+#define NVMCTRL_PBLDATA0_REG_OFST      (0x1C)              /**< (NVMCTRL_PBLDATA0) Page Buffer Load Data x Offset */
+#define NVMCTRL_PBLDATA1_REG_OFST      (0x20)              /**< (NVMCTRL_PBLDATA1) Page Buffer Load Data x Offset */
 #define NVMCTRL_ECCERR_REG_OFST        (0x24)              /**< (NVMCTRL_ECCERR) ECC Error Status Register Offset */
 #define NVMCTRL_DBGCTRL_REG_OFST       (0x28)              /**< (NVMCTRL_DBGCTRL) Debug Control Offset */
 #define NVMCTRL_SEECFG_REG_OFST        (0x2A)              /**< (NVMCTRL_SEECFG) SmartEEPROM Configuration Register Offset */

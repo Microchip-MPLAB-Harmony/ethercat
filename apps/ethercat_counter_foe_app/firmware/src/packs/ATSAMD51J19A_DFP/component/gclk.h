@@ -1,7 +1,7 @@
 /**
  * \brief Component description for GCLK
  *
- * Copyright (c) 2020 Microchip Technology Inc. and its subsidiaries.
+ * Copyright (c) 2021 Microchip Technology Inc. and its subsidiaries.
  *
  * Subject to your compliance with these terms, you may use Microchip software and any derivatives
  * exclusively with Microchip products. It is your responsibility to comply with third party license
@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2020-06-22T15:30:21Z */
+/* file generated from device description version 2020-11-23T12:27:44Z */
 #ifndef _SAMD51_GCLK_COMPONENT_H_
 #define _SAMD51_GCLK_COMPONENT_H_
 
@@ -168,7 +168,67 @@
 #define GCLK_CTRLA_REG_OFST            (0x00)              /**< (GCLK_CTRLA) Control Offset */
 #define GCLK_SYNCBUSY_REG_OFST         (0x04)              /**< (GCLK_SYNCBUSY) Synchronization Busy Offset */
 #define GCLK_GENCTRL_REG_OFST          (0x20)              /**< (GCLK_GENCTRL) Generic Clock Generator Control Offset */
+#define GCLK_GENCTRL0_REG_OFST         (0x20)              /**< (GCLK_GENCTRL0) Generic Clock Generator Control Offset */
+#define GCLK_GENCTRL1_REG_OFST         (0x24)              /**< (GCLK_GENCTRL1) Generic Clock Generator Control Offset */
+#define GCLK_GENCTRL2_REG_OFST         (0x28)              /**< (GCLK_GENCTRL2) Generic Clock Generator Control Offset */
+#define GCLK_GENCTRL3_REG_OFST         (0x2C)              /**< (GCLK_GENCTRL3) Generic Clock Generator Control Offset */
+#define GCLK_GENCTRL4_REG_OFST         (0x30)              /**< (GCLK_GENCTRL4) Generic Clock Generator Control Offset */
+#define GCLK_GENCTRL5_REG_OFST         (0x34)              /**< (GCLK_GENCTRL5) Generic Clock Generator Control Offset */
+#define GCLK_GENCTRL6_REG_OFST         (0x38)              /**< (GCLK_GENCTRL6) Generic Clock Generator Control Offset */
+#define GCLK_GENCTRL7_REG_OFST         (0x3C)              /**< (GCLK_GENCTRL7) Generic Clock Generator Control Offset */
+#define GCLK_GENCTRL8_REG_OFST         (0x40)              /**< (GCLK_GENCTRL8) Generic Clock Generator Control Offset */
+#define GCLK_GENCTRL9_REG_OFST         (0x44)              /**< (GCLK_GENCTRL9) Generic Clock Generator Control Offset */
+#define GCLK_GENCTRL10_REG_OFST        (0x48)              /**< (GCLK_GENCTRL10) Generic Clock Generator Control Offset */
+#define GCLK_GENCTRL11_REG_OFST        (0x4C)              /**< (GCLK_GENCTRL11) Generic Clock Generator Control Offset */
 #define GCLK_PCHCTRL_REG_OFST          (0x80)              /**< (GCLK_PCHCTRL) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL0_REG_OFST         (0x80)              /**< (GCLK_PCHCTRL0) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL1_REG_OFST         (0x84)              /**< (GCLK_PCHCTRL1) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL2_REG_OFST         (0x88)              /**< (GCLK_PCHCTRL2) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL3_REG_OFST         (0x8C)              /**< (GCLK_PCHCTRL3) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL4_REG_OFST         (0x90)              /**< (GCLK_PCHCTRL4) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL5_REG_OFST         (0x94)              /**< (GCLK_PCHCTRL5) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL6_REG_OFST         (0x98)              /**< (GCLK_PCHCTRL6) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL7_REG_OFST         (0x9C)              /**< (GCLK_PCHCTRL7) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL8_REG_OFST         (0xA0)              /**< (GCLK_PCHCTRL8) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL9_REG_OFST         (0xA4)              /**< (GCLK_PCHCTRL9) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL10_REG_OFST        (0xA8)              /**< (GCLK_PCHCTRL10) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL11_REG_OFST        (0xAC)              /**< (GCLK_PCHCTRL11) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL12_REG_OFST        (0xB0)              /**< (GCLK_PCHCTRL12) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL13_REG_OFST        (0xB4)              /**< (GCLK_PCHCTRL13) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL14_REG_OFST        (0xB8)              /**< (GCLK_PCHCTRL14) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL15_REG_OFST        (0xBC)              /**< (GCLK_PCHCTRL15) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL16_REG_OFST        (0xC0)              /**< (GCLK_PCHCTRL16) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL17_REG_OFST        (0xC4)              /**< (GCLK_PCHCTRL17) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL18_REG_OFST        (0xC8)              /**< (GCLK_PCHCTRL18) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL19_REG_OFST        (0xCC)              /**< (GCLK_PCHCTRL19) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL20_REG_OFST        (0xD0)              /**< (GCLK_PCHCTRL20) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL21_REG_OFST        (0xD4)              /**< (GCLK_PCHCTRL21) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL22_REG_OFST        (0xD8)              /**< (GCLK_PCHCTRL22) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL23_REG_OFST        (0xDC)              /**< (GCLK_PCHCTRL23) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL24_REG_OFST        (0xE0)              /**< (GCLK_PCHCTRL24) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL25_REG_OFST        (0xE4)              /**< (GCLK_PCHCTRL25) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL26_REG_OFST        (0xE8)              /**< (GCLK_PCHCTRL26) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL27_REG_OFST        (0xEC)              /**< (GCLK_PCHCTRL27) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL28_REG_OFST        (0xF0)              /**< (GCLK_PCHCTRL28) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL29_REG_OFST        (0xF4)              /**< (GCLK_PCHCTRL29) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL30_REG_OFST        (0xF8)              /**< (GCLK_PCHCTRL30) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL31_REG_OFST        (0xFC)              /**< (GCLK_PCHCTRL31) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL32_REG_OFST        (0x100)             /**< (GCLK_PCHCTRL32) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL33_REG_OFST        (0x104)             /**< (GCLK_PCHCTRL33) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL34_REG_OFST        (0x108)             /**< (GCLK_PCHCTRL34) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL35_REG_OFST        (0x10C)             /**< (GCLK_PCHCTRL35) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL36_REG_OFST        (0x110)             /**< (GCLK_PCHCTRL36) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL37_REG_OFST        (0x114)             /**< (GCLK_PCHCTRL37) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL38_REG_OFST        (0x118)             /**< (GCLK_PCHCTRL38) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL39_REG_OFST        (0x11C)             /**< (GCLK_PCHCTRL39) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL40_REG_OFST        (0x120)             /**< (GCLK_PCHCTRL40) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL41_REG_OFST        (0x124)             /**< (GCLK_PCHCTRL41) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL42_REG_OFST        (0x128)             /**< (GCLK_PCHCTRL42) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL43_REG_OFST        (0x12C)             /**< (GCLK_PCHCTRL43) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL44_REG_OFST        (0x130)             /**< (GCLK_PCHCTRL44) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL45_REG_OFST        (0x134)             /**< (GCLK_PCHCTRL45) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL46_REG_OFST        (0x138)             /**< (GCLK_PCHCTRL46) Peripheral Clock Control Offset */
+#define GCLK_PCHCTRL47_REG_OFST        (0x13C)             /**< (GCLK_PCHCTRL47) Peripheral Clock Control Offset */
 
 #if !(defined(__ASSEMBLER__) || defined(__IAR_SYSTEMS_ASM__))
 /** \brief GCLK register API structure */

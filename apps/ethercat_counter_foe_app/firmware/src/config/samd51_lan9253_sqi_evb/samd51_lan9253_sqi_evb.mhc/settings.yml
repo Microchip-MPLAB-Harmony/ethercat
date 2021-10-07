@@ -1,0 +1,14 @@
+configName: samd51_lan9253_sqi_evb
+folderName: samd51_lan9253_sqi_evb
+format_version: v1.0
+frameworkPath: ..\..\..
+processor: ATSAMD51J19A
+projectName: ethercat_counter_foe_app
+settings:
+  PackageFilter: aws_cloud;azure_rtos;bootloader;bsp;core;crypto;csp;ethercat;net;net;net;net;net;net;net;net;usb;wireless;
+  FORCE_OPTIMIZATION: 'false'
+  GENERATE_BACKUP: 'true'
+  TRUSTZONE: 'false'
+  CMSISPath: .\dev_packs\arm\CMSIS\5.8.0
+  MERGE_STRATEGY: ALL
+  DFPPath: .\dev_packs\Microchip\SAMD51_DFP\3.4.91\samd51a\atdf\ATSAMD51J19A.atdf

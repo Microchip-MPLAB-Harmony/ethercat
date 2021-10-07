@@ -1,0 +1,21 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: ethercat_apps_config}
+children:
+- type: Attachments
+  children:
+  - type: DirectDependency
+    attributes: {id: EtherCAT_LANDRV_Dependency}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: ethercat_lan9253}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: drvEthercatLan9253}
+- type: ElementPosition
+  attributes: {x: '359', y: '197', id: ethercat_apps_config}

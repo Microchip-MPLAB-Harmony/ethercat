@@ -1,7 +1,7 @@
 /**
  * \brief Peripheral I/O description for SAMD51J19A
  *
- * Copyright (c) 2020 Microchip Technology Inc. and its subsidiaries.
+ * Copyright (c) 2021 Microchip Technology Inc. and its subsidiaries.
  *
  * Subject to your compliance with these terms, you may use Microchip software and any derivatives
  * exclusively with Microchip products. It is your responsibility to comply with third party license
@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2020-06-22T15:30:10Z */
+/* file generated from device description version 2020-11-23T12:27:30Z */
 #ifndef _SAMD51J19A_GPIO_H_
 #define _SAMD51J19A_GPIO_H_
 

@@ -82,8 +82,23 @@
 
 /* This is the lowest interrupt priority for SAM devices and Highest for PIC32M devices that can be used in a call to a "set priority" function. */
 #define ETHERCAT_CONFIG_MAX_INTERRUPT_PRIORITY 		${DRV_LAN9253_INT_PRIO}
+#define ETHERCAT_IS_SUPPORT_DUMMY_CYCLE
 
+/*
+ * The Dummy cycles needed for read transaction introduced by two methods
+ * - Dummy clock method - dummy clocks feed to SQI structure
+ * - Dummy read method  - dummy read happen and data extraction happen through application READ API
+ * 
+ * ETHERCAT_DUMMY_READ_EN - enables the Dummy read method, (define ETHERCAT_DUMMY_READ_EN to enable)
+ * Dummy read method is selected by default, Undefine ETHERCAT_DUMMY_READ_EN to enable dummy clock method
+ */
+#define ETHERCAT_DUMMY_READ_EN
 
+/* EEPROM Emulation Feature can be enabled by uncommenting below macro for LAN9255*/
+#define ETHERCAT_IS_EEPROM_EMULATION_SUPPORT               1
+
+<#if DRV_LAN9253_PROTOCOL == "SPI">
+#define ETHERCAT_COMM_PROTOCOL_SPI     1
 
 <#if DRV_LAN9253_SPI_MODE_ACCESS_TYPE 		== "ETHERCAT_SPI_INDIRECT_MODE_ACCESS">
 /* EtherCAT SPI Indirect mode enabled */
@@ -96,9 +111,22 @@
 #define ETHERCAT_SPI_BECKHOFF_MODE_ACCESS				1
 </#if>
 
+<#elseif DRV_LAN9253_PROTOCOL == "SQI">
+#define ETHERCAT_COMM_PROTOCOL_SQI     1
+
+<#if DRV_LAN9253_SQI_MODE_ACCESS_TYPE 		== "ETHERCAT_SQI_INDIRECT_MODE_ACCESS">
+/* EtherCAT SQI Indirect mode enabled */
+#define ETHERCAT_SQI_INDIRECT_MODE_ACCESS				1
+<#elseif DRV_LAN9253_SQI_MODE_ACCESS_TYPE 	== "ETHERCAT_SQI_DIRECT_MODE_ACCESS">
+/* EtherCAT SQI Direct mode enabled */
+#define ETHERCAT_SQI_DIRECT_MODE_ACCESS					1
+</#if>
+</#if>
+
 #define MCHP_ESF_IS_PDI_FUNCTIONAL(pdata)		ECAT_Lan9253_IsPDIFunctional(pdata)
 
-#ifdef ETHERCAT_SPI_INDIRECT_MODE_ACCESS
+<#if DRV_LAN9253_PROTOCOL == "SPI">
+<#if DRV_LAN9253_SPI_MODE_ACCESS_TYPE 		== "ETHERCAT_SPI_INDIRECT_MODE_ACCESS">
 /* SPI Indirect mode Access. These APIs can also be used for LAN9252 device */
 #define MCHP_ESF_PDI_WRITE(addr, pdata, len)            ECAT_Lan925x_SPIWrite(addr, pdata, len)
 #define MCHP_ESF_PDI_READ(addr, pdata, len)             ECAT_Lan925x_SPIRead(addr, pdata, len)
@@ -107,7 +135,7 @@
 #define MCHP_ESF_PDI_FASTREAD_PDRAM(pdata, addr, len)	ECAT_Lan925x_SPIFastReadPDRAM(pdata, addr, len)
 #define MCHP_ESF_PDI_WRITE_PDRAM(pdata, addr, len)		ECAT_Lan925x_SPIWritePDRAM(pdata, addr, len)
 
-#elif ETHERCAT_SPI_DIRECT_MODE_ACCESS
+<#elseif DRV_LAN9253_SPI_MODE_ACCESS_TYPE == "ETHERCAT_SPI_DIRECT_MODE_ACCESS">
 /* SPI Direct mode Access */
 #define MCHP_ESF_PDI_WRITE(addr, pdata, len)            ECAT_Lan9253_SPIWrite (addr, pdata, len)
 #define MCHP_ESF_PDI_READ(addr, pdata, len)             ECAT_Lan9253_SPIRead (addr, pdata, len)
@@ -116,7 +144,7 @@
 #define MCHP_ESF_PDI_FASTREAD_PDRAM(pdata, addr, len)	
 #define MCHP_ESF_PDI_WRITE_PDRAM(pdata, addr, len)		
 
-#elif ETHERCAT_SPI_BECKHOFF_MODE_ACCESS
+<#elseif DRV_LAN9253_SPI_MODE_ACCESS_TYPE == "ETHERCAT_SPI_BECKHOFF_MODE_ACCESS">
 /* SPI Beckhoff mode Access */
 #define MCHP_ESF_PDI_WRITE(addr, pdata, len)            ECAT_Lan9253_Beckhoff_SPIWrite (addr, pdata, len)
 #define MCHP_ESF_PDI_READ(addr, pdata, len)				ECAT_Lan9253_Beckhoff_SPIRead (addr, pdata, len)
@@ -124,7 +152,30 @@
 #define MCHP_ESF_PDI_READ_PDRAM(pdata, addr, len)		
 #define MCHP_ESF_PDI_FASTREAD_PDRAM(pdata, addr, len)	
 #define MCHP_ESF_PDI_WRITE_PDRAM(pdata, addr, len)
-#endif
+</#if>
+</#if>
+
+<#if DRV_LAN9253_PROTOCOL == "SQI">
+<#if DRV_LAN9253_SQI_MODE_ACCESS_TYPE == "ETHERCAT_SQI_INDIRECT_MODE_ACCESS">
+/* SQI Indirect mode Access */
+#define MCHP_ESF_PDI_WRITE(addr, pdata, len)            ECAT_LAN925x_SQIWrite(addr, pdata, len)
+#define MCHP_ESF_PDI_READ(addr, pdata, len)             ECAT_LAN925x_SQIRead(addr, pdata, len)
+#define MCHP_ESF_PDI_FASTREAD(addr, pdata, len)         
+#define MCHP_ESF_PDI_READ_PDRAM(pdata, addr, len)		ECAT_LAN925x_SQIReadPDRAM(pdata, addr, len)
+#define MCHP_ESF_PDI_FASTREAD_PDRAM(pdata, addr, len)	
+#define MCHP_ESF_PDI_WRITE_PDRAM(pdata, addr, len)		ECAT_LAN925x_SQIWritePDRAM(pdata, addr, len)
+
+<#elseif DRV_LAN9253_SQI_MODE_ACCESS_TYPE == "ETHERCAT_SQI_DIRECT_MODE_ACCESS">
+/* SQI Direct mode Access */
+#define MCHP_ESF_PDI_WRITE(addr, pdata, len)            ECAT_LAN925x_SQIWrite (addr, pdata, len)
+#define MCHP_ESF_PDI_READ(addr, pdata, len)             ECAT_LAN925x_SQIRead (addr, pdata, len)
+#define MCHP_ESF_PDI_FASTREAD(addr, pdata, len)			
+#define MCHP_ESF_PDI_READ_PDRAM(pdata, addr, len)		
+#define MCHP_ESF_PDI_FASTREAD_PDRAM(pdata, addr, len)	
+#define MCHP_ESF_PDI_WRITE_PDRAM(pdata, addr, len)		
+
+</#if>
+</#if>
 
 /* Timer functions */
 
@@ -145,7 +196,8 @@
 #define HW_SetLed(RunLed, ErrLed)                       ECAT_HWSetlED(RunLed, ErrLed)     
         
 #define PDI_Timer_Interrupt()                           ECAT_PDI_TimerInterrupt()
-        
+ 
+<#if DRV_LAN9253_PROTOCOL == "SPI"> 
 // *****************************************************************************
 // *****************************************************************************
 // Section: Data Types
@@ -177,7 +229,7 @@ typedef enum
     DRV_LAN9253_UTIL_SPI_TRANSFER_STATUS_ERROR
 
 } DRV_LAN9253_UTIL_SPI_TRANSFER_STATUS;       
-        
+</#if>        
 // *****************************************************************************
 /* LAN9253 Driver Utility Instance Object
 
@@ -195,25 +247,45 @@ typedef struct
 {
     /* Flag to indicate this object is in use  */
     bool                                   inUse;
-
+<#if DRV_LAN9253_PROTOCOL == "SPI"> 
     /* SPI PLIB API list that will be used by the driver to access the hardware */
-    const DRV_LAN9253_UTIL_SPI_PLIB_INTERFACE*  spiPlib;
+    const DRV_LAN9253_UTIL_SPI_PLIB_INTERFACE 	*spiPlib;
 
     /* SPI peripheral communication transfer status */
     volatile DRV_LAN9253_UTIL_SPI_TRANSFER_STATUS       spiTransferStatus;
 	
+<#elseif DRV_LAN9253_PROTOCOL == "SQI">
+	/* SQI PLIB API list that will be used by the driver to access the hardware */
+	const DRV_LAN9253_UTIL_SQI_PLIB_INTERFACE 	*sqiPlib;
+</#if>
 	/* Timer PLIB API list that will be used by the driver to access the hardware */
-    const DRV_LAN9253_UTIL_TMR_PLIB_INTERFACE*  timerPlib;
+    const DRV_LAN9253_UTIL_TMR_PLIB_INTERFACE	*timerPlib;
 	
 
 } DRV_LAN9253_UTIL_OBJ;
 
+/* SPI/SQI Clock Period in nano seconds */
+#define CLK_PERIOD_1MHZ		(1000)
+
+<#if DRV_LAN9253_PLIB == "QSPI">
+	<#lt>#define DRV_LAN9253_BAUDRATE_PDI_FREQ       ${.vars["${DRV_LAN9253_PLIB?lower_case}"].QSPI_BAUD_RATE/1000000}
+<#else>
+	<#lt>#define DRV_LAN9253_BAUDRATE_PDI_FREQ       ${.vars["${DRV_LAN9253_PLIB?lower_case}"].SPI_BAUD_RATE/1000000}
+</#if>
+
+// Internal Access Time (IAT) in Nano seconds (ns) based on Hardware Design
+#define IAT_NULL		0
+#define IAT_BYRD		360
+#define IAT_BYWR		265
+#define IAT_DWRD		600
+#define IAT_DWDWR		505
 
 /* The following data type definitions are used by the functions in this
     interface and should be considered part of it.
 */
 /* Global Data Types */
 #define CMD_SPI_SETCFG                      0x01
+#define CMD_SQI_SETCFG                      0x01
 /* EtherCAT SPI Read Command */
 #define CMD_SERIAL_READ                     0x03
 /* EtherCAT SPI Fast read command */
@@ -228,10 +300,14 @@ typedef struct
 #define CMD_DUAL_DATA_WRITE                 0x32
 #define CMD_DUAL_ADDR_DATA_WRITE            0xB2
 #define CMD_QUAD_DATA_WRITE                 0x62
-#define CMD_QUAD_ADDR_DARA_WRITE            0xE2
+#define CMD_QUAD_ADDR_DATA_WRITE            0xE2
+#define CMD_ENABLE_SQI                      0x38
+#define CMD_RESET_SQI                       0xFF
 
 #define CMD_SERIAL_READ_DUMMY               0
-#define CMD_FAST_READ_DUMMY                 1
+#define CMD_SQI_SETCFG_DUMMY                0
+#define CMD_SPI_FAST_READ_DUMMY             1
+#define CMD_SQI_FAST_READ_DUMMY             3
 #define CMD_DUAL_OP_READ_DUMMY              1
 #define CMD_DUAL_IO_READ_DUMMY              2
 #define CMD_QUAD_OP_READ_DUMMY              1
@@ -242,28 +318,87 @@ typedef struct
 #define CMD_QUAD_DATA_WRITE_DUMMY           0
 #define CMD_QUAD_ADDR_DARA_WRITE_DUMMY      0
 
+#define QSPI_SPI_ONE_BYTE_CLK_COUNT         8
+#define QSPI_SQI_ONE_BYTE_CLK_COUNT         2
+
 #define ESC_CSR_CMD_REG                     0x304
 #define ESC_CSR_DATA_REG                    0x300
 #define ESC_WRITE_BYTE                      0x80
 #define ESC_READ_BYTE                       0xC0
 #define ESC_CSR_BUSY                        0x80
 
-#define SETCFG_MAX_DATA_BYTES                       39
-#define ONE_BYTE_MAX_XFR_LEN                        127
+#define ECAT_PRAM_RD_ADDR_LENGTH_REG		0x308 
+#define ECAT_PRAM_RD_CMD_REG				0x30C 
+#define ECAT_PRAM_WR_ADDR_LENGTH_REG		0x310
+#define ECAT_PRAM_WR_CMD_REG				0x314
+#define ECAT_PRAM_WR_DATA_FIFO_REG          0x20
+#define ECAT_PRAM_RD_DATA_FIFO_REG          0x04
 
-#define WAIT_STATE_BYTE                             0xFF
-#define READ_TERMINATION_BYTE                       0xFF
+#define SETCFG_MAX_DATA_BYTES               39
+#define ONE_BYTE_MAX_XFR_LEN                127
 
-#define DWORD_LENGTH                                4
+#define WAIT_STATE_BYTE                     0xFF
+#define READ_TERMINATION_BYTE               0xFF
+
+#define DWORD_LENGTH                        4
 
 /* Wait signal states */
-#define WAIT                                        FALSE
-#define ACK                                         TRUE
+#define WAIT                                FALSE
+#define ACK                                 TRUE
 
 /* Beckhoff SPI Commands */
-#define ESC_RD                                      0x02
-#define ESC_WR                                      0x04
-#define ESC_RD_WAIT_STATE                           0x03
+#define ESC_RD                              0x02
+#define ESC_WR                              0x04
+#define ESC_RD_WAIT_STATE                   0x03
+
+typedef enum _SPI_TYPE {
+    SINGLE_SPI = 1,
+    DUAL_SPI = 2,
+    QUAD_SPI = 4,
+} SPI_TYPE;
+
+
+typedef enum _SET_CFG_DATA_BYTE_ORDER {
+    SPI_READ_INITIAL_OFFSET = 0,
+    SPI_READ_INTRA_DWORD_OFFSET,
+    SPI_READ_INTER_DWORD_OFFSET,
+    SPI_FASTREAD_INITIAL_OFFSET = 3,
+    SPI_FASTREAD_INTRA_DWORD_OFFSET,
+    SPI_FASTREAD_INTER_DWORD_OFFSET,
+    SDOR_INITIAL_OFFSET = 6,
+    SDOR_INTRA_DWORD_OFFSET,
+    SDOR_INTER_DWORD_OFFSET,
+    SDIOR_INITIAL_OFFSET = 9,
+    SDIOR_INTRA_DWORD_OFFSET,
+    SDIOR_INTER_DWORD_OFFSET,
+    SQOR_INITIAL_OFFSET = 12,
+    SQOR_INTRA_DWORD_OFFSET,
+    SQOR_INTER_DWORD_OFFSET,
+    SQIOR_INITIAL_OFFSET = 15,
+    SQIOR_INTRA_DWORD_OFFSET,
+    SQIOR_INTER_DWORD_OFFSET,
+    SPI_WRITE_INITIAL_OFFSET = 18,
+    SPI_WRITE_INTRA_DWORD_OFFSET,
+    SPI_WRITE_INTER_DWORD_OFFSET,
+    SDDW_INITIAL_OFFSET = 21,
+    SDDW_INTRA_DWORD_OFFSET,
+    SDDW_INTER_DWORD_OFFSET,
+    SDADW_INITIAL_OFFSET = 24,
+    SDADW_INTRA_DWORD_OFFSET,
+    SDADW_INTER_DWORD_OFFSET,
+    SQDW_INITIAL_OFFSET = 27,
+    SQDW_INTRA_DWORD_OFFSET,
+    SQDW_INTER_DWORD_OFFSET,
+    SQADW_INITIAL_OFFSET = 30,
+    SQADW_INTRA_DWORD_OFFSET,
+    SQADW_INTER_DWORD_OFFSET,
+    SQI_FASTREAD_INITIAL_OFFSET = 33,
+    SQI_FASTREAD_INTRA_DWORD_OFFSET,
+    SQI_FASTREAD_INTER_DWORD_OFFSET,
+    SQI_WRITE_INITIAL_OFFSET = 36,
+    SQI_WRITE_INTRA_DWORD_OFFSET,
+    SQI_WRITE_INTER_DWORD_OFFSET,
+} SET_CFG_DATA_BYTE_ORDER_T;
 
 // *****************************************************************************
 /* EtherCAT UNIT32 bit type
@@ -297,19 +432,30 @@ typedef union {
 
 void    ECAT_SyncInterruptsInitialization(void);
 void    ECAT_Lan9253_IsPDIFunctional(uint8_t *pbyData);
+<#if DRV_LAN9253_PROTOCOL == "SPI">
 void    _ECAT_ChipSelectDisable(void);
 void    _ECAT_ChipSelectEnable(void);
-UINT16	ECAT_PDI_TimerGet();
+</#if>
+uint16_t	ECAT_PDI_TimerGet();
 void	ECAT_PDI_TimerClear(void);
 void    ECAT_PDI_TimerInterrupt(void);
-void    ECAT_ESCIRQInitialization();
+void    ECAT_ESCIRQInitialization(void);
 void	ECAT_PDI_TimerStop(void);
 void	ECAT_PDI_TimerStart(void);
-void	ECAT_HWSetlED(UINT8 RunLed, UINT8 ErrLed);
+void	ECAT_HWSetlED(uint8_t RunLed, uint8_t ErrLed);
 void	ECAT_Initialization();
 void    CRITICAL_SECTION_ENTER(void);
 void    CRITICAL_SECTION_LEAVE(void);
-
+<#if DRV_LAN9253_PROTOCOL == "SQI">
+void	ECAT_SQI_SetConfiguration(uint8_t *byDummyByteCnt);
+void    ECAT_SQI_SetCfg_dataInit(void);
+void    ECAT_SQI_EnableQuadMode(void);
+void    ECAT_SQI_DisableQuadMode(void);
+<#elseif DRV_LAN9253_PROTOCOL == "SPI">
+void	ECAT_SPI_SetConfiguration(uint8_t *byDummyByteCnt);
+void    ECAT_SPI_SetCfg_dataInit(void);
+void    ECAT_SPI_DisableQuadMode(void);
+</#if>
 // *****************************************************************************
 /* Function:
     void ECAT_Util_Initialize(const unsigned short int drvIndex,  const void * const init)
@@ -337,29 +483,40 @@ void    CRITICAL_SECTION_LEAVE(void);
 */
 
 void ECAT_Util_Initialize(const unsigned short int drvIndex,  const void * const init);
-
-
-#ifdef ETHERCAT_SPI_BECKHOFF_MODE_ACCESS
+<#if DRV_LAN9253_PROTOCOL == "SPI">
+<#if DRV_LAN9253_SPI_MODE_ACCESS_TYPE 		== "ETHERCAT_SPI_BECKHOFF_MODE_ACCESS">
 	/* Function Prototypes */
 	void ECAT_Lan9253_Beckhoff_SPIWrite(uint16_t wAddr, uint8_t *pbyData, uint32_t dwLength);
 	void ECAT_Lan9253_Beckhoff_SPIRead(uint16_t wAddr, uint8_t *pbyData, uint32_t dwLength);
-#endif
-#ifdef ETHERCAT_SPI_DIRECT_MODE_ACCESS
+<#elseif DRV_LAN9253_SPI_MODE_ACCESS_TYPE 	== "ETHERCAT_SPI_DIRECT_MODE_ACCESS">	
 	/* Function Prototypes */
 	void ECAT_Lan9253_SPIWrite(uint16_t wAddr, uint8_t *pbyData, uint32_t dwLength);
 	void ECAT_Lan9253_SPIRead(uint16_t wAddr, uint8_t *pbydata, uint32_t dwLength);
 	void ECAT_Lan9253_SPIFastRead(uint16_t wAddr, uint8_t *pbyData, uint32_t dwLength);
-#endif
-#ifdef ETHERCAT_SPI_INDIRECT_MODE_ACCESS
+<#elseif DRV_LAN9253_SPI_MODE_ACCESS_TYPE 	== "ETHERCAT_SPI_INDIRECT_MODE_ACCESS">
 	/* Function Prototypes */
 	void ECAT_Lan925x_SPIWrite(uint16_t wAdddr, uint8_t *pbyData, uint8_t wLen);
 	void ECAT_Lan925x_SPIRead(uint16_t wAddr, uint8_t *pbyData, uint8_t wLen);
 	void ECAT_Lan925x_SPIFastRead(uint16_t wAddr, uint8_t *pbyData, uint8_t wLen);
-	void ECAT_Lan925x_SPIReadPDRAM(UINT8 *pbyData, UINT16 wAddr, UINT16 wLen);
-	void ECAT_Lan925x_SPIFastReadPDRAM(UINT8 *pbyData, UINT16 wAddr, UINT16 wLen);
-	void ECAT_Lan925x_SPIWritePDRAM(UINT8 *pbyData, UINT16 wAddr, UINT16 wLen);
-#endif
-
+	void ECAT_Lan925x_SPIReadPDRAM(uint8_t *pbyData, uint16_t wAddr, uint16_t wLen);
+	void ECAT_Lan925x_SPIFastReadPDRAM(uint8_t *pbyData, uint16_t wAddr, uint16_t wLen);
+	void ECAT_Lan925x_SPIWritePDRAM(uint8_t *pbyData, uint16_t wAddr, uint16_t wLen);
+</#if>
+<#elseif DRV_LAN9253_PROTOCOL == "SQI">
+<#if DRV_LAN9253_SQI_MODE_ACCESS_TYPE 		== "ETHERCAT_SQI_DIRECT_MODE_ACCESS">
+	/* Function Prototypes */
+	void    ECAT_LAN925x_SQIWrite(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Length);
+	void    ECAT_LAN925x_SQIRead(uint16_t u16Addr, uint8_t *pu8data, uint32_t u32Length);
+<#elseif DRV_LAN9253_SQI_MODE_ACCESS_TYPE 		== "ETHERCAT_SQI_INDIRECT_MODE_ACCESS">
+	/* Function Prototypes */
+	void    ECAT_LAN925x_SQIWrite(uint16_t u16Adddr, uint8_t *pu8Data, uint8_t u8Len);
+	void    ECAT_LAN925x_SQIRead(uint16_t u16Addr, uint8_t *pu8Data, uint8_t u8Len);
+	void    ECAT_LAN925x_SQIFastRead(uint16_t u16Addr, uint8_t *pu8Data, uint8_t u8Len);
+	void    ECAT_LAN925x_SQIReadPDRAM(uint8_t *pu8Data, uint16_t u16Addr, uint16_t u16Len);
+	void    ECAT_LAN925x_SQIFastReadPDRAM(uint8_t *pu8Data, uint16_t u16Addr, uint16_t u16Len);
+	void    ECAT_LAN925x_SQIWritePDRAM(uint8_t *pu8Data, uint16_t u16Addr, uint16_t u16Len);
+</#if>
+</#if>
 #ifdef __cplusplus
 }
 #endif

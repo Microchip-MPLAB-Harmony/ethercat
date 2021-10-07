@@ -42,17 +42,26 @@ def ethercatLan9252DriverInfoVisible(symbol, event):
 		res = Database.deactivateComponents(["ethercat_lan9252"])
 		symbol.setVisible(False)
 		
-def generateEthercatLinkerFileSymbol(etherCatComponent,ethercatFOEEnable):
-	# Generate EtherCAT Linker Script
-	ethercatLinkerPath = "config/ethercat_template/ethercat_linker_foe.ld.ftl"
-
-	# Generate EtherCAT Linker Script
-	ethercatLinkerFile = etherCatComponent.createFileSymbol("ETHERCAT_FOE_LINKER_FILE", ethercatFOEEnable)
-	ethercatLinkerFile.setSourcePath(ethercatLinkerPath)
-	ethercatLinkerFile.setOutputName("ethercat_foe.ld")
-	ethercatLinkerFile.setMarkup(True)
-	ethercatLinkerFile.setOverwrite(True)
-	ethercatLinkerFile.setType("LINKER")		
+def generateEthercatLinkerFileSymbol(etherCatComponent,ethercatFOEEnable,processor):
+	print("Processor : ")
+	print(processor)
+	print("foe flag: ")
+	print(Database.getSymbolValue("ethercat_apps_config","ETHERCAT_FOE_ENABLE"))
+	if (Database.getSymbolValue("ethercat_apps_config","ETHERCAT_FOE_ENABLE") == True):
+		# Generate EtherCAT Linker Script
+		print("foe flag: ")
+		if "SAME5" in processor:
+			ethercatLinkerPath = "config/ethercat_template/ethercat_linker_foe_SAME53.ld.ftl"
+		else:
+			ethercatLinkerPath = "config/ethercat_template/ethercat_linker_foe.ld.ftl"
+		
+		# Generate EtherCAT Linker Script
+		ethercatLinkerFile = etherCatComponent.createFileSymbol("ETHERCAT_FOE_LINKER_FILE", ethercatFOEEnable)
+		ethercatLinkerFile.setSourcePath(ethercatLinkerPath)
+		ethercatLinkerFile.setOutputName("ethercat_foe.ld")
+		ethercatLinkerFile.setMarkup(True)
+		ethercatLinkerFile.setOverwrite(True)
+		ethercatLinkerFile.setType("LINKER")		
 		
 def ethercatLan9253DriverInfoVisible(symbol, event):
 	if (event["value"] == "LAN 9253"):
@@ -104,8 +113,10 @@ def instantiateComponent(etherCatComponent):
 	foeFileDownloadPassword.setDependencies(ethercatFoEAttrVisible, ["ETHERCAT_FOE_ENABLE"])
 	
 	# Linker script support for FoE application
-	generateEthercatLinkerFileSymbol(etherCatComponent,ethercatFOEEnable)
+	processor =  Variables.get("__PROCESSOR")
 	
+	generateEthercatLinkerFileSymbol(etherCatComponent,ethercatFOEEnable,processor)
+		
 	#Add to ethercat_configuration.h
 	ethercatConfigurationHeaderFtl = etherCatComponent.createFileSymbol(None, None)
 	ethercatConfigurationHeaderFtl.setSourcePath("config/ethercat_template/ethercat_config.h.ftl")

@@ -1,0 +1,21 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: tc0}
+children:
+- type: Attachments
+  children:
+  - type: DirectCapability
+    attributes: {id: TC0_TMR}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: ethercat_lan9255}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: LAN9255_TMR_Dependency}
+- type: ElementPosition
+  attributes: {x: '30', y: '180', id: tc0}

@@ -1,7 +1,7 @@
 /**
  * \brief Component description for EVSYS
  *
- * Copyright (c) 2020 Microchip Technology Inc. and its subsidiaries.
+ * Copyright (c) 2021 Microchip Technology Inc. and its subsidiaries.
  *
  * Subject to your compliance with these terms, you may use Microchip software and any derivatives
  * exclusively with Microchip products. It is your responsibility to comply with third party license
@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2020-06-22T15:30:21Z */
+/* file generated from device description version 2020-11-23T12:27:44Z */
 #ifndef _SAMD51_EVSYS_COMPONENT_H_
 #define _SAMD51_EVSYS_COMPONENT_H_
 
@@ -416,6 +416,73 @@
 #define EVSYS_BUSYCH_REG_OFST          (0x18)              /**< (EVSYS_BUSYCH) Busy Channels Offset */
 #define EVSYS_READYUSR_REG_OFST        (0x1C)              /**< (EVSYS_READYUSR) Ready Users Offset */
 #define EVSYS_USER_REG_OFST            (0x120)             /**< (EVSYS_USER) User Multiplexer n Offset */
+#define EVSYS_USER0_REG_OFST           (0x120)             /**< (EVSYS_USER0) User Multiplexer n Offset */
+#define EVSYS_USER1_REG_OFST           (0x124)             /**< (EVSYS_USER1) User Multiplexer n Offset */
+#define EVSYS_USER2_REG_OFST           (0x128)             /**< (EVSYS_USER2) User Multiplexer n Offset */
+#define EVSYS_USER3_REG_OFST           (0x12C)             /**< (EVSYS_USER3) User Multiplexer n Offset */
+#define EVSYS_USER4_REG_OFST           (0x130)             /**< (EVSYS_USER4) User Multiplexer n Offset */
+#define EVSYS_USER5_REG_OFST           (0x134)             /**< (EVSYS_USER5) User Multiplexer n Offset */
+#define EVSYS_USER6_REG_OFST           (0x138)             /**< (EVSYS_USER6) User Multiplexer n Offset */
+#define EVSYS_USER7_REG_OFST           (0x13C)             /**< (EVSYS_USER7) User Multiplexer n Offset */
+#define EVSYS_USER8_REG_OFST           (0x140)             /**< (EVSYS_USER8) User Multiplexer n Offset */
+#define EVSYS_USER9_REG_OFST           (0x144)             /**< (EVSYS_USER9) User Multiplexer n Offset */
+#define EVSYS_USER10_REG_OFST          (0x148)             /**< (EVSYS_USER10) User Multiplexer n Offset */
+#define EVSYS_USER11_REG_OFST          (0x14C)             /**< (EVSYS_USER11) User Multiplexer n Offset */
+#define EVSYS_USER12_REG_OFST          (0x150)             /**< (EVSYS_USER12) User Multiplexer n Offset */
+#define EVSYS_USER13_REG_OFST          (0x154)             /**< (EVSYS_USER13) User Multiplexer n Offset */
+#define EVSYS_USER14_REG_OFST          (0x158)             /**< (EVSYS_USER14) User Multiplexer n Offset */
+#define EVSYS_USER15_REG_OFST          (0x15C)             /**< (EVSYS_USER15) User Multiplexer n Offset */
+#define EVSYS_USER16_REG_OFST          (0x160)             /**< (EVSYS_USER16) User Multiplexer n Offset */
+#define EVSYS_USER17_REG_OFST          (0x164)             /**< (EVSYS_USER17) User Multiplexer n Offset */
+#define EVSYS_USER18_REG_OFST          (0x168)             /**< (EVSYS_USER18) User Multiplexer n Offset */
+#define EVSYS_USER19_REG_OFST          (0x16C)             /**< (EVSYS_USER19) User Multiplexer n Offset */
+#define EVSYS_USER20_REG_OFST          (0x170)             /**< (EVSYS_USER20) User Multiplexer n Offset */
+#define EVSYS_USER21_REG_OFST          (0x174)             /**< (EVSYS_USER21) User Multiplexer n Offset */
+#define EVSYS_USER22_REG_OFST          (0x178)             /**< (EVSYS_USER22) User Multiplexer n Offset */
+#define EVSYS_USER23_REG_OFST          (0x17C)             /**< (EVSYS_USER23) User Multiplexer n Offset */
+#define EVSYS_USER24_REG_OFST          (0x180)             /**< (EVSYS_USER24) User Multiplexer n Offset */
+#define EVSYS_USER25_REG_OFST          (0x184)             /**< (EVSYS_USER25) User Multiplexer n Offset */
+#define EVSYS_USER26_REG_OFST          (0x188)             /**< (EVSYS_USER26) User Multiplexer n Offset */
+#define EVSYS_USER27_REG_OFST          (0x18C)             /**< (EVSYS_USER27) User Multiplexer n Offset */
+#define EVSYS_USER28_REG_OFST          (0x190)             /**< (EVSYS_USER28) User Multiplexer n Offset */
+#define EVSYS_USER29_REG_OFST          (0x194)             /**< (EVSYS_USER29) User Multiplexer n Offset */
+#define EVSYS_USER30_REG_OFST          (0x198)             /**< (EVSYS_USER30) User Multiplexer n Offset */
+#define EVSYS_USER31_REG_OFST          (0x19C)             /**< (EVSYS_USER31) User Multiplexer n Offset */
+#define EVSYS_USER32_REG_OFST          (0x1A0)             /**< (EVSYS_USER32) User Multiplexer n Offset */
+#define EVSYS_USER33_REG_OFST          (0x1A4)             /**< (EVSYS_USER33) User Multiplexer n Offset */
+#define EVSYS_USER34_REG_OFST          (0x1A8)             /**< (EVSYS_USER34) User Multiplexer n Offset */
+#define EVSYS_USER35_REG_OFST          (0x1AC)             /**< (EVSYS_USER35) User Multiplexer n Offset */
+#define EVSYS_USER36_REG_OFST          (0x1B0)             /**< (EVSYS_USER36) User Multiplexer n Offset */
+#define EVSYS_USER37_REG_OFST          (0x1B4)             /**< (EVSYS_USER37) User Multiplexer n Offset */
+#define EVSYS_USER38_REG_OFST          (0x1B8)             /**< (EVSYS_USER38) User Multiplexer n Offset */
+#define EVSYS_USER39_REG_OFST          (0x1BC)             /**< (EVSYS_USER39) User Multiplexer n Offset */
+#define EVSYS_USER40_REG_OFST          (0x1C0)             /**< (EVSYS_USER40) User Multiplexer n Offset */
+#define EVSYS_USER41_REG_OFST          (0x1C4)             /**< (EVSYS_USER41) User Multiplexer n Offset */
+#define EVSYS_USER42_REG_OFST          (0x1C8)             /**< (EVSYS_USER42) User Multiplexer n Offset */
+#define EVSYS_USER43_REG_OFST          (0x1CC)             /**< (EVSYS_USER43) User Multiplexer n Offset */
+#define EVSYS_USER44_REG_OFST          (0x1D0)             /**< (EVSYS_USER44) User Multiplexer n Offset */
+#define EVSYS_USER45_REG_OFST          (0x1D4)             /**< (EVSYS_USER45) User Multiplexer n Offset */
+#define EVSYS_USER46_REG_OFST          (0x1D8)             /**< (EVSYS_USER46) User Multiplexer n Offset */
+#define EVSYS_USER47_REG_OFST          (0x1DC)             /**< (EVSYS_USER47) User Multiplexer n Offset */
+#define EVSYS_USER48_REG_OFST          (0x1E0)             /**< (EVSYS_USER48) User Multiplexer n Offset */
+#define EVSYS_USER49_REG_OFST          (0x1E4)             /**< (EVSYS_USER49) User Multiplexer n Offset */
+#define EVSYS_USER50_REG_OFST          (0x1E8)             /**< (EVSYS_USER50) User Multiplexer n Offset */
+#define EVSYS_USER51_REG_OFST          (0x1EC)             /**< (EVSYS_USER51) User Multiplexer n Offset */
+#define EVSYS_USER52_REG_OFST          (0x1F0)             /**< (EVSYS_USER52) User Multiplexer n Offset */
+#define EVSYS_USER53_REG_OFST          (0x1F4)             /**< (EVSYS_USER53) User Multiplexer n Offset */
+#define EVSYS_USER54_REG_OFST          (0x1F8)             /**< (EVSYS_USER54) User Multiplexer n Offset */
+#define EVSYS_USER55_REG_OFST          (0x1FC)             /**< (EVSYS_USER55) User Multiplexer n Offset */
+#define EVSYS_USER56_REG_OFST          (0x200)             /**< (EVSYS_USER56) User Multiplexer n Offset */
+#define EVSYS_USER57_REG_OFST          (0x204)             /**< (EVSYS_USER57) User Multiplexer n Offset */
+#define EVSYS_USER58_REG_OFST          (0x208)             /**< (EVSYS_USER58) User Multiplexer n Offset */
+#define EVSYS_USER59_REG_OFST          (0x20C)             /**< (EVSYS_USER59) User Multiplexer n Offset */
+#define EVSYS_USER60_REG_OFST          (0x210)             /**< (EVSYS_USER60) User Multiplexer n Offset */
+#define EVSYS_USER61_REG_OFST          (0x214)             /**< (EVSYS_USER61) User Multiplexer n Offset */
+#define EVSYS_USER62_REG_OFST          (0x218)             /**< (EVSYS_USER62) User Multiplexer n Offset */
+#define EVSYS_USER63_REG_OFST          (0x21C)             /**< (EVSYS_USER63) User Multiplexer n Offset */
+#define EVSYS_USER64_REG_OFST          (0x220)             /**< (EVSYS_USER64) User Multiplexer n Offset */
+#define EVSYS_USER65_REG_OFST          (0x224)             /**< (EVSYS_USER65) User Multiplexer n Offset */
+#define EVSYS_USER66_REG_OFST          (0x228)             /**< (EVSYS_USER66) User Multiplexer n Offset */
 
 #if !(defined(__ASSEMBLER__) || defined(__IAR_SYSTEMS_ASM__))
 /** \brief CHANNEL register API structure */

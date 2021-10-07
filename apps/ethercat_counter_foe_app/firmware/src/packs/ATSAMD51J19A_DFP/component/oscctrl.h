@@ -1,7 +1,7 @@
 /**
  * \brief Component description for OSCCTRL
  *
- * Copyright (c) 2020 Microchip Technology Inc. and its subsidiaries.
+ * Copyright (c) 2021 Microchip Technology Inc. and its subsidiaries.
  *
  * Subject to your compliance with these terms, you may use Microchip software and any derivatives
  * exclusively with Microchip products. It is your responsibility to comply with third party license
@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2020-06-22T15:30:21Z */
+/* file generated from device description version 2020-11-23T12:27:44Z */
 #ifndef _SAMD51_OSCCTRL_COMPONENT_H_
 #define _SAMD51_OSCCTRL_COMPONENT_H_
 
@@ -646,6 +646,8 @@
 #define OSCCTRL_INTFLAG_REG_OFST       (0x0C)              /**< (OSCCTRL_INTFLAG) Interrupt Flag Status and Clear Offset */
 #define OSCCTRL_STATUS_REG_OFST        (0x10)              /**< (OSCCTRL_STATUS) Status Offset */
 #define OSCCTRL_XOSCCTRL_REG_OFST      (0x14)              /**< (OSCCTRL_XOSCCTRL) External Multipurpose Crystal Oscillator Control Offset */
+#define OSCCTRL_XOSCCTRL0_REG_OFST     (0x14)              /**< (OSCCTRL_XOSCCTRL0) External Multipurpose Crystal Oscillator Control Offset */
+#define OSCCTRL_XOSCCTRL1_REG_OFST     (0x18)              /**< (OSCCTRL_XOSCCTRL1) External Multipurpose Crystal Oscillator Control Offset */
 #define OSCCTRL_DFLLCTRLA_REG_OFST     (0x1C)              /**< (OSCCTRL_DFLLCTRLA) DFLL48M Control A Offset */
 #define OSCCTRL_DFLLCTRLB_REG_OFST     (0x20)              /**< (OSCCTRL_DFLLCTRLB) DFLL48M Control B Offset */
 #define OSCCTRL_DFLLVAL_REG_OFST       (0x24)              /**< (OSCCTRL_DFLLVAL) DFLL48M Value Offset */

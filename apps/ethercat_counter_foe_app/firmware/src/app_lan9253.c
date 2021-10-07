@@ -67,7 +67,7 @@ const uint32_t gAppBankBOffsetAddr = APP_NVM_BANKB_START_ADDRESS;
 // Bank B application need to started from this below location.
 const uint32_t gApplicationStartAddr   = (uint32_t)(APP_NVM_BANKB_START_ADDRESS + APP_BOOTLOADER_SIZE);
 
-void APP_FlashWrite( uint32_t startAddress,uint8_t *flash_data )
+void APP_FlashWrite(uint32_t startAddress,uint8_t *flash_data)
 {
     uint32_t   flashStartAddress=0;
     int         pageCnt=0;
@@ -116,7 +116,7 @@ static void APP_RunApplication(void)
     {
         return;
     }
-
+ /* if Stack pointer is valid, then execute the Application*/
 	__set_MSP(msp);
 
 	asm("bx %0"::"r" (reset_vector));

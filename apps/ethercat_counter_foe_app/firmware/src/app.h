@@ -68,13 +68,20 @@ extern "C" {
 // Section: Type Definitions
 // *****************************************************************************
 // *****************************************************************************
-// ATSAMD51 BANK B start address 
-#define APP_NVM_BANKB_START_ADDRESS     0x40000
-// Number of pages for BANK B for the device ATSAM D51    
+// ATSAME53 BANK B start address 
+#define APP_NVM_BANKB_START_ADDRESS     0x80000
+// Number of pages for BANK B for the device ATSAM E53    
 #define APP_FLASH_PAGES_BANKB           FLASH_PAGE_SIZE/2
 
+#define NVMCTRL_AFIRST_MSK              NVMCTRL_STATUS_AFIRST_Msk
+    
 // Total size for the BANK B 
-#define APP_MAX_NVM_BANK_SIZE           0x40000
+#define APP_MAX_NVM_BANK_SIZE           0x80000
+    
+// Start of EEPROM address location for E53 device    
+#define APP_EEPROM_START_ADDRESS_LOCATION_BANKB 0xBE000
+
+#define APP_EEPROM_START_ADDRESS_LOCATION_BANKA 0x3E000
     
 // Bootloader space size reserved     
 #define APP_BOOTLOADER_SIZE             0
@@ -84,7 +91,10 @@ extern "C" {
 #define APP_PAGES_IN_ERASE_BLOCK        APP_ERASE_BLOCK_SIZE/APP_PAGE_SIZE
 
 #define APP_DATA_SIZE                   APP_ERASE_BLOCK_SIZE
-#define WORDS(x)                        ((int)((x) / sizeof(uint32_t)))    
+#define WORDS(x)                        ((int)((x) / sizeof(uint32_t)))
+    
+#define APP_PAGES_IN_EEPROM_BLOCK       ESC_EEPROM_SIZE/APP_PAGE_SIZE
+    
 // *****************************************************************************
 /* Application states
 
@@ -210,7 +220,7 @@ void APP_Tasks( void );
 
 /*******************************************************************************
   Function:
-void APP_FlashWrite( UINT32 startAddress, UINT8 *flash_data )
+    void APP_FlashWrite( UINT32 startAddress, UINT8 *flash_data )
 
   Summary:
     MPLAB Harmony NVM write  application function
@@ -235,6 +245,86 @@ void APP_FlashWrite( UINT32 startAddress, UINT8 *flash_data )
  */
 void APP_FlashWrite( uint32_t startAddress, uint8_t *flash_data );
 
+/*******************************************************************************
+  Function:
+    void APP_FOEFlashWrite( UINT32 startAddress, UINT8 *flash_data )
+
+  Summary:
+    MPLAB Harmony NVM write  application function
+
+  Description:
+    This routine is used to write the flash data to the specific BANK address 
+    location. This routine writes 8192 bytes at a time.
+
+  Precondition:
+    The system and application initialization ("SYS_Initialize") should be
+    called before calling this.
+
+  Parameters:
+    None.
+
+  Returns:
+    None.
+
+  Remarks:
+    This routine is called from the slave stack sample application FoE write
+    function.
+ */
+
+void APP_FOEFlashWrite( uint32_t startAddress, uint8_t *flash_data );
+
+/*******************************************************************************
+  Function:
+  void APP_FlashEEPROMUpdate(uint8_t *flash_data, uint8_t checksum)
+
+  Summary:
+    MPLAB Harmony NVM write  application function
+
+  Description:
+    This routine is used to write the flash data to the specific BANK address 
+    location. This routine writes 8192 bytes at a time.
+
+  Precondition:
+    The system and application initialization ("SYS_Initialize") should be
+    called before calling this.
+
+  Parameters:
+    None.
+
+  Returns:
+    None.
+
+  Remarks:
+    This routine is called from the slave stack sample application eeprom write
+    function.
+ */
+void APP_FlashEEPROMUpdate(uint8_t *flash_data, uint8_t checksum);
+
+/*******************************************************************************
+  Function:
+uint8_t CalculateCRC8(uint8_t* pData, int length)
+
+  Summary:
+    Application function
+
+  Description:
+    This routine is used to calculate checksum of eeprom configuration bytes.
+
+  Precondition:
+    The system and application initialization ("SYS_Initialize") should be
+    called before calling this.
+
+  Parameters:
+    None.
+
+  Returns:
+    None.
+
+  Remarks:
+    This routine is called from the slave stack sample application eeprom write
+    function.
+ */
+uint8_t CalculateCRC8(uint8_t* pData, int length);
 
 #endif /* _APP_H */
 

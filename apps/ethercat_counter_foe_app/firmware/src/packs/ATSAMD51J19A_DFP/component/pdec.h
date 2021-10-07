@@ -1,7 +1,7 @@
 /**
  * \brief Component description for PDEC
  *
- * Copyright (c) 2020 Microchip Technology Inc. and its subsidiaries.
+ * Copyright (c) 2021 Microchip Technology Inc. and its subsidiaries.
  *
  * Subject to your compliance with these terms, you may use Microchip software and any derivatives
  * exclusively with Microchip products. It is your responsibility to comply with third party license
@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2020-06-22T15:30:21Z */
+/* file generated from device description version 2020-11-23T12:27:44Z */
 #ifndef _SAMD51_PDEC_COMPONENT_H_
 #define _SAMD51_PDEC_COMPONENT_H_
 
@@ -486,7 +486,11 @@
 #define PDEC_FILTERBUF_REG_OFST        (0x19)              /**< (PDEC_FILTERBUF) Filter Buffer Value Offset */
 #define PDEC_COUNT_REG_OFST            (0x1C)              /**< (PDEC_COUNT) Counter Value Offset */
 #define PDEC_CC_REG_OFST               (0x20)              /**< (PDEC_CC) Channel n Compare Value Offset */
+#define PDEC_CC0_REG_OFST              (0x20)              /**< (PDEC_CC0) Channel n Compare Value Offset */
+#define PDEC_CC1_REG_OFST              (0x24)              /**< (PDEC_CC1) Channel n Compare Value Offset */
 #define PDEC_CCBUF_REG_OFST            (0x30)              /**< (PDEC_CCBUF) Channel Compare Buffer Value Offset */
+#define PDEC_CCBUF0_REG_OFST           (0x30)              /**< (PDEC_CCBUF0) Channel Compare Buffer Value Offset */
+#define PDEC_CCBUF1_REG_OFST           (0x34)              /**< (PDEC_CCBUF1) Channel Compare Buffer Value Offset */
 
 #if !(defined(__ASSEMBLER__) || defined(__IAR_SYSTEMS_ASM__))
 /** \brief PDEC register API structure */

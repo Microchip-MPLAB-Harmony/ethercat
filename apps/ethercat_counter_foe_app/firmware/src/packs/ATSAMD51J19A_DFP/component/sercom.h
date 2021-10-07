@@ -1,7 +1,7 @@
 /**
  * \brief Component description for SERCOM
  *
- * Copyright (c) 2020 Microchip Technology Inc. and its subsidiaries.
+ * Copyright (c) 2021 Microchip Technology Inc. and its subsidiaries.
  *
  * Subject to your compliance with these terms, you may use Microchip software and any derivatives
  * exclusively with Microchip products. It is your responsibility to comply with third party license
@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2020-06-22T15:30:21Z */
+/* file generated from device description version 2020-11-23T12:27:44Z */
 #ifndef _SAMD51_SERCOM_COMPONENT_H_
 #define _SAMD51_SERCOM_COMPONENT_H_
 
@@ -1621,10 +1621,7 @@
 #define SERCOM_I2CM_SYNCBUSY_SYSOP_Pos        _U_(2)                                               /**< (SERCOM_I2CM_SYNCBUSY) System Operation Synchronization Busy Position */
 #define SERCOM_I2CM_SYNCBUSY_SYSOP_Msk        (_U_(0x1) << SERCOM_I2CM_SYNCBUSY_SYSOP_Pos)         /**< (SERCOM_I2CM_SYNCBUSY) System Operation Synchronization Busy Mask */
 #define SERCOM_I2CM_SYNCBUSY_SYSOP(value)     (SERCOM_I2CM_SYNCBUSY_SYSOP_Msk & ((value) << SERCOM_I2CM_SYNCBUSY_SYSOP_Pos))
-#define SERCOM_I2CM_SYNCBUSY_LENGTH_Pos       _U_(4)                                               /**< (SERCOM_I2CM_SYNCBUSY) Length Synchronization Busy Position */
-#define SERCOM_I2CM_SYNCBUSY_LENGTH_Msk       (_U_(0x1) << SERCOM_I2CM_SYNCBUSY_LENGTH_Pos)        /**< (SERCOM_I2CM_SYNCBUSY) Length Synchronization Busy Mask */
-#define SERCOM_I2CM_SYNCBUSY_LENGTH(value)    (SERCOM_I2CM_SYNCBUSY_LENGTH_Msk & ((value) << SERCOM_I2CM_SYNCBUSY_LENGTH_Pos))
-#define SERCOM_I2CM_SYNCBUSY_Msk              _U_(0x00000017)                                      /**< (SERCOM_I2CM_SYNCBUSY) Register Mask  */
+#define SERCOM_I2CM_SYNCBUSY_Msk              _U_(0x00000007)                                      /**< (SERCOM_I2CM_SYNCBUSY) Register Mask  */
 
 
 /* -------- SERCOM_I2CS_SYNCBUSY : (SERCOM Offset: 0x1C) ( R/ 32) I2CS Synchronization Busy -------- */
@@ -1861,13 +1858,13 @@
 #define SERCOM_SPIS_ADDR_Msk                  _U_(0x00FF00FF)                                      /**< (SERCOM_SPIS_ADDR) Register Mask  */
 
 
-/* -------- SERCOM_I2CM_DATA : (SERCOM Offset: 0x28) (R/W 8) I2CM Data -------- */
+/* -------- SERCOM_I2CM_DATA : (SERCOM Offset: 0x28) (R/W 32) I2CM Data -------- */
 #define SERCOM_I2CM_DATA_RESETVALUE           _U_(0x00)                                            /**<  (SERCOM_I2CM_DATA) I2CM Data  Reset Value */
 
 #define SERCOM_I2CM_DATA_DATA_Pos             _U_(0)                                               /**< (SERCOM_I2CM_DATA) Data Value Position */
-#define SERCOM_I2CM_DATA_DATA_Msk             (_U_(0xFF) << SERCOM_I2CM_DATA_DATA_Pos)             /**< (SERCOM_I2CM_DATA) Data Value Mask */
+#define SERCOM_I2CM_DATA_DATA_Msk             (_U_(0xFFFFFFFF) << SERCOM_I2CM_DATA_DATA_Pos)       /**< (SERCOM_I2CM_DATA) Data Value Mask */
 #define SERCOM_I2CM_DATA_DATA(value)          (SERCOM_I2CM_DATA_DATA_Msk & ((value) << SERCOM_I2CM_DATA_DATA_Pos))
-#define SERCOM_I2CM_DATA_Msk                  _U_(0xFF)                                            /**< (SERCOM_I2CM_DATA) Register Mask  */
+#define SERCOM_I2CM_DATA_Msk                  _U_(0xFFFFFFFF)                                      /**< (SERCOM_I2CM_DATA) Register Mask  */
 
 
 /* -------- SERCOM_I2CS_DATA : (SERCOM Offset: 0x28) (R/W 32) I2CS Data -------- */
@@ -2058,8 +2055,8 @@ typedef struct
   __I   uint32_t                       SERCOM_SYNCBUSY;    /**< Offset: 0x1C (R/   32) I2CM Synchronization Busy */
   __I   uint8_t                        Reserved5[0x04];
   __IO  uint32_t                       SERCOM_ADDR;        /**< Offset: 0x24 (R/W  32) I2CM Address */
-  __IO  uint8_t                        SERCOM_DATA;        /**< Offset: 0x28 (R/W  8) I2CM Data */
-  __I   uint8_t                        Reserved6[0x07];
+  __IO  uint32_t                       SERCOM_DATA;        /**< Offset: 0x28 (R/W  32) I2CM Data */
+  __I   uint8_t                        Reserved6[0x04];
   __IO  uint8_t                        SERCOM_DBGCTRL;     /**< Offset: 0x30 (R/W  8) I2CM Debug Control */
 } sercom_i2cm_registers_t;
 

@@ -1,7 +1,7 @@
 /**
  * \brief Component description for SDHC
  *
- * Copyright (c) 2020 Microchip Technology Inc. and its subsidiaries.
+ * Copyright (c) 2021 Microchip Technology Inc. and its subsidiaries.
  *
  * Subject to your compliance with these terms, you may use Microchip software and any derivatives
  * exclusively with Microchip products. It is your responsibility to comply with third party license
@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2020-06-22T15:30:21Z */
+/* file generated from device description version 2020-11-23T12:27:44Z */
 #ifndef _SAMD51_SDHC_COMPONENT_H_
 #define _SAMD51_SDHC_COMPONENT_H_
 
@@ -1515,8 +1515,8 @@
 #define SDHC_AESR_Msk                         _U_(0x07)                                            /**< (SDHC_AESR) Register Mask  */
 
 
-/* -------- SDHC_ASAR : (SDHC Offset: 0x58) (R/W 32) ADMA System Address n -------- */
-#define SDHC_ASAR_RESETVALUE                  _U_(0x00)                                            /**<  (SDHC_ASAR) ADMA System Address n  Reset Value */
+/* -------- SDHC_ASAR : (SDHC Offset: 0x58) (R/W 32) ADMA System Address -------- */
+#define SDHC_ASAR_RESETVALUE                  _U_(0x00)                                            /**<  (SDHC_ASAR) ADMA System Address  Reset Value */
 
 #define SDHC_ASAR_ADMASA_Pos                  _U_(0)                                               /**< (SDHC_ASAR) ADMA System Address Position */
 #define SDHC_ASAR_ADMASA_Msk                  (_U_(0xFFFFFFFF) << SDHC_ASAR_ADMASA_Pos)            /**< (SDHC_ASAR) ADMA System Address Mask */
@@ -1679,6 +1679,10 @@
 #define SDHC_TMR_REG_OFST              (0x0C)              /**< (SDHC_TMR) Transfer Mode Offset */
 #define SDHC_CR_REG_OFST               (0x0E)              /**< (SDHC_CR) Command Offset */
 #define SDHC_RR_REG_OFST               (0x10)              /**< (SDHC_RR) Response Offset */
+#define SDHC_RR0_REG_OFST              (0x10)              /**< (SDHC_RR0) Response Offset */
+#define SDHC_RR1_REG_OFST              (0x14)              /**< (SDHC_RR1) Response Offset */
+#define SDHC_RR2_REG_OFST              (0x18)              /**< (SDHC_RR2) Response Offset */
+#define SDHC_RR3_REG_OFST              (0x1C)              /**< (SDHC_RR3) Response Offset */
 #define SDHC_BDPR_REG_OFST             (0x20)              /**< (SDHC_BDPR) Buffer Data Port Offset */
 #define SDHC_PSR_REG_OFST              (0x24)              /**< (SDHC_PSR) Present State Offset */
 #define SDHC_HC1R_REG_OFST             (0x28)              /**< (SDHC_HC1R) Host Control 1 Offset */
@@ -1702,8 +1706,17 @@
 #define SDHC_FERACES_REG_OFST          (0x50)              /**< (SDHC_FERACES) Force Event for Auto CMD Error Status Offset */
 #define SDHC_FEREIS_REG_OFST           (0x52)              /**< (SDHC_FEREIS) Force Event for Error Interrupt Status Offset */
 #define SDHC_AESR_REG_OFST             (0x54)              /**< (SDHC_AESR) ADMA Error Status Offset */
-#define SDHC_ASAR_REG_OFST             (0x58)              /**< (SDHC_ASAR) ADMA System Address n Offset */
+#define SDHC_ASAR_REG_OFST             (0x58)              /**< (SDHC_ASAR) ADMA System Address Offset */
+#define SDHC_ASAR0_REG_OFST            (0x58)              /**< (SDHC_ASAR0) ADMA System Address Offset */
 #define SDHC_PVR_REG_OFST              (0x60)              /**< (SDHC_PVR) Preset Value n Offset */
+#define SDHC_PVR0_REG_OFST             (0x60)              /**< (SDHC_PVR0) Preset Value n Offset */
+#define SDHC_PVR1_REG_OFST             (0x62)              /**< (SDHC_PVR1) Preset Value n Offset */
+#define SDHC_PVR2_REG_OFST             (0x64)              /**< (SDHC_PVR2) Preset Value n Offset */
+#define SDHC_PVR3_REG_OFST             (0x66)              /**< (SDHC_PVR3) Preset Value n Offset */
+#define SDHC_PVR4_REG_OFST             (0x68)              /**< (SDHC_PVR4) Preset Value n Offset */
+#define SDHC_PVR5_REG_OFST             (0x6A)              /**< (SDHC_PVR5) Preset Value n Offset */
+#define SDHC_PVR6_REG_OFST             (0x6C)              /**< (SDHC_PVR6) Preset Value n Offset */
+#define SDHC_PVR7_REG_OFST             (0x6E)              /**< (SDHC_PVR7) Preset Value n Offset */
 #define SDHC_SISR_REG_OFST             (0xFC)              /**< (SDHC_SISR) Slot Interrupt Status Offset */
 #define SDHC_HCVR_REG_OFST             (0xFE)              /**< (SDHC_HCVR) Host Controller Version Offset */
 #define SDHC_MC1R_REG_OFST             (0x204)             /**< (SDHC_MC1R) MMC Control 1 Offset */
@@ -1749,7 +1762,7 @@ typedef struct
   __O   uint16_t                       SDHC_FEREIS;        /**< Offset: 0x52 ( /W  16) Force Event for Error Interrupt Status */
   __I   uint8_t                        SDHC_AESR;          /**< Offset: 0x54 (R/   8) ADMA Error Status */
   __I   uint8_t                        Reserved2[0x03];
-  __IO  uint32_t                       SDHC_ASAR[1];       /**< Offset: 0x58 (R/W  32) ADMA System Address n */
+  __IO  uint32_t                       SDHC_ASAR[1];       /**< Offset: 0x58 (R/W  32) ADMA System Address */
   __I   uint8_t                        Reserved3[0x04];
   __IO  uint16_t                       SDHC_PVR[8];        /**< Offset: 0x60 (R/W  16) Preset Value n */
   __I   uint8_t                        Reserved4[0x8C];

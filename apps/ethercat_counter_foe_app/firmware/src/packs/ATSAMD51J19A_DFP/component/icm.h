@@ -1,7 +1,7 @@
 /**
  * \brief Component description for ICM
  *
- * Copyright (c) 2020 Microchip Technology Inc. and its subsidiaries.
+ * Copyright (c) 2021 Microchip Technology Inc. and its subsidiaries.
  *
  * Subject to your compliance with these terms, you may use Microchip software and any derivatives
  * exclusively with Microchip products. It is your responsibility to comply with third party license
@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2020-06-22T15:30:21Z */
+/* file generated from device description version 2020-11-23T12:27:44Z */
 #ifndef _SAMD51_ICM_COMPONENT_H_
 #define _SAMD51_ICM_COMPONENT_H_
 
@@ -158,13 +158,7 @@
 #define ICM_CFG_UALGO_SHA1                    (ICM_CFG_UALGO_SHA1_Val << ICM_CFG_UALGO_Pos)        /**< (ICM_CFG) SHA1 Algorithm Position  */
 #define ICM_CFG_UALGO_SHA256                  (ICM_CFG_UALGO_SHA256_Val << ICM_CFG_UALGO_Pos)      /**< (ICM_CFG) SHA256 Algorithm Position  */
 #define ICM_CFG_UALGO_SHA224                  (ICM_CFG_UALGO_SHA224_Val << ICM_CFG_UALGO_Pos)      /**< (ICM_CFG) SHA224 Algorithm Position  */
-#define ICM_CFG_HAPROT_Pos                    _U_(16)                                              /**< (ICM_CFG) Region Hash Area Protection Position */
-#define ICM_CFG_HAPROT_Msk                    (_U_(0x3F) << ICM_CFG_HAPROT_Pos)                    /**< (ICM_CFG) Region Hash Area Protection Mask */
-#define ICM_CFG_HAPROT(value)                 (ICM_CFG_HAPROT_Msk & ((value) << ICM_CFG_HAPROT_Pos))
-#define ICM_CFG_DAPROT_Pos                    _U_(24)                                              /**< (ICM_CFG) Region Descriptor Area Protection Position */
-#define ICM_CFG_DAPROT_Msk                    (_U_(0x3F) << ICM_CFG_DAPROT_Pos)                    /**< (ICM_CFG) Region Descriptor Area Protection Mask */
-#define ICM_CFG_DAPROT(value)                 (ICM_CFG_DAPROT_Msk & ((value) << ICM_CFG_DAPROT_Pos))
-#define ICM_CFG_Msk                           _U_(0x3F3FF3F7)                                      /**< (ICM_CFG) Register Mask  */
+#define ICM_CFG_Msk                           _U_(0x0000F3F7)                                      /**< (ICM_CFG) Register Mask  */
 
 
 /* -------- ICM_CTRL : (ICM Offset: 0x04) ( /W 32) Control -------- */
@@ -372,6 +366,14 @@
 #define ICM_DSCR_REG_OFST              (0x30)              /**< (ICM_DSCR) Region Descriptor Area Start Address Offset */
 #define ICM_HASH_REG_OFST              (0x34)              /**< (ICM_HASH) Region Hash Area Start Address Offset */
 #define ICM_UIHVAL_REG_OFST            (0x38)              /**< (ICM_UIHVAL) User Initial Hash Value n Offset */
+#define ICM_UIHVAL0_REG_OFST           (0x38)              /**< (ICM_UIHVAL0) User Initial Hash Value n Offset */
+#define ICM_UIHVAL1_REG_OFST           (0x3C)              /**< (ICM_UIHVAL1) User Initial Hash Value n Offset */
+#define ICM_UIHVAL2_REG_OFST           (0x40)              /**< (ICM_UIHVAL2) User Initial Hash Value n Offset */
+#define ICM_UIHVAL3_REG_OFST           (0x44)              /**< (ICM_UIHVAL3) User Initial Hash Value n Offset */
+#define ICM_UIHVAL4_REG_OFST           (0x48)              /**< (ICM_UIHVAL4) User Initial Hash Value n Offset */
+#define ICM_UIHVAL5_REG_OFST           (0x4C)              /**< (ICM_UIHVAL5) User Initial Hash Value n Offset */
+#define ICM_UIHVAL6_REG_OFST           (0x50)              /**< (ICM_UIHVAL6) User Initial Hash Value n Offset */
+#define ICM_UIHVAL7_REG_OFST           (0x54)              /**< (ICM_UIHVAL7) User Initial Hash Value n Offset */
 
 #if !(defined(__ASSEMBLER__) || defined(__IAR_SYSTEMS_ASM__))
 /** \brief ICM_DESCRIPTOR register API structure */

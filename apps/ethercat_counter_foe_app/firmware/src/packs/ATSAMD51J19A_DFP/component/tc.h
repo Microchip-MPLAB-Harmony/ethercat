@@ -1,7 +1,7 @@
 /**
  * \brief Component description for TC
  *
- * Copyright (c) 2020 Microchip Technology Inc. and its subsidiaries.
+ * Copyright (c) 2021 Microchip Technology Inc. and its subsidiaries.
  *
  * Subject to your compliance with these terms, you may use Microchip software and any derivatives
  * exclusively with Microchip products. It is your responsibility to comply with third party license
@@ -20,7 +20,7 @@
  *
  */
 
-/* file generated from device description version 2020-06-22T15:30:21Z */
+/* file generated from device description version 2020-11-23T12:27:44Z */
 #ifndef _SAMD51_TC_COMPONENT_H_
 #define _SAMD51_TC_COMPONENT_H_
 
@@ -142,13 +142,11 @@
 #define   TC_CTRLBCLR_CMD_STOP_Val            _U_(0x2)                                             /**< (TC_CTRLBCLR) Force a stop  */
 #define   TC_CTRLBCLR_CMD_UPDATE_Val          _U_(0x3)                                             /**< (TC_CTRLBCLR) Force update of double-buffered register  */
 #define   TC_CTRLBCLR_CMD_READSYNC_Val        _U_(0x4)                                             /**< (TC_CTRLBCLR) Force a read synchronization of COUNT  */
-#define   TC_CTRLBCLR_CMD_DMAOS_Val           _U_(0x5)                                             /**< (TC_CTRLBCLR) One-shot DMA trigger  */
 #define TC_CTRLBCLR_CMD_NONE                  (TC_CTRLBCLR_CMD_NONE_Val << TC_CTRLBCLR_CMD_Pos)    /**< (TC_CTRLBCLR) No action Position  */
 #define TC_CTRLBCLR_CMD_RETRIGGER             (TC_CTRLBCLR_CMD_RETRIGGER_Val << TC_CTRLBCLR_CMD_Pos) /**< (TC_CTRLBCLR) Force a start, restart or retrigger Position  */
 #define TC_CTRLBCLR_CMD_STOP                  (TC_CTRLBCLR_CMD_STOP_Val << TC_CTRLBCLR_CMD_Pos)    /**< (TC_CTRLBCLR) Force a stop Position  */
 #define TC_CTRLBCLR_CMD_UPDATE                (TC_CTRLBCLR_CMD_UPDATE_Val << TC_CTRLBCLR_CMD_Pos)  /**< (TC_CTRLBCLR) Force update of double-buffered register Position  */
 #define TC_CTRLBCLR_CMD_READSYNC              (TC_CTRLBCLR_CMD_READSYNC_Val << TC_CTRLBCLR_CMD_Pos) /**< (TC_CTRLBCLR) Force a read synchronization of COUNT Position  */
-#define TC_CTRLBCLR_CMD_DMAOS                 (TC_CTRLBCLR_CMD_DMAOS_Val << TC_CTRLBCLR_CMD_Pos)   /**< (TC_CTRLBCLR) One-shot DMA trigger Position  */
 #define TC_CTRLBCLR_Msk                       _U_(0xE7)                                            /**< (TC_CTRLBCLR) Register Mask  */
 
 
@@ -172,13 +170,11 @@
 #define   TC_CTRLBSET_CMD_STOP_Val            _U_(0x2)                                             /**< (TC_CTRLBSET) Force a stop  */
 #define   TC_CTRLBSET_CMD_UPDATE_Val          _U_(0x3)                                             /**< (TC_CTRLBSET) Force update of double-buffered register  */
 #define   TC_CTRLBSET_CMD_READSYNC_Val        _U_(0x4)                                             /**< (TC_CTRLBSET) Force a read synchronization of COUNT  */
-#define   TC_CTRLBSET_CMD_DMAOS_Val           _U_(0x5)                                             /**< (TC_CTRLBSET) One-shot DMA trigger  */
 #define TC_CTRLBSET_CMD_NONE                  (TC_CTRLBSET_CMD_NONE_Val << TC_CTRLBSET_CMD_Pos)    /**< (TC_CTRLBSET) No action Position  */
 #define TC_CTRLBSET_CMD_RETRIGGER             (TC_CTRLBSET_CMD_RETRIGGER_Val << TC_CTRLBSET_CMD_Pos) /**< (TC_CTRLBSET) Force a start, restart or retrigger Position  */
 #define TC_CTRLBSET_CMD_STOP                  (TC_CTRLBSET_CMD_STOP_Val << TC_CTRLBSET_CMD_Pos)    /**< (TC_CTRLBSET) Force a stop Position  */
 #define TC_CTRLBSET_CMD_UPDATE                (TC_CTRLBSET_CMD_UPDATE_Val << TC_CTRLBSET_CMD_Pos)  /**< (TC_CTRLBSET) Force update of double-buffered register Position  */
 #define TC_CTRLBSET_CMD_READSYNC              (TC_CTRLBSET_CMD_READSYNC_Val << TC_CTRLBSET_CMD_Pos) /**< (TC_CTRLBSET) Force a read synchronization of COUNT Position  */
-#define TC_CTRLBSET_CMD_DMAOS                 (TC_CTRLBSET_CMD_DMAOS_Val << TC_CTRLBSET_CMD_Pos)   /**< (TC_CTRLBSET) One-shot DMA trigger Position  */
 #define TC_CTRLBSET_Msk                       _U_(0xE7)                                            /**< (TC_CTRLBSET) Register Mask  */
 
 
@@ -503,12 +499,24 @@
 #define TC_COUNT32_COUNT_REG_OFST      (0x14)              /**< (TC_COUNT32_COUNT) COUNT32 Count Offset */
 #define TC_COUNT8_PER_REG_OFST         (0x1B)              /**< (TC_COUNT8_PER) COUNT8 Period Offset */
 #define TC_COUNT8_CC_REG_OFST          (0x1C)              /**< (TC_COUNT8_CC) COUNT8 Compare and Capture Offset */
+#define TC_COUNT8_CC0_REG_OFST         (0x1C)              /**< (TC_COUNT8_CC0) COUNT8 Compare and Capture Offset */
+#define TC_COUNT8_CC1_REG_OFST         (0x1D)              /**< (TC_COUNT8_CC1) COUNT8 Compare and Capture Offset */
 #define TC_COUNT16_CC_REG_OFST         (0x1C)              /**< (TC_COUNT16_CC) COUNT16 Compare and Capture Offset */
+#define TC_COUNT16_CC0_REG_OFST        (0x1C)              /**< (TC_COUNT16_CC0) COUNT16 Compare and Capture Offset */
+#define TC_COUNT16_CC1_REG_OFST        (0x1E)              /**< (TC_COUNT16_CC1) COUNT16 Compare and Capture Offset */
 #define TC_COUNT32_CC_REG_OFST         (0x1C)              /**< (TC_COUNT32_CC) COUNT32 Compare and Capture Offset */
+#define TC_COUNT32_CC0_REG_OFST        (0x1C)              /**< (TC_COUNT32_CC0) COUNT32 Compare and Capture Offset */
+#define TC_COUNT32_CC1_REG_OFST        (0x20)              /**< (TC_COUNT32_CC1) COUNT32 Compare and Capture Offset */
 #define TC_COUNT8_PERBUF_REG_OFST      (0x2F)              /**< (TC_COUNT8_PERBUF) COUNT8 Period Buffer Offset */
 #define TC_COUNT8_CCBUF_REG_OFST       (0x30)              /**< (TC_COUNT8_CCBUF) COUNT8 Compare and Capture Buffer Offset */
+#define TC_COUNT8_CCBUF0_REG_OFST      (0x30)              /**< (TC_COUNT8_CCBUF0) COUNT8 Compare and Capture Buffer Offset */
+#define TC_COUNT8_CCBUF1_REG_OFST      (0x31)              /**< (TC_COUNT8_CCBUF1) COUNT8 Compare and Capture Buffer Offset */
 #define TC_COUNT16_CCBUF_REG_OFST      (0x30)              /**< (TC_COUNT16_CCBUF) COUNT16 Compare and Capture Buffer Offset */
+#define TC_COUNT16_CCBUF0_REG_OFST     (0x30)              /**< (TC_COUNT16_CCBUF0) COUNT16 Compare and Capture Buffer Offset */
+#define TC_COUNT16_CCBUF1_REG_OFST     (0x32)              /**< (TC_COUNT16_CCBUF1) COUNT16 Compare and Capture Buffer Offset */
 #define TC_COUNT32_CCBUF_REG_OFST      (0x30)              /**< (TC_COUNT32_CCBUF) COUNT32 Compare and Capture Buffer Offset */
+#define TC_COUNT32_CCBUF0_REG_OFST     (0x30)              /**< (TC_COUNT32_CCBUF0) COUNT32 Compare and Capture Buffer Offset */
+#define TC_COUNT32_CCBUF1_REG_OFST     (0x34)              /**< (TC_COUNT32_CCBUF1) COUNT32 Compare and Capture Buffer Offset */
 
 #if !(defined(__ASSEMBLER__) || defined(__IAR_SYSTEMS_ASM__))
 /** \brief TC register API structure */
