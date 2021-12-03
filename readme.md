@@ -62,8 +62,8 @@ The distribution package also contains details about EtherCAT Beckhoff Slave sta
 
 | Name      | Description  |
 | --------  | -----------  |
-| [ethercat_library_lan925x](driver/readme.md) | This library explains about EtherCAT Client controller Interface layer w.r.t LAN9252 device |
-| [ethercat_counter_foe_app](apps/ethercat_counter_foe_app/readme.md)| This example application demonstrates the capable of doing firmware updates via FoE (File over EtherCAT).This also demonstrates  EtherCAT TwinCAT manager and  LAN925x Client communication with SAMD51 micro-controller. |
+| [ethercat_library_lan925x](driver/readme.md) | This library explains about EtherCAT Client controller Interface layer w.r.t LAN9252/LAN9253/LAN9255 devices |
+| [ethercat_counter_foe_app](apps/ethercat_counter_foe_app/readme.md)| This example application demonstrates the capable of doing firmware updates via FoE (File over EtherCAT).This also demonstrates  EtherCAT TwinCAT manager and  LAN925x Client communication with SAMD51 , SAME53 and LAN9255 micro-controller. |
 
 
 

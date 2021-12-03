@@ -16,6 +16,8 @@ Ethernet for Control Automation Technology (EtherCAT) was developed by Beckhoff.
 
 The LAN9255 is a 2/3-port EtherCAT Client controller with dual integrated Ethernet PHYs which each contain a fullduplex 100BASE-TX transceiver and support 100Mbps (100BASE-TX) operation.
 
+![Ethercat Technology](images/lan9255_evb_diagram.png)
+
 The EtherCAT LAN9255 Library contains a EtherCAT Client Controller Interface layer that enables Microchip MCUs to communicate with the LAN9255 EtherCAT Client controller. This interface layer supports different communication interfaces (QSPI (SPI/SQI mode), GPIO). The interface layer also serves as a Host peripheral bridge between the EtherCAT Beckhoff Slave Stack Code (SSC) and the LAN9255. The SSC Stack (generated from standard SSC tool) contains features such as File over EtherCAT (FoE) and EEPROM Emulation for MCU firmware upgrade from TwinCAT tool.
 
 ![Ethercat Technology](images/EtherCAT_module_lan9255_diagram.png)

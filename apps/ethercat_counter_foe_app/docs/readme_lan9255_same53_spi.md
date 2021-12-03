@@ -49,6 +49,9 @@ The following development board will be used for EtherCAT application developmen
   * Connect a micro USB cable to J8 port for power source.
   * For programming, Connect a ICD4 JTAG cable to the J10 port of the EVB_LAN9255_SAME53 board.
   * Connect RJ45 connector J1 to the TwinCAT Manager.
+  * Jumper setup for LAN9255 device w.r.t to different mode
+
+    ![EVB_LAN9255_SAME53](images/jumper_setting_LAN9255.png)
 
   * Block diagram of the EVB_LAN9255_SAME53 board -
 
