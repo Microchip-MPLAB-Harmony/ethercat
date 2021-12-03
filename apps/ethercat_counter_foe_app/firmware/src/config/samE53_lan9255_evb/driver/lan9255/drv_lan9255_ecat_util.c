@@ -171,9 +171,7 @@ Summary:
 *******************************************************************************/
 void _ECAT_Sync0Callback(uintptr_t context)
 {
-	CRITICAL_SECTION_ENTER();
 	Sync0_Isr();
-	CRITICAL_SECTION_LEAVE();
 }
 
 /*******************************************************************************
@@ -185,9 +183,7 @@ Summary:
 *******************************************************************************/
 void _ECAT_Sync1Callback(uintptr_t context)
 {
-	CRITICAL_SECTION_ENTER();
 	Sync1_Isr();
-  	CRITICAL_SECTION_LEAVE();   
 }
 
 /*******************************************************************************
@@ -448,331 +444,82 @@ void ECAT_Lan9255_IsPDIFunctional(uint8_t *pu8Data)
 	memcpy(pu8Data,u8RxData,u8Len);	
 	_ECAT_ChipSelectDisable();
 
-
 }
 
-
 /* 
-    Function: ECAT_Lan925x_SPIWrite
+    Function: ECAT_Lan9255_SPIWrite
 
-    This function does Write Access to Non-Ether CAT and Ether CAT Core CSR 
-	using 'Serial Write(0x02)' command supported by LAN9252/LAN9255 Compatible SPI. This function shall be used
-	only when PDI is selected as LAN9252/LAN9255 Compatible SPI (0x80)
+    This function does Write Access to Non-Ether CAT core CSR, Ether CAT Core CSR and Process RAM
+	using 'Serial Write(0x02)' command supported by LAN9255 Compatible SPI. This function shall be used
+	only when PDI is selected as LAN9255 Compatible SPI (0x82)
      
     Input : u16Adddr    -> Address of the register to be written
             *pu8Data  -> Pointer to the data that is to be written
+			u32Length  -> Number of bytes to be written 
 
     Output : None
 	
-	Note   : In LAN9252 Compatible SPI, all registers are DWORD aligned. Length will be fixed to 4. Hence,
-			 there is no separate length argument.
+	Note   : Since now SPI is running at 5MHz, Serial Write is successful without any dummy bytes or wait
+			 signal. But, as the SPI clock speed increases, we have to follow either of these. 
+
 */
 
-void ECAT_Lan925x_SPIWrite(uint16_t u16Adddr, uint8_t *pu8Data, uint8_t u8Len)
-{
-	uint8_t u8dummy_clk_cnt = 0;
-    uint8_t u8TxData[DWORD_LENGTH] = {0,0,0,0};
-    uint8_t	u8RxData[DWORD_LENGTH] = {0,0,0,0};
-    uint8_t u8TxLen = 1, u8RxLen = 1;
-	uint8_t u8RxOneByteData=0;
-	
-    u8TxData[0] = CMD_SERIAL_WRITE;
-    u8TxData[1] = (uint8_t)(u16Adddr >> 8);
-    u8TxData[2] = (uint8_t)u16Adddr;
-    
-    _ECAT_ChipSelectEnable();
-    while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-    {        
-    }
-	u8TxLen = u8RxLen = 3;
-	gDrvLan9255UtilObj.spiPlib->spiWriteRead(u8TxData,u8TxLen,u8RxData,u8RxLen);
-    _ECAT_QSPI_SyncWait();    
-    while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-    {        
-    }
-  
-    gEscALEvent.Byte[0] = u8RxData[1];
-    gEscALEvent.Byte[1] = u8RxData[2];
-    
-	u8TxLen = u8RxLen = 1;
-	
-	 /* Initial Dummy cycle added by dummy write */
-    u8dummy_clk_cnt = gau8DummyCntArr[SPI_WRITE_INITIAL_OFFSET];
-	while (u8dummy_clk_cnt--)
-	{
-		gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
-		_ECAT_QSPI_SyncWait();
-		while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-		{        
-		}
-	}
-    gDrvLan9255UtilObj.spiPlib->spiWrite(pu8Data, u8Len);
-    _ECAT_QSPI_SyncWait();
-    
-    while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-    {        
-    }
-	
-	/* Get the Intra DWORD dummy clock count */
-	u8dummy_clk_cnt = gau8DummyCntArr[SPI_WRITE_INTRA_DWORD_OFFSET];
-	/* Add Intra DWORD dummy clocks, avoid for last byte */
-	if (1 != u8Len) 
-	{
-		while (u8dummy_clk_cnt--)
-		{
-			gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
-			_ECAT_QSPI_SyncWait();
-			while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-			{        
-			}
-		}
-	}
-    _ECAT_ChipSelectDisable();
-
-}
-
-/* 
-    Function: ECAT_Lan925x_SPIRead
-
-    This function does Read Access to Non-EtherCAT and EtherCAT Core CSR 
-	using 'Serial Read(0x03)' command supported by LAN9252/LAN9255 Compatible SPI. This function shall be used
-	only when PDI is selected as LAN9252/LAN9255 Compatible SPI (0x80)
-     
-    Input : u16Addr    -> Address of the register to be read
-            *pu8Data -> Pointer to the data that is to be read
-
-    Output : None
-	
-	Note   : In LAN9252 Compatible SPI, all registers are DWORD aligned. Length will be fixed to 4. Hence,
-			 there is no separate length argument.
-*/
-
-void ECAT_Lan925x_SPIRead(uint16_t u16Addr, uint8_t *pu8Data, uint8_t u8Len)
-{
-	uint8_t  u8dummy_clk_cnt = 0;
-    uint8_t  u8TxData[DWORD_LENGTH]={0,0,0,0};
+void ECAT_Lan9255_SPIWrite(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Length)
+{	
+	uint32_t    dwModLen = 0;
+#ifdef ETHERCAT_IS_SUPPORT_DUMMY_CYCLE
+	uint8_t 	u8dummy_clk_cnt = 0;
+#endif
+#ifdef WAIT_ACK_BASED_SPI_DIRECT_MODE
+	BOOL bWaitAck;
+#endif
+    uint8_t  u8TxData[DWORD_LENGTH]={0,0,0,0}; 
     uint8_t  u8RxData[DWORD_LENGTH]={0,0,0,0};
-    uint8_t  u8TxLen = 1, u8RxLen = 1;
-	uint8_t u8TxOneByteData=0, u8RxOneByteData=0;
+	uint8_t  u8RxLen = 1, u8TxLen = 1;
+    uint8_t	 u8TxOneByteData=0, u8RxOneByteData=0;   
 	
-	u8TxData[0] = CMD_SERIAL_READ;
+	/* Core CSR and Process RAM accesses can have any alignment and length */
+	if (u16Addr < 0x3000)
+	{
+		/* DWORD Buffering - Applicable for Write only */
+		if (u32Length > 1)
+		{
+			u16Addr |= 0xC000; 	/* addr[15:14]=11 */
+		}
+		else
+		{
+			/* Do Nothing */
+		}
+	}
+	else
+	{
+		/* Non Core CSR length will be adjusted if it is not DWORD aligned */
+		dwModLen = u32Length % 4;
+		if (1 == dwModLen)
+		{
+			u32Length = u32Length + 3;
+		}
+		else if (2 == dwModLen)
+		{
+			u32Length = u32Length + 2;
+		}
+		else if (3 == dwModLen)
+		{
+			u32Length = u32Length + 1;
+		}
+		else
+		{
+			/* Do nothing if length is 0 since it is DWORD access */
+		}
+	}
+
+	_ECAT_ChipSelectEnable();
+	
+	/* SPI read and write with 3 bytes of TX and RX length */
+	u8TxLen = u8RxLen = 3;
+    u8TxData[0] = CMD_SERIAL_WRITE;
     u8TxData[1] = (uint8_t)(u16Addr >> 8);
     u8TxData[2] = (uint8_t)u16Addr;
-    
-    _ECAT_ChipSelectEnable();
-    while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-    {        
-    }
-	/* SPI read and write with 3 bytes of TX and RX length */
-	u8TxLen = u8RxLen = 3;
-	
-    gDrvLan9255UtilObj.spiPlib->spiWriteRead(u8TxData, u8TxLen,u8RxData,u8RxLen);
-    _ECAT_QSPI_SyncWait();    
-    while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-    {        
-    }
-    gEscALEvent.Byte[0] = u8RxData[1];
-    gEscALEvent.Byte[1] = u8RxData[2];
-	
-	/* SPI read and write with 1 bytes of TX and RX length */
-	u8TxLen = u8RxLen = 1;
-	
-    /* Initial Dummy cycle added by dummy read */
-    u8dummy_clk_cnt = gau8DummyCntArr[SPI_READ_INITIAL_OFFSET];
-	while(u8dummy_clk_cnt--)
-	{
-		gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
-		_ECAT_QSPI_SyncWait();
-		while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-		{
-		}
-	}
-	
-    do
-	{
-		if(1 == u8Len)
-		{
-			u8TxOneByteData = READ_TERMINATION_BYTE;
-		}
-		else
-		{
-			u8TxOneByteData = 0;
-		}
-		
-		gDrvLan9255UtilObj.spiPlib->spiWriteRead(&u8TxOneByteData, u8TxLen, &u8RxOneByteData, u8RxLen);
-		_ECAT_QSPI_SyncWait();
-		while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-		{
-		}
-		*pu8Data++ = u8RxOneByteData;
-		
-		/* Get the Intra DWORD dummy clock count */
-        u8dummy_clk_cnt = gau8DummyCntArr[SPI_READ_INTRA_DWORD_OFFSET];
-        /* Add Intra DWORD dummy clocks, avoid for last byte */
-        if (1 != u8Len) 
-		{
-            while(u8dummy_clk_cnt--)
-            {
-				gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
-                _ECAT_QSPI_SyncWait();
-                while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-				{
-				}
-            }
-        }
-		
-	} while (--u8Len);
-    
-    _ECAT_ChipSelectDisable();
-}
-
-/* 
-    Function: ECAT_Lan925x_SPIFastRead
-
-    This function does Read Access to Non-Ether CAT and Ether CAT Core CSR 
-	using 'Fast Read(0x0B)' command supported by LAN9252/LAN9255 Compatible SPI. This function shall be used
-	only when PDI is selected as LAN9252/LAN9255 Compatible SPI (0x80)
-     
-    Input : u16Addr    -> Address of the register to be read
-            *pu8Data -> Pointer to the data that is to be read
-
-    Output : None
-
-*/
-
-void ECAT_Lan925x_SPIFastRead(uint16_t u16Addr, uint8_t *pu8Data, uint8_t u8Len)
-{
-    uint8_t  u8TxData[DWORD_LENGTH]={0,0,0,0};
-    uint8_t  u8RxData[DWORD_LENGTH]={0,0,0,0};
-	uint8_t u8TxLen = 1, u8RxLen = 1,u8dummy_clk_cnt = 0;
-	uint8_t u8TxOneByteData=0, u8RxOneByteData=0;
-	
-	u8TxData[0] = CMD_FAST_READ;
-    u8TxData[1] = (uint8_t)(u16Addr >> 8);
-    u8TxData[2] = (uint8_t)u16Addr;	
-    
-	/* SPI read and write with 3 bytes of TX and RX length */
-	u8TxLen = u8RxLen = 3;
-	
-	_ECAT_ChipSelectEnable();
-    while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-    {        
-    }
-    gDrvLan9255UtilObj.spiPlib->spiWriteRead(u8TxData, u8TxLen,u8RxData,u8RxLen);
-    _ECAT_QSPI_SyncWait();    
-    while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-    {        
-    }
-    gEscALEvent.Byte[0] = u8RxData[1];
-    gEscALEvent.Byte[1] = u8RxData[2];
-	
-	/* SPI read and write with 1 bytes of TX and RX length */
-	u8TxLen = u8RxLen = 1;
-    
-	/* Send Transfer length */
-    gDrvLan9255UtilObj.spiPlib->spiWrite(&u8Len, u8TxLen);
-    _ECAT_QSPI_SyncWait();
-    while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-    {
-    }
-    
-	/* Initial Dummy cycle added by dummy read */
-	u8dummy_clk_cnt = gau8DummyCntArr[SPI_FASTREAD_INITIAL_OFFSET];
-	while (u8dummy_clk_cnt--)
-	{
-		gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
-		_ECAT_QSPI_SyncWait();
-		while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-		{        
-		}
-	}
-	    
-    do
-	{
-		if (1 == u8Len)
-		{
-			u8TxOneByteData = READ_TERMINATION_BYTE;
-		}
-		else
-		{
-			u8TxOneByteData = 0;
-		}
-        
-		gDrvLan9255UtilObj.spiPlib->spiWriteRead(&u8TxOneByteData, u8TxLen, &u8RxOneByteData, u8RxLen);
-        _ECAT_QSPI_SyncWait();    
-        while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-        {            
-        }
-		*pu8Data++ = u8RxOneByteData;
-		
-		/* Get the Intra DWORD dummy clock count */
-        u8dummy_clk_cnt = gau8DummyCntArr[SPI_FASTREAD_INTRA_DWORD_OFFSET];
-        /* Add Intra DWORD dummy clocks, avoid for last byte */
-        if (1 != u8Len) 
-		{
-            while (u8dummy_clk_cnt--)
-			{
-				gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
-                _ECAT_QSPI_SyncWait();
-                while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-				{       
-				}
-            }
-        }
-	} while(--u8Len);
-
-	_ECAT_ChipSelectDisable();
-}
-
-/* 
-    Function: ECAT_Lan925x_SPIReadPDRAM
-
-    This function does Read Access to Ether CAT Core Process RAM  using 'Serial Read(0x03)' command 
-	supported by LAN9252/LAN9255 Compatible SPI. This function shall be used only when PDI is selected as
-	LAN9252 Compatible SPI (0x80)
-     
-    Input : u16Addr    -> Address of the RAM location to be read
-            *pu8Data -> Pointer to the data that is to be read
-			u8Len	 -> Number of bytes to be read from PDRAM location
-
-    Output : None
-
-*/
-
-void ECAT_Lan925x_SPIReadPDRAM(uint8_t *pu8Data, uint16_t u16Addr, uint16_t u16Len)
-{
-	UINT32_VAL 	u32Val;
-	uint8_t		u8StartAlignSize, u8EndAlignSize;
-    uint8_t  	u8TxData[DWORD_LENGTH]={0,0,0,0};
-    uint8_t  	u8RxData[DWORD_LENGTH]={0,0,0,0};
-    uint8_t 	u8TxLen = 1, u8RxLen = 1,u8dummy_clk_cnt = 0;
-	uint8_t 	u8TxOneByteData=0, u8RxOneByteData=0;
-	
-	/* Address and length */
-	u32Val.w[0] = u16Addr;
-	u32Val.w[1] = u16Len;
-	MCHP_ESF_PDI_WRITE(ECAT_PRAM_RD_ADDR_LENGTH_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-
-	/* Read command */
-	u32Val.Val = 0x80000000;
-	MCHP_ESF_PDI_WRITE(ECAT_PRAM_RD_CMD_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-
-	u8StartAlignSize = (u16Addr & 3);
-	u8EndAlignSize = (u16Len + u8StartAlignSize) & 3;
-	if (u8EndAlignSize & 3)
-	{
-		u8EndAlignSize = (((u8EndAlignSize + 4) & 0xC) - u8EndAlignSize);
-	}
-
-	/* SPI read and write with 3 bytes of TX and RX length */
-	u8TxLen = u8RxLen = 3;
-	
-	/* Read SPI FIFO */
-	_ECAT_ChipSelectEnable();
-    
-    u8TxData[0] = CMD_SERIAL_READ;
-    u8TxData[1] = (uint8_t)0;
-    u8TxData[2] = (uint8_t)0x04;
 	
     while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
     {        
@@ -783,370 +530,14 @@ void ECAT_Lan925x_SPIReadPDRAM(uint8_t *pu8Data, uint16_t u16Addr, uint16_t u16L
     while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
     {        
     }
+    // Update the gEscALEvent value which is required for the state change
     gEscALEvent.Byte[0] = u8RxData[1];
     gEscALEvent.Byte[1] = u8RxData[2];
-    
+	
 	/* SPI read and write with 1 bytes of TX and RX length */
 	u8TxLen = u8RxLen = 1;
 	
-	/* Initial Dummy cycle added by dummy read */
-	u8dummy_clk_cnt = gau8DummyCntArr[SPI_READ_INITIAL_OFFSET];
-	while (u8dummy_clk_cnt--)
-	{
-		gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
-		_ECAT_QSPI_SyncWait();
-		while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-		{        
-		}		
-	}
-	
-    while(u8StartAlignSize--)
-	{
-		gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData,1);
-        _ECAT_QSPI_SyncWait();    
-        while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-        {            
-        }
-		/* Get the Intra DWORD dummy clock count */
-        u8dummy_clk_cnt = gau8DummyCntArr[SPI_READ_INTRA_DWORD_OFFSET];
-        /* Add Intra DWORD dummy clocks, avoid for last byte */
-        if (1 != u8StartAlignSize) 
-		{
-            while (u8dummy_clk_cnt--)
-			{
-				gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
-                _ECAT_QSPI_SyncWait();
-                while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-				{       
-				}
-            }
-        }
-	}
-    
-    while(u16Len--)
-	{
-		if (0 == u16Len)
-		{
-			u8TxOneByteData = READ_TERMINATION_BYTE;
-		}
-		else
-		{
-			u8TxOneByteData = 0;
-		}
-        
-		gDrvLan9255UtilObj.spiPlib->spiWriteRead(&u8TxOneByteData, u8TxLen,&u8RxOneByteData,u8RxLen);
-        _ECAT_QSPI_SyncWait();    
-        while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-        {            
-        }
-        *pu8Data++ = u8RxOneByteData;
-		
-		/* Get the Intra DWORD dummy clock count */
-        u8dummy_clk_cnt = gau8DummyCntArr[SPI_READ_INTRA_DWORD_OFFSET];
-        /* Add Intra DWORD dummy clocks, avoid for last byte */
-        if (0 != u16Len) 
-		{
-            while (u8dummy_clk_cnt--)
-			{
-				gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
-                _ECAT_QSPI_SyncWait();
-                while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-				{       
-				}
-            }
-        }
-	}
-
-    while(u8EndAlignSize--)
-	{
-    	gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData,1);  
-        _ECAT_QSPI_SyncWait();    
-        while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-        {            
-        }
-		/* Get the Intra DWORD dummy clock count */
-        u8dummy_clk_cnt = gau8DummyCntArr[SPI_READ_INTRA_DWORD_OFFSET];
-        /* Add Intra DWORD dummy clocks, avoid for last byte */
-        if (0 != u8EndAlignSize) 
-		{
-            while (u8dummy_clk_cnt--)
-			{
-				gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
-                _ECAT_QSPI_SyncWait();
-                while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-				{       
-				}
-            }
-        }
-	}
-    
-	_ECAT_ChipSelectDisable();
-        
-}
-
-/* 
-    Function: ECAT_Lan925x_SPIFastReadPDRAM
-
-    This function does Read Access to Ether CAT Core Process RAM  using 'Fast Read(0x0B)' command 
-	supported by LAN9252/LAN9255 Compatible SPI. This function shall be used only when PDI is selected as
-	LAN9252/LAN9255 Compatible SPI (0x80)
-     
-    Input : u16Addr    -> Address of the RAM location to be read
-            *pu8Data -> Pointer to the data that is to be read
-			u16Len	 -> Number of bytes to be read from PDRAM location
-
-    Output : None
-*/
-
-void ECAT_Lan925x_SPIFastReadPDRAM(uint8_t *pu8Data, uint16_t u16Addr, uint16_t u16Len)
-{
-	UINT32_VAL 	u32Val;
-	uint8_t 	u8StartAlignSize, u8EndAlignSize;
-	uint16_t 	wXfrLen = 0, wTotalLen = 0;
-    uint8_t  	u8TxData[DWORD_LENGTH]={0,0,0,0};
-    uint8_t  	u8RxData[DWORD_LENGTH]={0,0,0,0};
-	uint8_t 	u8TxLen = 1, u8RxLen = 1,u8dummy_clk_cnt = 0;
-	uint8_t 	u8TxOneByteData=0, u8RxOneByteData=0;
-	
-	u8StartAlignSize = (u16Addr & 3);
-	u8EndAlignSize = (u16Len & 3) + u8StartAlignSize;
-	if (u8EndAlignSize & 3)
-    {
-		u8EndAlignSize = (((u8EndAlignSize + 4) & 0xC) - u8EndAlignSize);
-	}
-	
-	wTotalLen = u16Len + u8StartAlignSize + u8EndAlignSize; 
-	
-	/* From DOS, "For the one byte transfer length format,	bit 7 is low and bits 6-0 specify the 
-	length up to 127 bytes. For the two byte transfer length format, bit 7 of the first byte
-	is high and bits 6-0 specify the lower 7 bits of the length. Bits 6-0 of the of the second byte 
-	field specify the upper 7 bits of the length with a maximum transfer length of 16,383 bytes (16K-1)" */ 
-	if (wTotalLen <= ONE_BYTE_MAX_XFR_LEN)
-	{
-		wXfrLen = wTotalLen; 
-	}
-	else  
-	{
-		wXfrLen = (wTotalLen & 0x7F) | 0x80;
-		wXfrLen |= ((wTotalLen & 0x3F80) << 1);
-	}
-	
-	/* Address and length */
-	u32Val.w[0] = u16Addr;
-	u32Val.w[1] = u16Len;
-	MCHP_ESF_PDI_WRITE(ECAT_PRAM_RD_ADDR_LENGTH_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-
-	/* Read command */
-	u32Val.Val = 0x80000000;
-	MCHP_ESF_PDI_WRITE(ECAT_PRAM_RD_CMD_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-
-	/* SPI read and write with 3 bytes of TX and RX length */
-	u8TxLen = u8RxLen = 3;
-	
-	/* Read SPI FIFO */
-	_ECAT_ChipSelectEnable();
-	
-    u8TxData[0] = CMD_FAST_READ;
-    u8TxData[1] = (uint8_t)0;
-    u8TxData[2] = (uint8_t)0x04;
-	
-    while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-    {        
-    }
-
-    gDrvLan9255UtilObj.spiPlib->spiWriteRead(u8TxData, u8TxLen,u8RxData,u8RxLen);
-    _ECAT_QSPI_SyncWait();    
-    while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-    {        
-    }
-    gEscALEvent.Byte[0] = u8RxData[1];
-    gEscALEvent.Byte[1] = u8RxData[2];
-    
-	/* SPI read and write with 1 bytes of TX and RX length */
-	u8TxLen = u8RxLen = 1;
-	
-	/* Send Transfer length */
-    u8TxOneByteData = LOBYTE(wXfrLen);
-    gDrvLan9255UtilObj.spiPlib->spiWrite(&u8TxOneByteData, 1);
-    _ECAT_QSPI_SyncWait();    
-    while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-    {        
-    }
-    
-	if (u16Len > ONE_BYTE_MAX_XFR_LEN)    /* Two byte Xfr length */
-	{
-        u8TxOneByteData = HIBYTE(wXfrLen);
-        gDrvLan9255UtilObj.spiPlib->spiWrite(&u8TxOneByteData, 1);
-        _ECAT_QSPI_SyncWait();    
-        while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-        {            
-        }
-	}
-
-    /* Initial Dummy cycle added by dummy read */
-	u8dummy_clk_cnt = gau8DummyCntArr[SPI_FASTREAD_INITIAL_OFFSET];
-	while (u8dummy_clk_cnt--)
-	{
-		gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
-		_ECAT_QSPI_SyncWait();
-		while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-		{        
-		}		
-	}
-  	
-	while(u8StartAlignSize--)
-	{
-        gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData,1);
-        _ECAT_QSPI_SyncWait();    
-        while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-        {            
-        }
-		/* Get the Intra DWORD dummy clock count */
-        u8dummy_clk_cnt = gau8DummyCntArr[SPI_FASTREAD_INTRA_DWORD_OFFSET];
-        /* Add Intra DWORD dummy clocks, avoid for last byte */
-        if (0 != u8StartAlignSize) 
-		{
-            while (u8dummy_clk_cnt--)
-			{
-				gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
-                _ECAT_QSPI_SyncWait();
-                while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-				{       
-				}
-            }
-        }
-	}
-
-	while(u16Len--)
-	{
-		if (0 == u16Len)
-		{
-			u8TxOneByteData = READ_TERMINATION_BYTE;
-		}
-		else
-		{
-			u8TxOneByteData = 0;
-		}
-        
-        gDrvLan9255UtilObj.spiPlib->spiWriteRead(&u8TxOneByteData,1,&u8RxOneByteData,1);
-        _ECAT_QSPI_SyncWait();    
-        while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-        {            
-        }
-        *pu8Data++ = u8RxOneByteData;
-		
-		/* Get the Intra DWORD dummy clock count */
-        u8dummy_clk_cnt = gau8DummyCntArr[SPI_FASTREAD_INTRA_DWORD_OFFSET];
-        /* Add Intra DWORD dummy clocks, avoid for last byte */
-        if (0 != u16Len) 
-		{
-            while (u8dummy_clk_cnt--)
-			{
-				gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
-                _ECAT_QSPI_SyncWait();
-                while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-				{       
-				}
-            }
-        }
-	}
-
-	while(u8EndAlignSize--)
-	{
-        gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData,1);  
-        _ECAT_QSPI_SyncWait();    
-        while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-        {            
-        }
-		
-		/* Get the Intra DWORD dummy clock count */
-        u8dummy_clk_cnt = gau8DummyCntArr[SPI_FASTREAD_INTRA_DWORD_OFFSET];
-        /* Add Intra DWORD dummy clocks, avoid for last byte */
-        if (0 != u8EndAlignSize) 
-		{
-            while (u8dummy_clk_cnt--)
-			{
-				gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
-                _ECAT_QSPI_SyncWait();
-                while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-				{       
-				}
-            }
-        }
-	}
-
-	_ECAT_ChipSelectDisable();    
-    
-}
-
-/* 
-    Function: ECAT_Lan925x_SPIWritePDRAM
-
-    This function does Write Access to Ether CAT Core Process RAM  using 'Serial Write(0x02)' command 
-	supported by LAN9252/LAN9255 Compatible SPI. This function shall be used only when PDI is selected as
-	LAN9252/LAN9255 Compatible SPI (0x80)
-     
-    Input : u16Addr    -> Address of the RAM location to be written
-            *pu8Data -> Pointer to the data that is to be written
-			u16Len	 -> Number of bytes to be written to PDRAM location
-
-    Output : None
-
-*/
-
-void ECAT_Lan925x_SPIWritePDRAM(uint8_t *pu8Data, uint16_t u16Addr, uint16_t u16Len)
-{
-	UINT32_VAL 	u32Val;
-	uint8_t 	u8StartAlignSize, u8EndAlignSize; 
-    uint8_t  	u8TxData[DWORD_LENGTH]={0,0,0,0};
-    uint8_t  	u8RxData[DWORD_LENGTH]={0,0,0,0};
-    uint8_t 	u8TxLen = 1, u8RxLen = 1,u8dummy_clk_cnt = 0;
-	uint8_t 	u8TxOneByteData=0, u8RxOneByteData=0;
-	
-	/* Address and length */
-	u32Val.w[0] = u16Addr;
-	u32Val.w[1] = u16Len;
-	MCHP_ESF_PDI_WRITE(ECAT_PRAM_WR_ADDR_LENGTH_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-
-	/* write command */
-	u32Val.Val = 0x80000000;
-	MCHP_ESF_PDI_WRITE(ECAT_PRAM_WR_CMD_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-	
-	u8StartAlignSize = (u16Addr & 3);
-//	u8EndAlignSize = (u16Len & 3) + u8StartAlignSize;
-	// Changed for a bug identified with HBI - Demux BSP
-	u8EndAlignSize = (u16Len + u8StartAlignSize) & 3;
-	if (u8EndAlignSize & 3)
-    {
-		u8EndAlignSize = (((u8EndAlignSize + 4) & 0xC) - u8EndAlignSize);
-	}
-	
-	/* SPI read and write with 3 bytes of TX and RX length */
-	u8TxLen = u8RxLen = 3;
-	
-	/* Writing to FIFO */
-	_ECAT_ChipSelectEnable();
-	
-	u8TxData[0] = CMD_SERIAL_WRITE;
-    u8TxData[1] = (uint8_t)0;
-    u8TxData[2] = (uint8_t)0x20;
-
-    while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-    {        
-    }
-
-    gDrvLan9255UtilObj.spiPlib->spiWriteRead(u8TxData, u8TxLen,u8RxData,u8RxLen);
-    _ECAT_QSPI_SyncWait();    
-    while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-    {    
-    }
-    gEscALEvent.Byte[0] = u8RxData[1];
-    gEscALEvent.Byte[1] = u8RxData[2];
-    
-	/* SPI read and write with 1 bytes of TX and RX length */
-	u8TxLen = u8RxLen = 1;
-	
-	
+#ifdef ETHERCAT_IS_SUPPORT_DUMMY_CYCLE 	
 	/* Get the Intra DWORD dummy clock count */
 	u8dummy_clk_cnt = gau8DummyCntArr[SPI_WRITE_INITIAL_OFFSET];
 	/* Add Intra DWORD dummy clocks, avoid for last byte */
@@ -1159,20 +550,21 @@ void ECAT_Lan925x_SPIWritePDRAM(uint8_t *pu8Data, uint16_t u16Addr, uint16_t u16
 		{       
 		}
 	}
-	
-	
-	while(u8StartAlignSize--)
+#endif
+		
+    do
 	{
+        u8TxOneByteData = *pu8Data++;
         gDrvLan9255UtilObj.spiPlib->spiWrite(&u8TxOneByteData,u8TxLen);
         _ECAT_QSPI_SyncWait();    
         while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
         {            
         }
-		
+#ifdef ETHERCAT_IS_SUPPORT_DUMMY_CYCLE  		
 		/* Get the Intra DWORD dummy clock count */
         u8dummy_clk_cnt = gau8DummyCntArr[SPI_WRITE_INTRA_DWORD_OFFSET];
         /* Add Intra DWORD dummy clocks, avoid for last byte */
-        if (0 != u8StartAlignSize) 
+        if (1 != u32Length) 
 		{
             while (u8dummy_clk_cnt--)
 			{
@@ -1183,24 +575,134 @@ void ECAT_Lan925x_SPIWritePDRAM(uint8_t *pu8Data, uint16_t u16Addr, uint16_t u16
 				}
             }
         }
+	} while (--u32Length);
+#endif
+	_ECAT_ChipSelectDisable();
+}
+
+/* 
+    Function: ECAT_Lan9255_SPIRead
+
+    This function does Read Access to Non-Ether CAT core CSR, Ether CAT Core CSR and Process RAM
+	using 'Serial Read(0x03)' command supported by LAN9255 Compatible SPI. This function shall be used
+	only when PDI is selected as LAN9255 Compatible SPI (0x82)
+     
+    Input : u16Addr    -> Address of the register to be read
+            *pu8Data -> Pointer to the data that is to be read
+
+    Output : None
+
+*/
+
+void ECAT_Lan9255_SPIRead(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Length)
+{	
+#ifdef ETHERCAT_IS_SUPPORT_DUMMY_CYCLE
+	uint8_t u8dummy_clk_cnt=0;
+#endif
+	uint32_t dwModLen = 0;
+
+    uint8_t  u8TxData[DWORD_LENGTH]={0,0,0,0};
+    uint8_t  u8RxData[DWORD_LENGTH]={0,0,0,0};
+	uint8_t  u8TxLen = 1, u8RxLen = 1;
+	uint8_t	 u8TxOneByteData=0, u8RxOneByteData=0;
+	
+	/* Core CSR and Process RAM accesses can have any alignment and length */
+	if (u16Addr < 0x3000)
+	{
+		if (u32Length>1)
+		{
+			/* Use Auto-increment if number of bytes to read is more than 1 */
+			u16Addr |= 0x4000;			
+		}
 	}
+	else
+	{
+		/* Non Core CSR length will be adjusted if it is not DWORD aligned */
+		dwModLen = u32Length % 4; 
+		if (1 == dwModLen)
+		{
+			u32Length = u32Length + 3; 
+		}
+		else if (2 == dwModLen)
+		{
+			u32Length = u32Length + 2; 
+		}
+		else if (3 == dwModLen)
+		{
+			u32Length = u32Length + 1; 
+		}
+		else 
+		{
+			/* Do nothing if length is 0 since it is DWORD access */
+		}
+	}
+	_ECAT_ChipSelectEnable();
+
+	/* SPI read and write with 3 bytes of TX and RX length */
+	u8TxLen = u8RxLen = 3;
+	
+	u8TxData[0] = CMD_SERIAL_READ;
+    u8TxData[1] = (uint8_t)(u16Addr >> 8);
+    u8TxData[2] = (uint8_t)u16Addr;
     
-    while (u16Len--)
-	{        
-		u8TxOneByteData = *pu8Data;
-		gDrvLan9255UtilObj.spiPlib->spiWrite(&u8TxOneByteData,1);
+    while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
+    {        
+    }
+
+    gDrvLan9255UtilObj.spiPlib->spiWriteRead(u8TxData, u8TxLen,u8RxData,u8RxLen);
+    _ECAT_QSPI_SyncWait();    
+    while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
+    {    
+    }
+    
+	 // Update the gEscALEvent value which is required for the state change
+    gEscALEvent.Byte[0] = u8RxData[1];
+    gEscALEvent.Byte[1] = u8RxData[2];
+	
+	/* SPI read and write with 1 bytes of TX and RX length */
+	u8TxLen = u8RxLen = 1;
+#ifdef ETHERCAT_IS_SUPPORT_DUMMY_CYCLE  	
+	/* Initial Dummy cycle added by dummy read */
+	u8dummy_clk_cnt = gau8DummyCntArr[SPI_READ_INITIAL_OFFSET];
+	while (u8dummy_clk_cnt--)
+	{
+		gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
+		_ECAT_QSPI_SyncWait();    
+		while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
+		{
+		}
+	}
+#else
+    gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
+	_ECAT_QSPI_SyncWait();    
+	while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
+	{
+	}
+#endif   
+	
+	do
+	{
+		if (1 == u32Length)
+		{
+			u8TxOneByteData = READ_TERMINATION_BYTE;
+		}
+        else
+        {
+            u8TxOneByteData = 0;
+        }
+        gDrvLan9255UtilObj.spiPlib->spiWriteRead(&u8TxOneByteData, u8TxLen, &u8RxOneByteData, u8RxLen);
         _ECAT_QSPI_SyncWait();    
         while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-        {            
+        {
         }
-        pu8Data++;
-		
+		*pu8Data++ = u8RxOneByteData;
+#ifdef ETHERCAT_IS_SUPPORT_DUMMY_CYCLE 		
 		/* Get the Intra DWORD dummy clock count */
-        u8dummy_clk_cnt = gau8DummyCntArr[SPI_WRITE_INTRA_DWORD_OFFSET];
+        u8dummy_clk_cnt = gau8DummyCntArr[SPI_READ_INTRA_DWORD_OFFSET];
         /* Add Intra DWORD dummy clocks, avoid for last byte */
-        if (0 != u16Len) 
+        if (1 != u32Length) 
 		{
-            while(u8dummy_clk_cnt--)
+            while (u8dummy_clk_cnt--)
 			{
 				gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
                 _ECAT_QSPI_SyncWait();
@@ -1209,36 +711,204 @@ void ECAT_Lan925x_SPIWritePDRAM(uint8_t *pu8Data, uint16_t u16Addr, uint16_t u16
 				}
             }
         }
+#endif		
+	} while (--u32Length);
+
+	_ECAT_ChipSelectDisable();	
+}
+
+/* 
+    Function: ECAT_Lan9255_SPIFastRead
+
+    This function does Read Access to Non-Ether CAT core CSR, Ether CAT Core CSR and Process RAM
+	using 'Fast Read(0x0B)' command supported by LAN9255 Compatible SPI. This function shall be used
+	only when PDI is selected as LAN9255 Compatible SPI (0x82)
+     
+    Input : u16Addr    -> Address of the register to be read
+            *pu8Data -> Pointer to the data that is to be read
+			u32Length -> Number of bytes to be read 
+
+	Note   : Since now SPI is running at 5MHz, Fast Read is successful without any dummy bytes or wait
+	signal. But, as the SPI clock speed increases, we have to follow either of these.
+		
+*/
+
+void ECAT_Lan9255_SPIFastRead(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Length)
+{ 		
+	uint8_t u8StartAlignSize = 0, u8Itr;
+#ifdef ETHERCAT_IS_SUPPORT_DUMMY_CYCLE	
+	uint8_t u8dummy_clk_cnt=0;
+#endif	
+	uint16_t wXfrLen = 0;
+	uint32_t dwModLen = 0;
+    uint8_t  u8TxData[DWORD_LENGTH]={0,0,0,0};
+    uint8_t  u8RxData[DWORD_LENGTH]={0,0,0,0};
+	uint8_t  u8TxLen = 1, u8RxLen = 1;
+
+	uint8_t	 u8TxOneByteData=0, u8RxOneByteData=0;
+	
+	/* Core CSR and Process RAM accesses can have any alignment and length */
+	if (u16Addr < 0x3000)
+	{
+		/* Use Auto-increment for incrementing byte address*/
+		u16Addr |= 0x4000;			
+		
+		/* To calculate initial number of dummy bytes which is based on starting address */
+		u8StartAlignSize = (u16Addr & 0x3); 
+	}
+	else 
+	{  	/* System CSRs are DWORD aligned and are a DWORD in length. Non- DWORD aligned / non-DWORD length access 
+	is not supported. */
+		dwModLen = u32Length % 4;
+		if (1 == dwModLen)
+		{
+			u32Length = u32Length + 3;
+		}
+		else if (2 == dwModLen)
+		{
+			u32Length = u32Length + 2;
+		}
+		else if (3 == dwModLen)
+		{
+			u32Length = u32Length + 1;
+		}
+		else
+		{
+			/* Do nothing is length is 0 */
+		}		
 	}
 
-    while(u8EndAlignSize--)
-	{        
-        u8TxOneByteData = 0;
-		gDrvLan9255UtilObj.spiPlib->spiWrite(&u8TxOneByteData,u8TxLen);
+	/* From DOS, "For the one byte transfer length format,	bit 7 is low and bits 6-0 specify the 
+	length up to 127 bytes. For the two byte transfer length format, bit 7 of the first byte
+	is high and bits 6-0 specify the lower 7 bits of the length. Bits 6-0 of the of the second byte 
+	field specify the upper 7 bits of the length with a maximum transfer length of 16,383 bytes (16K-1)" */ 
+	if (u32Length <= ONE_BYTE_MAX_XFR_LEN)
+	{
+		wXfrLen = u32Length; 
+	}
+	else  
+	{
+		wXfrLen = (u32Length & 0x7F) | 0x80;
+		wXfrLen |= ((u32Length & 0x3F80) << 1);
+	}	
+	_ECAT_ChipSelectEnable();
+	
+    /* SPI read and write with 3 bytes of TX and RX length */
+	u8TxLen = u8RxLen = 3;
+	
+    u8TxData[0] = CMD_FAST_READ;
+    u8TxData[1] = (uint8_t)(u16Addr >> 8);
+    u8TxData[2] = (uint8_t)u16Addr;
+    
+    while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
+    {        
+    }
+
+    gDrvLan9255UtilObj.spiPlib->spiWriteRead(u8TxData, u8TxLen,u8RxData,u8RxLen);
+    _ECAT_QSPI_SyncWait();    
+    while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
+    {        
+    }
+	
+    gEscALEvent.Byte[0] = u8RxData[1];
+    gEscALEvent.Byte[1] = u8RxData[2];
+    
+	/* SPI read and write with 1 bytes of TX and RX length */
+	u8TxLen = u8RxLen = 1;
+	
+	/* Send Transfer length */
+    u8TxOneByteData = (uint8_t)(LOBYTE(wXfrLen));
+    gDrvLan9255UtilObj.spiPlib->spiWrite(&u8TxOneByteData, u8TxLen);
+    _ECAT_QSPI_SyncWait();    
+    while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
+    {        
+    }
+    
+    if (u32Length > ONE_BYTE_MAX_XFR_LEN)    /* Two byte Xfr length */
+    {
+        u8TxOneByteData = (uint8_t)(HIBYTE(wXfrLen));
+        gDrvLan9255UtilObj.spiPlib->spiWrite(&u8TxOneByteData,u8TxLen);
         _ECAT_QSPI_SyncWait();    
         while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
         {            
-        }
-		
-		/* Get the Intra DWORD dummy clock count */
-        u8dummy_clk_cnt = gau8DummyCntArr[SPI_WRITE_INTRA_DWORD_OFFSET];
-        /* Add Intra DWORD dummy clocks, avoid for last byte */
-        if (0 != u8EndAlignSize) 
-		{
-            while (u8dummy_clk_cnt--)
-			{
-				gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
-                _ECAT_QSPI_SyncWait();
-                while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
-				{       
-				}
-            }
         }
 	}
 	
-	_ECAT_ChipSelectDisable();    
-}
+#ifdef ETHERCAT_IS_SUPPORT_DUMMY_CYCLE	
+	/* Initial Dummy cycle added by dummy read */
+	u8dummy_clk_cnt = gau8DummyCntArr[SPI_FASTREAD_INITIAL_OFFSET];
+	while (u8dummy_clk_cnt--)
+	{
+		gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
+		_ECAT_QSPI_SyncWait();
+		while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
+		{       
+		}
+	}
+#else
+	gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
+	_ECAT_QSPI_SyncWait();
+	while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
+	{       
+	}
+#endif	
+	/* 1 default dummy + extra dummies based on address that needs to be accessed. 
+	   "For Fast reads with Non DWORD aligned address, Dummy data will be sent 
+       before the actual data. 
+	   So to read 2001 you will get a dummy byte and then data in address 2001. 
+	   SW needs to handle dummy data in case of non DWORD address reads" */
+	for (u8Itr = 0; u8Itr < u8StartAlignSize; u8Itr++) 
+	{
+        gDrvLan9255UtilObj.spiPlib->spiRead(&u8TxOneByteData,u8TxLen);
+        _ECAT_QSPI_SyncWait();    
+        while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
+        {            
+        }
+#ifdef ETHERCAT_IS_SUPPORT_DUMMY_CYCLE	
+		/* Initial Dummy cycle added by dummy read */
+		u8dummy_clk_cnt = gau8DummyCntArr[SPI_FASTREAD_INTRA_DWORD_OFFSET];
+		while (u8dummy_clk_cnt--)
+		{
+			gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
+			_ECAT_QSPI_SyncWait();
+			while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
+			{       
+			}
+		}
+#endif
+	}
+		
+    do
+	{
+        gDrvLan9255UtilObj.spiPlib->spiWriteRead(&u8TxOneByteData, u8TxLen, &u8RxOneByteData,u8RxLen);
+        _ECAT_QSPI_SyncWait();    
+        while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
+        {
+        }
+		*pu8Data++ = u8RxOneByteData;
+		/* Poll for wait ack or add dummy after each byte if needed  (based on SETCFG) */
+		
+#ifdef ETHERCAT_IS_SUPPORT_DUMMY_CYCLE			
+		/* Get the Intra DWORD dummy clock count */
+        u8dummy_clk_cnt = gau8DummyCntArr[SPI_FASTREAD_INTRA_DWORD_OFFSET];
+        /* Add Intra DWORD dummy clocks, avoid for last byte */
+        if (1 != wXfrLen) 
+		{
+            while (u8dummy_clk_cnt--)
+			{
+				gDrvLan9255UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
+                _ECAT_QSPI_SyncWait();
+                while(gDrvLan9255UtilObj.spiPlib->spiIsBusy())
+				{       
+				}
+            }
+        }
+#endif		
+	} while (--wXfrLen);
+	
+	_ECAT_ChipSelectDisable();
 
+}
 
 /*******************************************************************************
 Function:

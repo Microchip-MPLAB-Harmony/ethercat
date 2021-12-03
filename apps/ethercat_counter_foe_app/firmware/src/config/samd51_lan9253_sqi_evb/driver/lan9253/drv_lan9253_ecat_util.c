@@ -20,7 +20,7 @@
 *******************************************************************************/
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-* Copyright (C) 2020 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2021 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -53,7 +53,7 @@ static void ECAT_PDI_TimerInterruptInitialization(void);
 /* This is the driver instance object array. */
 static DRV_LAN9253_UTIL_OBJ gDrvLan9253UtilObj;
      
-static uint8_t gau8rx_data[32] = {0};
+static uint8_t gau8rx_data[128] = {0};
 
 uint8_t gau8DummyCntArr[SETCFG_MAX_DATA_BYTES] = {0,0,0,1,0,0,1,0,0,2,0,0,1,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,1,0,0};
 
@@ -164,9 +164,7 @@ Summary:
 *******************************************************************************/
 void _ECAT_Sync0Callback(uintptr_t context)
 {
-	CRITICAL_SECTION_ENTER();
 	Sync0_Isr();
-	CRITICAL_SECTION_LEAVE();
 }
 
 /*******************************************************************************
@@ -178,9 +176,7 @@ Summary:
 *******************************************************************************/
 void _ECAT_Sync1Callback(uintptr_t context)
 {
-	CRITICAL_SECTION_ENTER();
 	Sync1_Isr();
-  	CRITICAL_SECTION_LEAVE();   
 }
 
 /*******************************************************************************
@@ -194,7 +190,7 @@ void ECAT_SyncInterruptsInitialization(void)
 {
 // SYNC0 and SYNC1 interrupt callback 
     EIC_CallbackRegister(EIC_PIN_0,_ECAT_Sync0Callback, 0);
-    EIC_CallbackRegister(EIC_PIN_0,_ECAT_Sync1Callback, 0);
+    EIC_CallbackRegister(EIC_PIN_1,_ECAT_Sync1Callback, 0);
 	
 }
 #endif // DC_SUPPORTED
@@ -222,7 +218,7 @@ Summary:
 *******************************************************************************/
 void ECAT_ESCIRQInitialization(void)
 {
-	EIC_CallbackRegister(EIC_PIN_0,_ECAT_EscInterruptRequestCallback, 0);
+	EIC_CallbackRegister(EIC_PIN_7,_ECAT_EscInterruptRequestCallback, 0);
 }
 
 #ifdef ETHERCAT_DEBUG
@@ -263,7 +259,8 @@ void SPIreadWriteTest(void)
 void ECAT_SQI_SetCfg_dataInit(void)
 {
     uint16_t u16SQIClkPeriod = 0, u16SQIClkfreq = 0;
-    
+    uint8_t  u8DummyBytes =0;
+	
     u16SQIClkfreq = DRV_LAN9253_BAUDRATE_PDI_FREQ;
     /* Get clock period in Nano seconds */
     u16SQIClkPeriod = CLK_PERIOD_1MHZ/u16SQIClkfreq;
@@ -272,18 +269,30 @@ void ECAT_SQI_SetCfg_dataInit(void)
     /* SQI Fast read, index from 33, 34, 35 
      * as initial, intra DWORD  inter DWORD
      */
-    gau8DummyCntArr[SQI_FASTREAD_INITIAL_OFFSET] = 
-				GetDummyBytesRequired (QUAD_SPI, IAT_DWRD, 0, u16SQIClkPeriod);
+	u8DummyBytes = GetDummyBytesRequired (QUAD_SPI, IAT_DWRD, 0, u16SQIClkPeriod);
+	//Fix is added to provide PDI counter error test
+    //making dummy bytes calculated as DWORD aligned
+#ifdef ECAT_DUMMY_READ_EN
+	if((u8DummyBytes % DWORD_LENGTH) != 0)
+	{
+		/* As SQI , we make sure the dummy bytes required should be multiple of 4*/
+        /* making round off to the next DWORD aligned value */
+        u8DummyBytes += (DWORD_LENGTH - (u8DummyBytes % DWORD_LENGTH));
+        gau8DummyCntArr[SQI_FASTREAD_INITIAL_OFFSET] = u8DummyBytes;
+	}
+#else
+    gau8DummyCntArr[SQI_FASTREAD_INITIAL_OFFSET] = u8DummyBytes;
+#endif	
+
     /* SQI Write, index starts from 36, 37  38 
      * as Initial, Intra DWORD  Inter DWORD
      */
-    gau8DummyCntArr[SQI_WRITE_INITIAL_OFFSET] = 
-				GetDummyBytesRequired (QUAD_SPI, IAT_NULL, 0, u16SQIClkPeriod);
-    if (gau8DummyCntArr[SQI_WRITE_INITIAL_OFFSET] == 0x0) 
+    u8DummyBytes = GetDummyBytesRequired (QUAD_SPI, IAT_NULL, 0, u16SQIClkPeriod);
+    if (u8DummyBytes == 0x0) 
 	{
         /* Set minimum one dummy byte */
         /* SPECIAL CASE - Add 1 byte clock cycle count to byDummy
-        * SAMD51 supports 24 bit and 32 bit addressing format
+        * SAMD51 and SAME53 supports 24 bit and 32 bit addressing format
         * LAN925x expects 16bit addressing format
         * So In order to support SAMD51, converting the 16bit address to 24bit
         * treating the extra address byte as dummy cycle, 
@@ -291,6 +300,10 @@ void ECAT_SQI_SetCfg_dataInit(void)
         */
         gau8DummyCntArr[SQI_WRITE_INITIAL_OFFSET] = 0x1;
     }
+	else
+	{
+		gau8DummyCntArr[SQI_WRITE_INITIAL_OFFSET] = u8DummyBytes;
+	}
     
 }
 
@@ -358,7 +371,7 @@ void ECAT_SQI_DisableQuadMode(void)
     /* Load the instruction */
 	qspi_xfer.instruction = CMD_RESET_SQI;
     /* Setting single bit SPI */
-    qspi_xfer.width = QUAD_CMD;
+    qspi_xfer.width = SINGLE_BIT_SPI;
     
     /* Sending address as 0, as we don't need to send address */
     gDrvLan9253UtilObj.sqiPlib->sqiCommandWrite (&qspi_xfer, 0x0);
@@ -426,20 +439,22 @@ void ECAT_LAN925x_SQIWrite( uint16_t u16Addr, uint8_t *pu8Data, uint8_t u8Len)
 {
     qspi_memory_xfer_t qspi_xfer;
 	uint32_t u32InstrAddr = 0;
-
+	uint8_t u8Dummy = 0;
+	
     memset((void *)&qspi_xfer, 0, sizeof(qspi_memory_xfer_t));
 	qspi_xfer.instruction = CMD_SERIAL_WRITE;
     qspi_xfer.width = QUAD_CMD;
     
     /* Get the dummy byte count */
     /* SPECIAL CASE - Reduce 1 byte clock cycle count from byDummy
-     * SAMD51 supports 24 bit and 32 bit addressing format
+     * SAMD51 and SAME53 supports 24 bit and 32 bit addressing format
      * LAN925x expects 16bit addressing format
      * So In order to support SAMD51, converting the 16bit address to 24bit
      * treating the extra address byte as dummy cycle, 
      * so reduce the 1 byte dummy cycle from the requested.
      */
-    //u8Dummy = (gau8DummyCntArr[SQI_WRITE_INITIAL_OFFSET] - 1);
+    u8Dummy = (gau8DummyCntArr[36] - 1);
+	qspi_xfer.dummy_cycles = u8Dummy;
     u32InstrAddr = u16Addr;
     u32InstrAddr = u32InstrAddr << 8;
 
@@ -476,19 +491,73 @@ void ECAT_LAN925x_SQIRead(uint16_t u16Addr, uint8_t *pu8Data, uint8_t u8Len)
     qspi_memory_xfer_t qspi_xfer;
     uint8_t u8Dummy = 0;
 	uint32_t u32InstrAddr = 0;
-    
+    uint32_t u32ModLen = 0;
+	
+	/*Core CSR and Process RAM accesses can have any alignment and length */
+	if (u16Addr < 0x3000)
+	{
+		if (u8Len>1)
+		{
+			/* Use Auto-increment if number of bytes to read is more than 1 */
+			u16Addr |= 0x4000;			
+		}
+
+	}
+	else
+	{
+        /* Non Core CSR length will be adjusted if it is not DWORD aligned */
+		u32ModLen = u8Len % 4; 
+		if (1 == u32ModLen)
+		{
+			u8Len = u8Len + 3; 
+		}
+		else if (2 == u32ModLen)
+		{
+			u8Len = u8Len + 2; 
+		}
+		else if (3 == u32ModLen)
+		{
+			u8Len = u8Len + 1; 
+		}
+		else 
+		{
+			/* Do nothing if length is 0 since it is DWORD access */
+		}
+	}
+
+	memset((void *)&gau8rx_data[0], 0, sizeof(gau8rx_data));
     memset((void *)&qspi_xfer, 0, sizeof(qspi_memory_xfer_t));
 	qspi_xfer.instruction = CMD_FAST_READ;
     qspi_xfer.width = QUAD_CMD;
     
+	//Fix is added to provide PDI error counter test
+    //the transfer length should not contain dummy bytes length
+#ifdef ETHERCAT_DUMMY_READ_EN
+    qspi_xfer.dummy_cycles = u8Dummy;
+    /* Get the number of dummy cycle required */
+    u8Dummy = gau8DummyCntArr[SQI_FASTREAD_INITIAL_OFFSET];
+
+    u32InstrAddr = u16Addr;
+    u32InstrAddr = (u32InstrAddr << 8) | (u8Len);
+
+    QSPI_MemoryRead(&qspi_xfer, (UINT32 *)&gau8rx_data[0], u8Len + u8Dummy, u32InstrAddr);
+    
+   //Fix is added for odd address failure
+    u8Dummy += (u16Addr & 0x3);
+
+    memcpy (pu8Data, gau8rx_data + u8Dummy, u8Len);
+#else	
     /* Get the number of dummy bytes required */
     u8Dummy = gau8DummyCntArr[SQI_FASTREAD_INITIAL_OFFSET];
+	qspi_xfer.dummy_cycles = u8Dummy * QSPI_SQI_ONE_BYTE_CLK_COUNT;
     u32InstrAddr = u16Addr;
     u32InstrAddr = (u32InstrAddr << 8) | u8Len;
 
-    gDrvLan9253UtilObj.sqiPlib->sqiMemoryRead(&qspi_xfer, (uint32_t *)&gau8rx_data[0], u8Len + u8Dummy, u32InstrAddr);
+    gDrvLan9253UtilObj.sqiPlib->sqiMemoryRead(&qspi_xfer, (uint32_t *)&gau8rx_data[0], u8Len, u32InstrAddr);
 
-    memcpy (pu8Data, gau8rx_data + u8Dummy, u8Len);
+    memcpy (pu8Data, gau8rx_data, u8Len);
+#endif
+	
 }
 
 /* 
@@ -510,7 +579,8 @@ void ECAT_LAN925x_SQIRead(uint16_t u16Addr, uint8_t *pu8Data, uint8_t u8Len)
 void ECAT_LAN925x_SQIReadPDRAM(uint8_t *pu8Data, uint16_t u16Addr, uint16_t u16Len)
 {
 	UINT32_VAL u32Val;
-	uint8_t u8StartAlignSize = 0, u8EndAlignSize = 0;
+	uint8_t u8StartAlignSize = 0, u8EndAlignSize = 0,u8Itr = 0;
+    uint8_t *p8Data = NULL;
     
 	/* Address and length */
 	u32Val.w[0] = u16Addr;
@@ -527,7 +597,23 @@ void ECAT_LAN925x_SQIReadPDRAM(uint8_t *pu8Data, uint16_t u16Addr, uint16_t u16L
 	{
 		u8EndAlignSize = (((u8EndAlignSize + 4) & 0xC) - u8EndAlignSize);
 	}
-	MCHP_ESF_PDI_READ(ECAT_PRAM_RD_DATA_FIFO_REG, pu8Data, u16Len+u8StartAlignSize+u8EndAlignSize);
+	
+	//creating memory from heap to read and corrected the receive buffer
+    p8Data = (uint8_t *) malloc (sizeof(uint8_t) * (u16Len+u8StartAlignSize+u8EndAlignSize));
+    if (p8Data == NULL) {
+        /* we simply return in case of failure,
+         * caller will handle as it does not read anything
+         */
+        return;
+    }
+	MCHP_ESF_PDI_READ(ECAT_PRAM_RD_DATA_FIFO_REG, p8Data, u16Len+u8StartAlignSize+u8EndAlignSize);
+	
+	//Fix is added for odd address failure
+    for (u8Itr = 0; u8Itr < u16Len; u8Itr++)
+    {
+       *pu8Data++ = p8Data[u8Itr + u8StartAlignSize];
+    }
+    free(p8Data);
 }
 
 /* 
@@ -562,8 +648,9 @@ void ECAT_LAN925x_SQIWritePDRAM(uint8_t *pu8Data, uint16_t u16Addr, uint16_t u16
 	MCHP_ESF_PDI_WRITE(ECAT_PRAM_WR_CMD_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
 	
 	u8StartAlignSize = (u16Addr & 0x3);
-	u8EndAlignSize = (u16Len & 0x3) + u8StartAlignSize;
-	if (u8EndAlignSize & 0x3) {
+	u8EndAlignSize = (u16Len+ u8StartAlignSize) & 0x3;
+	if (u8EndAlignSize & 0x3) 
+	{
 		u8EndAlignSize = (((u8EndAlignSize + 4) & 0xC) - u8EndAlignSize);
 	}
 	pu8Ptr = pu8Data; 
@@ -661,12 +748,12 @@ void ECAT_HWSetlED(uint8_t RunLed, uint8_t ErrLed)
 	if(ErrLed == false)
 	{
 /* Error Select PIN set. LED status is OFF */
-		PORT_PinSet((PORT_PIN)PORT_PIN_PA00);
+		PORT_PinSet((PORT_PIN)PORT_PIN_PB31);
 	}
 	else
 	{
 /* Error Select PIN Clear . LED status is ON*/
-		PORT_PinClear((PORT_PIN)PORT_PIN_PA00);
+		PORT_PinClear((PORT_PIN)PORT_PIN_PB31);
 	}
 }
 
@@ -695,12 +782,13 @@ void ECAT_Initialization()
     
 	/* Update the SQI related config data as per the frequency */
 	ECAT_SQI_SetCfg_dataInit();
-    
+#ifdef ETHERCAT_DUMMY_READ_EN
     /* SQI Set configuration for dummy cycle */
     ECAT_SQI_SetConfiguration (gau8DummyCntArr);
                 
     /* Send "Enable SQI" command for slave to switch to SQI mode */
     ECAT_SQI_EnableQuadMode();
+#endif	
 	LAN9253_Init();
 }
 

@@ -4,6 +4,20 @@ attributes: {id: ethercat_lan9253}
 children:
 - type: Symbols
   children:
+  - type: KeyValueSet
+    attributes: {id: DRV_LAN9253_ERROR_SELECT_PIN}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '50'}
+  - type: KeyValueSet
+    attributes: {id: DRV_LAN9253_IRQ_INT}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '7'}
   - type: String
     attributes: {id: DRV_LAN9253_PLIB}
     children:
@@ -33,6 +47,17 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: ETHERCAT_SQI_INDIRECT_MODE_ACCESS}
+  - type: KeyValueSet
+    attributes: {id: DRV_LAN9253_SYNC1_INT}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '1'}
   - type: String
     attributes: {id: DRV_LAN9253_TIMER_PLIB}
     children:

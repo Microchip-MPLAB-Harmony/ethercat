@@ -53,7 +53,7 @@
 #include "drv_lan9255_ecat_util.h"
 
 
-#ifdef ETHERCAT_SPI_INDIRECT_MODE_ACCESS
+#if defined (ETHERCAT_SPI_INDIRECT_MODE_ACCESS) || defined(ETHERCAT_SQI_INDIRECT_MODE_ACCESS)
 #define LAN925x_BYTE_ORDER_REG              0x64
 #define LAN925x_CSR_INT_CONF                0x54
 #define LAN925x_CSR_INT_EN                  0x5C

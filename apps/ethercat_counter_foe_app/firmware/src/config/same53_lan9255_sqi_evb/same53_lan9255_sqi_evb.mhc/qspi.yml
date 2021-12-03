@@ -65,4 +65,4 @@ children:
         children:
         - {type: Value, value: LAN9255_SQI_Dependency}
 - type: ElementPosition
-  attributes: {x: '30', y: '100', id: qspi}
+  attributes: {x: '9', y: '124', id: qspi}

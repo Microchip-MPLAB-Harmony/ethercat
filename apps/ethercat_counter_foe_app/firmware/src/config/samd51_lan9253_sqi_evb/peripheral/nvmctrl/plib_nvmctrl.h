@@ -91,6 +91,10 @@ bool NVMCTRL_DoubleWordWrite(const uint32_t *data, const uint32_t address);
 
 bool NVMCTRL_PageWrite( const uint32_t* data, uint32_t address );
 
+bool NVMCTRL_PageBufferWrite( uint32_t *data, const uint32_t address);
+
+bool NVMCTRL_PageBufferCommit( const uint32_t address );
+
 bool NVMCTRL_BlockErase( uint32_t address );
 
 uint16_t NVMCTRL_ErrorGet( void );

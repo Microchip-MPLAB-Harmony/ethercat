@@ -88,23 +88,23 @@
 #define ETHERCAT_DUMMY_READ_EN
 
 /* EEPROM Emulation Feature can be enabled by uncommenting below macro for LAN9255*/
-#define ETHERCAT_IS_EEPROM_EMULATION_SUPPORT               1
+#define ETHERCAT_EEPROM_EMULATION_SUPPORT               1
 
 #define ETHERCAT_COMM_PROTOCOL_SPI     1
 
-/* EtherCAT SPI Indirect mode enabled */
-#define ETHERCAT_SPI_INDIRECT_MODE_ACCESS				1
+/* EtherCAT SPI Direct mode enabled */
+#define ETHERCAT_SPI_DIRECT_MODE_ACCESS					1
 
 
 #define MCHP_ESF_IS_PDI_FUNCTIONAL(pdata)		ECAT_Lan9255_IsPDIFunctional(pdata)
 
-/* SPI Indirect mode Access. These APIs can also be used for LAN9252 device */
-#define MCHP_ESF_PDI_WRITE(addr, pdata, len)            ECAT_Lan925x_SPIWrite(addr, pdata, len)
-#define MCHP_ESF_PDI_READ(addr, pdata, len)             ECAT_Lan925x_SPIRead(addr, pdata, len)
-#define MCHP_ESF_PDI_FASTREAD(addr, pdata, len)         ECAT_Lan925x_SPIFastRead(addr, pdata, len)
-#define MCHP_ESF_PDI_READ_PDRAM(pdata, addr, len)		ECAT_Lan925x_SPIReadPDRAM(pdata, addr, len)
-#define MCHP_ESF_PDI_FASTREAD_PDRAM(pdata, addr, len)	ECAT_Lan925x_SPIFastReadPDRAM(pdata, addr, len)
-#define MCHP_ESF_PDI_WRITE_PDRAM(pdata, addr, len)		ECAT_Lan925x_SPIWritePDRAM(pdata, addr, len)
+/* SPI Direct mode Access */
+#define MCHP_ESF_PDI_WRITE(addr, pdata, len)            ECAT_Lan9255_SPIWrite (addr, pdata, len)
+#define MCHP_ESF_PDI_READ(addr, pdata, len)             ECAT_Lan9255_SPIRead (addr, pdata, len)
+#define MCHP_ESF_PDI_FASTREAD(addr, pdata, len)			ECAT_Lan9255_SPIFastRead (addr, pdata, len)
+#define MCHP_ESF_PDI_READ_PDRAM(pdata, addr, len)		
+#define MCHP_ESF_PDI_FASTREAD_PDRAM(pdata, addr, len)	
+#define MCHP_ESF_PDI_WRITE_PDRAM(pdata, addr, len)		
 
 
 
@@ -191,7 +191,17 @@ typedef struct
 /* SPI/SQI Clock Period in nano seconds */
 #define CLK_PERIOD_1MHZ		(1000)
 
-#define DRV_LAN9255_BAUDRATE_PDI_FREQ       20
+#define DRV_LAN9255_BAUDRATE_PDI_FREQ       15
+
+/*
+ * The Dummy cycles needed for read transaction introduced by two methods
+ * - Dummy clock method - dummy clocks feed to SQI structure
+ * - Dummy read method  - dummy read happen and data extraction happen through application READ API
+ * 
+ * DUMMY_READ_EN - enables the Dummy read method, (define DUMMY_READ_EN to enable)
+ * Dummy read method is selected by default, Undefine DUMMY_READ_EN to enable dummy clock method
+ */
+#define ECAT_DUMMY_READ_EN
 
 // Internal Access Time (IAT) in Nano seconds (ns) based on Hardware Design
 #define IAT_NULL		0
@@ -395,12 +405,9 @@ void    ECAT_SPI_DisableQuadMode(void);
 
 void ECAT_Util_Initialize(const unsigned short int drvIndex,  const void * const init);
 	/* Function Prototypes */
-	void ECAT_Lan925x_SPIWrite(uint16_t wAdddr, uint8_t *pbyData, uint8_t wLen);
-	void ECAT_Lan925x_SPIRead(uint16_t wAddr, uint8_t *pbyData, uint8_t wLen);
-	void ECAT_Lan925x_SPIFastRead(uint16_t wAddr, uint8_t *pbyData, uint8_t wLen);
-	void ECAT_Lan925x_SPIReadPDRAM(uint8_t *pbyData, uint16_t wAddr, uint16_t wLen);
-	void ECAT_Lan925x_SPIFastReadPDRAM(uint8_t *pbyData, uint16_t wAddr, uint16_t wLen);
-	void ECAT_Lan925x_SPIWritePDRAM(uint8_t *pbyData, uint16_t wAddr, uint16_t wLen);
+	void ECAT_Lan9255_SPIWrite(uint16_t wAddr, uint8_t *pbyData, uint32_t dwLength);
+	void ECAT_Lan9255_SPIRead(uint16_t wAddr, uint8_t *pbydata, uint32_t dwLength);
+	void ECAT_Lan9255_SPIFastRead(uint16_t wAddr, uint8_t *pbyData, uint32_t dwLength);
 #ifdef __cplusplus
 }
 #endif

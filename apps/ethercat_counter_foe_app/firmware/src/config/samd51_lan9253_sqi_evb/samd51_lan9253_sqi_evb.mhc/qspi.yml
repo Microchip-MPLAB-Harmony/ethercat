@@ -12,7 +12,7 @@ children:
       - type: Dynamic
         attributes: {id: qspi, value: '66000000'}
       - type: User
-        attributes: {value: '20000000'}
+        attributes: {value: '60000000'}
   - type: KeyValueSet
     attributes: {id: QSPI_CPOL}
     children:
@@ -26,7 +26,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: qspi, value: '5'}
+        attributes: {id: qspi, value: '1'}
   - type: KeyValueSet
     attributes: {id: QSPI_SMM}
     children:

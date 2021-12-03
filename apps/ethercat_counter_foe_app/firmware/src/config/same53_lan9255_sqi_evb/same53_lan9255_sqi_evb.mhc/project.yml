@@ -2,68 +2,68 @@ files:
 - generatedChecksum: 1D01444E30A152D1B38CF175A785813B
   logicalPath: slave_stack
   name: bootmode.c
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: SOURCE
   userChecksum: 1D01444E30A152D1B38CF175A785813B
 - generatedChecksum: 60B2DEC75552C7E059A8810598CC8588
   logicalPath: slave_stack
   name: coeappl.c
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: SOURCE
   userChecksum: 60B2DEC75552C7E059A8810598CC8588
-- generatedChecksum: 1A10525346CFEEA4C0ACA98B2AF7C7BF
-  logicalPath: config\same53_lan9255_sqi_evb\driver\lan9255
+- generatedChecksum: 3C4E26012907DC73175D9C228CC2CBC8
+  logicalPath: config/same53_lan9255_sqi_evb/driver/lan9255
   name: drv_lan9255.c
-  physicalPath: driver\lan9255
+  physicalPath: driver/lan9255
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 1A10525346CFEEA4C0ACA98B2AF7C7BF
-- generatedChecksum: 3788F79F1D92C4FBFE095EF23789A596
-  logicalPath: config\same53_lan9255_sqi_evb\driver\lan9255
+  userChecksum: 3C4E26012907DC73175D9C228CC2CBC8
+- generatedChecksum: C355E2264C454135AD4E186E2ACFC043
+  logicalPath: config/same53_lan9255_sqi_evb/driver/lan9255
   name: drv_lan9255_ecat_util.c
-  physicalPath: driver\lan9255
+  physicalPath: driver/lan9255
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 3788F79F1D92C4FBFE095EF23789A596
-- generatedChecksum: 57613862CC99B3A08CD78B8DCA81DB69
+  userChecksum: C355E2264C454135AD4E186E2ACFC043
+- generatedChecksum: ACEE93AE1BC431F90567C530DAD82896
   logicalPath: slave_stack
   name: ecatappl.c
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 57613862CC99B3A08CD78B8DCA81DB69
+  userChecksum: 4B79BDAF50BE4BE723F401AB442E4C43
 - generatedChecksum: 2A37B3D13944E83BA790288CDE1143E3
   logicalPath: slave_stack
   name: ecatcoe.c
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: SOURCE
   userChecksum: 2A37B3D13944E83BA790288CDE1143E3
 - generatedChecksum: 1CDC3082427E2FE3FEBAECBC37C6FD25
   logicalPath: slave_stack
   name: ecatfoe.c
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: SOURCE
   userChecksum: 1CDC3082427E2FE3FEBAECBC37C6FD25
-- generatedChecksum: 6B80EEF13B9B248CFB6EF9AD0F6C3909
+- generatedChecksum: F687A3AFDE3857282468C657F5AF4353
   logicalPath: slave_stack
   name: ecatslv.c
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 6B80EEF13B9B248CFB6EF9AD0F6C3909
+  userChecksum: F687A3AFDE3857282468C657F5AF4353
 - generatedChecksum: 19240ADA643084032A1817AB05CEEADF
   logicalPath: slave_stack
   name: emcy.c
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: SOURCE
   userChecksum: 19240ADA643084032A1817AB05CEEADF
 - generatedChecksum: 9D5EE038B893127B787BC03DFA6B467F
-  logicalPath: config\same53_lan9255_sqi_evb
+  logicalPath: config/same53_lan9255_sqi_evb
   name: exceptions.c
   physicalPath: ''
   security: NON_SECURE
@@ -72,26 +72,26 @@ files:
 - generatedChecksum: 7B5215AF785AE32B29C808A175D6A14E
   logicalPath: slave_stack
   name: foeappl.c
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: SOURCE
   userChecksum: 7B5215AF785AE32B29C808A175D6A14E
-- generatedChecksum: 2ADAEDA1BCCA584D9EFD53855E1BC679
-  logicalPath: config\same53_lan9255_sqi_evb
+- generatedChecksum: A712366E57916EDA5DB2DA5E8F25C268
+  logicalPath: config/same53_lan9255_sqi_evb
   name: initialization.c
   physicalPath: ''
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 2ADAEDA1BCCA584D9EFD53855E1BC679
+  userChecksum: A712366E57916EDA5DB2DA5E8F25C268
 - generatedChecksum: A41E08984EE13BB44490D15274D40AFE
-  logicalPath: config\same53_lan9255_sqi_evb
+  logicalPath: config/same53_lan9255_sqi_evb
   name: interrupts.c
   physicalPath: ''
   security: NON_SECURE
   type: SOURCE
   userChecksum: A41E08984EE13BB44490D15274D40AFE
 - generatedChecksum: 6513F2461B8F476B68CA73906086047F
-  logicalPath: config\same53_lan9255_sqi_evb
+  logicalPath: config/same53_lan9255_sqi_evb
   name: libc_syscalls.c
   physicalPath: ''
   security: NON_SECURE
@@ -100,1137 +100,1116 @@ files:
 - generatedChecksum: 044F8392A876DD7665AAF6F2CF2CE2E7
   logicalPath: slave_stack
   name: mailbox.c
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: SOURCE
   userChecksum: 044F8392A876DD7665AAF6F2CF2CE2E7
 - generatedChecksum: null
   logicalPath: ''
   name: main.c
-  physicalPath: ..\..
+  physicalPath: ../..
   security: NON_SECURE
   type: SOURCE
   userChecksum: null
 - generatedChecksum: 3C9B8EDC6207AB30D770042974FD817E
   logicalPath: slave_stack
   name: objdef.c
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: SOURCE
   userChecksum: 3C9B8EDC6207AB30D770042974FD817E
-- generatedChecksum: 43E48D14CDADC0529A8883BC731CB8E3
-  logicalPath: config\same53_lan9255_sqi_evb\peripheral\clock
+- generatedChecksum: 32F756544F70CD2B090A7A2DD7C4A36C
+  logicalPath: config/same53_lan9255_sqi_evb/peripheral/clock
   name: plib_clock.c
-  physicalPath: peripheral\clock
+  physicalPath: peripheral/clock
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 43E48D14CDADC0529A8883BC731CB8E3
+  userChecksum: 32F756544F70CD2B090A7A2DD7C4A36C
 - generatedChecksum: D903E8D9DCBC4107D0AA841E07F653BA
-  logicalPath: config\same53_lan9255_sqi_evb\peripheral\cmcc
+  logicalPath: config/same53_lan9255_sqi_evb/peripheral/cmcc
   name: plib_cmcc.c
-  physicalPath: peripheral\cmcc
+  physicalPath: peripheral/cmcc
   security: NON_SECURE
   type: SOURCE
   userChecksum: D903E8D9DCBC4107D0AA841E07F653BA
 - generatedChecksum: CBCD5C1AC41592F6299A7F48DAC453C7
-  logicalPath: config\same53_lan9255_sqi_evb\peripheral\eic
+  logicalPath: config/same53_lan9255_sqi_evb/peripheral/eic
   name: plib_eic.c
-  physicalPath: peripheral\eic
+  physicalPath: peripheral/eic
   security: NON_SECURE
   type: SOURCE
   userChecksum: CBCD5C1AC41592F6299A7F48DAC453C7
 - generatedChecksum: C3ECDED3D6301DB0DE622293ED615D21
-  logicalPath: config\same53_lan9255_sqi_evb\peripheral\evsys
+  logicalPath: config/same53_lan9255_sqi_evb/peripheral/evsys
   name: plib_evsys.c
-  physicalPath: peripheral\evsys
+  physicalPath: peripheral/evsys
   security: NON_SECURE
   type: SOURCE
   userChecksum: C3ECDED3D6301DB0DE622293ED615D21
 - generatedChecksum: E0C6A21E986DE2F263890C31C5842728
-  logicalPath: config\same53_lan9255_sqi_evb\peripheral\nvic
+  logicalPath: config/same53_lan9255_sqi_evb/peripheral/nvic
   name: plib_nvic.c
-  physicalPath: peripheral\nvic
+  physicalPath: peripheral/nvic
   security: NON_SECURE
   type: SOURCE
   userChecksum: E0C6A21E986DE2F263890C31C5842728
 - generatedChecksum: 903E0413B53BA9E8980C740E65F59966
-  logicalPath: config\same53_lan9255_sqi_evb\peripheral\nvmctrl
+  logicalPath: config/same53_lan9255_sqi_evb/peripheral/nvmctrl
   name: plib_nvmctrl.c
-  physicalPath: peripheral\nvmctrl
+  physicalPath: peripheral/nvmctrl
   security: NON_SECURE
   type: SOURCE
   userChecksum: 903E0413B53BA9E8980C740E65F59966
-- generatedChecksum: F5E352829D3D8CCA1F34C64E52C931BE
-  logicalPath: config\same53_lan9255_sqi_evb\peripheral\port
+- generatedChecksum: 55346524B9B48F33EB09A51E192DF908
+  logicalPath: config/same53_lan9255_sqi_evb/peripheral/port
   name: plib_port.c
-  physicalPath: peripheral\port
+  physicalPath: peripheral/port
   security: NON_SECURE
   type: SOURCE
-  userChecksum: F5E352829D3D8CCA1F34C64E52C931BE
+  userChecksum: 55346524B9B48F33EB09A51E192DF908
 - generatedChecksum: F708E7571438656D90BD331FA221AF78
-  logicalPath: config\same53_lan9255_sqi_evb\peripheral\qspi
+  logicalPath: config/same53_lan9255_sqi_evb/peripheral/qspi
   name: plib_qspi.c
-  physicalPath: peripheral\qspi
+  physicalPath: peripheral/qspi
   security: NON_SECURE
   type: SOURCE
   userChecksum: F708E7571438656D90BD331FA221AF78
-- generatedChecksum: 13F9952C87813A38577AED82ED149751
-  logicalPath: config\same53_lan9255_sqi_evb\peripheral\tc
+- generatedChecksum: 4E76B30C0D303DCC02972F691A72EE9D
+  logicalPath: config/same53_lan9255_sqi_evb/peripheral/tc
   name: plib_tc0.c
-  physicalPath: peripheral\tc
+  physicalPath: peripheral/tc
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 13F9952C87813A38577AED82ED149751
-- generatedChecksum: 88D08CE389AE7B65271685D060A91906
+  userChecksum: 4E76B30C0D303DCC02972F691A72EE9D
+- generatedChecksum: 2F5F955E94CB8DB14C9C4591F1651870
   logicalPath: slave_stack
   name: sample_app.c
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 88D08CE389AE7B65271685D060A91906
+  userChecksum: A1CFDB376C9EE9E13373B7DBF7195907
 - generatedChecksum: AA16290033E9F082D4FFFF1CB5CBB75E
   logicalPath: slave_stack
   name: sdoserv.c
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: SOURCE
   userChecksum: AA16290033E9F082D4FFFF1CB5CBB75E
 - generatedChecksum: F90BC31146188C748D0CEBFE196F2CAA
-  logicalPath: config\same53_lan9255_sqi_evb
+  logicalPath: config/same53_lan9255_sqi_evb
   name: startup_xc32.c
   physicalPath: ''
   security: NON_SECURE
   type: SOURCE
   userChecksum: F90BC31146188C748D0CEBFE196F2CAA
 - generatedChecksum: 7806B30ECAE0D18D08CD583D8775530D
-  logicalPath: config\same53_lan9255_sqi_evb\stdio
+  logicalPath: config/same53_lan9255_sqi_evb/stdio
   name: xc32_monitor.c
   physicalPath: stdio
   security: NON_SECURE
   type: SOURCE
   userChecksum: 7806B30ECAE0D18D08CD583D8775530D
-- generatedChecksum: 06C74D489138FA3B009AA75008748D31
-  logicalPath: slave_stack
-  name: SAMD51_EtherCAT_Slave.esp
-  physicalPath: ..\..\slave_stack
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: 06C74D489138FA3B009AA75008748D31
-- generatedChecksum: 103752AB6B62F01551C7F092A72C54CB
-  logicalPath: packs\ATSAME53J20A_DFP\component
+- generatedChecksum: 31F7D53E6DA3910A8ED941FFABDD74BA
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: ac.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 103752AB6B62F01551C7F092A72C54CB
-- generatedChecksum: 06ED3CD073658A28B76D037380F0A13D
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 31F7D53E6DA3910A8ED941FFABDD74BA
+- generatedChecksum: 2D89F6E83B85905A5D360F5EAC9A0D9A
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: ac.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 06ED3CD073658A28B76D037380F0A13D
-- generatedChecksum: 7AE3043EAF6A0F3B0C4E21ECDA5C870D
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: 2D89F6E83B85905A5D360F5EAC9A0D9A
+- generatedChecksum: 98386EACF7F4890E3F54A622821CE2CD
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: adc.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 7AE3043EAF6A0F3B0C4E21ECDA5C870D
-- generatedChecksum: B5EBDDD8DEB3A2519CA77AE95EFC3297
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 98386EACF7F4890E3F54A622821CE2CD
+- generatedChecksum: D76F13A156703E55684D6AE2A9861B93
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: adc0.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: B5EBDDD8DEB3A2519CA77AE95EFC3297
-- generatedChecksum: 9790FD4262BC7A9F0CFC5233DD7DAFCE
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: D76F13A156703E55684D6AE2A9861B93
+- generatedChecksum: 7A515B721FCCAD32505AC4BBB59F09CB
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: adc1.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 9790FD4262BC7A9F0CFC5233DD7DAFCE
-- generatedChecksum: EB25D3187E352465034C9A000E8E7CCF
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: 7A515B721FCCAD32505AC4BBB59F09CB
+- generatedChecksum: BB87F3DBAF5CD8AB8C00391DBD3552BA
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: aes.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: EB25D3187E352465034C9A000E8E7CCF
-- generatedChecksum: 257E6BA2B0EFCE2055ABFB126AE97AAA
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: BB87F3DBAF5CD8AB8C00391DBD3552BA
+- generatedChecksum: 1856C7EED1FA89A865A96B6EF37A2FFA
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: aes.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 257E6BA2B0EFCE2055ABFB126AE97AAA
-- generatedChecksum: 240ADC4F61D386DEDF35907F12E7CA7C
+  userChecksum: 1856C7EED1FA89A865A96B6EF37A2FFA
+- generatedChecksum: C7C4BFBE90EFC3F56CA231CA9F56CA42
   logicalPath: slave_stack
   name: applInterface.h
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
-  userChecksum: 240ADC4F61D386DEDF35907F12E7CA7C
+  userChecksum: C7C4BFBE90EFC3F56CA231CA9F56CA42
 - generatedChecksum: 579E1E1CB5806E6B3466B402826C15CF
   logicalPath: slave_stack
   name: bootmode.h
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
   userChecksum: 579E1E1CB5806E6B3466B402826C15CF
 - generatedChecksum: 14F1AD56D242EFD0AF76849C6ADFECC4
-  logicalPath: packs\CMSIS\CMSIS\Core\Include
+  logicalPath: packs/CMSIS/CMSIS/Core/Include
   name: cachel1_armv7.h
-  physicalPath: ..\..\packs\CMSIS\CMSIS\Core\Include
+  physicalPath: ../../packs/CMSIS/CMSIS/Core/Include
   security: NON_SECURE
   type: HEADER
   userChecksum: 14F1AD56D242EFD0AF76849C6ADFECC4
-- generatedChecksum: F7B20097CC5A490314420FC585C9C88F
-  logicalPath: packs\ATSAME53J20A_DFP\component
+- generatedChecksum: A8E3A212862159ABC61E65ABEB6C32C7
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: ccl.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: F7B20097CC5A490314420FC585C9C88F
-- generatedChecksum: B1D309493AB3C68B52E5D177ABD85599
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: A8E3A212862159ABC61E65ABEB6C32C7
+- generatedChecksum: FE3B5002FC65AEABEBAC638B4161352F
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: ccl.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: B1D309493AB3C68B52E5D177ABD85599
-- generatedChecksum: 9A161AB2BD177EFFFBEAAE4B397D3EF7
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: FE3B5002FC65AEABEBAC638B4161352F
+- generatedChecksum: 311DE33CD66C69CD50766FBDD0FD9EDF
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: cmcc.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 9A161AB2BD177EFFFBEAAE4B397D3EF7
-- generatedChecksum: 5932005A91217D3B558D4B8C09EAEBAF
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 311DE33CD66C69CD50766FBDD0FD9EDF
+- generatedChecksum: D95F72856C9C1B1E1E2BE680056A95FD
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: cmcc.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 5932005A91217D3B558D4B8C09EAEBAF
+  userChecksum: D95F72856C9C1B1E1E2BE680056A95FD
 - generatedChecksum: B79C08E0901948AD04D944B4BCE1B60D
-  logicalPath: packs\CMSIS\CMSIS\Core\Include
+  logicalPath: packs/CMSIS/CMSIS/Core/Include
   name: cmsis_armcc.h
-  physicalPath: ..\..\packs\CMSIS\CMSIS\Core\Include
+  physicalPath: ../../packs/CMSIS/CMSIS/Core/Include
   security: NON_SECURE
   type: HEADER
   userChecksum: B79C08E0901948AD04D944B4BCE1B60D
 - generatedChecksum: 6B4E2EBA8708D9E04E6136F29460ACB9
-  logicalPath: packs\CMSIS\CMSIS\Core\Include
+  logicalPath: packs/CMSIS/CMSIS/Core/Include
   name: cmsis_armclang.h
-  physicalPath: ..\..\packs\CMSIS\CMSIS\Core\Include
+  physicalPath: ../../packs/CMSIS/CMSIS/Core/Include
   security: NON_SECURE
   type: HEADER
   userChecksum: 6B4E2EBA8708D9E04E6136F29460ACB9
 - generatedChecksum: 415E22EBE7A3BACE87240A7F16492C46
-  logicalPath: packs\CMSIS\CMSIS\Core\Include
+  logicalPath: packs/CMSIS/CMSIS/Core/Include
   name: cmsis_armclang_ltm.h
-  physicalPath: ..\..\packs\CMSIS\CMSIS\Core\Include
+  physicalPath: ../../packs/CMSIS/CMSIS/Core/Include
   security: NON_SECURE
   type: HEADER
   userChecksum: 415E22EBE7A3BACE87240A7F16492C46
 - generatedChecksum: 60385A5C6C9882B5D30709A1F6EAEC35
-  logicalPath: packs\CMSIS\CMSIS\Core\Include
+  logicalPath: packs/CMSIS/CMSIS/Core/Include
   name: cmsis_compiler.h
-  physicalPath: ..\..\packs\CMSIS\CMSIS\Core\Include
+  physicalPath: ../../packs/CMSIS/CMSIS/Core/Include
   security: NON_SECURE
   type: HEADER
   userChecksum: 60385A5C6C9882B5D30709A1F6EAEC35
 - generatedChecksum: 4DC978B079559EB044AFD32A57768238
-  logicalPath: packs\CMSIS\CMSIS\Core\Include
+  logicalPath: packs/CMSIS/CMSIS/Core/Include
   name: cmsis_gcc.h
-  physicalPath: ..\..\packs\CMSIS\CMSIS\Core\Include
+  physicalPath: ../../packs/CMSIS/CMSIS/Core/Include
   security: NON_SECURE
   type: HEADER
   userChecksum: 4DC978B079559EB044AFD32A57768238
 - generatedChecksum: 11521476050CAC6C1F3A91A5BB5DBB9A
-  logicalPath: packs\CMSIS\CMSIS\Core\Include
+  logicalPath: packs/CMSIS/CMSIS/Core/Include
   name: cmsis_iccarm.h
-  physicalPath: ..\..\packs\CMSIS\CMSIS\Core\Include
+  physicalPath: ../../packs/CMSIS/CMSIS/Core/Include
   security: NON_SECURE
   type: HEADER
   userChecksum: 11521476050CAC6C1F3A91A5BB5DBB9A
 - generatedChecksum: 52F91AC0727F2311EDA0E3BAA7719A9F
-  logicalPath: packs\CMSIS\CMSIS\Core\Include
+  logicalPath: packs/CMSIS/CMSIS/Core/Include
   name: cmsis_version.h
-  physicalPath: ..\..\packs\CMSIS\CMSIS\Core\Include
+  physicalPath: ../../packs/CMSIS/CMSIS/Core/Include
   security: NON_SECURE
   type: HEADER
   userChecksum: 52F91AC0727F2311EDA0E3BAA7719A9F
 - generatedChecksum: F60024B05622572341D450978EEC3F70
   logicalPath: slave_stack
   name: coeappl.h
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
   userChecksum: F60024B05622572341D450978EEC3F70
 - generatedChecksum: 7EF1FAD7778FEEAC9467270306D7F7C0
-  logicalPath: packs\CMSIS\CMSIS\Core\Include
+  logicalPath: packs/CMSIS/CMSIS/Core/Include
   name: core_cm4.h
-  physicalPath: ..\..\packs\CMSIS\CMSIS\Core\Include
+  physicalPath: ../../packs/CMSIS/CMSIS/Core/Include
   security: NON_SECURE
   type: HEADER
   userChecksum: 7EF1FAD7778FEEAC9467270306D7F7C0
-- generatedChecksum: B6716A8DBA902214148AB40973A9B177
-  logicalPath: packs\ATSAME53J20A_DFP\component
+- generatedChecksum: 962663F848AE5A93EBB621668C1C0DDF
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: dac.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: B6716A8DBA902214148AB40973A9B177
-- generatedChecksum: A16EB87E3D1484E07A7EC5FDC66A051F
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 962663F848AE5A93EBB621668C1C0DDF
+- generatedChecksum: A3AFA8CED5A7191FD3EFA670F878CBAF
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: dac.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: A16EB87E3D1484E07A7EC5FDC66A051F
+  userChecksum: A3AFA8CED5A7191FD3EFA670F878CBAF
 - generatedChecksum: 48C66EEB41E6FAD238FC87BD28388457
-  logicalPath: config\same53_lan9255_sqi_evb
+  logicalPath: config/same53_lan9255_sqi_evb
   name: definitions.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
   userChecksum: 48C66EEB41E6FAD238FC87BD28388457
-- generatedChecksum: A2AB52BBAA75A8A7D2187C3AA4F33CA7
-  logicalPath: config\same53_lan9255_sqi_evb
+- generatedChecksum: 1450EA6158B836CDE992BB2CBE34B42C
+  logicalPath: config/same53_lan9255_sqi_evb
   name: device.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: A2AB52BBAA75A8A7D2187C3AA4F33CA7
+  userChecksum: 1450EA6158B836CDE992BB2CBE34B42C
 - generatedChecksum: 85D3482D395C59BDFF268B01940CDDDE
-  logicalPath: config\same53_lan9255_sqi_evb
+  logicalPath: config/same53_lan9255_sqi_evb
   name: device_cache.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
   userChecksum: 85D3482D395C59BDFF268B01940CDDDE
 - generatedChecksum: 0753C4EBCB7DC0F70804269AC0D7F87E
-  logicalPath: config\same53_lan9255_sqi_evb
+  logicalPath: config/same53_lan9255_sqi_evb
   name: device_vectors.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
   userChecksum: 0753C4EBCB7DC0F70804269AC0D7F87E
-- generatedChecksum: 3B8825830DF640784A7E57E585174CDD
-  logicalPath: packs\ATSAME53J20A_DFP\component
+- generatedChecksum: 0CA442FAB948057DAAB2293A1B61DDD6
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: dmac.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 3B8825830DF640784A7E57E585174CDD
-- generatedChecksum: 55075AA34DE717FAF2C7C2E4DB0AE3EC
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 0CA442FAB948057DAAB2293A1B61DDD6
+- generatedChecksum: 5C02E35EE45D1A3D8F81B6C742530E26
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: dmac.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 55075AA34DE717FAF2C7C2E4DB0AE3EC
-- generatedChecksum: 140A2B162ACA55E415FBD513D97E2547
-  logicalPath: config\same53_lan9255_sqi_evb\driver\lan9255
+  userChecksum: 5C02E35EE45D1A3D8F81B6C742530E26
+- generatedChecksum: 92459A98C8CCCCD37A409718198B227B
+  logicalPath: config/same53_lan9255_sqi_evb/driver/lan9255
   name: drv_lan9255.h
-  physicalPath: driver\lan9255
+  physicalPath: driver/lan9255
   security: NON_SECURE
   type: HEADER
-  userChecksum: 140A2B162ACA55E415FBD513D97E2547
+  userChecksum: 92459A98C8CCCCD37A409718198B227B
 - generatedChecksum: E516F748EB7904A3B2BF7AD88F369DB6
-  logicalPath: config\same53_lan9255_sqi_evb\driver\lan9255
+  logicalPath: config/same53_lan9255_sqi_evb/driver/lan9255
   name: drv_lan9255_definitions.h
-  physicalPath: driver\lan9255
+  physicalPath: driver/lan9255
   security: NON_SECURE
   type: HEADER
   userChecksum: E516F748EB7904A3B2BF7AD88F369DB6
-- generatedChecksum: 11EACCDBBE626958D9B5D852117AEC0C
-  logicalPath: config\same53_lan9255_sqi_evb\driver\lan9255
+- generatedChecksum: A48DDA0A288B969D08B8141CEB8F4F76
+  logicalPath: config/same53_lan9255_sqi_evb/driver/lan9255
   name: drv_lan9255_ecat_util.h
-  physicalPath: driver\lan9255
+  physicalPath: driver/lan9255
   security: NON_SECURE
   type: HEADER
-  userChecksum: 11EACCDBBE626958D9B5D852117AEC0C
-- generatedChecksum: F7F71EE5FE73A670F4C38B86F0E21EFF
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: A48DDA0A288B969D08B8141CEB8F4F76
+- generatedChecksum: 766E8D2946F138B7745865D5E7E8A185
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: dsu.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: F7F71EE5FE73A670F4C38B86F0E21EFF
-- generatedChecksum: 44C47F0B8F610DB00067F3815507EF8F
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 766E8D2946F138B7745865D5E7E8A185
+- generatedChecksum: DA75E03F993C47EBF641BD764EFA03EC
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: dsu.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 44C47F0B8F610DB00067F3815507EF8F
-- generatedChecksum: B87F4A57BA88D52412EC4B9BCDDA5D35
+  userChecksum: DA75E03F993C47EBF641BD764EFA03EC
+- generatedChecksum: 74F3DA646A2485DAC61792E8F262E20B
   logicalPath: slave_stack
   name: ecat_def.h
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
-  userChecksum: B87F4A57BA88D52412EC4B9BCDDA5D35
-- generatedChecksum: 8F429A92BE52D1D09EDCA36AD0FD9AA2
+  userChecksum: 0582402AA2922AC1E2295988B39500B8
+- generatedChecksum: 2C62033177B4B81E335A5A88F8A2A763
   logicalPath: slave_stack
   name: ecatappl.h
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
-  userChecksum: 8F429A92BE52D1D09EDCA36AD0FD9AA2
+  userChecksum: 2C62033177B4B81E335A5A88F8A2A763
 - generatedChecksum: 9714F7686D284256A5984D8F85952673
   logicalPath: slave_stack
   name: ecatcoe.h
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
   userChecksum: 9714F7686D284256A5984D8F85952673
 - generatedChecksum: 4CC95999F7F781A4C4571EF4F7F3A9B5
   logicalPath: slave_stack
   name: ecatfoe.h
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
   userChecksum: 4CC95999F7F781A4C4571EF4F7F3A9B5
-- generatedChecksum: F9141B92D2ABC6F0DB359ABE994F7CC1
+- generatedChecksum: B6A828178624F0B1A2C2D43ECA16856E
   logicalPath: slave_stack
   name: ecatslv.h
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
-  userChecksum: F9141B92D2ABC6F0DB359ABE994F7CC1
-- generatedChecksum: 61D6CD737529719F40264D99E0BC51AD
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: B6A828178624F0B1A2C2D43ECA16856E
+- generatedChecksum: 3287D8EB261D75C3C16DE4540A1952B9
+  logicalPath: slave_stack
+  name: eeprom.h
+  physicalPath: ../../slave_stack
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: F53A5FA5DE8E001DA1D534A5D84767CD
+- generatedChecksum: 13171A65275691F5C1B007442CD30D15
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: eic.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 61D6CD737529719F40264D99E0BC51AD
-- generatedChecksum: B39895AD30BEBCEA9C77B47AB8473276
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 13171A65275691F5C1B007442CD30D15
+- generatedChecksum: 19530F23478B1414F80A8FFB0C541F7D
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: eic.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: B39895AD30BEBCEA9C77B47AB8473276
+  userChecksum: 19530F23478B1414F80A8FFB0C541F7D
 - generatedChecksum: C28003F8AEDD014C732153F751D1740C
   logicalPath: slave_stack
   name: emcy.h
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
   userChecksum: C28003F8AEDD014C732153F751D1740C
 - generatedChecksum: E949CA01BC47744DD4858F52644DB009
   logicalPath: slave_stack
   name: esc.h
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
   userChecksum: E949CA01BC47744DD4858F52644DB009
-- generatedChecksum: D2DCAAB45EABC4B40AAC16BAB12783BF
-  logicalPath: config\same53_lan9255_sqi_evb
+- generatedChecksum: 9CDAEEF2387AF2689CAA3C607473CAC6
+  logicalPath: config/same53_lan9255_sqi_evb
   name: ethercat_configuration.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
-  userChecksum: D2DCAAB45EABC4B40AAC16BAB12783BF
-- generatedChecksum: 2C55CD6D03254DB3DEE97217883BEAD1
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: 9CDAEEF2387AF2689CAA3C607473CAC6
+- generatedChecksum: 43649F972D51B12B97D3373217BF3E24
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: evsys.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 2C55CD6D03254DB3DEE97217883BEAD1
-- generatedChecksum: A8BEE45F64D4DF6E7C4D1732166497B4
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 43649F972D51B12B97D3373217BF3E24
+- generatedChecksum: D292D716464A4830817DF40C5D6A31AF
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: evsys.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: A8BEE45F64D4DF6E7C4D1732166497B4
+  userChecksum: D292D716464A4830817DF40C5D6A31AF
 - generatedChecksum: 1ECFF163B4B70DDD1A36036252ED54D4
   logicalPath: slave_stack
   name: foeappl.h
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
   userChecksum: 1ECFF163B4B70DDD1A36036252ED54D4
-- generatedChecksum: 716089E8FF6F3FAD2E121194B85DCBF8
-  logicalPath: packs\ATSAME53J20A_DFP\component
+- generatedChecksum: DD68E926A78582F3DEB54E4A251FF2B3
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: freqm.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 716089E8FF6F3FAD2E121194B85DCBF8
-- generatedChecksum: 81FC25D4D3113EE00755F6AF3F144C51
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: DD68E926A78582F3DEB54E4A251FF2B3
+- generatedChecksum: 5F6E759161703CE7B8CE723E46D76E81
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: freqm.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 81FC25D4D3113EE00755F6AF3F144C51
-- generatedChecksum: 26FF9B6E0366292586BAD7B48E31C218
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: 5F6E759161703CE7B8CE723E46D76E81
+- generatedChecksum: B8F365C83D3F92BC07978C1758C89D22
+  logicalPath: packs/LAN9255ZMX020_DFP/component
+  name: fuses.h
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: B8F365C83D3F92BC07978C1758C89D22
+- generatedChecksum: 9CD06EAD4B3EB536A2BBE71842588517
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
+  name: fuses.h
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: 9CD06EAD4B3EB536A2BBE71842588517
+- generatedChecksum: 9A2BE1F87EFBF67D181EAD768F428E3C
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: gclk.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 26FF9B6E0366292586BAD7B48E31C218
-- generatedChecksum: 0D55CA5E4CA8AC1B54845B980EDFDA1D
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 9A2BE1F87EFBF67D181EAD768F428E3C
+- generatedChecksum: 1A4088048875D5554E3F2450C645DF1A
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: gclk.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 0D55CA5E4CA8AC1B54845B980EDFDA1D
-- generatedChecksum: E91B51083FD90AF5515C5653F7D1EDC6
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: 1A4088048875D5554E3F2450C645DF1A
+- generatedChecksum: DED956C2488B81CFAD7E75685E2AAC30
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: gmac.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: E91B51083FD90AF5515C5653F7D1EDC6
-- generatedChecksum: 273CF02F87552E387B790DCA1E963D25
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: DED956C2488B81CFAD7E75685E2AAC30
+- generatedChecksum: E000A2787EB3118B353B735B7F5277C1
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: gmac.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 273CF02F87552E387B790DCA1E963D25
-- generatedChecksum: 1FCCF19DA63EE3FAF889FCA3D4AF9F5C
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: E000A2787EB3118B353B735B7F5277C1
+- generatedChecksum: 6B5CCBEF406DB2D121CF26878B6DE514
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: hmatrix.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 1FCCF19DA63EE3FAF889FCA3D4AF9F5C
-- generatedChecksum: F94AAD6B02BCA4863814953D5328FD6A
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: 6B5CCBEF406DB2D121CF26878B6DE514
+- generatedChecksum: 340794B14D072881FA9D75F04047870F
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: hmatrixb.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: F94AAD6B02BCA4863814953D5328FD6A
-- generatedChecksum: BF81BD154FB13D47180EF37C0F602994
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: 340794B14D072881FA9D75F04047870F
+- generatedChecksum: 900C14AF21DA3352A8A024947FB2A951
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: i2s.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: BF81BD154FB13D47180EF37C0F602994
-- generatedChecksum: 393749B76A735B0A3AF906FEC6F715B4
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 900C14AF21DA3352A8A024947FB2A951
+- generatedChecksum: 833512D01FBA5CA48D6F82272AA358B4
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: i2s.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 393749B76A735B0A3AF906FEC6F715B4
-- generatedChecksum: 56363460A8EDCFCC5B00AB5E447DB090
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: 833512D01FBA5CA48D6F82272AA358B4
+- generatedChecksum: 877B4F96C5802183BAD292E6E4721BD7
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: icm.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 56363460A8EDCFCC5B00AB5E447DB090
-- generatedChecksum: 128A783BFFCD289313F8C7B21AB7744E
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 877B4F96C5802183BAD292E6E4721BD7
+- generatedChecksum: 88FBE96995F0F4DF236FABBB7DD03CA6
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: icm.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 128A783BFFCD289313F8C7B21AB7744E
+  userChecksum: 88FBE96995F0F4DF236FABBB7DD03CA6
 - generatedChecksum: EAC48ED2CF07C5DCFF9D5CFEBDF8AFBE
-  logicalPath: config\same53_lan9255_sqi_evb
+  logicalPath: config/same53_lan9255_sqi_evb
   name: interrupts.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
   userChecksum: EAC48ED2CF07C5DCFF9D5CFEBDF8AFBE
+- generatedChecksum: 508C100EB271C431B9E4A0E86A82551D
+  logicalPath: packs/LAN9255ZMX020_DFP
+  name: lan9255zmx020.h
+  physicalPath: ../../packs/LAN9255ZMX020_DFP
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: 508C100EB271C431B9E4A0E86A82551D
+- generatedChecksum: 2807F196E28AD0FC2F028D05957390C7
+  logicalPath: packs/LAN9255ZMX020_DFP/pio
+  name: lan9255zmx020.h
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/pio
+  security: NON_SECURE
+  type: HEADER
+  userChecksum: 2807F196E28AD0FC2F028D05957390C7
 - generatedChecksum: 5E471DFF75BEC0A592372F4D7D63967F
   logicalPath: slave_stack
   name: mailbox.h
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
   userChecksum: 5E471DFF75BEC0A592372F4D7D63967F
-- generatedChecksum: 4E9AC373527BA2F80FE0189C06925898
-  logicalPath: packs\ATSAME53J20A_DFP\component
+- generatedChecksum: 5F46831AF3B2C24B4BE9F8176A5FCC83
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: mclk.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 4E9AC373527BA2F80FE0189C06925898
-- generatedChecksum: F1CDC0658CB1B79150C807AFF713EC03
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 5F46831AF3B2C24B4BE9F8176A5FCC83
+- generatedChecksum: 7671F46CDF8F575D5A829815DE9931DD
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: mclk.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: F1CDC0658CB1B79150C807AFF713EC03
+  userChecksum: 7671F46CDF8F575D5A829815DE9931DD
 - generatedChecksum: 47E760D36E42A7B436306A9CB4E72A0E
-  logicalPath: packs\CMSIS\CMSIS\Core\Include
+  logicalPath: packs/CMSIS/CMSIS/Core/Include
   name: mpu_armv7.h
-  physicalPath: ..\..\packs\CMSIS\CMSIS\Core\Include
+  physicalPath: ../../packs/CMSIS/CMSIS/Core/Include
   security: NON_SECURE
   type: HEADER
   userChecksum: 47E760D36E42A7B436306A9CB4E72A0E
-- generatedChecksum: EDF116351E988EFD1E6094F6299907C4
-  logicalPath: packs\ATSAME53J20A_DFP\component
+- generatedChecksum: C20202766CCDE66D0E889FBD1DB1534D
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: nvmctrl.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: EDF116351E988EFD1E6094F6299907C4
-- generatedChecksum: 3E29AFF9FD5FD33D99A39E8200DA523F
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: C20202766CCDE66D0E889FBD1DB1534D
+- generatedChecksum: 905A2E955F6C4DC8F858D88C8A6C83EB
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: nvmctrl.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 3E29AFF9FD5FD33D99A39E8200DA523F
+  userChecksum: 905A2E955F6C4DC8F858D88C8A6C83EB
 - generatedChecksum: FC7AA6750B3E8C7AE424A40B6C4D1FEE
   logicalPath: slave_stack
   name: objdef.h
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
   userChecksum: FC7AA6750B3E8C7AE424A40B6C4D1FEE
-- generatedChecksum: EF2DECE93BF0A220FC2346387BBB387E
-  logicalPath: packs\ATSAME53J20A_DFP\component
+- generatedChecksum: 2E8A9F3F1CC4BF078CBFD6DE49C41705
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: osc32kctrl.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: EF2DECE93BF0A220FC2346387BBB387E
-- generatedChecksum: E54A85330F9A1A3902444874615249B0
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 2E8A9F3F1CC4BF078CBFD6DE49C41705
+- generatedChecksum: 0BF8B6ACE0DFFF06CB5B021449275A59
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: osc32kctrl.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: E54A85330F9A1A3902444874615249B0
-- generatedChecksum: 8A4430BBD2478C8750D3AA1E7B4617A0
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: 0BF8B6ACE0DFFF06CB5B021449275A59
+- generatedChecksum: 8FBB251F9D532D6E40BB3B253F2A0E7B
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: oscctrl.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 8A4430BBD2478C8750D3AA1E7B4617A0
-- generatedChecksum: 101607932AC80F1A05D469CF3AC7AEF1
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 8FBB251F9D532D6E40BB3B253F2A0E7B
+- generatedChecksum: 791B0F0EDFC003ACCF7B348DA02704D8
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: oscctrl.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 101607932AC80F1A05D469CF3AC7AEF1
-- generatedChecksum: 69A661B626703C1F1ADDEDC145B756FC
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: 791B0F0EDFC003ACCF7B348DA02704D8
+- generatedChecksum: DEE5A530F4D5D4997750E9D82662931A
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: pac.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 69A661B626703C1F1ADDEDC145B756FC
-- generatedChecksum: 7C11B9DF2816501B855DE5DFE32D5286
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: DEE5A530F4D5D4997750E9D82662931A
+- generatedChecksum: 69523CFA20216584A5CA1C775E611AF1
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: pac.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 7C11B9DF2816501B855DE5DFE32D5286
-- generatedChecksum: AC3AB59BF8917B73FFDFBB8569E8C84E
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: 69523CFA20216584A5CA1C775E611AF1
+- generatedChecksum: 0E56E9CAFE1B74DD14312C83E5AF696A
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: pcc.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: AC3AB59BF8917B73FFDFBB8569E8C84E
-- generatedChecksum: 4BB663E4F5B1F09CB6FCD8A7C353D2E1
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 0E56E9CAFE1B74DD14312C83E5AF696A
+- generatedChecksum: 09B26A20E82F997B00DD09D6C4E780DD
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: pcc.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 4BB663E4F5B1F09CB6FCD8A7C353D2E1
-- generatedChecksum: E6E672B23AA9D4DC0D0C81437F73BBEE
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: 09B26A20E82F997B00DD09D6C4E780DD
+- generatedChecksum: 3B921D8684E64B6E7D48DB6BA95D4E6B
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: pdec.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: E6E672B23AA9D4DC0D0C81437F73BBEE
-- generatedChecksum: 2A31DA0316C68E1303CBF878C920D2AA
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 3B921D8684E64B6E7D48DB6BA95D4E6B
+- generatedChecksum: 1D9BB9EFB19230A33608F05545615909
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: pdec.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 2A31DA0316C68E1303CBF878C920D2AA
+  userChecksum: 1D9BB9EFB19230A33608F05545615909
 - generatedChecksum: 0416F129713FDF989ACC1FC57065125C
-  logicalPath: config\same53_lan9255_sqi_evb\peripheral\clock
+  logicalPath: config/same53_lan9255_sqi_evb/peripheral/clock
   name: plib_clock.h
-  physicalPath: peripheral\clock
+  physicalPath: peripheral/clock
   security: NON_SECURE
   type: HEADER
   userChecksum: 0416F129713FDF989ACC1FC57065125C
 - generatedChecksum: 95A89CFFC2B67EA718036EF9B8805872
-  logicalPath: config\same53_lan9255_sqi_evb\peripheral\cmcc
+  logicalPath: config/same53_lan9255_sqi_evb/peripheral/cmcc
   name: plib_cmcc.h
-  physicalPath: peripheral\cmcc
+  physicalPath: peripheral/cmcc
   security: NON_SECURE
   type: HEADER
   userChecksum: 95A89CFFC2B67EA718036EF9B8805872
 - generatedChecksum: 115B6A5C98083BC2711731D8CF15C445
-  logicalPath: config\same53_lan9255_sqi_evb\peripheral\eic
+  logicalPath: config/same53_lan9255_sqi_evb/peripheral/eic
   name: plib_eic.h
-  physicalPath: peripheral\eic
+  physicalPath: peripheral/eic
   security: NON_SECURE
   type: HEADER
   userChecksum: 115B6A5C98083BC2711731D8CF15C445
 - generatedChecksum: CCAEF942C66AF995876DFD85CEFF611F
-  logicalPath: config\same53_lan9255_sqi_evb\peripheral\evsys
+  logicalPath: config/same53_lan9255_sqi_evb/peripheral/evsys
   name: plib_evsys.h
-  physicalPath: peripheral\evsys
+  physicalPath: peripheral/evsys
   security: NON_SECURE
   type: HEADER
   userChecksum: CCAEF942C66AF995876DFD85CEFF611F
 - generatedChecksum: 55ECCC7FA71BD15B46EF80DC0515ED7A
-  logicalPath: config\same53_lan9255_sqi_evb\peripheral\nvic
+  logicalPath: config/same53_lan9255_sqi_evb/peripheral/nvic
   name: plib_nvic.h
-  physicalPath: peripheral\nvic
+  physicalPath: peripheral/nvic
   security: NON_SECURE
   type: HEADER
   userChecksum: 55ECCC7FA71BD15B46EF80DC0515ED7A
 - generatedChecksum: 265847151EACC813B7C7825442C21A32
-  logicalPath: config\same53_lan9255_sqi_evb\peripheral\nvmctrl
+  logicalPath: config/same53_lan9255_sqi_evb/peripheral/nvmctrl
   name: plib_nvmctrl.h
-  physicalPath: peripheral\nvmctrl
+  physicalPath: peripheral/nvmctrl
   security: NON_SECURE
   type: HEADER
   userChecksum: 265847151EACC813B7C7825442C21A32
-- generatedChecksum: 46BC8EF791A977636961C223F8DC70C2
-  logicalPath: config\same53_lan9255_sqi_evb\peripheral\port
+- generatedChecksum: 81147E0AD097E3A8B5F0FF1DA9EB1C75
+  logicalPath: config/same53_lan9255_sqi_evb/peripheral/port
   name: plib_port.h
-  physicalPath: peripheral\port
+  physicalPath: peripheral/port
   security: NON_SECURE
   type: HEADER
-  userChecksum: 46BC8EF791A977636961C223F8DC70C2
+  userChecksum: 81147E0AD097E3A8B5F0FF1DA9EB1C75
 - generatedChecksum: B7F8E9BB36B9F587A16CFABC3AAA95D4
-  logicalPath: config\same53_lan9255_sqi_evb\peripheral\qspi
+  logicalPath: config/same53_lan9255_sqi_evb/peripheral/qspi
   name: plib_qspi.h
-  physicalPath: peripheral\qspi
+  physicalPath: peripheral/qspi
   security: NON_SECURE
   type: HEADER
   userChecksum: B7F8E9BB36B9F587A16CFABC3AAA95D4
 - generatedChecksum: 3F5E0C829C39E76F7F21E40A3477C64A
-  logicalPath: config\same53_lan9255_sqi_evb\peripheral\qspi
+  logicalPath: config/same53_lan9255_sqi_evb/peripheral/qspi
   name: plib_qspi_common.h
-  physicalPath: peripheral\qspi
+  physicalPath: peripheral/qspi
   security: NON_SECURE
   type: HEADER
   userChecksum: 3F5E0C829C39E76F7F21E40A3477C64A
-- generatedChecksum: B738FB9946B6C40E07E46AADFACA5F28
-  logicalPath: config\same53_lan9255_sqi_evb\peripheral\tc
+- generatedChecksum: D99592912DB4CF3B2C65ADCD75F705BC
+  logicalPath: config/same53_lan9255_sqi_evb/peripheral/tc
   name: plib_tc0.h
-  physicalPath: peripheral\tc
+  physicalPath: peripheral/tc
   security: NON_SECURE
   type: HEADER
-  userChecksum: B738FB9946B6C40E07E46AADFACA5F28
+  userChecksum: D99592912DB4CF3B2C65ADCD75F705BC
 - generatedChecksum: C0A6E5B99D379FC08247B5FA465A54B3
-  logicalPath: config\same53_lan9255_sqi_evb\peripheral\tc
+  logicalPath: config/same53_lan9255_sqi_evb/peripheral/tc
   name: plib_tc_common.h
-  physicalPath: peripheral\tc
+  physicalPath: peripheral/tc
   security: NON_SECURE
   type: HEADER
   userChecksum: C0A6E5B99D379FC08247B5FA465A54B3
-- generatedChecksum: 35939AF3FD5AA89BD84BD3A32E17D916
-  logicalPath: packs\ATSAME53J20A_DFP\component
+- generatedChecksum: AFBEC1877B56DFD816830531F2C3B996
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: pm.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 35939AF3FD5AA89BD84BD3A32E17D916
-- generatedChecksum: 68484E8E5E1EFBC6B1AE1DC7C43A28B3
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: AFBEC1877B56DFD816830531F2C3B996
+- generatedChecksum: 07A9D6FD91E1D14F285D9AFA3523F300
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: pm.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 68484E8E5E1EFBC6B1AE1DC7C43A28B3
-- generatedChecksum: E094C64CBEFB5F27314D98E11D83F745
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: 07A9D6FD91E1D14F285D9AFA3523F300
+- generatedChecksum: 2DD58987E7AC0BA184FA010D7AA49D67
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: port.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: E094C64CBEFB5F27314D98E11D83F745
-- generatedChecksum: EC6CD07DBB04071F741B92F422A1ADDD
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 2DD58987E7AC0BA184FA010D7AA49D67
+- generatedChecksum: FBD7662CC17C5EE123EF94039E0C858B
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: port.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: EC6CD07DBB04071F741B92F422A1ADDD
-- generatedChecksum: D3B2B3A366ABEAD7616125F9691ADD11
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: FBD7662CC17C5EE123EF94039E0C858B
+- generatedChecksum: 1C6C5164EBB3DD58B90E292C00286484
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: pukcc.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: D3B2B3A366ABEAD7616125F9691ADD11
-- generatedChecksum: 5406942648274DBE87794D07DAA65DEF
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: 1C6C5164EBB3DD58B90E292C00286484
+- generatedChecksum: 3FC44196CB10A2D1454D00050FFC4102
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: qspi.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 5406942648274DBE87794D07DAA65DEF
-- generatedChecksum: A08C5ECAF59D2F63B1EB3E67E46619C7
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 3FC44196CB10A2D1454D00050FFC4102
+- generatedChecksum: D2C39CF3D34635E8BE8FF56D40DF6EAB
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: qspi.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: A08C5ECAF59D2F63B1EB3E67E46619C7
-- generatedChecksum: 963FA219ABA94620114C551E154ECEAC
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: D2C39CF3D34635E8BE8FF56D40DF6EAB
+- generatedChecksum: CC6E840B3FF149D255A6FC746893DC2A
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: ramecc.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 963FA219ABA94620114C551E154ECEAC
-- generatedChecksum: 5150E4DD963C24939BF43E7EF93437FB
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: CC6E840B3FF149D255A6FC746893DC2A
+- generatedChecksum: CAB99F4EA1203B9ABD4EF460CF35944E
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: ramecc.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 5150E4DD963C24939BF43E7EF93437FB
-- generatedChecksum: 8EDD5608058D650076F5404EF420C54D
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: CAB99F4EA1203B9ABD4EF460CF35944E
+- generatedChecksum: 334D88F06BD5FD7A71D5B255274583D2
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: rstc.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 8EDD5608058D650076F5404EF420C54D
-- generatedChecksum: C892133DF0B554AE6A0B5F112188B780
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 334D88F06BD5FD7A71D5B255274583D2
+- generatedChecksum: F678941A3EABBDBDB45BC0E070CC617A
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: rstc.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: C892133DF0B554AE6A0B5F112188B780
-- generatedChecksum: 8FC3D638791AA956C155B0C95A9A0D7F
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: F678941A3EABBDBDB45BC0E070CC617A
+- generatedChecksum: 918C98303DA551CE3F69872C6B73019A
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: rtc.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 8FC3D638791AA956C155B0C95A9A0D7F
-- generatedChecksum: 1947935C74B6A2290008D4819C334D4A
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 918C98303DA551CE3F69872C6B73019A
+- generatedChecksum: 930AF8733FA61BD1EA1930A7637B715C
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: rtc.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 1947935C74B6A2290008D4819C334D4A
-- generatedChecksum: 57AF94F80B90D2162E633FB19E25E3B7
-  logicalPath: packs\ATSAME53J20A_DFP
-  name: same53j20a.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: 57AF94F80B90D2162E633FB19E25E3B7
-- generatedChecksum: 6FBD41582225F0FF59E5679F6DB68E42
-  logicalPath: packs\ATSAME53J20A_DFP\pio
-  name: same53j20a.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\pio
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: 6FBD41582225F0FF59E5679F6DB68E42
-- generatedChecksum: CCFE611316C9779F2D7CB619FE1E10C4
+  userChecksum: 930AF8733FA61BD1EA1930A7637B715C
+- generatedChecksum: A9B29C2A4CFAD8A0DB919286D856A57F
   logicalPath: slave_stack
   name: sample_app.h
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
-  userChecksum: CCFE611316C9779F2D7CB619FE1E10C4
-- generatedChecksum: 5A7E8240105375410BB6AE92897BFB75
+  userChecksum: A9B29C2A4CFAD8A0DB919286D856A57F
+- generatedChecksum: DDFDA286EB97F4AB3BBCAE3201B73E22
   logicalPath: slave_stack
   name: sample_appObjects.h
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
-  userChecksum: 5A7E8240105375410BB6AE92897BFB75
-- generatedChecksum: 3246DA4ED3A6B9E39412809D0922449D
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: DDFDA286EB97F4AB3BBCAE3201B73E22
+- generatedChecksum: E2148328D94F2343E49BB2C309784FD3
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: sdhc.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 3246DA4ED3A6B9E39412809D0922449D
-- generatedChecksum: E743124A6D359B6CC626608FE32721B9
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: E2148328D94F2343E49BB2C309784FD3
+- generatedChecksum: 70D5426B16F9E4DCE3B04AE009C4C8A7
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: sdhc0.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: E743124A6D359B6CC626608FE32721B9
-- generatedChecksum: EFC059BACA5A708B7062F3A376F9BB47
-  logicalPath: packs\ATSAME53J20A_DFP\instance
-  name: sdhc1.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: EFC059BACA5A708B7062F3A376F9BB47
+  userChecksum: 70D5426B16F9E4DCE3B04AE009C4C8A7
 - generatedChecksum: 27554DF1B0422A7C3F78524605F75DA3
   logicalPath: slave_stack
   name: sdoserv.h
-  physicalPath: ..\..\slave_stack
+  physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
   userChecksum: 27554DF1B0422A7C3F78524605F75DA3
-- generatedChecksum: E053C84834917C60FFE08A27A81A475F
-  logicalPath: packs\ATSAME53J20A_DFP\component
+- generatedChecksum: B4B8788B6236DC20B11851FE7B51D945
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: sercom.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: E053C84834917C60FFE08A27A81A475F
-- generatedChecksum: 6E041A171C9E9D91B86D54149AC74BD5
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: B4B8788B6236DC20B11851FE7B51D945
+- generatedChecksum: 1DAA3E4550BA37F782993E5A270C0658
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: sercom0.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 6E041A171C9E9D91B86D54149AC74BD5
-- generatedChecksum: E1D904FF52FA812329B560964758CD64
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 1DAA3E4550BA37F782993E5A270C0658
+- generatedChecksum: FFD7BE38F5FB2361CE4A93083FFD1AD4
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: sercom1.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: E1D904FF52FA812329B560964758CD64
-- generatedChecksum: 351ED92898450865B0E193DE5737CF4C
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: FFD7BE38F5FB2361CE4A93083FFD1AD4
+- generatedChecksum: 33E25B8B910B435D917421A0D900E494
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: sercom2.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 351ED92898450865B0E193DE5737CF4C
-- generatedChecksum: 3F284A418F405736BF2764D48EFFB9FF
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 33E25B8B910B435D917421A0D900E494
+- generatedChecksum: E60775DED309B1006A284BD799308283
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: sercom3.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 3F284A418F405736BF2764D48EFFB9FF
-- generatedChecksum: 38F737FECC179BD95B5A211D19F68CF3
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: E60775DED309B1006A284BD799308283
+- generatedChecksum: 8603AAD7D697501EAB2616D66E4C81C9
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: sercom4.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 38F737FECC179BD95B5A211D19F68CF3
-- generatedChecksum: F9E386C4FA6943C22CAD172CE7F00C76
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 8603AAD7D697501EAB2616D66E4C81C9
+- generatedChecksum: 16B7731893330634DB035F98DDDD6C44
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: sercom5.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: F9E386C4FA6943C22CAD172CE7F00C76
-- generatedChecksum: 654DAC1B753CC80F8693F861357A2E21
-  logicalPath: packs\ATSAME53J20A_DFP\instance
-  name: sercom6.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: 654DAC1B753CC80F8693F861357A2E21
-- generatedChecksum: 9FC891D76BF5DE0D0C728C5F1D7035E0
-  logicalPath: packs\ATSAME53J20A_DFP\instance
-  name: sercom7.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: 9FC891D76BF5DE0D0C728C5F1D7035E0
-- generatedChecksum: 2F86EA79ECEA29877EDC17B8FD5711ED
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: 16B7731893330634DB035F98DDDD6C44
+- generatedChecksum: 085FB4DFAF6ADB6E1ED1C1CA9E1D558A
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: supc.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 2F86EA79ECEA29877EDC17B8FD5711ED
-- generatedChecksum: 7FDA9C1A8B3276006006741E33E551F6
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 085FB4DFAF6ADB6E1ED1C1CA9E1D558A
+- generatedChecksum: 1FF11C7FD9064D7D046B7AD5A4EB012F
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: supc.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 7FDA9C1A8B3276006006741E33E551F6
-- generatedChecksum: BE99C728941A8726952823E60CF401EE
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: 1FF11C7FD9064D7D046B7AD5A4EB012F
+- generatedChecksum: F5C1FB09EA7C2AE3FBC306F09B700A82
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: tc.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: BE99C728941A8726952823E60CF401EE
-- generatedChecksum: 3D4E301EF69692300CAC189BCEF0E7CE
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: F5C1FB09EA7C2AE3FBC306F09B700A82
+- generatedChecksum: D0A0FE17F81DB1CBCDFE1DCB87614704
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: tc0.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 3D4E301EF69692300CAC189BCEF0E7CE
-- generatedChecksum: 8BC92116D70A839B681D0C31D6240391
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: D0A0FE17F81DB1CBCDFE1DCB87614704
+- generatedChecksum: 07607C4DAF6FD7C8603C34E51C101CBD
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: tc1.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 8BC92116D70A839B681D0C31D6240391
-- generatedChecksum: 482E60097ADD7265DD24AB844E090075
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 07607C4DAF6FD7C8603C34E51C101CBD
+- generatedChecksum: D829A96572BBD7508CAE07F88B0FB1C5
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: tc2.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 482E60097ADD7265DD24AB844E090075
-- generatedChecksum: 2B64E5A4436BD59F1C786EFF4A15CF08
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: D829A96572BBD7508CAE07F88B0FB1C5
+- generatedChecksum: 0A428835EE9806133971424D13830938
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: tc3.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 2B64E5A4436BD59F1C786EFF4A15CF08
-- generatedChecksum: BDA1FC1BDF4DCBA529F4C7A784D0A3A4
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 0A428835EE9806133971424D13830938
+- generatedChecksum: 4D3D00C9E627C99256C7211A5E4813FD
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: tc4.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: BDA1FC1BDF4DCBA529F4C7A784D0A3A4
-- generatedChecksum: 4BA2463804E78F24C73518302C37A415
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 4D3D00C9E627C99256C7211A5E4813FD
+- generatedChecksum: 0FCE10C8FA1B594AAC6F27D06DAF379E
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: tc5.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 4BA2463804E78F24C73518302C37A415
-- generatedChecksum: DF753CA66252EBC4ED4FFE63E66EEB59
-  logicalPath: packs\ATSAME53J20A_DFP\instance
-  name: tc6.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: DF753CA66252EBC4ED4FFE63E66EEB59
-- generatedChecksum: 79B38438F7669505E9D0619223D01208
-  logicalPath: packs\ATSAME53J20A_DFP\instance
-  name: tc7.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: 79B38438F7669505E9D0619223D01208
-- generatedChecksum: 50D575A7EFCA87A6835106B1C5681830
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: 0FCE10C8FA1B594AAC6F27D06DAF379E
+- generatedChecksum: 8022A6163F8120B494E5D4D31D87A564
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: tcc.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 50D575A7EFCA87A6835106B1C5681830
-- generatedChecksum: 0F4390069AD5580BCE43938A5304730E
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 8022A6163F8120B494E5D4D31D87A564
+- generatedChecksum: 4959B4D81AE23741E3861B28BED5C73E
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: tcc0.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 0F4390069AD5580BCE43938A5304730E
-- generatedChecksum: 2777F173B3C0AAB1D078DF412DB22D10
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 4959B4D81AE23741E3861B28BED5C73E
+- generatedChecksum: 6AB1BCEFC55468115D27A00375D95A2F
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: tcc1.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 2777F173B3C0AAB1D078DF412DB22D10
-- generatedChecksum: 415B8070712AAAD7449F364B5668D525
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 6AB1BCEFC55468115D27A00375D95A2F
+- generatedChecksum: 11A65E437697C0CCD3DBADD0A20E2F31
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: tcc2.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 415B8070712AAAD7449F364B5668D525
-- generatedChecksum: D775A89E1E809FFCF831A2CC443C69D2
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 11A65E437697C0CCD3DBADD0A20E2F31
+- generatedChecksum: 9EDB7775960304939D4D48F1DA690E31
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: tcc3.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: D775A89E1E809FFCF831A2CC443C69D2
-- generatedChecksum: A8F1BD5EDE62854F7B8D44BB215FFE33
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 9EDB7775960304939D4D48F1DA690E31
+- generatedChecksum: 053D5E3C890970917BD7635CBBB33190
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: tcc4.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: A8F1BD5EDE62854F7B8D44BB215FFE33
+  userChecksum: 053D5E3C890970917BD7635CBBB33190
 - generatedChecksum: 267E11FBC03D0FD88E7330DDB79B19FC
-  logicalPath: config\same53_lan9255_sqi_evb
+  logicalPath: config/same53_lan9255_sqi_evb
   name: toolchain_specifics.h
   physicalPath: ''
   security: NON_SECURE
   type: HEADER
   userChecksum: 267E11FBC03D0FD88E7330DDB79B19FC
-- generatedChecksum: CB2BA419EBFD35AE2C81C8270ABB234E
-  logicalPath: packs\ATSAME53J20A_DFP\component
+- generatedChecksum: 38233BD119FC807EAFC115F93507A61C
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: trng.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: CB2BA419EBFD35AE2C81C8270ABB234E
-- generatedChecksum: 2806D569882B9CF19E67191D592DB460
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 38233BD119FC807EAFC115F93507A61C
+- generatedChecksum: 3BD1963DFE8B622AC6DFCDB937A29145
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: trng.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 2806D569882B9CF19E67191D592DB460
-- generatedChecksum: D1908B9302CFFF4448F3A876C34E0389
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: 3BD1963DFE8B622AC6DFCDB937A29145
+- generatedChecksum: 981C5A58AADC749171C02ADEDF9A0FFC
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: usb.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: D1908B9302CFFF4448F3A876C34E0389
-- generatedChecksum: 9EFFAF6556443AA977E571178FEC2471
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 981C5A58AADC749171C02ADEDF9A0FFC
+- generatedChecksum: 5E2054DA025EA5096A7AB0F1109DBDAD
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: usb.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 9EFFAF6556443AA977E571178FEC2471
-- generatedChecksum: 67EB6119024AFA01F84D621BA0E57948
-  logicalPath: packs\ATSAME53J20A_DFP\component
+  userChecksum: 5E2054DA025EA5096A7AB0F1109DBDAD
+- generatedChecksum: 8D5D79E0CEF2226B11460005D11A2BED
+  logicalPath: packs/LAN9255ZMX020_DFP/component
   name: wdt.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\component
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/component
   security: NON_SECURE
   type: HEADER
-  userChecksum: 67EB6119024AFA01F84D621BA0E57948
-- generatedChecksum: 9023B753A5795BBB11BC64E072D5F862
-  logicalPath: packs\ATSAME53J20A_DFP\instance
+  userChecksum: 8D5D79E0CEF2226B11460005D11A2BED
+- generatedChecksum: 1015778D57B81F4F78BB32EEEC4C0A81
+  logicalPath: packs/LAN9255ZMX020_DFP/instance
   name: wdt.h
-  physicalPath: ..\..\packs\ATSAME53J20A_DFP\instance
+  physicalPath: ../../packs/LAN9255ZMX020_DFP/instance
   security: NON_SECURE
   type: HEADER
-  userChecksum: 9023B753A5795BBB11BC64E072D5F862
-- generatedChecksum: 252943CA090E083FA8121A3CEB14E12F
+  userChecksum: 1015778D57B81F4F78BB32EEEC4C0A81
+- generatedChecksum: 1EDB648412BF3CEB4CA15C9FA7AD23D6
   logicalPath: ''
   name: ethercat_foe.ld
   physicalPath: ''
   security: NON_SECURE
   type: LINKER
-  userChecksum: 252943CA090E083FA8121A3CEB14E12F
+  userChecksum: 1EDB648412BF3CEB4CA15C9FA7AD23D6
 format_version: v1.0
 libraries: []
 settings:
@@ -1251,7 +1230,7 @@ settings:
   delimiter: ;
   key: extra-include-directories
   security: NON_SECURE
-  value: ../src;../src/config/same53_lan9255_sqi_evb;../src/packs/ATSAME53J20A_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/
+  value: ../src;../src/config/same53_lan9255_sqi_evb;../src/packs/LAN9255ZMX020_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/
 - append: false
   category: C32-LD
   delimiter: ''
@@ -1275,7 +1254,7 @@ settings:
   delimiter: ;
   key: extra-include-directories
   security: NON_SECURE
-  value: ../src;../src/config/same53_lan9255_sqi_evb;../src/packs/ATSAME53J20A_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/
+  value: ../src;../src/config/same53_lan9255_sqi_evb;../src/packs/LAN9255ZMX020_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/
 - append: false
   category: C32Global
   delimiter: ''

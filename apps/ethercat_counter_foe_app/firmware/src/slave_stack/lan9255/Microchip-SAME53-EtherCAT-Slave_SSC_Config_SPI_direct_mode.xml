@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SscToolConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SSCVersion="5.12" VendorID="#xE00004D8" VendorName="Microchip">
 	<Configurations>
-		<Configuration Name="Microchip - SAME53 EtherCAT Slave FoE" Version="0.0.1.1" Info="Shall be set if the Slave code executes on an Microchip development board for the SAME53 With Bootloader support">
+		<Configuration Name="Microchip - SAME53 EtherCAT Slave FoE" Version="0.0.1.2" Info="Shall be set if the Slave code executes on an Microchip development board for the SAME53 With Bootloader support">
 			<Setting CodeDefine="MCI_HW" Value="0">
 				<Flags Visible="True"/>
 			</Setting>
@@ -87,7 +87,7 @@
 			<Setting CodeDefine="ESC_EEPROM_EMULATION" Value="1"/>
 			<Setting CodeDefine="USE_DEFAULT_MAIN" Value="0"/>
 			<Setting CodeDefine="ESC_CONFIG_DATA" Value="820E00CC8813FF00000040C00000"/>
-			<Setting CodeDefine="HW_ACCESS_FILE" Value="#include &quot;drv_lan9253.h&quot;"/>
+			<Setting CodeDefine="HW_ACCESS_FILE" Value="#include &quot;drv_lan9255.h&quot;"/>
 			<Setting CodeDefine="STRUCT_PACKED_END" Value="__attribute__((packed))"/>
 			<Setting CodeDefine="MBX_STRUCT_PACKED_END" Value="__attribute__((packed))"/>
 			<Setting CodeDefine="MAKE_HUGE_PTR" Value=""/>
@@ -117,16 +117,12 @@
 			<Setting CodeDefine="MIN_MBX_READ_ADDRESS" Value="0x1000"/>
 			<Setting CodeDefine="MAX_MBX_READ_ADDRESS" Value="0x1FFF"/>
 			<Setting CodeDefine="MAX_PD_OUTPUT_SIZE" Value="0x0044"/>
-			<Setting CodeDefine="MIN_PD_CYCLE_TIME" Value="0x3D090"/>
+			<Setting CodeDefine="MIN_PD_CYCLE_TIME" Value="0x186A0"/>
 			<Setting CodeDefine="MAX_PD_CYCLE_TIME" Value="0xC3500000"/>
 			<Setting CodeDefine="PD_OUTPUT_DELAY_TIME" Value="0"/>
 			<Setting CodeDefine="PD_OUTPUT_CALC_AND_COPY_TIME" Value="0"/>
 			<Setting CodeDefine="PD_INPUT_CALC_AND_COPY_TIME" Value="0"/>
 			<Setting CodeDefine="PD_INPUT_DELAY_TIME" Value="0"/>
-			<File Name="drv_lan9253.c" Type="source" Path="Common\">
-				<Flags HwFile="true"/>This file is included in the Microchip SDK</File>
-			<File Name="drv_lan9253.h" Type="header" Path="Common\">
-				<Flags HwFile="true"/>This file is included in the Microchip SDK</File>
 			<ESI>
 				<Value>
 					<Descriptions>

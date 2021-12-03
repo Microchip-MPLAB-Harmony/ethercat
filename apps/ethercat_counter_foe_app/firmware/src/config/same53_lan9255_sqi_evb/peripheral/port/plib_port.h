@@ -65,26 +65,14 @@
 // *****************************************************************************
 // *****************************************************************************
 
-/*** Macros for SYNC0 pin ***/
-#define SYNC0_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 16U)) & 0x01U)
-#define SYNC0_PIN                  PORT_PIN_PB16
-
-/*** Macros for SYNC1 pin ***/
-#define SYNC1_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 17U)) & 0x01U)
-#define SYNC1_PIN                  PORT_PIN_PB17
-
-/*** Macros for IRQ pin ***/
-#define IRQ_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 23U)) & 0x01U)
-#define IRQ_PIN                  PORT_PIN_PB23
-
-/*** Macros for error_led pin ***/
-#define error_led_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 31U))
-#define error_led_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 31U))
-#define error_led_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 31U))
-#define error_led_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 31U))
-#define error_led_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 31U))
-#define error_led_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 31U)) & 0x01U)
-#define error_led_PIN                  PORT_PIN_PB31
+/*** Macros for ethercat_error_led pin ***/
+#define ethercat_error_led_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 31U))
+#define ethercat_error_led_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 31U))
+#define ethercat_error_led_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 31U))
+#define ethercat_error_led_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 31U))
+#define ethercat_error_led_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 31U))
+#define ethercat_error_led_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 31U)) & 0x01U)
+#define ethercat_error_led_PIN                  PORT_PIN_PB31
 
 // *****************************************************************************
 /* PORT Group

@@ -17,7 +17,7 @@
             </sourceRootList>
             <confList>
                 <confElem>
-                    <name>samE53_lan9255_evb</name>
+                    <name>same53_lan9255_evb</name>
                     <type>2</type>
                 </confElem>
             </confList>

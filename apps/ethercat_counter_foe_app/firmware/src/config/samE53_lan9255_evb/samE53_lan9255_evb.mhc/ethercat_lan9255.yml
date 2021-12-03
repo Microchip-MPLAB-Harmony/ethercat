@@ -7,6 +7,12 @@ children:
   - type: KeyValueSet
     attributes: {id: DRV_LAN9255_CHIP_SELECT_PIN}
     children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
     - type: Values
       children:
       - type: User
@@ -28,6 +34,12 @@ children:
   - type: String
     attributes: {id: DRV_LAN9255_PLIB}
     children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
     - type: Values
       children:
       - type: Dynamic
@@ -39,6 +51,19 @@ children:
       children:
       - type: Dynamic
         attributes: {id: ethercat_lan9255, value: SPI}
+  - type: Combo
+    attributes: {id: DRV_LAN9255_SPI_MODE_ACCESS_TYPE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: ETHERCAT_SPI_DIRECT_MODE_ACCESS}
   - type: KeyValueSet
     attributes: {id: DRV_LAN9255_SYNC1_INT}
     children:
@@ -69,6 +94,15 @@ children:
         children:
         - {type: Value, value: QSPI_SPI}
   - type: DirectDependency
+    attributes: {id: LAN9255_SQI_Dependency}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'false'}
+  - type: DirectDependency
     attributes: {id: LAN9255_TMR_Dependency}
     children:
     - type: Attributes
@@ -95,4 +129,4 @@ children:
         children:
         - {type: Value, value: EtherCAT_LANDRV_Dependency}
 - type: ElementPosition
-  attributes: {x: '356', y: '100', id: ethercat_lan9255}
+  attributes: {x: '234', y: '136', id: ethercat_lan9255}

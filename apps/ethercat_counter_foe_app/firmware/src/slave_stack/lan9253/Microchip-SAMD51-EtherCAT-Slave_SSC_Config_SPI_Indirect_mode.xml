@@ -79,14 +79,14 @@
 			</Setting>
 			<Setting CodeDefine="CiA402_DEVICE" Value="0"/>
 			<Setting CodeDefine="STATIC_OBJECT_DIC" Value="0">
-				<Flags Visible="False"/>
+				<Flags Visible="True"/>
 			</Setting>
 			<Setting CodeDefine="ESC_EEPROM_ACCESS_SUPPORT" Value="0"/>
 			<Setting CodeDefine="ESC_EEPROM_SIZE" Value="0x800"/>
 			<Setting CodeDefine="EEPROM_WRITE_SIZE" Value="0x02"/>
 			<Setting CodeDefine="ESC_EEPROM_EMULATION" Value="0"/>
 			<Setting CodeDefine="USE_DEFAULT_MAIN" Value="0"/>
-			<Setting CodeDefine="ESC_CONFIG_DATA" Value="800E00CC8813ff00000040C00000"/>
+			<Setting CodeDefine="ESC_CONFIG_DATA" Value="800E00CC8813FF00000040C00000"/>
 			<Setting CodeDefine="HW_ACCESS_FILE" Value="#include &quot;drv_lan9253.h&quot;"/>
 			<Setting CodeDefine="STRUCT_PACKED_END" Value="__attribute__((packed))"/>
 			<Setting CodeDefine="MBX_STRUCT_PACKED_END" Value="__attribute__((packed))"/>
@@ -103,7 +103,7 @@
 			<Setting CodeDefine="DEVICE_HW_VERSION" Value="1.0"/>
 			<Setting CodeDefine="DEVICE_PROFILE_TYPE" Value="0x00000192"/>
 			<Setting CodeDefine="DEVICE_HW_VERSION_LEN" Value="0x3"/>
-			<Setting CodeDefine="DEVICE_SW_VERSION" Value="1.0"/>
+			<Setting CodeDefine="DEVICE_SW_VERSION" Value="2.0"/>
 			<Setting CodeDefine="DEVICE_SW_VERSION_LEN" Value="0x3"/>
 			<Setting CodeDefine="MIN_PD_WRITE_ADDRESS" Value="0x1000"/>
 			<Setting CodeDefine="MAX_PD_WRITE_ADDRESS" Value="0x1FFF"/>
@@ -117,16 +117,12 @@
 			<Setting CodeDefine="MIN_MBX_READ_ADDRESS" Value="0x1000"/>
 			<Setting CodeDefine="MAX_MBX_READ_ADDRESS" Value="0x1FFF"/>
 			<Setting CodeDefine="MAX_PD_OUTPUT_SIZE" Value="0x0044"/>
-			<Setting CodeDefine="MIN_PD_CYCLE_TIME" Value="0x186A0"/>
+			<Setting CodeDefine="MIN_PD_CYCLE_TIME" Value="0x3D090"/>
 			<Setting CodeDefine="MAX_PD_CYCLE_TIME" Value="0xC3500000"/>
 			<Setting CodeDefine="PD_OUTPUT_DELAY_TIME" Value="0"/>
 			<Setting CodeDefine="PD_OUTPUT_CALC_AND_COPY_TIME" Value="0"/>
 			<Setting CodeDefine="PD_INPUT_CALC_AND_COPY_TIME" Value="0"/>
 			<Setting CodeDefine="PD_INPUT_DELAY_TIME" Value="0"/>
-			<File Name="drv_lan9253.c" Type="source" Path="Common\">
-				<Flags HwFile="true"/>This file is included in the Microchip SDK</File>
-			<File Name="drv_lan9253.h" Type="header" Path="Common\">
-				<Flags HwFile="true"/>This file is included in the Microchip SDK</File>
 			<ESI>
 				<Value>
 					<Descriptions>

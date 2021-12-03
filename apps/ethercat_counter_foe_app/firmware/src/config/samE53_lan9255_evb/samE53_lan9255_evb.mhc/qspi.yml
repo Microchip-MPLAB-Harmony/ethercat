@@ -4,6 +4,24 @@ attributes: {id: qspi}
 children:
 - type: Symbols
   children:
+  - type: File
+    attributes: {id: QSPISPI_HEADER2}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
+  - type: File
+    attributes: {id: QSPISPI_SOURCE2}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
   - type: Integer
     attributes: {id: QSPI_BAUD_RATE}
     children:
@@ -12,7 +30,7 @@ children:
       - type: Dynamic
         attributes: {id: qspi, value: '66000000'}
       - type: User
-        attributes: {value: '20000000'}
+        attributes: {value: '15000000'}
   - type: KeyValueSet
     attributes: {id: QSPI_CPOL}
     children:
@@ -23,24 +41,63 @@ children:
   - type: KeyValueSet
     attributes: {id: QSPI_DATALEN}
     children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
     - type: Values
       children:
       - type: User
         attributes: {value: '4'}
+  - type: File
+    attributes: {id: QSPI_HEADER2}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'false'}
+  - type: KeyValueSet
+    attributes: {id: QSPI_LOOPEN}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
   - type: Integer
     attributes: {id: QSPI_SCBR}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: qspi, value: '5'}
+        attributes: {id: qspi, value: '7'}
   - type: KeyValueSet
     attributes: {id: QSPI_SMM}
     children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: readOnly}
+        children:
+        - {type: Value, value: 'true'}
     - type: Values
       children:
       - type: Dynamic
         attributes: {id: qspi, value: '0'}
+  - type: File
+    attributes: {id: QSPI_SOURCE1}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'false'}
 - type: Attachments
   children:
   - type: DirectCapability
@@ -56,5 +113,14 @@ children:
         attributes: {id: targetAttachmentID}
         children:
         - {type: Value, value: LAN9255_SPI_Dependency}
+  - type: DirectCapability
+    attributes: {id: QSPI_SQI}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'false'}
 - type: ElementPosition
-  attributes: {x: '41', y: '112', id: qspi}
+  attributes: {x: '92', y: '116', id: qspi}

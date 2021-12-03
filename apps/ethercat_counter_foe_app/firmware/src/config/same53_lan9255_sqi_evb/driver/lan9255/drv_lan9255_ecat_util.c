@@ -164,9 +164,7 @@ Summary:
 *******************************************************************************/
 void _ECAT_Sync0Callback(uintptr_t context)
 {
-	//CRITICAL_SECTION_ENTER();
 	Sync0_Isr();
-	//CRITICAL_SECTION_LEAVE();
 }
 
 /*******************************************************************************
@@ -178,9 +176,7 @@ Summary:
 *******************************************************************************/
 void _ECAT_Sync1Callback(uintptr_t context)
 {
-	//CRITICAL_SECTION_ENTER();
 	Sync1_Isr();
-  	//CRITICAL_SECTION_LEAVE();   
 }
 
 /*******************************************************************************
@@ -277,7 +273,7 @@ void ECAT_SQI_SetCfg_dataInit(void)
 	//Fix is added to provide PDI counter error test
     //making dummy bytes calculated as DWORD aligned
 #ifdef ECAT_DUMMY_READ_EN
-	if((u8DummyBytes & DWORD_LENGTH) != 0)
+	if((u8DummyBytes % DWORD_LENGTH) != 0)
 	{
 		/* As SQI , we make sure the dummy bytes required should be multiple of 4*/
         /* making round off to the next DWORD aligned value */
@@ -421,86 +417,115 @@ void ECAT_Lan9255_IsPDIFunctional(uint8_t *pu8Data)
 }
 
 
+/* LAN9255 */
 /* 
     Function: ECAT_LAN925x_SQIWrite
 
-    This function does Write Access to Non-Ether CAT and Ether CAT Core CSR 
-	using 'Serial Write(0x02)' command in Quad mode supported by 
-    LAN9252 Compatible SQI. This function shall be used
-	only when PDI is selected as LAN9252 Compatible SPI (0x80)
+    This function does Write Access to Non-Ether CAT core CSR, Ether CAT Core CSR and Process RAM
+	using 'Serial Write(0x02)' command supported by LAN9255 Compatible SPI. This function shall be used
+	only when PDI is selected as LAN9255 Compatible SPI (0x82)
      
     Input : u16Adddr    -> Address of the register to be written
-            *pu8Data    -> Pointer to the data that is to be written
-            u8Len       -> Length of the data to write
+            *pu8Data  -> Pointer to the data that is to be written
+			u32Length  -> Number of bytes to be written 
 
     Output : None
 	
-	Note   : In LAN9252 Compatible SQI, all registers are DWORD aligned. 
-    Length will be fixed to 4. Hence, there is no separate length argument.
+	Note   : Since now SPI is running at 5MHz, Serial Write is successful without any dummy bytes or wait
+			 signal. But, as the SPI clock speed increases, we have to follow either of these. 
+
 */
 
-void ECAT_LAN925x_SQIWrite( uint16_t u16Addr, uint8_t *pu8Data, uint8_t u8Len)
+void ECAT_LAN925x_SQIWrite(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Length)
 {
+	uint32_t u32ModLen = 0;
     qspi_memory_xfer_t qspi_xfer;
 	uint32_t u32InstrAddr = 0;
-	uint8_t u8Dummy = 0;
+	uint8_t u8Dummy = 0;    /* Disabled as write does not require dummy */
 	
+	/* Core CSR and Process RAM accesses can have any alignment and length */
+	if (u16Addr < 0x3000)
+	{
+		/* DWORD Buffering - Applicable for Write only */
+		if (u32Length > 1)
+		{
+			u16Addr |= 0xC000; 	/* addr[15:14]=11 */
+		}
+		else
+		{
+			/* Do Nothing */
+		}
+	}
+	else
+	{
+		/* Non Core CSR length will be adjusted if it is not DWORD aligned */
+		u32ModLen = u32Length % 4;
+		if (1 == u32ModLen)
+		{
+			u32Length = u32Length + 3;
+		}
+		else if (2 == u32ModLen)
+		{
+			u32Length = u32Length + 2;
+		}
+		else if (3 == u32ModLen)
+		{
+			u32Length = u32Length + 1;
+		}
+		else
+		{
+			/* Do nothing if length is 0 since it is DWORD access */
+		}
+	}
+
     memset((void *)&qspi_xfer, 0, sizeof(qspi_memory_xfer_t));
 	qspi_xfer.instruction = CMD_SERIAL_WRITE;
     qspi_xfer.width = QUAD_CMD;
+	qspi_xfer.dummy_cycles = 0 /*u8Dummy*/;
     
-    /* Get the dummy byte count */
+	/* Get the dummy Byte count */
     /* SPECIAL CASE - Reduce 1 byte clock cycle count from byDummy
-     * SAMD51 and SAME53 supports 24 bit and 32 bit addressing format
+     * SAMD51 supports 24 bit and 32 bit addressing format
      * LAN925x expects 16bit addressing format
      * So In order to support SAMD51, converting the 16bit address to 24bit
      * treating the extra address byte as dummy cycle, 
      * so reduce the 1 byte dummy cycle from the requested.
      */
-    u8Dummy = (gau8DummyCntArr[36] - 1);
+	u8Dummy = (gau8DummyCntArr[SQI_WRITE_INITIAL_OFFSET] - 1);
 	qspi_xfer.dummy_cycles = u8Dummy;
     u32InstrAddr = u16Addr;
     u32InstrAddr = u32InstrAddr << 8;
 
-    /* Note - in case if inter/intra DWORD dummy clocks used
-     * Added byDummy to wLen to avoid error "set but not used"
-     * In our case byDummy always come as zero, so no change
-     * require in destination memory
-     */
-    gDrvLan9255UtilObj.sqiPlib->sqiMemoryWrite(&qspi_xfer, (uint32_t *)&pu8Data[0], u8Len, u32InstrAddr);
+    gDrvLan9255UtilObj.sqiPlib->sqiMemoryWrite(&qspi_xfer, (uint32_t *)&pu8Data[0], u32Length, u32InstrAddr);
     
 }
 
 /* 
     Function: ECAT_LAN925x_SQIRead
 
-    This function does Read Access to Non-Ether CAT and Ether CAT Core CSR 
-	using 'Fast Read(0x0B)' command supported by LAN9252 Compatible SPI. 
-    This function shall be used
-	only when PDI is selected as LAN9252 Compatible SPI (0x80)
+    This function does Read Access to Non-Ether CAT core CSR, Ether CAT Core CSR and Process RAM
+	using 'Fast Read(0x0B)' command supported by LAN9255 Compatible SPI. This function shall be used
+	only when PDI is selected as LAN9255 Compatible SPI (0x82)
      
     Input : u16Addr     -> Address of the register to be read
             *pu8Data    -> Pointer to the data that is to be read
-            u8Len       -> Length of the data to be read
+ *          u32Length   -> Length of the data to be read
 
     Output : None
 	
-	Note   : In LAN9252 Compatible SQI, all registers are DWORD aligned. 
-            Length will be fixed to 4. Hence,
-			there is no separate length argument.
 */
 
-void ECAT_LAN925x_SQIRead(uint16_t u16Addr, uint8_t *pu8Data, uint8_t u8Len)
+void ECAT_LAN925x_SQIRead(uint16_t u16Addr, uint8_t *pu8data, uint32_t u32Length)
 {
-    qspi_memory_xfer_t qspi_xfer;
+	uint32_t u32ModLen = 0;
     uint8_t u8Dummy = 0;
+    qspi_memory_xfer_t qspi_xfer;
 	uint32_t u32InstrAddr = 0;
-    uint32_t u32ModLen = 0;
 	
-	/*Core CSR and Process RAM accesses can have any alignment and length */
+	/* Core CSR and Process RAM accesses can have any alignment and length */
 	if (u16Addr < 0x3000)
 	{
-		if (u8Len>1)
+		if (u32Length>1)
 		{
 			/* Use Auto-increment if number of bytes to read is more than 1 */
 			u16Addr |= 0x4000;			
@@ -510,18 +535,18 @@ void ECAT_LAN925x_SQIRead(uint16_t u16Addr, uint8_t *pu8Data, uint8_t u8Len)
 	else
 	{
         /* Non Core CSR length will be adjusted if it is not DWORD aligned */
-		u32ModLen = u8Len % 4; 
+		u32ModLen = u32Length % 4; 
 		if (1 == u32ModLen)
 		{
-			u8Len = u8Len + 3; 
+			u32Length = u32Length + 3; 
 		}
 		else if (2 == u32ModLen)
 		{
-			u8Len = u8Len + 2; 
+			u32Length = u32Length + 2; 
 		}
 		else if (3 == u32ModLen)
 		{
-			u8Len = u8Len + 1; 
+			u32Length = u32Length + 1; 
 		}
 		else 
 		{
@@ -533,7 +558,6 @@ void ECAT_LAN925x_SQIRead(uint16_t u16Addr, uint8_t *pu8Data, uint8_t u8Len)
     memset((void *)&qspi_xfer, 0, sizeof(qspi_memory_xfer_t));
 	qspi_xfer.instruction = CMD_FAST_READ;
     qspi_xfer.width = QUAD_CMD;
-    
 	//Fix is added to provide PDI error counter test
     //the transfer length should not contain dummy bytes length
 #ifdef ETHERCAT_DUMMY_READ_EN
@@ -542,126 +566,31 @@ void ECAT_LAN925x_SQIRead(uint16_t u16Addr, uint8_t *pu8Data, uint8_t u8Len)
     u8Dummy = gau8DummyCntArr[SQI_FASTREAD_INITIAL_OFFSET];
 
     u32InstrAddr = u16Addr;
-    u32InstrAddr = (u32InstrAddr << 8) | (u8Len);
+    u32InstrAddr = (u32InstrAddr << 8) | (u32Length);
 
-    QSPI_MemoryRead(&qspi_xfer, (UINT32 *)&gau8rx_data[0], u8Len + u8Dummy, u32InstrAddr);
+    gDrvLan9255UtilObj.sqiPlib->sqiMemoryRead(&qspi_xfer, (uint32_t *)&gau8rx_data[0], u32Length + u8Dummy, u32InstrAddr);
     
    //Fix is added for odd address failure
     u8Dummy += (u16Addr & 0x3);
 
-    memcpy (pu8Data, gau8rx_data + u8Dummy, u8Len);
+    memcpy (pu8data, gau8rx_data + u8Dummy, u32Length);
 #else	
-    /* Get the number of dummy bytes required */
-    u8Dummy = gau8DummyCntArr[33];
+	 /* Get the number of dummy cycle required */
+    u8Dummy = gau8DummyCntArr[SQI_FASTREAD_INITIAL_OFFSET];
 	qspi_xfer.dummy_cycles = u8Dummy * QSPI_SQI_ONE_BYTE_CLK_COUNT;
+
     u32InstrAddr = u16Addr;
-    u32InstrAddr = (u32InstrAddr << 8) | u8Len;
+    u32InstrAddr = (u32InstrAddr << 8) | u32Length;
 
-    gDrvLan9255UtilObj.sqiPlib->sqiMemoryRead(&qspi_xfer, (uint32_t *)&gau8rx_data[0], u8Len, u32InstrAddr);
+    gDrvLan9255UtilObj.sqiPlib->sqiMemoryRead(&qspi_xfer, (uint32_t *)&gau8rx_data[0], u32Length, u32InstrAddr);
 
-    memcpy (pu8Data, gau8rx_data, u8Len);
-#endif
-	
-}
-
-/* 
-    Function: ECAT_LAN925x_SQIReadPDRAM
-
-    This function does Read Access to Ether CAT Core Process RAM  using 
-    'Fast Read(0x0B)' command supported by LAN9252 Compatible SQI.
-    This function shall be used only when PDI is selected as
-	LAN9252 Compatible SQI (0x80)
-     
-    Input : u16Addr    -> Address of the RAM location to be read
-            *pu8Data -> Pointer to the data that is to be read
-			u16Len	 -> Number of bytes to be read from PDRAM location
-
-    Output : None
-
-*/
-
-void ECAT_LAN925x_SQIReadPDRAM(uint8_t *pu8Data, uint16_t u16Addr, uint16_t u16Len)
-{
-	UINT32_VAL u32Val;
-	uint8_t u8StartAlignSize = 0, u8EndAlignSize = 0,u8Itr = 0;
-    uint8_t *p8Data = NULL;
-    
-	/* Address and length */
-	u32Val.w[0] = u16Addr;
-	u32Val.w[1] = u16Len;
-	MCHP_ESF_PDI_WRITE(ECAT_PRAM_RD_ADDR_LENGTH_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-
-	/* Read command */
-	u32Val.Val = 0x80000000;
-	MCHP_ESF_PDI_WRITE(ECAT_PRAM_RD_CMD_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-
-	u8StartAlignSize = (u16Addr & 0x3);
-	u8EndAlignSize = (u16Len + u8StartAlignSize) & 0x3;
-	if (u8EndAlignSize & 0x3)
-	{
-		u8EndAlignSize = (((u8EndAlignSize + 4) & 0xC) - u8EndAlignSize);
-	}
-	
-//	creating memory from heap to read and corrected the receive buffer
-    p8Data = (uint8_t *) malloc (sizeof(uint8_t) * (u16Len+u8StartAlignSize+u8EndAlignSize));
-    if (p8Data == NULL) {
-        /* we simply return in case of failure,
-         * caller will handle as it does not read anything
-         */
-        return;
-    }
-	MCHP_ESF_PDI_READ(ECAT_PRAM_RD_DATA_FIFO_REG, p8Data, u16Len+u8StartAlignSize+u8EndAlignSize);
-	
 	//Fix is added for odd address failure
-    for (u8Itr = 0; u8Itr < u16Len; u8Itr++)
-    {
-       *pu8Data++ = p8Data[u8Itr + u8StartAlignSize];
-    }
-    free(p8Data);
-}
+   // u8Dummy += (u16Addr & 0x3);
 
-/* 
-    Function: ECAT_LAN925x_SQIWritePDRAM
-
-    This function does Write Access to Ether CAT Core Process RAM  using 
-    'FAST Write(0x02)' command supported by LAN9252 Compatible SQI.
-    This function shall be used only when PDI is selected as
-	LAN9252 Compatible SQI (0x80)
-     
-    Input : u16Addr    -> Address of the RAM location to be written
-            *pu8Data -> Pointer to the data that is to be written
-			u16Len	 -> Number of bytes to be written to PDRAM location
-
-    Output : None
-
-*/
-
-void ECAT_LAN925x_SQIWritePDRAM(uint8_t *pu8Data, uint16_t u16Addr, uint16_t u16Len)
-{
-	UINT32_VAL u32Val;
-	uint8_t u8StartAlignSize = 0, u8EndAlignSize = 0;
-    uint8_t *pu8Ptr;
-
-	/* Address and length */
-	u32Val.w[0] = u16Addr;
-	u32Val.w[1] = u16Len;
-	MCHP_ESF_PDI_WRITE(ECAT_PRAM_WR_ADDR_LENGTH_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-
-	/* write command */
-	u32Val.Val = 0x80000000;
-	MCHP_ESF_PDI_WRITE(ECAT_PRAM_WR_CMD_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-	
-	u8StartAlignSize = (u16Addr & 0x3);
-	u8EndAlignSize = (u16Len+ u8StartAlignSize) & 0x3;
-	if (u8EndAlignSize & 0x3) 
-	{
-		u8EndAlignSize = (((u8EndAlignSize + 4) & 0xC) - u8EndAlignSize);
+    memcpy (pu8data, gau8rx_data, u32Length);
+#endif 
 	}
-	pu8Ptr = pu8Data; 
-	pu8Ptr = pu8Ptr - u8StartAlignSize; 
 	
-	MCHP_ESF_PDI_WRITE(ECAT_PRAM_WR_DATA_FIFO_REG, pu8Ptr, u16Len+u8StartAlignSize+u8EndAlignSize);
-}
 /*******************************************************************************
 Function:
     uint16_t ECAT_PDI_TimerGet(void)

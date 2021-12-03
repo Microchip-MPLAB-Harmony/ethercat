@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /*****************************************************************************
- Copyright (C) 2019-2020 Microchip Technology Inc. and its subsidiaries.
+ Copyright (C) 2021 Microchip Technology Inc. and its subsidiaries.
 
 Microchip Technology Inc. and its subsidiaries.
 
@@ -358,6 +358,7 @@ TOBJECT    OBJMEM ApplicationObjDic[] = {
 {NULL , NULL ,  0x7010 , {DEFTYPE_RECORD , 1 | (OBJCODE_REC << 8)} , asEntryDesc0x7010 , aName0x7010 , &Outputs0x7010 , NULL , NULL , 0x0000 },
 {NULL,NULL, 0xFFFF, {0, 0}, NULL, NULL, NULL, NULL}};
 #endif    //#ifdef _OBJD_
+
 #undef PROTO
 
 /** @}*/

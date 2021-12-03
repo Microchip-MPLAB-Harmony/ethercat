@@ -65,47 +65,23 @@
 // *****************************************************************************
 // *****************************************************************************
 
-/*** Macros for QSPI_MOSI pin ***/
-#define QSPI_MOSI_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 8U)) & 0x01U)
-#define QSPI_MOSI_PIN                  PORT_PIN_PA08
+/*** Macros for spi_cs pin ***/
+#define spi_cs_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 11U))
+#define spi_cs_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 11U))
+#define spi_cs_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 11U))
+#define spi_cs_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 11U))
+#define spi_cs_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 11U))
+#define spi_cs_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 11U)) & 0x01U)
+#define spi_cs_PIN                  PORT_PIN_PB11
 
-/*** Macros for QSPI_MISO pin ***/
-#define QSPI_MISO_Get()               (((PORT_REGS->GROUP[0].PORT_IN >> 9U)) & 0x01U)
-#define QSPI_MISO_PIN                  PORT_PIN_PA09
-
-/*** Macros for QSPi_SCK pin ***/
-#define QSPi_SCK_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 10U)) & 0x01U)
-#define QSPi_SCK_PIN                  PORT_PIN_PB10
-
-/*** Macros for SPI_CS pin ***/
-#define SPI_CS_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 11U))
-#define SPI_CS_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 11U))
-#define SPI_CS_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 11U))
-#define SPI_CS_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 11U))
-#define SPI_CS_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 11U))
-#define SPI_CS_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 11U)) & 0x01U)
-#define SPI_CS_PIN                  PORT_PIN_PB11
-
-/*** Macros for EIC_EXTINT0 pin ***/
-#define EIC_EXTINT0_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 16U)) & 0x01U)
-#define EIC_EXTINT0_PIN                  PORT_PIN_PB16
-
-/*** Macros for EIC_EXTINT1 pin ***/
-#define EIC_EXTINT1_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 17U)) & 0x01U)
-#define EIC_EXTINT1_PIN                  PORT_PIN_PB17
-
-/*** Macros for EIC_EXTINT7 pin ***/
-#define EIC_EXTINT7_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 23U)) & 0x01U)
-#define EIC_EXTINT7_PIN                  PORT_PIN_PB23
-
-/*** Macros for ethercat_error_pin pin ***/
-#define ethercat_error_pin_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 31U))
-#define ethercat_error_pin_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 31U))
-#define ethercat_error_pin_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 31U))
-#define ethercat_error_pin_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 31U))
-#define ethercat_error_pin_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 31U))
-#define ethercat_error_pin_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 31U)) & 0x01U)
-#define ethercat_error_pin_PIN                  PORT_PIN_PB31
+/*** Macros for ethercat_error_led pin ***/
+#define ethercat_error_led_Set()               (PORT_REGS->GROUP[1].PORT_OUTSET = ((uint32_t)1U << 31U))
+#define ethercat_error_led_Clear()             (PORT_REGS->GROUP[1].PORT_OUTCLR = ((uint32_t)1U << 31U))
+#define ethercat_error_led_Toggle()            (PORT_REGS->GROUP[1].PORT_OUTTGL = ((uint32_t)1U << 31U))
+#define ethercat_error_led_OutputEnable()      (PORT_REGS->GROUP[1].PORT_DIRSET = ((uint32_t)1U << 31U))
+#define ethercat_error_led_InputEnable()       (PORT_REGS->GROUP[1].PORT_DIRCLR = ((uint32_t)1U << 31U))
+#define ethercat_error_led_Get()               (((PORT_REGS->GROUP[1].PORT_IN >> 31U)) & 0x01U)
+#define ethercat_error_led_PIN                  PORT_PIN_PB31
 
 // *****************************************************************************
 /* PORT Group

@@ -61,7 +61,7 @@ void QSPI_Initialize(void)
     QSPI_REGS->QSPI_CTRLB = QSPI_CTRLB_MODE_MEMORY | QSPI_CTRLB_CSMODE_NORELOAD | QSPI_CTRLB_DATALEN(0x6);
 
     // Set serial clock register
-    QSPI_REGS->QSPI_BAUD = (QSPI_BAUD_BAUD(7))  ;
+    QSPI_REGS->QSPI_BAUD = (QSPI_BAUD_BAUD(1))  ;
 
     // Enable the qspi Module
     QSPI_REGS->QSPI_CTRLA = QSPI_CTRLA_ENABLE_Msk;
@@ -87,11 +87,6 @@ static void qspi_memcpy_8bit(uint8_t* dst, uint8_t* src, uint32_t count)
         *dst++ = *src++;
     }
 }
-
-
-
-
-
 
 static bool qspi_setup_transfer( qspi_memory_xfer_t *qspi_memory_xfer, uint8_t tfr_type, uint32_t address )
 {
@@ -156,7 +151,7 @@ bool QSPI_CommandWrite( qspi_command_xfer_t *qspi_command_xfer, uint32_t address
     /* Configure instruction frame */
     mask |= qspi_command_xfer->width;
     mask |= QSPI_INSTRFRAME_INSTREN_Msk;
-    mask |= QSPI_INSTRFRAME_TFRTYPE(QSPI_INSTRFRAME_TFRTYPE_WRITE_Val);
+    mask |= QSPI_INSTRFRAME_TFRTYPE(QSPI_INSTRFRAME_TFRTYPE_READ_Val);
 
     QSPI_REGS->QSPI_INSTRFRAME = mask;
 

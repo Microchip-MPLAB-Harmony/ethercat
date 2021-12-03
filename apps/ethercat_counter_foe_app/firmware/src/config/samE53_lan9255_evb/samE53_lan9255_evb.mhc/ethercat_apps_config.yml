@@ -2,6 +2,15 @@ format_version: v1.0
 type: UniqueComponent
 attributes: {id: ethercat_apps_config}
 children:
+- type: Symbols
+  children:
+  - type: Integer
+    attributes: {id: ETHERCAT_FOE_FILE_NAME_LENGTH}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '32'}
 - type: Attachments
   children:
   - type: DirectDependency
@@ -18,4 +27,4 @@ children:
         children:
         - {type: Value, value: drvEthercatLan9255}
 - type: ElementPosition
-  attributes: {x: '490', y: '166', id: ethercat_apps_config}
+  attributes: {x: '415', y: '187', id: ethercat_apps_config}

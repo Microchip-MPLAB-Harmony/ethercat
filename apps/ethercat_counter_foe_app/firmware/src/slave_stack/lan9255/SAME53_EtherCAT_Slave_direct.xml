@@ -877,7 +877,7 @@
 									<SubItem>
 										<Name>Minimum Cycle Time</Name>
 										<Info>
-											<DefaultData>90D00300</DefaultData>
+											<DefaultData>A0860100</DefaultData>
 										</Info>
 									</SubItem>
 								</Info>
@@ -909,7 +909,7 @@
 									<SubItem>
 										<Name>Minimum Cycle Time</Name>
 										<Info>
-											<DefaultData>90D00300</DefaultData>
+											<DefaultData>A0860100</DefaultData>
 										</Info>
 									</SubItem>
 								</Info>

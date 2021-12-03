@@ -92,19 +92,19 @@
 
 #define ETHERCAT_COMM_PROTOCOL_SQI     1
 
-/* EtherCAT SQI Indirect mode enabled */
-#define ETHERCAT_SQI_INDIRECT_MODE_ACCESS				1
+/* EtherCAT SQI Direct mode enabled */
+#define ETHERCAT_SQI_DIRECT_MODE_ACCESS					1
 
 #define MCHP_ESF_IS_PDI_FUNCTIONAL(pdata)		ECAT_Lan9255_IsPDIFunctional(pdata)
 
 
-/* SQI Indirect mode Access */
-#define MCHP_ESF_PDI_WRITE(addr, pdata, len)            ECAT_LAN925x_SQIWrite(addr, pdata, len)
-#define MCHP_ESF_PDI_READ(addr, pdata, len)             ECAT_LAN925x_SQIRead(addr, pdata, len)
+/* SQI Direct mode Access */
+#define MCHP_ESF_PDI_WRITE(addr, pdata, len)            ECAT_LAN925x_SQIWrite (addr, pdata, len)
+#define MCHP_ESF_PDI_READ(addr, pdata, len)             ECAT_LAN925x_SQIRead (addr, pdata, len)
 #define MCHP_ESF_PDI_FASTREAD(addr, pdata, len)         
-#define MCHP_ESF_PDI_READ_PDRAM(pdata, addr, len)		ECAT_LAN925x_SQIReadPDRAM(pdata, addr, len)
+#define MCHP_ESF_PDI_READ_PDRAM(pdata, addr, len)		
 #define MCHP_ESF_PDI_FASTREAD_PDRAM(pdata, addr, len)	
-#define MCHP_ESF_PDI_WRITE_PDRAM(pdata, addr, len)		ECAT_LAN925x_SQIWritePDRAM(pdata, addr, len)
+#define MCHP_ESF_PDI_WRITE_PDRAM(pdata, addr, len)		
 
 
 /* Timer functions */
@@ -155,7 +155,17 @@ typedef struct
 /* SPI/SQI Clock Period in nano seconds */
 #define CLK_PERIOD_1MHZ		(1000)
 
-#define DRV_LAN9255_BAUDRATE_PDI_FREQ       15
+#define DRV_LAN9255_BAUDRATE_PDI_FREQ       60
+
+/*
+ * The Dummy cycles needed for read transaction introduced by two methods
+ * - Dummy clock method - dummy clocks feed to SQI structure
+ * - Dummy read method  - dummy read happen and data extraction happen through application READ API
+ * 
+ * DUMMY_READ_EN - enables the Dummy read method, (define DUMMY_READ_EN to enable)
+ * Dummy read method is selected by default, Undefine DUMMY_READ_EN to enable dummy clock method
+ */
+#define ECAT_DUMMY_READ_EN
 
 // Internal Access Time (IAT) in Nano seconds (ns) based on Hardware Design
 #define IAT_NULL		0
@@ -358,12 +368,8 @@ void    ECAT_SQI_DisableQuadMode(void);
 
 void ECAT_Util_Initialize(const unsigned short int drvIndex,  const void * const init);
 	/* Function Prototypes */
-	void    ECAT_LAN925x_SQIWrite(uint16_t u16Adddr, uint8_t *pu8Data, uint8_t u8Len);
-	void    ECAT_LAN925x_SQIRead(uint16_t u16Addr, uint8_t *pu8Data, uint8_t u8Len);
-	void    ECAT_LAN925x_SQIFastRead(uint16_t u16Addr, uint8_t *pu8Data, uint8_t u8Len);
-	void    ECAT_LAN925x_SQIReadPDRAM(uint8_t *pu8Data, uint16_t u16Addr, uint16_t u16Len);
-	void    ECAT_LAN925x_SQIFastReadPDRAM(uint8_t *pu8Data, uint16_t u16Addr, uint16_t u16Len);
-	void    ECAT_LAN925x_SQIWritePDRAM(uint8_t *pu8Data, uint16_t u16Addr, uint16_t u16Len);
+	void    ECAT_LAN925x_SQIWrite(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Length);
+	void    ECAT_LAN925x_SQIRead(uint16_t u16Addr, uint8_t *pu8data, uint32_t u32Length);
 #ifdef __cplusplus
 }
 #endif
