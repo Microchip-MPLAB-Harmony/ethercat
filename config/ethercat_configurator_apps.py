@@ -50,7 +50,7 @@ def generateEthercatLinkerFileSymbol(etherCatComponent,ethercatFOEEnable,process
 	if (Database.getSymbolValue("ethercat_apps_config","ETHERCAT_FOE_ENABLE") == True):
 		# Generate EtherCAT Linker Script
 		print("foe flag: ")
-		if "SAME5" in processor:
+		if "SAME5" in processor or "LAN" in processor:
 			ethercatLinkerPath = "config/ethercat_template/ethercat_linker_foe_SAME53.ld.ftl"
 		else:
 			ethercatLinkerPath = "config/ethercat_template/ethercat_linker_foe.ld.ftl"
