@@ -95,7 +95,7 @@
 #define ETHERCAT_DUMMY_READ_EN
 
 /* EEPROM Emulation Feature can be enabled by uncommenting below macro for LAN9255*/
-#define ETHERCAT_IS_EEPROM_EMULATION_SUPPORT               1
+#define ETHERCAT_EEPROM_EMULATION_SUPPORT               1
 
 <#if DRV_LAN9255_PROTOCOL == "SPI">
 #define ETHERCAT_COMM_PROTOCOL_SPI     1
@@ -272,6 +272,16 @@ typedef struct
 <#else>
 	<#lt>#define DRV_LAN9255_BAUDRATE_PDI_FREQ       ${.vars["${DRV_LAN9255_PLIB?lower_case}"].SPI_BAUD_RATE/1000000}
 </#if>
+
+/*
+ * The Dummy cycles needed for read transaction introduced by two methods
+ * - Dummy clock method - dummy clocks feed to SQI structure
+ * - Dummy read method  - dummy read happen and data extraction happen through application READ API
+ * 
+ * DUMMY_READ_EN - enables the Dummy read method, (define DUMMY_READ_EN to enable)
+ * Dummy read method is selected by default, Undefine DUMMY_READ_EN to enable dummy clock method
+ */
+#define ECAT_DUMMY_READ_EN
 
 // Internal Access Time (IAT) in Nano seconds (ns) based on Hardware Design
 #define IAT_NULL		0
