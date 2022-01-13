@@ -327,9 +327,16 @@ uint16_t HW_GetALEventRegister(void)
 	    MCHP_ESF_PDI_READ(ESC_AL_EVENT_OFFSET, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
 	
 	    PDI_Restore_Global_Interrupt();
+        
+        if(gbALEvtOpEnabled)
+	    {
+	        return gEscALEvent.Word;
+	    }
+	    else
+	    {
+	        return u32Val.w[0];
+	    }
 	
-	    return gEscALEvent.Word;
-		  
 	#else
 	
 	    UINT32_VAL u32Val;
@@ -431,9 +438,16 @@ uint16_t HW_GetALEventRegister_Isr(void)
 	    UINT32_VAL u32Val;
 	
 	    MCHP_ESF_PDI_READ(ESC_AL_EVENT_OFFSET, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
+        
+        if(gbALEvtOpEnabled)
+	    {
+	        return gEscALEvent.Word;
+	    }
+	    else
+	    {
+	        return u32Val.w[0];
+	    }
 	
-	    return gEscALEvent.Word;
-		  
 	#else 
 	    UINT32_VAL u32Val;
 	
