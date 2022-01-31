@@ -328,7 +328,14 @@ uint16_t HW_GetALEventRegister(void)
 	
 	    PDI_Restore_Global_Interrupt();
 	
-	    return gEscALEvent.Word;
+        if(gbALEvtOpEnabled)
+	    {
+            return gEscALEvent.Word;
+	    }
+	    else
+	    {
+	        return u32Val.w[0];
+	    }
 		  
 	#else
 	
@@ -432,7 +439,14 @@ uint16_t HW_GetALEventRegister_Isr(void)
 	
 	    MCHP_ESF_PDI_READ(ESC_AL_EVENT_OFFSET, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
 	
-	    return gEscALEvent.Word;
+        if(gbALEvtOpEnabled)
+	    {
+            return gEscALEvent.Word;
+	    }
+	    else
+	    {
+	        return u32Val.w[0];
+	    }
 		  
 	#else 
 	    UINT32_VAL u32Val;

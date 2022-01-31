@@ -58,6 +58,7 @@
 #include "peripheral/eic/plib_eic.h"
 #include "driver/lan9255/drv_lan9255_ecat_util.h"
 #include "peripheral/tc/plib_tc0.h"
+#include "bsp/bsp.h"
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility

@@ -1,0 +1,6 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: BSP_LAN9255_Evaluation_Board, bsp: 'true'}
+children:
+- type: ElementPosition
+  attributes: {x: '170', y: '100', id: BSP_LAN9255_Evaluation_Board}

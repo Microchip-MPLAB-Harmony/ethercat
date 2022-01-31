@@ -163,6 +163,7 @@ void SYS_Initialize ( void* data )
 
     TC0_TimerInitialize();
 
+	BSP_Initialize();
 
 	ECAT_Util_Initialize(0, (void *)&drvLAN9255InitData);
 
