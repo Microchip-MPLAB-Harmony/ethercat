@@ -61,7 +61,7 @@
 #include "slave_stack/applInterface.h"
 #include "slave_stack/sample_app.h"
 
-#ifdef ETHERCAT_EEPROM_EMULATION_SUPPORT
+#if (ETHERCAT_EEPROM_EMULATION_SUPPORT == true)
 #include "slave_stack/eeprom.h"
 const volatile uint32_t aFOEdata __attribute__((section(".config_var"))) = 1;
 uint8_t	u8readData;
@@ -267,7 +267,7 @@ void APP_Tasks ( void )
 
             if (appInitialized)
             {
-#ifdef ETHERCAT_EEPROM_EMULATION_SUPPORT
+#if (ETHERCAT_EEPROM_EMULATION_SUPPORT == true)
                 //After device reset, ptr(pEEPROM) is pointed to proper EEPROM configurations based on value avilable in the 0x3DFFC (FOE_VAR_ORIGIN)
                 while(NVMCTRL_IsBusy()){}
 
@@ -291,7 +291,7 @@ void APP_Tasks ( void )
                 
                 bRunApplication = TRUE;
 #endif            
-#ifdef ETHERCAT_EEPROM_EMULATION_SUPPORT            
+#if (ETHERCAT_EEPROM_EMULATION_SUPPORT == true)          
                 Emulation_Init();
 #endif  
                 appData.state = APP_STATE_SERVICE_TASKS;

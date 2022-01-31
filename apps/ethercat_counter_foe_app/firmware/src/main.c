@@ -26,7 +26,7 @@
 #include <stdbool.h>                    // Defines true
 #include <stdlib.h>                     // Defines EXIT_FAILURE
 #include "definitions.h"                // SYS function prototypes
-#include  "app.h"
+#include  "app_lan9255.h"
 
 // *****************************************************************************
 // *****************************************************************************

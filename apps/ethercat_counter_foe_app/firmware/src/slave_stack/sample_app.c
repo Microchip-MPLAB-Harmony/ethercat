@@ -54,7 +54,7 @@ THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 
 #include "bootmode.h"
 #include "ethercat_configuration.h"
-#include "app.h"
+#include "app_lan9255.h"
 
 
 UINT32  gTriggerCounterValMeasure=0;

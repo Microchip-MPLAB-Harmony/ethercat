@@ -6,6 +6,9 @@
                    projectFiles="true">
       <logicalFolder name="f1" displayName="config" projectFiles="true">
         <logicalFolder name="f1" displayName="same53_lan9255_evb" projectFiles="true">
+          <logicalFolder name="f3" displayName="bsp" projectFiles="true">
+            <itemPath>../src/config/same53_lan9255_evb/bsp/bsp.h</itemPath>
+          </logicalFolder>
           <logicalFolder name="f2" displayName="driver" projectFiles="true">
             <logicalFolder name="f1" displayName="lan9255" projectFiles="true">
               <itemPath>../src/config/same53_lan9255_evb/driver/lan9255/drv_lan9255.h</itemPath>
@@ -199,6 +202,11 @@
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
                    projectFiles="true">
+      <logicalFolder name="f1" displayName="config" projectFiles="true">
+        <logicalFolder name="f1" displayName="same53_lan9255_evb" projectFiles="true">
+          <itemPath>../src/config/same53_lan9255_evb/LAN9255ZMX020.ld</itemPath>
+        </logicalFolder>
+      </logicalFolder>
       <itemPath>../src/config/same53_lan9255_evb/ethercat_foe.ld</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
@@ -206,6 +214,9 @@
                    projectFiles="true">
       <logicalFolder name="f1" displayName="config" projectFiles="true">
         <logicalFolder name="f1" displayName="same53_lan9255_evb" projectFiles="true">
+          <logicalFolder name="f4" displayName="bsp" projectFiles="true">
+            <itemPath>../src/config/same53_lan9255_evb/bsp/bsp.c</itemPath>
+          </logicalFolder>
           <logicalFolder name="f3" displayName="driver" projectFiles="true">
             <logicalFolder name="f1" displayName="lan9255" projectFiles="true">
               <itemPath>../src/config/same53_lan9255_evb/driver/lan9255/drv_lan9255.c</itemPath>
@@ -274,6 +285,7 @@
       <logicalFolder name="f1"
                      displayName="same53_lan9255_evb.mhc"
                      projectFiles="true">
+        <itemPath>../src/config/same53_lan9255_evb/same53_lan9255_evb.mhc/BSP_LAN9255_Evaluation_Board.yml</itemPath>
         <itemPath>../src/config/same53_lan9255_evb/same53_lan9255_evb.mhc/cmsis.yml</itemPath>
         <itemPath>../src/config/same53_lan9255_evb/same53_lan9255_evb.mhc/core.yml</itemPath>
         <itemPath>../src/config/same53_lan9255_evb/same53_lan9255_evb.mhc/dfp.yml</itemPath>
@@ -310,7 +322,7 @@
       </toolsSet>
       <packs>
         <pack name="CMSIS" vendor="ARM" version="5.4.0"/>
-        <pack name="LAN9255_DFP" vendor="Microchip" version="1.2.10"/>
+        <pack name="LAN9255_DFP" vendor="Microchip" version="1.2.12"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>
@@ -333,8 +345,8 @@
         <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
         <makeUseCleanTarget>false</makeUseCleanTarget>
         <makeCustomizationPreStep></makeCustomizationPreStep>
-        <makeCustomizationPostStepEnabled>true</makeCustomizationPostStepEnabled>
-        <makeCustomizationPostStep>"${MP_CC_DIR}/xc32-objcopy" -I ihex -O binary "${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.hex" "${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.bin"</makeCustomizationPostStep>
+        <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
+        <makeCustomizationPostStep></makeCustomizationPostStep>
         <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
@@ -438,7 +450,7 @@
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-cross-reference-file" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
-        <property key="heap-size" value="2048"/>
+        <property key="heap-size" value="512"/>
         <property key="input-libraries" value=""/>
         <property key="kseg-length" value=""/>
         <property key="kseg-origin" value=""/>
@@ -1144,6 +1156,8 @@
         <property key="periphComp5.gte" value="gt"/>
         <property key="periphComp6.gte" value="gt"/>
         <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmerToGoFilePath"
+                  value="D:/microchip/h3/ethercat/apps/ethercat_counter_foe_app/firmware/same53_lan9255_evb.X/debug/same53_lan9255_evb/same53_lan9255_evb_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.ledbrightness" value="5"/>
