@@ -21,7 +21,7 @@ This demonstration help document contains the following sections:
 1. MPLAB® Harmony Software Setup
 2. Hardware Setup
 3. Beckhoff Slave Stack Code (SSC) Generation
-4. MPLAB® Harmony Project configuration
+4. MPLAB® Harmony Code and Project Configuration
 5. Completing The EtherCAT Application
 6. Running The Application
     1. TwinCAT Manager and Microchip EtherCAT Client communication
@@ -60,7 +60,17 @@ The following development board will be used for EtherCAT application developmen
 
 Follow instruction at this link to generate Beckhoff Slave Stack Code: [Steps to generate Beckhoff Slave Stack Code  ](../../docs/readme_ssctool.md)
 
-## **MPLAB® Harmony configuration**
+## 4. **MPLAB® Harmony Code and Project Configuration**
+The present MPLAB Harmony v3 project is based on both **MPLAB Code Configurator (MCC)** and **MPLAB Harmony3 Project Configurator(MHC)**.
+
+To work with MCC , user require to follow the steps that is mentioned in the below link
+
+<https://microchipdeveloper.com/harmony3:update-and-configure-existing-mhc-proj-to-mcc-proj>
+
+**NOTE** - To create a new MPLAB Harmony v3 project using MPLAB Code Configurator (MCC) , user require to follow these steps mentioned in this following link
+
+<https://microchipdeveloper.com/harmony3:getting-started-training-module-using-mcc>
+
 There are two options available for downloading/installing the MPLAB® Harmony Software Repositories from github & gitee.
 
 The required repositories can be cloned from the github (or gitee) by using a local git client (such git bash). The MPLAB® Harmony Repositories are available at the following links:
@@ -69,7 +79,7 @@ The required repositories can be cloned from the github (or gitee) by using a lo
 
  <https://gitee.com/Microchip-MPLAB-Harmony/>
 
-The **csp, dev_packs, mhc and ethercat** repositories should be cloned. The required repositories can also be cloned (downloaded) or previously downloaded repositories can be updated by using the MPLAB® Harmony 3 Content Manager. The following sections provide details on using the MPLAB® Harmony 3 Content Manager to download the repositories.
+The **csp, dev_packs, mcc (or mhc) and ethercat** repositories should be cloned. The required repositories can also be cloned (downloaded) or previously downloaded repositories can be updated by using the MPLAB® Harmony 3 Content Manager. The following sections provide details on using the MPLAB® Harmony 3 Content Manager to download the repositories.
 
 1. Refer to the EtherCAT **MPLAB® Harmony Software Setup** https://github.com/Microchip-MPLAB-Harmony/ethercat/wiki/create-your-first-ethercat-application details to create a EtherCAT project.
 
@@ -154,7 +164,7 @@ The **csp, dev_packs, mhc and ethercat** repositories should be cloned. The requ
 
     ![ethercat_mhc_image](images/generated_slave_stack_code.png)
 
-## 4. **Completing The EtherCAT Application**
+## 5. **Completing The EtherCAT Application**
 
 This section demonstrates the MPLAB® X IDE projects for the **ethercat_counter_foe_app** application. The following table list the MPLAB® X projects available for the demonstration. These projects are available inside **< install-dir >/ethercat/apps/ethercat_counter_foe_app/firmware** .
 
@@ -182,7 +192,7 @@ This section demonstrates the MPLAB® X IDE projects for the **ethercat_counter_
 
 7. Build the application by clicking on the **Build Main Project**.
 
-## 5. **Running The Application**
+## 6. **Running The Application**
 
 ### 1. **TwinCAT Manager and Microchip EtherCAT Client communication**
 
