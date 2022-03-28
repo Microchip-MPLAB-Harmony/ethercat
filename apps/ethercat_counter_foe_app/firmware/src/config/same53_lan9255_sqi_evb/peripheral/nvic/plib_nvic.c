@@ -80,7 +80,9 @@ void NVIC_INT_Enable( void )
 
 bool NVIC_INT_Disable( void )
 {
-    bool processorStatus = (__get_PRIMASK() == 0U);
+    bool processorStatus;
+
+    processorStatus = (bool) (__get_PRIMASK() == 0);
 
     __disable_irq();
     __DMB();

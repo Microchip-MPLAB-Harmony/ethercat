@@ -437,12 +437,12 @@ void ECAT_Lan9255_IsPDIFunctional(uint8_t *pu8Data)
 */
 
 void ECAT_LAN925x_SQIWrite(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Length)
-{
+{	
 	uint32_t u32ModLen = 0;
     qspi_memory_xfer_t qspi_xfer;
 	uint32_t u32InstrAddr = 0;
 	uint8_t u8Dummy = 0;    /* Disabled as write does not require dummy */
-	
+
 	/* Core CSR and Process RAM accesses can have any alignment and length */
 	if (u16Addr < 0x3000)
 	{
@@ -478,13 +478,13 @@ void ECAT_LAN925x_SQIWrite(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Lengt
 		}
 	}
 
-    memset((void *)&qspi_xfer, 0, sizeof(qspi_memory_xfer_t));
+	memset((void *)&qspi_xfer, 0, sizeof(qspi_memory_xfer_t));
 	qspi_xfer.instruction = CMD_SERIAL_WRITE;
-    qspi_xfer.width = QUAD_CMD;
+	qspi_xfer.width = QUAD_CMD;
 	qspi_xfer.dummy_cycles = 0 /*u8Dummy*/;
-    
+
 	/* Get the dummy Byte count */
-    /* SPECIAL CASE - Reduce 1 byte clock cycle count from byDummy
+	/* SPECIAL CASE - Reduce 1 byte clock cycle count from byDummy
      * SAMD51 supports 24 bit and 32 bit addressing format
      * LAN925x expects 16bit addressing format
      * So In order to support SAMD51, converting the 16bit address to 24bit
@@ -492,12 +492,12 @@ void ECAT_LAN925x_SQIWrite(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Lengt
      * so reduce the 1 byte dummy cycle from the requested.
      */
 	u8Dummy = (gau8DummyCntArr[SQI_WRITE_INITIAL_OFFSET] - 1);
-	qspi_xfer.dummy_cycles = u8Dummy;
+    qspi_xfer.dummy_cycles = u8Dummy;
     u32InstrAddr = u16Addr;
     u32InstrAddr = u32InstrAddr << 8;
 
     gDrvLan9255UtilObj.sqiPlib->sqiMemoryWrite(&qspi_xfer, (uint32_t *)&pu8Data[0], u32Length, u32InstrAddr);
-    
+
 }
 
 /* 
@@ -512,11 +512,11 @@ void ECAT_LAN925x_SQIWrite(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Lengt
  *          u32Length   -> Length of the data to be read
 
     Output : None
-	
+
 */
 
 void ECAT_LAN925x_SQIRead(uint16_t u16Addr, uint8_t *pu8data, uint32_t u32Length)
-{
+{	
 	uint32_t u32ModLen = 0;
     uint8_t u8Dummy = 0;
     qspi_memory_xfer_t qspi_xfer;
@@ -534,7 +534,7 @@ void ECAT_LAN925x_SQIRead(uint16_t u16Addr, uint8_t *pu8data, uint32_t u32Length
 	}
 	else
 	{
-        /* Non Core CSR length will be adjusted if it is not DWORD aligned */
+		/* Non Core CSR length will be adjusted if it is not DWORD aligned */
 		u32ModLen = u32Length % 4; 
 		if (1 == u32ModLen)
 		{
@@ -574,23 +574,23 @@ void ECAT_LAN925x_SQIRead(uint16_t u16Addr, uint8_t *pu8data, uint32_t u32Length
     u8Dummy += (u16Addr & 0x3);
 
     memcpy (pu8data, gau8rx_data + u8Dummy, u32Length);
-#else	
+#else
 	 /* Get the number of dummy cycle required */
     u8Dummy = gau8DummyCntArr[SQI_FASTREAD_INITIAL_OFFSET];
-	qspi_xfer.dummy_cycles = u8Dummy * QSPI_SQI_ONE_BYTE_CLK_COUNT;
+    qspi_xfer.dummy_cycles = u8Dummy * QSPI_SQI_ONE_BYTE_CLK_COUNT;
 
     u32InstrAddr = u16Addr;
     u32InstrAddr = (u32InstrAddr << 8) | u32Length;
 
     gDrvLan9255UtilObj.sqiPlib->sqiMemoryRead(&qspi_xfer, (uint32_t *)&gau8rx_data[0], u32Length, u32InstrAddr);
-
-	//Fix is added for odd address failure
+    
+   //Fix is added for odd address failure
    // u8Dummy += (u16Addr & 0x3);
-
+    
     memcpy (pu8data, gau8rx_data, u32Length);
 #endif 
-	}
-	
+}
+
 /*******************************************************************************
 Function:
     uint16_t ECAT_PDI_TimerGet(void)

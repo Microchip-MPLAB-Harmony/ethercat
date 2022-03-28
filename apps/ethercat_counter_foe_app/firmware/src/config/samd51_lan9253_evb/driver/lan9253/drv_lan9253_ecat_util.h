@@ -20,7 +20,7 @@
 *******************************************************************************/
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-* Copyright (C) 2020 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2021 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -75,22 +75,37 @@
 
 /* This is the lowest interrupt priority for SAM devices and Highest for PIC32M devices that can be used in a call to a "set priority" function. */
 #define ETHERCAT_CONFIG_MAX_INTERRUPT_PRIORITY 		4
+#define ETHERCAT_IS_SUPPORT_DUMMY_CYCLE
+
+/*
+ * The Dummy cycles needed for read transaction introduced by two methods
+ * - Dummy clock method - dummy clocks feed to SQI structure
+ * - Dummy read method  - dummy read happen and data extraction happen through application READ API
+ * 
+ * ETHERCAT_DUMMY_READ_EN - enables the Dummy read method, (define ETHERCAT_DUMMY_READ_EN to enable)
+ * Dummy read method is selected by default, Undefine ETHERCAT_DUMMY_READ_EN to enable dummy clock method
+ */
+#define ETHERCAT_DUMMY_READ_EN
+
+/* EEPROM Emulation Feature can be enabled by uncommenting below macro for LAN9255*/
+#define ETHERCAT_EEPROM_EMULATION_SUPPORT               0
 
 #define ETHERCAT_COMM_PROTOCOL_SPI     1
 
-/* EtherCAT SPI Beckhoff mode enabled */
-#define ETHERCAT_SPI_BECKHOFF_MODE_ACCESS				1
+/* EtherCAT SPI Direct mode enabled */
+#define ETHERCAT_SPI_DIRECT_MODE_ACCESS					1
 
 
 #define MCHP_ESF_IS_PDI_FUNCTIONAL(pdata)		ECAT_Lan9253_IsPDIFunctional(pdata)
 
-/* SPI Beckhoff mode Access */
-#define MCHP_ESF_PDI_WRITE(addr, pdata, len)            ECAT_Lan9253_Beckhoff_SPIWrite (addr, pdata, len)
-#define MCHP_ESF_PDI_READ(addr, pdata, len)				ECAT_Lan9253_Beckhoff_SPIRead (addr, pdata, len)
-#define MCHP_ESF_PDI_FASTREAD(addr, pdata)			
+/* SPI Direct mode Access */
+#define MCHP_ESF_PDI_WRITE(addr, pdata, len)            ECAT_Lan9253_SPIWrite (addr, pdata, len)
+#define MCHP_ESF_PDI_READ(addr, pdata, len)             ECAT_Lan9253_SPIRead (addr, pdata, len)
+#define MCHP_ESF_PDI_FASTREAD(addr, pdata, len)			ECAT_Lan9253_SPIFastRead (addr, pdata, len)
 #define MCHP_ESF_PDI_READ_PDRAM(pdata, addr, len)		
 #define MCHP_ESF_PDI_FASTREAD_PDRAM(pdata, addr, len)	
-#define MCHP_ESF_PDI_WRITE_PDRAM(pdata, addr, len)
+#define MCHP_ESF_PDI_WRITE_PDRAM(pdata, addr, len)		
+
 
 
 /* Timer functions */
@@ -177,6 +192,16 @@ typedef struct
 #define CLK_PERIOD_1MHZ		(1000)
 
 #define DRV_LAN9253_BAUDRATE_PDI_FREQ       20
+
+/*
+ * The Dummy cycles needed for read transaction introduced by two methods
+ * - Dummy clock method - dummy clocks feed to SQI structure
+ * - Dummy read method  - dummy read happen and data extraction happen through application READ API
+ * 
+ * DUMMY_READ_EN - enables the Dummy read method, (define DUMMY_READ_EN to enable)
+ * Dummy read method is selected by default, Undefine DUMMY_READ_EN to enable dummy clock method
+ */
+#define ECAT_DUMMY_READ_EN
 
 // Internal Access Time (IAT) in Nano seconds (ns) based on Hardware Design
 #define IAT_NULL		0
@@ -380,8 +405,9 @@ void    ECAT_SPI_DisableQuadMode(void);
 
 void ECAT_Util_Initialize(const unsigned short int drvIndex,  const void * const init);
 	/* Function Prototypes */
-	void ECAT_Lan9253_Beckhoff_SPIWrite(uint16_t wAddr, uint8_t *pbyData, uint32_t dwLength);
-	void ECAT_Lan9253_Beckhoff_SPIRead(uint16_t wAddr, uint8_t *pbyData, uint32_t dwLength);
+	void ECAT_Lan9253_SPIWrite(uint16_t wAddr, uint8_t *pbyData, uint32_t dwLength);
+	void ECAT_Lan9253_SPIRead(uint16_t wAddr, uint8_t *pbydata, uint32_t dwLength);
+	void ECAT_Lan9253_SPIFastRead(uint16_t wAddr, uint8_t *pbyData, uint32_t dwLength);
 #ifdef __cplusplus
 }
 #endif

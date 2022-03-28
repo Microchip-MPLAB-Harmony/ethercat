@@ -39,6 +39,7 @@
 *******************************************************************************/
 
 #include "plib_evsys.h"
+#include "interrupts.h"
 
 
 
@@ -47,3 +48,5 @@ void EVSYS_Initialize( void )
     /*Event Channel User Configuration*/
 
 }
+
+

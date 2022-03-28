@@ -13,27 +13,27 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 60B2DEC75552C7E059A8810598CC8588
-- generatedChecksum: 89AD3884268882A90A3CAC11D253458E
+- generatedChecksum: 7AA27AADBE552E53922D60DD0B3AC12F
   logicalPath: config/samd51_lan9253_sqi_evb/driver/lan9253
   name: drv_lan9253.c
   physicalPath: driver/lan9253
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 89AD3884268882A90A3CAC11D253458E
-- generatedChecksum: E312A31EFBA07368BDFA265AA75B7D0B
+  userChecksum: 7AA27AADBE552E53922D60DD0B3AC12F
+- generatedChecksum: B511EF9DB73D457478F959666B436C14
   logicalPath: config/samd51_lan9253_sqi_evb/driver/lan9253
   name: drv_lan9253_ecat_util.c
   physicalPath: driver/lan9253
   security: NON_SECURE
   type: SOURCE
-  userChecksum: E312A31EFBA07368BDFA265AA75B7D0B
+  userChecksum: B511EF9DB73D457478F959666B436C14
 - generatedChecksum: ACEE93AE1BC431F90567C530DAD82896
   logicalPath: slave_stack
   name: ecatappl.c
   physicalPath: ../../slave_stack
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 8D467AAFD561E5A26D74B86EBDAC839A
+  userChecksum: 5B4F5F7D832B2CBDA1F70F9C2994C231
 - generatedChecksum: 2A37B3D13944E83BA790288CDE1143E3
   logicalPath: slave_stack
   name: ecatcoe.c
@@ -54,7 +54,7 @@ files:
   physicalPath: ../../slave_stack
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 175B95AE5EB23B662272FE744B07EDE4
+  userChecksum: 6B80EEF13B9B248CFB6EF9AD0F6C3909
 - generatedChecksum: 19240ADA643084032A1817AB05CEEADF
   logicalPath: slave_stack
   name: emcy.c
@@ -426,27 +426,27 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 507D85BBAEDB0E629C346760A9641B3D
-- generatedChecksum: CAA36E82B63F3ACFFE74C2AE00E05B07
+- generatedChecksum: 8B54D2140FCE7B96352EDD513971E859
   logicalPath: config/samd51_lan9253_sqi_evb/driver/lan9253
   name: drv_lan9253.h
   physicalPath: driver/lan9253
   security: NON_SECURE
   type: HEADER
-  userChecksum: CAA36E82B63F3ACFFE74C2AE00E05B07
-- generatedChecksum: E3C3D72CB227CBC25F56B41F0D9A5652
+  userChecksum: 8B54D2140FCE7B96352EDD513971E859
+- generatedChecksum: 8DAFD510C3312F55683E62108FC15735
   logicalPath: config/samd51_lan9253_sqi_evb/driver/lan9253
   name: drv_lan9253_definitions.h
   physicalPath: driver/lan9253
   security: NON_SECURE
   type: HEADER
-  userChecksum: E3C3D72CB227CBC25F56B41F0D9A5652
-- generatedChecksum: FD6D80FF3D29B70D64D4B1BA63C2A20C
+  userChecksum: 8DAFD510C3312F55683E62108FC15735
+- generatedChecksum: 890012D595C25293167EFDE5C51FC755
   logicalPath: config/samd51_lan9253_sqi_evb/driver/lan9253
   name: drv_lan9253_ecat_util.h
   physicalPath: driver/lan9253
   security: NON_SECURE
   type: HEADER
-  userChecksum: FD6D80FF3D29B70D64D4B1BA63C2A20C
+  userChecksum: 890012D595C25293167EFDE5C51FC755
 - generatedChecksum: F8E76A9660B4B357A61B935689F9D0ED
   logicalPath: packs/ATSAMD51J19A_DFP/component
   name: dsu.h
@@ -467,7 +467,7 @@ files:
   physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
-  userChecksum: 5B5C71D799C213BE905870A1B969EC7F
+  userChecksum: B87F4A57BA88D52412EC4B9BCDDA5D35
 - generatedChecksum: 2C62033177B4B81E335A5A88F8A2A763
   logicalPath: slave_stack
   name: ecatappl.h
@@ -495,7 +495,7 @@ files:
   physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
-  userChecksum: 258A92C3CA5E195C87A53996DC2F2F48
+  userChecksum: B70BEBF4C6DE7C8929F8387BF3588C46
 - generatedChecksum: 3287D8EB261D75C3C16DE4540A1952B9
   logicalPath: slave_stack
   name: eeprom.h

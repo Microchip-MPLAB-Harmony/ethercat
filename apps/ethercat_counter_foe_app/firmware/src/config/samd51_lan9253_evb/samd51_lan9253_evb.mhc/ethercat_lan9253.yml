@@ -63,7 +63,7 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ETHERCAT_SPI_BECKHOFF_MODE_ACCESS}
+        attributes: {value: ETHERCAT_SPI_INDIRECT_MODE_ACCESS}
   - type: KeyValueSet
     attributes: {id: DRV_LAN9253_SYNC1_INT}
     children:
@@ -129,4 +129,4 @@ children:
         children:
         - {type: Value, value: EtherCAT_LANDRV_Dependency}
 - type: ElementPosition
-  attributes: {x: '233', y: '184', id: ethercat_lan9253}
+  attributes: {x: '232', y: '183', id: ethercat_lan9253}

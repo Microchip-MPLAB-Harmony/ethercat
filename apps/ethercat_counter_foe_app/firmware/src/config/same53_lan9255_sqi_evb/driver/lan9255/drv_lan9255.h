@@ -21,7 +21,7 @@
 *******************************************************************************/
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-* Copyright (C) 2021 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2022 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -222,9 +222,9 @@ PROTO void HW_EnableSyncManChannel(uint8_t channel);
 PROTO TSYNCMAN ESCMEM *HW_GetSyncMan(uint8_t channel);
 PROTO void HW_SetLed(uint8_t RunLed, uint8_t ErrLed);
 
-PROTO UINT16 PDI_GetTimer();
-PROTO void   PDI_ClearTimer();
-
+PROTO UINT16 PDI_GetTimer(void);
+PROTO void   PDI_ClearTimer(void);
+void lan9255_interrupt_init(void);
 #undef PROTO
 
 #endif

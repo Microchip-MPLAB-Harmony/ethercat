@@ -57,6 +57,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include "ethercat_configuration.h"
+#include "drv_lan9255.h"
 #include "drv_lan9255_ecat_util.h"
 #include "slave_stack/applInterface.h"
 #include "slave_stack/sample_app.h"
@@ -67,7 +68,7 @@ const volatile uint32_t aFOEdata __attribute__((section(".config_var"))) = 1;
 uint8_t	u8readData;
 extern const volatile unsigned char aEepromData[];
 void develop_test(void);
-extern void lan9255_interrupt_init(void);
+
 
 
 uint8_t CalculateCRC8(uint8_t* pData, int length)

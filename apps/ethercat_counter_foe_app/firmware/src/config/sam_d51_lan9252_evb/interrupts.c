@@ -49,7 +49,10 @@
 // *****************************************************************************
 // *****************************************************************************
 
+#include "device_vectors.h"
+#include "interrupts.h"
 #include "definitions.h"
+
 
 // *****************************************************************************
 // *****************************************************************************
@@ -58,8 +61,9 @@
 // *****************************************************************************
 
 extern uint32_t _stack;
+extern const H3DeviceVectors exception_table;
 
-void Dummy_Handler(void);
+extern void Dummy_Handler(void);
 
 /* Brief default interrupt handler for unused IRQs.*/
 void __attribute__((optimize("-O1"),section(".text.Dummy_Handler"),long_call, noreturn))Dummy_Handler(void)
@@ -67,284 +71,275 @@ void __attribute__((optimize("-O1"),section(".text.Dummy_Handler"),long_call, no
 #if defined(__DEBUG) || defined(__DEBUG_D) && defined(__XC32)
     __builtin_software_breakpoint();
 #endif
-    while (1)
+    while (true)
     {
     }
 }
 /* Device vectors list dummy definition*/
-void Reset_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void NonMaskableInt_Handler     ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void HardFault_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void MemoryManagement_Handler   ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void BusFault_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void UsageFault_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SVCall_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void DebugMonitor_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void PendSV_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SysTick_Handler            ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void PM_Handler                 ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void MCLK_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void OSCCTRL_XOSC0_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void OSCCTRL_XOSC1_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void OSCCTRL_DFLL_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void OSCCTRL_DPLL0_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void OSCCTRL_DPLL1_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void OSC32KCTRL_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SUPC_OTHER_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SUPC_BODDET_Handler        ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void WDT_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void RTC_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EIC_EXTINT_0_InterruptHandler ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EIC_EXTINT_1_InterruptHandler ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EIC_EXTINT_2_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EIC_EXTINT_3_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EIC_EXTINT_4_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EIC_EXTINT_5_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EIC_EXTINT_6_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EIC_EXTINT_7_InterruptHandler ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EIC_EXTINT_8_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EIC_EXTINT_9_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EIC_EXTINT_10_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EIC_EXTINT_11_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EIC_EXTINT_12_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EIC_EXTINT_13_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EIC_EXTINT_14_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EIC_EXTINT_15_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void FREQM_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void NVMCTRL_0_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void NVMCTRL_1_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void DMAC_0_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void DMAC_1_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void DMAC_2_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void DMAC_3_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void DMAC_OTHER_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EVSYS_0_Handler            ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EVSYS_1_Handler            ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EVSYS_2_Handler            ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EVSYS_3_Handler            ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void EVSYS_OTHER_Handler        ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void PAC_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void RAMECC_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM0_0_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM0_1_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM0_2_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM0_OTHER_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM1_0_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM1_1_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM1_2_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM1_OTHER_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM2_0_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM2_1_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM2_2_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM2_OTHER_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM3_0_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM3_1_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM3_2_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM3_OTHER_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM4_0_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM4_1_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM4_2_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM4_OTHER_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM5_0_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM5_1_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM5_2_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SERCOM5_OTHER_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void USB_OTHER_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void USB_SOF_HSOF_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void USB_TRCPT0_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void USB_TRCPT1_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC0_OTHER_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC0_MC0_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC0_MC1_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC0_MC2_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC0_MC3_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC0_MC4_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC0_MC5_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC1_OTHER_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC1_MC0_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC1_MC1_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC1_MC2_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC1_MC3_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC2_OTHER_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC2_MC0_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC2_MC1_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC2_MC2_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC3_OTHER_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC3_MC0_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC3_MC1_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC4_OTHER_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC4_MC0_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TCC4_MC1_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TC0_TimerInterruptHandler  ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TC1_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TC2_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TC3_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TC4_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TC5_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void PDEC_OTHER_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void PDEC_MC0_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void PDEC_MC1_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void ADC0_OTHER_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void ADC0_RESRDY_Handler        ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void ADC1_OTHER_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void ADC1_RESRDY_Handler        ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void AC_Handler                 ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void DAC_OTHER_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void DAC_EMPTY_0_Handler        ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void DAC_EMPTY_1_Handler        ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void DAC_RESRDY_0_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void DAC_RESRDY_1_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void I2S_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void PCC_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void AES_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void TRNG_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void ICM_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void PUKCC_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void QSPI_InterruptHandler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
-void SDHC0_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void MemoryManagement_Handler   ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void BusFault_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void UsageFault_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SVCall_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void DebugMonitor_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void PendSV_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void PM_Handler                 ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void MCLK_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void OSCCTRL_XOSC0_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void OSCCTRL_XOSC1_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void OSCCTRL_DFLL_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void OSCCTRL_DPLL0_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void OSCCTRL_DPLL1_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void OSC32KCTRL_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SUPC_OTHER_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SUPC_BODDET_Handler        ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void WDT_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void RTC_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void EIC_EXTINT_2_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void EIC_EXTINT_3_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void EIC_EXTINT_4_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void EIC_EXTINT_5_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void EIC_EXTINT_6_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void EIC_EXTINT_8_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void EIC_EXTINT_9_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void EIC_EXTINT_10_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void EIC_EXTINT_11_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void EIC_EXTINT_12_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void EIC_EXTINT_13_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void EIC_EXTINT_14_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void EIC_EXTINT_15_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void FREQM_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void NVMCTRL_0_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void NVMCTRL_1_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void DMAC_0_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void DMAC_1_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void DMAC_2_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void DMAC_3_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void DMAC_OTHER_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void EVSYS_0_Handler            ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void EVSYS_1_Handler            ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void EVSYS_2_Handler            ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void EVSYS_3_Handler            ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void EVSYS_OTHER_Handler        ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void PAC_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void RAMECC_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM0_0_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM0_1_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM0_2_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM0_OTHER_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM1_0_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM1_1_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM1_2_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM1_OTHER_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM2_0_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM2_1_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM2_2_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM2_OTHER_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM3_0_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM3_1_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM3_2_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM3_OTHER_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM4_0_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM4_1_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM4_2_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM4_OTHER_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM5_0_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM5_1_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM5_2_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SERCOM5_OTHER_Handler      ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void USB_OTHER_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void USB_SOF_HSOF_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void USB_TRCPT0_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void USB_TRCPT1_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC0_OTHER_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC0_MC0_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC0_MC1_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC0_MC2_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC0_MC3_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC0_MC4_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC0_MC5_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC1_OTHER_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC1_MC0_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC1_MC1_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC1_MC2_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC1_MC3_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC2_OTHER_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC2_MC0_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC2_MC1_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC2_MC2_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC3_OTHER_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC3_MC0_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC3_MC1_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC4_OTHER_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC4_MC0_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TCC4_MC1_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TC1_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TC2_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TC3_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TC4_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TC5_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void PDEC_OTHER_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void PDEC_MC0_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void PDEC_MC1_Handler           ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void ADC0_OTHER_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void ADC0_RESRDY_Handler        ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void ADC1_OTHER_Handler         ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void ADC1_RESRDY_Handler        ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void AC_Handler                 ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void DAC_OTHER_Handler          ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void DAC_EMPTY_0_Handler        ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void DAC_EMPTY_1_Handler        ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void DAC_RESRDY_0_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void DAC_RESRDY_1_Handler       ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void I2S_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void PCC_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void AES_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void TRNG_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void ICM_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void PUKCC_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void SDHC0_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
 
 
 
-/* Mutiple handlers for vector */
+/* Multiple handlers for vector */
 
 
 
 __attribute__ ((section(".vectors")))
-const DeviceVectors exception_table=
+const H3DeviceVectors exception_table=
 {
     /* Configure Initial Stack Pointer, using linker-generated symbols */
-    .pvStack = (void*) (&_stack),
+    .pvStack = &_stack,
 
-    .pfnReset_Handler              = ( void * ) Reset_Handler,
-    .pfnNonMaskableInt_Handler     = ( void * ) NonMaskableInt_Handler,
-    .pfnHardFault_Handler          = ( void * ) HardFault_Handler,
-    .pfnMemoryManagement_Handler   = ( void * ) MemoryManagement_Handler,
-    .pfnBusFault_Handler           = ( void * ) BusFault_Handler,
-    .pfnUsageFault_Handler         = ( void * ) UsageFault_Handler,
-    .pfnSVCall_Handler             = ( void * ) SVCall_Handler,
-    .pfnDebugMonitor_Handler       = ( void * ) DebugMonitor_Handler,
-    .pfnPendSV_Handler             = ( void * ) PendSV_Handler,
-    .pfnSysTick_Handler            = ( void * ) SysTick_Handler,
-    .pfnPM_Handler                 = ( void * ) PM_Handler,
-    .pfnMCLK_Handler               = ( void * ) MCLK_Handler,
-    .pfnOSCCTRL_XOSC0_Handler      = ( void * ) OSCCTRL_XOSC0_Handler,
-    .pfnOSCCTRL_XOSC1_Handler      = ( void * ) OSCCTRL_XOSC1_Handler,
-    .pfnOSCCTRL_DFLL_Handler       = ( void * ) OSCCTRL_DFLL_Handler,
-    .pfnOSCCTRL_DPLL0_Handler      = ( void * ) OSCCTRL_DPLL0_Handler,
-    .pfnOSCCTRL_DPLL1_Handler      = ( void * ) OSCCTRL_DPLL1_Handler,
-    .pfnOSC32KCTRL_Handler         = ( void * ) OSC32KCTRL_Handler,
-    .pfnSUPC_OTHER_Handler         = ( void * ) SUPC_OTHER_Handler,
-    .pfnSUPC_BODDET_Handler        = ( void * ) SUPC_BODDET_Handler,
-    .pfnWDT_Handler                = ( void * ) WDT_Handler,
-    .pfnRTC_Handler                = ( void * ) RTC_Handler,
-    .pfnEIC_EXTINT_0_Handler       = ( void * ) EIC_EXTINT_0_InterruptHandler,
-    .pfnEIC_EXTINT_1_Handler       = ( void * ) EIC_EXTINT_1_InterruptHandler,
-    .pfnEIC_EXTINT_2_Handler       = ( void * ) EIC_EXTINT_2_Handler,
-    .pfnEIC_EXTINT_3_Handler       = ( void * ) EIC_EXTINT_3_Handler,
-    .pfnEIC_EXTINT_4_Handler       = ( void * ) EIC_EXTINT_4_Handler,
-    .pfnEIC_EXTINT_5_Handler       = ( void * ) EIC_EXTINT_5_Handler,
-    .pfnEIC_EXTINT_6_Handler       = ( void * ) EIC_EXTINT_6_Handler,
-    .pfnEIC_EXTINT_7_Handler       = ( void * ) EIC_EXTINT_7_InterruptHandler,
-    .pfnEIC_EXTINT_8_Handler       = ( void * ) EIC_EXTINT_8_Handler,
-    .pfnEIC_EXTINT_9_Handler       = ( void * ) EIC_EXTINT_9_Handler,
-    .pfnEIC_EXTINT_10_Handler      = ( void * ) EIC_EXTINT_10_Handler,
-    .pfnEIC_EXTINT_11_Handler      = ( void * ) EIC_EXTINT_11_Handler,
-    .pfnEIC_EXTINT_12_Handler      = ( void * ) EIC_EXTINT_12_Handler,
-    .pfnEIC_EXTINT_13_Handler      = ( void * ) EIC_EXTINT_13_Handler,
-    .pfnEIC_EXTINT_14_Handler      = ( void * ) EIC_EXTINT_14_Handler,
-    .pfnEIC_EXTINT_15_Handler      = ( void * ) EIC_EXTINT_15_Handler,
-    .pfnFREQM_Handler              = ( void * ) FREQM_Handler,
-    .pfnNVMCTRL_0_Handler          = ( void * ) NVMCTRL_0_Handler,
-    .pfnNVMCTRL_1_Handler          = ( void * ) NVMCTRL_1_Handler,
-    .pfnDMAC_0_Handler             = ( void * ) DMAC_0_Handler,
-    .pfnDMAC_1_Handler             = ( void * ) DMAC_1_Handler,
-    .pfnDMAC_2_Handler             = ( void * ) DMAC_2_Handler,
-    .pfnDMAC_3_Handler             = ( void * ) DMAC_3_Handler,
-    .pfnDMAC_OTHER_Handler         = ( void * ) DMAC_OTHER_Handler,
-    .pfnEVSYS_0_Handler            = ( void * ) EVSYS_0_Handler,
-    .pfnEVSYS_1_Handler            = ( void * ) EVSYS_1_Handler,
-    .pfnEVSYS_2_Handler            = ( void * ) EVSYS_2_Handler,
-    .pfnEVSYS_3_Handler            = ( void * ) EVSYS_3_Handler,
-    .pfnEVSYS_OTHER_Handler        = ( void * ) EVSYS_OTHER_Handler,
-    .pfnPAC_Handler                = ( void * ) PAC_Handler,
-    .pfnRAMECC_Handler             = ( void * ) RAMECC_Handler,
-    .pfnSERCOM0_0_Handler          = ( void * ) SERCOM0_0_Handler,
-    .pfnSERCOM0_1_Handler          = ( void * ) SERCOM0_1_Handler,
-    .pfnSERCOM0_2_Handler          = ( void * ) SERCOM0_2_Handler,
-    .pfnSERCOM0_OTHER_Handler      = ( void * ) SERCOM0_OTHER_Handler,
-    .pfnSERCOM1_0_Handler          = ( void * ) SERCOM1_0_Handler,
-    .pfnSERCOM1_1_Handler          = ( void * ) SERCOM1_1_Handler,
-    .pfnSERCOM1_2_Handler          = ( void * ) SERCOM1_2_Handler,
-    .pfnSERCOM1_OTHER_Handler      = ( void * ) SERCOM1_OTHER_Handler,
-    .pfnSERCOM2_0_Handler          = ( void * ) SERCOM2_0_Handler,
-    .pfnSERCOM2_1_Handler          = ( void * ) SERCOM2_1_Handler,
-    .pfnSERCOM2_2_Handler          = ( void * ) SERCOM2_2_Handler,
-    .pfnSERCOM2_OTHER_Handler      = ( void * ) SERCOM2_OTHER_Handler,
-    .pfnSERCOM3_0_Handler          = ( void * ) SERCOM3_0_Handler,
-    .pfnSERCOM3_1_Handler          = ( void * ) SERCOM3_1_Handler,
-    .pfnSERCOM3_2_Handler          = ( void * ) SERCOM3_2_Handler,
-    .pfnSERCOM3_OTHER_Handler      = ( void * ) SERCOM3_OTHER_Handler,
-    .pfnSERCOM4_0_Handler          = ( void * ) SERCOM4_0_Handler,
-    .pfnSERCOM4_1_Handler          = ( void * ) SERCOM4_1_Handler,
-    .pfnSERCOM4_2_Handler          = ( void * ) SERCOM4_2_Handler,
-    .pfnSERCOM4_OTHER_Handler      = ( void * ) SERCOM4_OTHER_Handler,
-    .pfnSERCOM5_0_Handler          = ( void * ) SERCOM5_0_Handler,
-    .pfnSERCOM5_1_Handler          = ( void * ) SERCOM5_1_Handler,
-    .pfnSERCOM5_2_Handler          = ( void * ) SERCOM5_2_Handler,
-    .pfnSERCOM5_OTHER_Handler      = ( void * ) SERCOM5_OTHER_Handler,
-    .pfnUSB_OTHER_Handler          = ( void * ) USB_OTHER_Handler,
-    .pfnUSB_SOF_HSOF_Handler       = ( void * ) USB_SOF_HSOF_Handler,
-    .pfnUSB_TRCPT0_Handler         = ( void * ) USB_TRCPT0_Handler,
-    .pfnUSB_TRCPT1_Handler         = ( void * ) USB_TRCPT1_Handler,
-    .pfnTCC0_OTHER_Handler         = ( void * ) TCC0_OTHER_Handler,
-    .pfnTCC0_MC0_Handler           = ( void * ) TCC0_MC0_Handler,
-    .pfnTCC0_MC1_Handler           = ( void * ) TCC0_MC1_Handler,
-    .pfnTCC0_MC2_Handler           = ( void * ) TCC0_MC2_Handler,
-    .pfnTCC0_MC3_Handler           = ( void * ) TCC0_MC3_Handler,
-    .pfnTCC0_MC4_Handler           = ( void * ) TCC0_MC4_Handler,
-    .pfnTCC0_MC5_Handler           = ( void * ) TCC0_MC5_Handler,
-    .pfnTCC1_OTHER_Handler         = ( void * ) TCC1_OTHER_Handler,
-    .pfnTCC1_MC0_Handler           = ( void * ) TCC1_MC0_Handler,
-    .pfnTCC1_MC1_Handler           = ( void * ) TCC1_MC1_Handler,
-    .pfnTCC1_MC2_Handler           = ( void * ) TCC1_MC2_Handler,
-    .pfnTCC1_MC3_Handler           = ( void * ) TCC1_MC3_Handler,
-    .pfnTCC2_OTHER_Handler         = ( void * ) TCC2_OTHER_Handler,
-    .pfnTCC2_MC0_Handler           = ( void * ) TCC2_MC0_Handler,
-    .pfnTCC2_MC1_Handler           = ( void * ) TCC2_MC1_Handler,
-    .pfnTCC2_MC2_Handler           = ( void * ) TCC2_MC2_Handler,
-    .pfnTCC3_OTHER_Handler         = ( void * ) TCC3_OTHER_Handler,
-    .pfnTCC3_MC0_Handler           = ( void * ) TCC3_MC0_Handler,
-    .pfnTCC3_MC1_Handler           = ( void * ) TCC3_MC1_Handler,
-    .pfnTCC4_OTHER_Handler         = ( void * ) TCC4_OTHER_Handler,
-    .pfnTCC4_MC0_Handler           = ( void * ) TCC4_MC0_Handler,
-    .pfnTCC4_MC1_Handler           = ( void * ) TCC4_MC1_Handler,
-    .pfnTC0_Handler                = ( void * ) TC0_TimerInterruptHandler,
-    .pfnTC1_Handler                = ( void * ) TC1_Handler,
-    .pfnTC2_Handler                = ( void * ) TC2_Handler,
-    .pfnTC3_Handler                = ( void * ) TC3_Handler,
-    .pfnTC4_Handler                = ( void * ) TC4_Handler,
-    .pfnTC5_Handler                = ( void * ) TC5_Handler,
-    .pfnPDEC_OTHER_Handler         = ( void * ) PDEC_OTHER_Handler,
-    .pfnPDEC_MC0_Handler           = ( void * ) PDEC_MC0_Handler,
-    .pfnPDEC_MC1_Handler           = ( void * ) PDEC_MC1_Handler,
-    .pfnADC0_OTHER_Handler         = ( void * ) ADC0_OTHER_Handler,
-    .pfnADC0_RESRDY_Handler        = ( void * ) ADC0_RESRDY_Handler,
-    .pfnADC1_OTHER_Handler         = ( void * ) ADC1_OTHER_Handler,
-    .pfnADC1_RESRDY_Handler        = ( void * ) ADC1_RESRDY_Handler,
-    .pfnAC_Handler                 = ( void * ) AC_Handler,
-    .pfnDAC_OTHER_Handler          = ( void * ) DAC_OTHER_Handler,
-    .pfnDAC_EMPTY_0_Handler        = ( void * ) DAC_EMPTY_0_Handler,
-    .pfnDAC_EMPTY_1_Handler        = ( void * ) DAC_EMPTY_1_Handler,
-    .pfnDAC_RESRDY_0_Handler       = ( void * ) DAC_RESRDY_0_Handler,
-    .pfnDAC_RESRDY_1_Handler       = ( void * ) DAC_RESRDY_1_Handler,
-    .pfnI2S_Handler                = ( void * ) I2S_Handler,
-    .pfnPCC_Handler                = ( void * ) PCC_Handler,
-    .pfnAES_Handler                = ( void * ) AES_Handler,
-    .pfnTRNG_Handler               = ( void * ) TRNG_Handler,
-    .pfnICM_Handler                = ( void * ) ICM_Handler,
-    .pfnPUKCC_Handler              = ( void * ) PUKCC_Handler,
-    .pfnQSPI_Handler               = ( void * ) QSPI_InterruptHandler,
-    .pfnSDHC0_Handler              = ( void * ) SDHC0_Handler,
+    .pfnReset_Handler              = Reset_Handler,
+    .pfnNonMaskableInt_Handler     = NonMaskableInt_Handler,
+    .pfnHardFault_Handler          = HardFault_Handler,
+    .pfnMemoryManagement_Handler   = MemoryManagement_Handler,
+    .pfnBusFault_Handler           = BusFault_Handler,
+    .pfnUsageFault_Handler         = UsageFault_Handler,
+    .pfnSVCall_Handler             = SVCall_Handler,
+    .pfnDebugMonitor_Handler       = DebugMonitor_Handler,
+    .pfnPendSV_Handler             = PendSV_Handler,
+    .pfnSysTick_Handler            = SysTick_Handler,
+    .pfnPM_Handler                 = PM_Handler,
+    .pfnMCLK_Handler               = MCLK_Handler,
+    .pfnOSCCTRL_XOSC0_Handler      = OSCCTRL_XOSC0_Handler,
+    .pfnOSCCTRL_XOSC1_Handler      = OSCCTRL_XOSC1_Handler,
+    .pfnOSCCTRL_DFLL_Handler       = OSCCTRL_DFLL_Handler,
+    .pfnOSCCTRL_DPLL0_Handler      = OSCCTRL_DPLL0_Handler,
+    .pfnOSCCTRL_DPLL1_Handler      = OSCCTRL_DPLL1_Handler,
+    .pfnOSC32KCTRL_Handler         = OSC32KCTRL_Handler,
+    .pfnSUPC_OTHER_Handler         = SUPC_OTHER_Handler,
+    .pfnSUPC_BODDET_Handler        = SUPC_BODDET_Handler,
+    .pfnWDT_Handler                = WDT_Handler,
+    .pfnRTC_Handler                = RTC_Handler,
+    .pfnEIC_EXTINT_0_Handler       = EIC_EXTINT_0_InterruptHandler,
+    .pfnEIC_EXTINT_1_Handler       = EIC_EXTINT_1_InterruptHandler,
+    .pfnEIC_EXTINT_2_Handler       = EIC_EXTINT_2_Handler,
+    .pfnEIC_EXTINT_3_Handler       = EIC_EXTINT_3_Handler,
+    .pfnEIC_EXTINT_4_Handler       = EIC_EXTINT_4_Handler,
+    .pfnEIC_EXTINT_5_Handler       = EIC_EXTINT_5_Handler,
+    .pfnEIC_EXTINT_6_Handler       = EIC_EXTINT_6_Handler,
+    .pfnEIC_EXTINT_7_Handler       = EIC_EXTINT_7_InterruptHandler,
+    .pfnEIC_EXTINT_8_Handler       = EIC_EXTINT_8_Handler,
+    .pfnEIC_EXTINT_9_Handler       = EIC_EXTINT_9_Handler,
+    .pfnEIC_EXTINT_10_Handler      = EIC_EXTINT_10_Handler,
+    .pfnEIC_EXTINT_11_Handler      = EIC_EXTINT_11_Handler,
+    .pfnEIC_EXTINT_12_Handler      = EIC_EXTINT_12_Handler,
+    .pfnEIC_EXTINT_13_Handler      = EIC_EXTINT_13_Handler,
+    .pfnEIC_EXTINT_14_Handler      = EIC_EXTINT_14_Handler,
+    .pfnEIC_EXTINT_15_Handler      = EIC_EXTINT_15_Handler,
+    .pfnFREQM_Handler              = FREQM_Handler,
+    .pfnNVMCTRL_0_Handler          = NVMCTRL_0_Handler,
+    .pfnNVMCTRL_1_Handler          = NVMCTRL_1_Handler,
+    .pfnDMAC_0_Handler             = DMAC_0_Handler,
+    .pfnDMAC_1_Handler             = DMAC_1_Handler,
+    .pfnDMAC_2_Handler             = DMAC_2_Handler,
+    .pfnDMAC_3_Handler             = DMAC_3_Handler,
+    .pfnDMAC_OTHER_Handler         = DMAC_OTHER_Handler,
+    .pfnEVSYS_0_Handler            = EVSYS_0_Handler,
+    .pfnEVSYS_1_Handler            = EVSYS_1_Handler,
+    .pfnEVSYS_2_Handler            = EVSYS_2_Handler,
+    .pfnEVSYS_3_Handler            = EVSYS_3_Handler,
+    .pfnEVSYS_OTHER_Handler        = EVSYS_OTHER_Handler,
+    .pfnPAC_Handler                = PAC_Handler,
+    .pfnRAMECC_Handler             = RAMECC_Handler,
+    .pfnSERCOM0_0_Handler          = SERCOM0_0_Handler,
+    .pfnSERCOM0_1_Handler          = SERCOM0_1_Handler,
+    .pfnSERCOM0_2_Handler          = SERCOM0_2_Handler,
+    .pfnSERCOM0_OTHER_Handler      = SERCOM0_OTHER_Handler,
+    .pfnSERCOM1_0_Handler          = SERCOM1_0_Handler,
+    .pfnSERCOM1_1_Handler          = SERCOM1_1_Handler,
+    .pfnSERCOM1_2_Handler          = SERCOM1_2_Handler,
+    .pfnSERCOM1_OTHER_Handler      = SERCOM1_OTHER_Handler,
+    .pfnSERCOM2_0_Handler          = SERCOM2_0_Handler,
+    .pfnSERCOM2_1_Handler          = SERCOM2_1_Handler,
+    .pfnSERCOM2_2_Handler          = SERCOM2_2_Handler,
+    .pfnSERCOM2_OTHER_Handler      = SERCOM2_OTHER_Handler,
+    .pfnSERCOM3_0_Handler          = SERCOM3_0_Handler,
+    .pfnSERCOM3_1_Handler          = SERCOM3_1_Handler,
+    .pfnSERCOM3_2_Handler          = SERCOM3_2_Handler,
+    .pfnSERCOM3_OTHER_Handler      = SERCOM3_OTHER_Handler,
+    .pfnSERCOM4_0_Handler          = SERCOM4_0_Handler,
+    .pfnSERCOM4_1_Handler          = SERCOM4_1_Handler,
+    .pfnSERCOM4_2_Handler          = SERCOM4_2_Handler,
+    .pfnSERCOM4_OTHER_Handler      = SERCOM4_OTHER_Handler,
+    .pfnSERCOM5_0_Handler          = SERCOM5_0_Handler,
+    .pfnSERCOM5_1_Handler          = SERCOM5_1_Handler,
+    .pfnSERCOM5_2_Handler          = SERCOM5_2_Handler,
+    .pfnSERCOM5_OTHER_Handler      = SERCOM5_OTHER_Handler,
+    .pfnUSB_OTHER_Handler          = USB_OTHER_Handler,
+    .pfnUSB_SOF_HSOF_Handler       = USB_SOF_HSOF_Handler,
+    .pfnUSB_TRCPT0_Handler         = USB_TRCPT0_Handler,
+    .pfnUSB_TRCPT1_Handler         = USB_TRCPT1_Handler,
+    .pfnTCC0_OTHER_Handler         = TCC0_OTHER_Handler,
+    .pfnTCC0_MC0_Handler           = TCC0_MC0_Handler,
+    .pfnTCC0_MC1_Handler           = TCC0_MC1_Handler,
+    .pfnTCC0_MC2_Handler           = TCC0_MC2_Handler,
+    .pfnTCC0_MC3_Handler           = TCC0_MC3_Handler,
+    .pfnTCC0_MC4_Handler           = TCC0_MC4_Handler,
+    .pfnTCC0_MC5_Handler           = TCC0_MC5_Handler,
+    .pfnTCC1_OTHER_Handler         = TCC1_OTHER_Handler,
+    .pfnTCC1_MC0_Handler           = TCC1_MC0_Handler,
+    .pfnTCC1_MC1_Handler           = TCC1_MC1_Handler,
+    .pfnTCC1_MC2_Handler           = TCC1_MC2_Handler,
+    .pfnTCC1_MC3_Handler           = TCC1_MC3_Handler,
+    .pfnTCC2_OTHER_Handler         = TCC2_OTHER_Handler,
+    .pfnTCC2_MC0_Handler           = TCC2_MC0_Handler,
+    .pfnTCC2_MC1_Handler           = TCC2_MC1_Handler,
+    .pfnTCC2_MC2_Handler           = TCC2_MC2_Handler,
+    .pfnTCC3_OTHER_Handler         = TCC3_OTHER_Handler,
+    .pfnTCC3_MC0_Handler           = TCC3_MC0_Handler,
+    .pfnTCC3_MC1_Handler           = TCC3_MC1_Handler,
+    .pfnTCC4_OTHER_Handler         = TCC4_OTHER_Handler,
+    .pfnTCC4_MC0_Handler           = TCC4_MC0_Handler,
+    .pfnTCC4_MC1_Handler           = TCC4_MC1_Handler,
+    .pfnTC0_Handler                = TC0_TimerInterruptHandler,
+    .pfnTC1_Handler                = TC1_Handler,
+    .pfnTC2_Handler                = TC2_Handler,
+    .pfnTC3_Handler                = TC3_Handler,
+    .pfnTC4_Handler                = TC4_Handler,
+    .pfnTC5_Handler                = TC5_Handler,
+    .pfnPDEC_OTHER_Handler         = PDEC_OTHER_Handler,
+    .pfnPDEC_MC0_Handler           = PDEC_MC0_Handler,
+    .pfnPDEC_MC1_Handler           = PDEC_MC1_Handler,
+    .pfnADC0_OTHER_Handler         = ADC0_OTHER_Handler,
+    .pfnADC0_RESRDY_Handler        = ADC0_RESRDY_Handler,
+    .pfnADC1_OTHER_Handler         = ADC1_OTHER_Handler,
+    .pfnADC1_RESRDY_Handler        = ADC1_RESRDY_Handler,
+    .pfnAC_Handler                 = AC_Handler,
+    .pfnDAC_OTHER_Handler          = DAC_OTHER_Handler,
+    .pfnDAC_EMPTY_0_Handler        = DAC_EMPTY_0_Handler,
+    .pfnDAC_EMPTY_1_Handler        = DAC_EMPTY_1_Handler,
+    .pfnDAC_RESRDY_0_Handler       = DAC_RESRDY_0_Handler,
+    .pfnDAC_RESRDY_1_Handler       = DAC_RESRDY_1_Handler,
+    .pfnI2S_Handler                = I2S_Handler,
+    .pfnPCC_Handler                = PCC_Handler,
+    .pfnAES_Handler                = AES_Handler,
+    .pfnTRNG_Handler               = TRNG_Handler,
+    .pfnICM_Handler                = ICM_Handler,
+    .pfnPUKCC_Handler              = PUKCC_Handler,
+    .pfnQSPI_Handler               = QSPI_InterruptHandler,
+    .pfnSDHC0_Handler              = SDHC0_Handler,
 
 
 };

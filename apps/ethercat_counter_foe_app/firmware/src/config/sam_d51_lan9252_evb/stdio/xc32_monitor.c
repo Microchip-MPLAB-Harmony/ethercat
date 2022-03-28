@@ -47,9 +47,12 @@ void _mon_putc(char c);
 
 int _mon_getc(int canblock)
 {
+   (void)canblock;
    return 0;
 }
 
 void _mon_putc(char c)
 {
+   (void)c;
 }
+

@@ -52,7 +52,6 @@ extern int main(void);
 extern void __attribute__((long_call)) __libc_init_array(void);
 
 /* Device Vector information is available in interrupt.c file */
-
 __STATIC_INLINE void FPU_Enable(void);
 
 #if (__ARM_FP==14) || (__ARM_FP==4)

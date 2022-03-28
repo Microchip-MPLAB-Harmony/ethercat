@@ -4,6 +4,24 @@ attributes: {id: qspi}
 children:
 - type: Symbols
   children:
+  - type: File
+    attributes: {id: QSPISPI_HEADER2}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
+  - type: File
+    attributes: {id: QSPISPI_SOURCE2}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
   - type: Integer
     attributes: {id: QSPI_BAUD_RATE}
     children:
@@ -33,6 +51,15 @@ children:
       children:
       - type: User
         attributes: {value: '4'}
+  - type: File
+    attributes: {id: QSPI_HEADER2}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'false'}
   - type: KeyValueSet
     attributes: {id: QSPI_LOOPEN}
     children:
@@ -52,10 +79,25 @@ children:
   - type: KeyValueSet
     attributes: {id: QSPI_SMM}
     children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: readOnly}
+        children:
+        - {type: Value, value: 'true'}
     - type: Values
       children:
       - type: Dynamic
         attributes: {id: qspi, value: '0'}
+  - type: File
+    attributes: {id: QSPI_SOURCE1}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'false'}
 - type: Attachments
   children:
   - type: DirectCapability
@@ -71,5 +113,14 @@ children:
         attributes: {id: targetAttachmentID}
         children:
         - {type: Value, value: LAN9252_SPI_Dependency}
+  - type: DirectCapability
+    attributes: {id: QSPI_SQI}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'false'}
 - type: ElementPosition
   attributes: {x: '47', y: '143', id: qspi}

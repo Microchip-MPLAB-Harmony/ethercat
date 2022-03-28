@@ -1,4 +1,4 @@
-<config configName="same53_lan9255_sqi_evb" projectName="ethercat_counter_foe_app" configVersion="1.1" device="LAN9255ZMX020" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.4.1">
+<config configName="same53_lan9255_sqi_evb" projectName="ethercat_counter_foe_app" configVersion="1.1" device="LAN9255ZMX020" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.4.2">
    <usedPackages class="java.util.ArrayList"/>
    <usedClasses class="java.util.TreeMap">
       <entry>
@@ -47,7 +47,7 @@
       </entry>
    </usedClasses>
    <usedLibraries class="java.util.ArrayList">
-      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.harmony.Harmony3Library" version="1.0.8"/>
+      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.harmony.Harmony3Library" version="1.1.0"/>
    </usedLibraries>
    <tokenMap class="java.util.TreeMap">
       <entry>
@@ -70,7 +70,7 @@
         &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;dfp&quot; x=&quot;340&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;eic&quot; x=&quot;11&quot; y=&quot;280&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;5&quot; id=&quot;ethercat_apps_config&quot; x=&quot;408&quot; y=&quot;139&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;6&quot; id=&quot;ethercat_lan9255&quot; x=&quot;237&quot; y=&quot;139&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;6&quot; id=&quot;ethercat_lan9255&quot; x=&quot;232&quot; y=&quot;141&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;7&quot; id=&quot;evsys&quot; x=&quot;180&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;8&quot; id=&quot;nvmctrl&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;9&quot; id=&quot;qspi&quot; x=&quot;9&quot; y=&quot;124&quot;/&gt;
@@ -3697,7 +3697,7 @@
       </entry>
       <entry>
          <file>..\src\config\same53_lan9255_sqi_evb\driver\lan9255\drv_lan9255_ecat_util.h</file>
-         <hash>f4b593a469e8074362304cddcaf696803d5d8b7f9529b1972ebb59af17589ea3</hash>
+         <hash>957360ecab1a3ec66af8a04916652dd585101300d6f662765d8cbec86995b439</hash>
       </entry>
       <entry>
          <file>..\src\packs\LAN9255ZMX020_DFP\instance\tcc1.h</file>
@@ -3821,7 +3821,7 @@
       </entry>
       <entry>
          <file>..\src\config\same53_lan9255_sqi_evb\driver\lan9255\drv_lan9255_definitions.h</file>
-         <hash>843183d83b0e5c1875735800929cd8822e48dc77c97b1e157113fc2a0d4567c3</hash>
+         <hash>4b0f96c0e7b84fa7069b1e780b76265637c9c42edbe37a161f2aa521a751d708</hash>
       </entry>
       <entry>
          <file>..\src\config\same53_lan9255_sqi_evb\peripheral\cmcc\plib_cmcc.h</file>
@@ -3877,7 +3877,7 @@
       </entry>
       <entry>
          <file>..\src\config\same53_lan9255_sqi_evb\peripheral\evsys\plib_evsys.c</file>
-         <hash>b2e1a8004049e687fc5544133f3346f743ced50cdaf860c8e3c7f58df3cc163f</hash>
+         <hash>171913270aa095f1e8ff9192995129ff7bab22e5c793c4223f9046802e69d1e6</hash>
       </entry>
       <entry>
          <file>..\src\config\same53_lan9255_sqi_evb\peripheral\evsys\plib_evsys.h</file>
@@ -3949,7 +3949,7 @@
       </entry>
       <entry>
          <file>..\src\config\same53_lan9255_sqi_evb\peripheral\eic\plib_eic.c</file>
-         <hash>1cd425a11c1403f94250b455f268ad82da3f9ed40e3a4fce0aa4abb78d851d9a</hash>
+         <hash>2665ce65fed7a6b6ace38d7d3b082621b74f24d0ba8964799dec1859493222cb</hash>
       </entry>
       <entry>
          <file>..\src\packs\CMSIS\CMSIS\Core\Include\core_cm4.h</file>
@@ -4097,7 +4097,7 @@
       </entry>
       <entry>
          <file>..\src\config\same53_lan9255_sqi_evb\peripheral\clock\plib_clock.c</file>
-         <hash>ce11509b9f87ac405fe7258fcd17f4d26072a3b13b1a1705aad62c3cb2d75d94</hash>
+         <hash>1bc6799a5e06014725f15d3558bd50d7e9cc954ce305e306606ebaf95e7d66e8</hash>
       </entry>
       <entry>
          <file>..\src\packs\LAN9255ZMX020_DFP\component\dsu.h</file>
@@ -4253,11 +4253,11 @@
       </entry>
       <entry>
          <file>..\src\config\same53_lan9255_sqi_evb\ethercat_foe.ld</file>
-         <hash>bc2f633af405ecff1276a1dcc6267eb9ae63d3fd162f97f517b4868f0d7683ab</hash>
+         <hash>2333489e6a831e4b1f343dfe67f586bc3da78c3df52e0816bc512127d538c3fb</hash>
       </entry>
       <entry>
          <file>..\src\config\same53_lan9255_sqi_evb\driver\lan9255\drv_lan9255.c</file>
-         <hash>9cd5121310c3287f2c45d455c92e34056f46a668fafc58df77eaf8f3fd7dcc92</hash>
+         <hash>a1e428615b3fde55ea893f50c66a9c80670edd79d781f9ba96572c612cff1a99</hash>
       </entry>
       <entry>
          <file>..\src\packs\LAN9255ZMX020_DFP\component\aes.h</file>
@@ -4281,11 +4281,11 @@
       </entry>
       <entry>
          <file>..\src\config\same53_lan9255_sqi_evb\driver\lan9255\drv_lan9255.h</file>
-         <hash>3bd99036f6e4c7f0b1b8fbede2e5fadec8c2745c426e98de078a6e3a64769b2f</hash>
+         <hash>31c1a62690710fb16bc5c6b9697c44eae6001357548debc3e425e2b840976ca8</hash>
       </entry>
       <entry>
          <file>..\src\config\same53_lan9255_sqi_evb\peripheral\nvic\plib_nvic.c</file>
-         <hash>4de5b81d6b40b641ca8a33e2f1461ec6886e978f7dfbaeb3bc5cf3924485aac3</hash>
+         <hash>98d739e50b82533279c66a846495a7601d2ae710357e2b35eff97125ba1ef390</hash>
       </entry>
       <entry>
          <file>..\src\packs\LAN9255ZMX020_DFP\component\trng.h</file>

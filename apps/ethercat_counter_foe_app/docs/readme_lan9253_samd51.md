@@ -42,7 +42,7 @@ The following tools will be used to program and debug the application on the tar
 
 The following development board will be used for EtherCAT application development and run the application.
 
-  * [LAN9253 - EtherCAT Client Controller evaluation kit with SAMD51 Microcontroller](https://www.microchip.com/DevelopmentTools/ProductDetails/PartNO/EV44C93A#additional-summary)
+  * [LAN9253 - EtherCAT Client Controller evaluation kit with SAMD51 Microcontroller](https://www.microchip.com/en-us/development-tool/EV50P30A)
 
     The instructions in this guide are also  applicable to other development boards with LAN9253 EtherCAT Client device. Hardware settings are board dependent and may vary between boards.
 

@@ -43,6 +43,7 @@
 
 #include "plib_qspi_spi.h"
 #include "string.h" // memmove
+#include "interrupts.h"
 
 qspi_spi_obj qspiObj;
 

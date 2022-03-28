@@ -11,6 +11,13 @@ children:
       children:
       - type: User
         attributes: {value: '32'}
+  - type: String
+    attributes: {id: ETHERCAT_SLAVESTACK_DIRECTORY_PATH}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'D:\microchip\h3\ethercat\slave_stack'}
   - type: File
     attributes: {id: SSC_LIST_FILE0}
     children:
@@ -20,6 +27,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -45,6 +56,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -66,6 +81,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -91,6 +110,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -112,6 +135,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -137,6 +164,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -162,6 +193,35 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: eeprom.h}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/eeprom.h'}
+  - type: File
+    attributes: {id: SSC_LIST_FILE15}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -174,8 +234,12 @@ children:
         attributes: {id: source}
         children:
         - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/emcy.c'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: SOURCE}
   - type: File
-    attributes: {id: SSC_LIST_FILE15}
+    attributes: {id: SSC_LIST_FILE16}
     children:
     - type: Attributes
       children:
@@ -183,6 +247,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -200,7 +268,7 @@ children:
         children:
         - {type: Value, value: HEADER}
   - type: File
-    attributes: {id: SSC_LIST_FILE16}
+    attributes: {id: SSC_LIST_FILE17}
     children:
     - type: Attributes
       children:
@@ -208,6 +276,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -220,12 +292,8 @@ children:
         attributes: {id: source}
         children:
         - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/esc.h'}
-      - type: String
-        attributes: {id: type}
-        children:
-        - {type: Value, value: HEADER}
   - type: File
-    attributes: {id: SSC_LIST_FILE17}
+    attributes: {id: SSC_LIST_FILE18}
     children:
     - type: Attributes
       children:
@@ -233,6 +301,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -245,8 +317,12 @@ children:
         attributes: {id: source}
         children:
         - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/foeappl.c'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: SOURCE}
   - type: File
-    attributes: {id: SSC_LIST_FILE18}
+    attributes: {id: SSC_LIST_FILE19}
     children:
     - type: Attributes
       children:
@@ -254,6 +330,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -266,31 +346,6 @@ children:
         attributes: {id: source}
         children:
         - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/foeappl.h'}
-      - type: String
-        attributes: {id: type}
-        children:
-        - {type: Value, value: HEADER}
-  - type: File
-    attributes: {id: SSC_LIST_FILE19}
-    children:
-    - type: Attributes
-      children:
-      - type: String
-        attributes: {id: dest}
-        children:
-        - {type: Value, value: ../../slave_stack}
-      - type: String
-        attributes: {id: name}
-        children:
-        - {type: Value, value: mailbox.c}
-      - type: String
-        attributes: {id: project}
-        children:
-        - {type: Value, value: slave_stack\}
-      - type: String
-        attributes: {id: source}
-        children:
-        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/mailbox.c'}
   - type: File
     attributes: {id: SSC_LIST_FILE2}
     children:
@@ -300,6 +355,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -325,6 +384,39 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
+      - type: String
+        attributes: {id: name}
+        children:
+        - {type: Value, value: mailbox.c}
+      - type: String
+        attributes: {id: project}
+        children:
+        - {type: Value, value: slave_stack\}
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/mailbox.c'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: SOURCE}
+  - type: File
+    attributes: {id: SSC_LIST_FILE21}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: dest}
+        children:
+        - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -337,12 +429,8 @@ children:
         attributes: {id: source}
         children:
         - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/mailbox.h'}
-      - type: String
-        attributes: {id: type}
-        children:
-        - {type: Value, value: HEADER}
   - type: File
-    attributes: {id: SSC_LIST_FILE21}
+    attributes: {id: SSC_LIST_FILE22}
     children:
     - type: Attributes
       children:
@@ -350,6 +438,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -362,8 +454,12 @@ children:
         attributes: {id: source}
         children:
         - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/objdef.c'}
+      - type: String
+        attributes: {id: type}
+        children:
+        - {type: Value, value: SOURCE}
   - type: File
-    attributes: {id: SSC_LIST_FILE22}
+    attributes: {id: SSC_LIST_FILE23}
     children:
     - type: Attributes
       children:
@@ -371,6 +467,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -388,31 +488,6 @@ children:
         children:
         - {type: Value, value: HEADER}
   - type: File
-    attributes: {id: SSC_LIST_FILE23}
-    children:
-    - type: Attributes
-      children:
-      - type: String
-        attributes: {id: dest}
-        children:
-        - {type: Value, value: ../../slave_stack}
-      - type: String
-        attributes: {id: name}
-        children:
-        - {type: Value, value: SAMD51_EtherCAT_Slave.esp}
-      - type: String
-        attributes: {id: project}
-        children:
-        - {type: Value, value: slave_stack\}
-      - type: String
-        attributes: {id: source}
-        children:
-        - {type: Value, value: 'D:/microchip/h3/ethercat/slave_stack/SAMD51_EtherCAT_Slave.esp'}
-      - type: String
-        attributes: {id: type}
-        children:
-        - {type: Value, value: HEADER}
-  - type: File
     attributes: {id: SSC_LIST_FILE24}
     children:
     - type: Attributes
@@ -421,6 +496,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -446,6 +525,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -471,6 +554,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -496,6 +583,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -521,6 +612,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -546,6 +641,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -567,6 +666,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -592,6 +695,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -613,6 +720,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -638,6 +749,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -659,6 +774,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:
@@ -684,6 +803,10 @@ children:
         attributes: {id: dest}
         children:
         - {type: Value, value: ../../slave_stack}
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
       - type: String
         attributes: {id: name}
         children:

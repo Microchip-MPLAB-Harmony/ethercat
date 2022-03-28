@@ -20,7 +20,7 @@
 *******************************************************************************/
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-* Copyright (C) 2020 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2022 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -55,14 +55,34 @@
 bool gbALEvtOpEnabled = FALSE; 
 UALEVENT    gEscALEvent;
 
+void develop_test(void)
+{    
+    uint32_t u32WriteMask=1,u32ReadMask=2;
+    do
+    {
+        u32WriteMask++;
+        HW_EscWriteDWord(u32WriteMask, ESC_AL_EVENTMASK_OFFSET);
 
+        u32ReadMask = 0;
+        HW_EscReadDWord(u32ReadMask, ESC_AL_EVENTMASK_OFFSET);
+    }while(u32WriteMask != u32ReadMask);
+	
+}
+
+
+void lan9253_interrupt_init(void)
+{
+    PDI_Timer_Interrupt();
+    
+	PDI_IRQ_Interrupt();
+}
 
 /*******************************************************************************
     Function:
-        uint8_t LAN9252_Init(void)
+        uint8_t LAN9253_Init(void)
 
     Summary:
-        This function initializes LAN9252.
+        This function initializes LAN9253.
 
     Description:
   *****************************************************************************/
@@ -71,166 +91,172 @@ uint8_t LAN9253_Init(void)
 	uint32_t u32intMask;
 	uint32_t u32Data=0;
 #if defined(ETHERCAT_COMM_PROTOCOL_SPI)
-#if ETHERCAT_SPI_INDIRECT_MODE_ACCESS
-	do
-	{
-		MCHP_ESF_PDI_READ(LAN925x_BYTE_ORDER_REG, (uint8_t*)&u32Data, DWORD_LENGTH);
-	} while (0x87654321 != u32Data);
-	
-	// Disable interrupt Interrupt Enable register -->
-	// Write 0x5c - 0x00000001
-	u32Data = 0x00000000;
-	MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_EN, (uint8_t*)&u32Data, DWORD_LENGTH);
+	#if defined ETHERCAT_SPI_INDIRECT_MODE_ACCESS
+		do
+		{
+			MCHP_ESF_PDI_READ(LAN925x_BYTE_ORDER_REG, (uint8_t*)&u32Data, DWORD_LENGTH);
+		} while (0x87654321 != u32Data);
+		
+		// Disable interrupt Interrupt Enable register -->
+		// Write 0x5c - 0x00000001
+		u32Data = 0x00000000;
+		MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_EN, (uint8_t*)&u32Data, DWORD_LENGTH);
     
-    do {
-		u32intMask = 0x93;
-		HW_EscWriteDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
-
-		u32intMask = 0;
-		HW_EscReadDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
-	} while (u32intMask != 0x93);
-    
-	/* Read 0x150 register to check if AL Event output is enabled */
-	u32intMask = 0; 
-	HW_EscReadDWord(u32intMask, ESC_PDI_CONFIG_OFFSET);
+	    do {
+			u32intMask = 0x93;
+			HW_EscWriteDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
 	
-    if (u32intMask & AL_EVENT_ENABLE)
-    {
-		gbALEvtOpEnabled = TRUE; 
-    }
-    	 
-	u32intMask = 0;
-	HW_EscWriteDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);	
-	
-	// IRQ enable,IRQ polarity, IRQ buffer type in Interrupt Configuration
-	// register. Write 0x54 - 0x00000101
-	u32Data = 0x00000101;
+			u32intMask = 0;
+			HW_EscReadDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
+		} while (u32intMask != 0x93);
+	    
+		/* Read 0x150 register to check if AL Event output is enabled */
+		u32intMask = 0; 
+		HW_EscReadDWord(u32intMask, ESC_PDI_CONFIG_OFFSET);
 		
-	MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_CONF, (uint8_t*)&u32Data, DWORD_LENGTH);	
-	
-	// Write in Interrupt Enable register -->
-	// Write 0x5c - 0x00000001
-	u32Data = 0x00000001;
-		
-	MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_EN, (uint8_t*)&u32Data, DWORD_LENGTH);
-		
-	// Read Interrupt Status register
-	MCHP_ESF_PDI_READ(LAN925x_CSR_INT_STS, (uint8_t*)&u32Data, DWORD_LENGTH);
-	
-#elif ETHERCAT_SPI_BECKHOFF_MODE_ACCESS
-
-	do
-	{
-		MCHP_ESF_PDI_READ(LAN925x_BYTE_ORDER_REG, (uint8_t*)&u32Data, DWORD_LENGTH);
-	} while (0x87654321 != u32Data);
-	
-	u32Data = 0x00000000;
-	MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_EN, (uint8_t*)&u32Data, DWORD_LENGTH);
-
-	do 
-    {
-		u32intMask = 0x93;
-		HW_EscWriteDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
-
+	    if (u32intMask & AL_EVENT_ENABLE)
+	    {
+			gbALEvtOpEnabled = TRUE; 
+	    }
+	    	 
 		u32intMask = 0;
-		HW_EscReadDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
-	} while (u32intMask != 0x93);
-
-	/* Read 0x150 register to check if AL Event output is enabled */
-	u32intMask = 0;
-	HW_EscReadDWord(u32intMask, ESC_PDI_CONFIG_OFFSET);
+		HW_EscWriteDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);	
+		
+		// IRQ enable,IRQ polarity, IRQ buffer type in Interrupt Configuration
+		// register. Write 0x54 - 0x00000101
+		u32Data = 0x00000101;
+			
+		MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_CONF, (uint8_t*)&u32Data, DWORD_LENGTH);	
+		
+		// Write in Interrupt Enable register -->
+		// Write 0x5c - 0x00000001
+		u32Data = 0x00000001;
+			
+		MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_EN, (uint8_t*)&u32Data, DWORD_LENGTH);
+			
+		// Read Interrupt Status register
+		MCHP_ESF_PDI_READ(LAN925x_CSR_INT_STS, (uint8_t*)&u32Data, DWORD_LENGTH);
+		
+	#elif defined ETHERCAT_SPI_BECKHOFF_MODE_ACCESS
 	
-	if (u32intMask & AL_EVENT_ENABLE)
-	{
-		gbALEvtOpEnabled = TRUE;
-	}
+		do
+		{
+			MCHP_ESF_PDI_READ(LAN925x_BYTE_ORDER_REG, (uint8_t*)&u32Data, DWORD_LENGTH);
+		} while (0x87654321 != u32Data);
+		
+		u32Data = 0x00000000;
+		MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_EN, (uint8_t*)&u32Data, DWORD_LENGTH);
 	
-	u32intMask = 0;
-	HW_EscWriteDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
+		do 
+	    {
+			u32intMask = 0x93;
+			HW_EscWriteDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
 	
-	u32Data = 0x00000101;
-	MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_CONF, (uint8_t*)&u32Data, DWORD_LENGTH);	
+			u32intMask = 0;
+			HW_EscReadDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
+		} while (u32intMask != 0x93);
 	
-	u32Data = 0x00000001;
-	MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_EN, (uint8_t*)&u32Data, DWORD_LENGTH);
-	
-	MCHP_ESF_PDI_READ(LAN925x_CSR_INT_STS, (uint8_t*)&u32Data, DWORD_LENGTH);
-
-#else
-
-	do
-	{
-		MCHP_ESF_IS_PDI_FUNCTIONAL((uint8_t *)&u32Data);
-	} while (0x87654321 != u32Data);
-
-	MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_EN, (uint8_t*)&u32Data, DWORD_LENGTH);
-
-	do
-    {
-		u32intMask = 0x93;
-		HW_EscWriteDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
-
+		/* Read 0x150 register to check if AL Event output is enabled */
 		u32intMask = 0;
-		HW_EscReadDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
-	} while (u32intMask != 0x93);
+		HW_EscReadDWord(u32intMask, ESC_PDI_CONFIG_OFFSET);
+		
+		if (u32intMask & AL_EVENT_ENABLE)
+		{
+			gbALEvtOpEnabled = TRUE;
+		}
+		
+		u32intMask = 0;
+		HW_EscWriteDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
+		
+		u32Data = 0x00000101;
+		MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_CONF, (uint8_t*)&u32Data, DWORD_LENGTH);	
+	
+	
+		
+		u32Data = 0x00000001;
+		MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_EN, (uint8_t*)&u32Data, DWORD_LENGTH);
+	
+		
+		MCHP_ESF_PDI_READ(LAN925x_CSR_INT_STS, (uint8_t*)&u32Data, DWORD_LENGTH);
 
-	/* Read 0x150 register to check if AL Event output is enabled */
-	u32intMask = 0;
-	HW_EscReadDWord(u32intMask, ESC_PDI_CONFIG_OFFSET);
+	#else
 
-	if (u32intMask & AL_EVENT_ENABLE)
-	{
-		gbALEvtOpEnabled = TRUE;
-	}
-
-	u32intMask = 0;
-	HW_EscWriteDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
-
-	u32Data = 0x00000101;
-	MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_CONF, (uint8_t*)&u32Data, DWORD_LENGTH);
-
-	u32Data = 0x00000001;
-	MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_EN, (uint8_t*)&u32Data, DWORD_LENGTH);
-
-	MCHP_ESF_PDI_FASTREAD(LAN925x_CSR_INT_STS, (uint8_t*)&u32Data, DWORD_LENGTH);
-
-#endif 	
+		do
+		{
+			MCHP_ESF_PDI_READ(LAN925x_BYTE_ORDER_REG, (uint8_t*)&u32Data, DWORD_LENGTH);
+		} while (0x87654321 != u32Data);
+	
+		// Disable interrupt Interrupt Enable register -->
+		// Write 0x5c - 0x00000001
+		u32Data = 0x00000000;
+		MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_EN, (uint8_t*)&u32Data, DWORD_LENGTH);
+	
+		do
+	    {
+			u32intMask = 0x93;
+			HW_EscWriteDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
+	
+			u32intMask = 0;
+			HW_EscReadDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
+		} while (u32intMask != 0x93);
+	
+		/* Read 0x150 register to check if AL Event output is enabled */
+		u32intMask = 0;
+		HW_EscReadDWord(u32intMask, ESC_PDI_CONFIG_OFFSET);
+	
+		if (u32intMask & AL_EVENT_ENABLE)
+		{
+			gbALEvtOpEnabled = TRUE;
+		}
+	
+		u32intMask = 0;
+		HW_EscWriteDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
+	
+		u32Data = 0x00000101;
+		MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_CONF, (uint8_t*)&u32Data, DWORD_LENGTH);
+	
+		u32Data = 0x00000001;
+		MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_EN, (uint8_t*)&u32Data, DWORD_LENGTH);
+	
+		MCHP_ESF_PDI_FASTREAD(LAN925x_CSR_INT_STS, (uint8_t*)&u32Data, DWORD_LENGTH);
+	
+	#endif 	
 #endif
 
 #if defined(ETHERCAT_COMM_PROTOCOL_SQI)
-#if defined (ETHERCAT_SQI_INDIRECT_MODE_ACCESS) || defined (ETHERCAT_SQI_DIRECT_MODE_ACCESS)
+	#if defined (ETHERCAT_SQI_INDIRECT_MODE_ACCESS) || defined (ETHERCAT_SQI_DIRECT_MODE_ACCESS)
   
-	u32Data = 0x00000000;
-	/* Read the Byte Test register */
-	do
-	{
-		MCHP_ESF_PDI_READ(LAN925x_BYTE_ORDER_REG, (uint8_t*)&u32Data, DWORD_LENGTH);
-	} while (0x87654321 != u32Data);
+        u32Data = 0x00000000;
+        /* Read the Byte Test register */
+        do
+        {
+            MCHP_ESF_PDI_READ(LAN925x_BYTE_ORDER_REG, (uint8_t*)&u32Data, DWORD_LENGTH);
+        } while (0x87654321 != u32Data);
 
-    // Disable interrupt Interrupt Enable register -->
-	// Write 0x5c - 0x00000000
-	u32Data = 0x00000000;
-    MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_EN, (uint8_t*)&u32Data, DWORD_LENGTH);
-    
-	do {
-		u32intMask = 0x93;
-		HW_EscWriteDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
+        // Disable interrupt Interrupt Enable register -->
+        // Write 0x5c - 0x00000000
+        u32Data = 0x00000000;
+        MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_EN, (uint8_t*)&u32Data, DWORD_LENGTH);
 
-		u32intMask = 0;
-		HW_EscReadDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
-	} while (u32intMask != 0x93);
-    
-    u32intMask = 0;
-	HW_EscWriteDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
+        do {
+            u32intMask = 0x93;
+            HW_EscWriteDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
 
-	u32Data = 0x00000101;
-	MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_CONF, (uint8_t*)&u32Data, DWORD_LENGTH);
+            u32intMask = 0;
+            HW_EscReadDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
+        } while (u32intMask != 0x93);
 
-	u32Data = 0x00000001;
-	MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_EN, (uint8_t*)&u32Data, DWORD_LENGTH);
+        u32intMask = 0;
+        HW_EscWriteDWord(u32intMask, ESC_AL_EVENTMASK_OFFSET);
 
-	MCHP_ESF_PDI_READ(LAN925x_CSR_INT_STS, (uint8_t*)&u32Data, DWORD_LENGTH);
-#endif  
+        u32Data = 0x00000101;
+        MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_CONF, (uint8_t*)&u32Data, DWORD_LENGTH);
+
+        u32Data = 0x00000001;
+        MCHP_ESF_PDI_WRITE(LAN925x_CSR_INT_EN, (uint8_t*)&u32Data, DWORD_LENGTH);
+
+        MCHP_ESF_PDI_READ(LAN925x_CSR_INT_STS, (uint8_t*)&u32Data, DWORD_LENGTH);
+    #endif  
 #endif
 #ifdef DC_SUPPORTED
 	PDI_Init_SYNC_Interrupts();
@@ -242,6 +268,8 @@ uint8_t LAN9253_Init(void)
 
 	return 0;
 }
+
+
 
 /*******************************************************************************
 Function:
@@ -270,102 +298,108 @@ Description:
 uint16_t HW_GetALEventRegister(void)
 {
 #if defined (ETHERCAT_COMM_PROTOCOL_SPI)    
-#if ETHERCAT_SPI_INDIRECT_MODE_ACCESS 	
-    UINT32_VAL u32Val;
-
-    u32Val.v[0] = 0x20;
-    u32Val.v[1] = 0x02;
-    u32Val.v[2] = 4;
-    u32Val.v[3] = 0xC0;
-
-    PDI_Disable_Global_Interrupt();
-
-    MCHP_ESF_PDI_WRITE(ESC_CSR_CMD_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);	  
-    MCHP_ESF_PDI_FASTREAD(ESC_CSR_DATA_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-
-    PDI_Restore_Global_Interrupt();
-
-    if (gbALEvtOpEnabled)
-    {
-        return gEscALEvent.Word;		  
-    }
-    else
-    {
-        return u32Val.w[0];	  
-    }
-
-#elif ETHERCAT_SPI_BECKHOFF_MODE_ACCESS
-
-    UINT32_VAL u32Val;
-
-    PDI_Disable_Global_Interrupt();
-
-    MCHP_ESF_PDI_READ(ESC_AL_EVENT_OFFSET, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-
-    PDI_Restore_Global_Interrupt();
-
-    return gEscALEvent.Word;
-	  
-#else
-
-    UINT32_VAL u32Val;
-
-    PDI_Disable_Global_Interrupt();
-
-    MCHP_ESF_PDI_FASTREAD(ESC_AL_EVENT_OFFSET, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-
-    PDI_Restore_Global_Interrupt();
-
-    if (gbALEvtOpEnabled)
-    {
-        return gEscALEvent.Word;
-    }
-    else
-    {
-        return u32Val.w[0];
-    }
+	#if defined ETHERCAT_SPI_INDIRECT_MODE_ACCESS 	
+    	UINT32_VAL u32Val;
+    	
+	    u32Val.v[0] = 0x20;
+	    u32Val.v[1] = 0x02;
+	    u32Val.v[2] = 4;
+		u32Val.v[3] = ESC_READ_BYTE;
 	
-#endif
+	    PDI_Disable_Global_Interrupt();
+	
+	    MCHP_ESF_PDI_WRITE(ESC_CSR_CMD_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);	  
+	    MCHP_ESF_PDI_FASTREAD(ESC_CSR_DATA_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
+	
+	    PDI_Restore_Global_Interrupt();
+	
+	    if (gbALEvtOpEnabled)
+	    {
+	        return gEscALEvent.Word;		  
+	    }
+	    else
+	    {
+	        return u32Val.w[0];	  
+	    }
+
+	#elif defined ETHERCAT_SPI_BECKHOFF_MODE_ACCESS
+	
+	    UINT32_VAL u32Val;
+	
+	    PDI_Disable_Global_Interrupt();
+	
+	    MCHP_ESF_PDI_READ(ESC_AL_EVENT_OFFSET, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
+	
+	    PDI_Restore_Global_Interrupt();
+        
+        if(gbALEvtOpEnabled)
+	    {
+	        return gEscALEvent.Word;
+	    }
+	    else
+	    {
+	        return u32Val.w[0];
+	    }
+	
+	#else
+	
+	    UINT32_VAL u32Val;
+	
+	    PDI_Disable_Global_Interrupt();
+	
+	    MCHP_ESF_PDI_FASTREAD(ESC_AL_EVENT_OFFSET, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
+	
+	    PDI_Restore_Global_Interrupt();
+	
+	    if (gbALEvtOpEnabled)
+	    {
+	        return gEscALEvent.Word;
+	    }
+	    else
+	    {
+	        return u32Val.w[0];
+	    }
+		
+	#endif
 #endif
 #if defined (ETHERCAT_COMM_PROTOCOL_SQI)
-#if ETHERCAT_SQI_INDIRECT_MODE_ACCESS 	
-	  UINT32_VAL u32Val;
-
-	  u32Val.v[0] = 0x20;
-	  u32Val.v[1] = 0x02;
-	  u32Val.v[2] = 4;
-	  u32Val.v[3] = ESC_READ_BYTE;
-
-	  PDI_Disable_Global_Interrupt();
-	  
-	  MCHP_ESF_PDI_WRITE(ESC_CSR_CMD_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);	  
-	  MCHP_ESF_PDI_READ(ESC_CSR_DATA_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-
-	  PDI_Restore_Global_Interrupt();
-	  
-	  if (gbALEvtOpEnabled)
-	  {
+	#if defined ETHERCAT_SQI_INDIRECT_MODE_ACCESS 	
+		UINT32_VAL u32Val;
+		
+		u32Val.v[0] = 0x20;
+		u32Val.v[1] = 0x02;
+		u32Val.v[2] = 4;
+		u32Val.v[3] = ESC_READ_BYTE;
+		
+		PDI_Disable_Global_Interrupt();
+		
+		MCHP_ESF_PDI_WRITE(ESC_CSR_CMD_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);	  
+		MCHP_ESF_PDI_READ(ESC_CSR_DATA_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
+		
+		PDI_Restore_Global_Interrupt();
+		
+		if (gbALEvtOpEnabled)
+		{
 		  return gEscALEvent.Word;		  
-	  }
-	  else
-	  {
+		}
+		else
+		{
 		  return u32Val.w[0];	  
-	  }
+		}
+			
+	#elif defined ETHERCAT_SQI_DIRECT_MODE_ACCESS
 
-
-#elif ETHERCAT_SQI_DIRECT_MODE_ACCESS
-
-	  UINT32_VAL u32Val;
-
-	  PDI_Disable_Global_Interrupt();
-	  
-	  MCHP_ESF_PDI_READ(ESC_AL_EVENT_OFFSET, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-	  
-	  PDI_Restore_Global_Interrupt();
-
-	  return u32Val.w[0];
-
-#endif
+		  UINT32_VAL u32Val;
+	
+		  PDI_Disable_Global_Interrupt();
+		  
+		  MCHP_ESF_PDI_READ(ESC_AL_EVENT_OFFSET, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
+		  
+		  PDI_Restore_Global_Interrupt();
+	
+		  return u32Val.w[0];
+	
+	#endif
 #endif
 }
 
@@ -383,80 +417,87 @@ uint16_t HW_GetALEventRegister(void)
 uint16_t HW_GetALEventRegister_Isr(void)
 {
 #if defined (ETHERCAT_COMM_PROTOCOL_SPI)    
-#if ETHERCAT_SPI_INDIRECT_MODE_ACCESS 
-    UINT32_VAL u32Val;
-
-    u32Val.v[0] = 0x20;
-    u32Val.v[1] = 0x02;
-    u32Val.v[2] = 2;
-    u32Val.v[3] = 0xC0;
-
-    MCHP_ESF_PDI_WRITE(ESC_CSR_CMD_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-   
-    //delay_us(5);
-    MCHP_ESF_PDI_FASTREAD(ESC_CSR_DATA_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-
-    if (gbALEvtOpEnabled)
-    {
-        return gEscALEvent.Word;
-    }
-    else
-    {
-        return u32Val.w[0];
-    }
-	  
-#elif ETHERCAT_SPI_BECKHOFF_MODE_ACCESS
-    UINT32_VAL u32Val;
-
-    MCHP_ESF_PDI_READ(ESC_AL_EVENT_OFFSET, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-
-    return gEscALEvent.Word;
-	  
-#else 
-    UINT32_VAL u32Val;
-
-    MCHP_ESF_PDI_FASTREAD(ESC_AL_EVENT_OFFSET, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-
-    if (gbALEvtOpEnabled)
-    {
-        return gEscALEvent.Word;
-    }
-    else
-    {
-        return u32Val.w[0];
-    }
-
-#endif
+	#if defined ETHERCAT_SPI_INDIRECT_MODE_ACCESS 
+	    UINT32_VAL u32Val;
+	
+	    u32Val.v[0] = 0x20;
+	    u32Val.v[1] = 0x02;
+	    u32Val.v[2] = 2;
+		u32Val.v[3] = ESC_READ_BYTE;
+	
+	    MCHP_ESF_PDI_WRITE(ESC_CSR_CMD_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
+	   
+	    MCHP_ESF_PDI_FASTREAD(ESC_CSR_DATA_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
+	
+	    if (gbALEvtOpEnabled)
+	    {
+	        return gEscALEvent.Word;
+	    }
+	    else
+	    {
+	        return u32Val.w[0];
+	    }
+		  
+	#elif defined ETHERCAT_SPI_BECKHOFF_MODE_ACCESS
+	    UINT32_VAL u32Val;
+	
+	    MCHP_ESF_PDI_READ(ESC_AL_EVENT_OFFSET, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
+        
+        if(gbALEvtOpEnabled)
+	    {
+	        return gEscALEvent.Word;
+	    }
+	    else
+	    {
+	        return u32Val.w[0];
+	    }
+	
+	#else 
+	    UINT32_VAL u32Val;
+	
+	    MCHP_ESF_PDI_FASTREAD(ESC_AL_EVENT_OFFSET, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
+	
+	    if (gbALEvtOpEnabled)
+	    {
+	        return gEscALEvent.Word;
+	    }
+	    else
+	    {
+	        return u32Val.w[0];
+	    }
+	
+	#endif
 #endif
     
 #if defined (ETHERCAT_COMM_PROTOCOL_SQI)
-#if ETHERCAT_SQI_INDIRECT_MODE_ACCESS 
-	  UINT32_VAL u32Val;
-
-	  u32Val.v[0] = 0x20;
-	  u32Val.v[1] = 0x02;
-	  u32Val.v[2] = 2;
-	  u32Val.v[3] = ESC_READ_BYTE;
-
-	  MCHP_ESF_PDI_WRITE(ESC_CSR_CMD_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-	  MCHP_ESF_PDI_READ(ESC_CSR_DATA_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-
-	  if (gbALEvtOpEnabled)
-	  {
+	#if defined ETHERCAT_SQI_INDIRECT_MODE_ACCESS 
+		UINT32_VAL u32Val;
+		
+		u32Val.v[0] = 0x20;
+		u32Val.v[1] = 0x02;
+		u32Val.v[2] = 2;
+		u32Val.v[3] = ESC_READ_BYTE;
+		
+		MCHP_ESF_PDI_WRITE(ESC_CSR_CMD_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
+		MCHP_ESF_PDI_READ(ESC_CSR_DATA_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
+		
+		if (gbALEvtOpEnabled)
+		{
 		  return gEscALEvent.Word;
-	  }
-	  else
-	  {
+		}
+		else
+		{
 		  return u32Val.w[0];
-	  }
-#elif ETHERCAT_SQI_DIRECT_MODE_ACCESS
-	  UINT32_VAL u32Val;
-
-	  MCHP_ESF_PDI_READ(ESC_AL_EVENT_OFFSET, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-
-	  return u32Val.w[0];
-  
-#endif
+		}
+	#elif defined ETHERCAT_SQI_DIRECT_MODE_ACCESS
+		UINT32_VAL u32Val;
+		
+		MCHP_ESF_PDI_READ(ESC_AL_EVENT_OFFSET, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
+		return u32Val.w[0];
+		
+		
+		
+	#endif
 #endif
 }
 
@@ -477,124 +518,124 @@ Description:
 void HW_EscRead(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len) 
 {
 #if defined (ETHERCAT_COMM_PROTOCOL_SPI)    
-#if ETHERCAT_SPI_INDIRECT_MODE_ACCESS
+	#if defined ETHERCAT_SPI_INDIRECT_MODE_ACCESS
 
-	UINT32_VAL u32Val;
-	uint8_t u8ValidDataLen, u8Itr;
-	uint8_t *pu8Data = (uint8_t *)pmData;
-
-	while (u16Len > 0) 
-    {
-		u8ValidDataLen = (u16Len > 4) ? 4 : u16Len;
+		UINT32_VAL u32Val;
+		uint8_t u8ValidDataLen, u8Itr;
+		uint8_t *pu8Data = (uint8_t *)pmData;
 	
-		if (u16Address & 1) {
-			u8ValidDataLen = 1;
-		}
-		else if (u16Address & 2)
-		{
-			u8ValidDataLen = (u8ValidDataLen >= 2 ) ? 2 : 1;
-		}
-		else if (u8ValidDataLen < 4)
-		{
-			u8ValidDataLen = (u8ValidDataLen >= 2) ? 2 : 1;
-		}
+		while (u16Len > 0) 
+	    {
+			u8ValidDataLen = (u16Len > 4) ? 4 : u16Len;
+		
+			if (u16Address & 1) {
+				u8ValidDataLen = 1;
+			}
+			else if (u16Address & 2)
+			{
+				u8ValidDataLen = (u8ValidDataLen >= 2 ) ? 2 : 1;
+			}
+			else if (u8ValidDataLen < 4)
+			{
+				u8ValidDataLen = (u8ValidDataLen >= 2) ? 2 : 1;
+			}
+		
+			u32Val.v[0] = (uint8_t)u16Address;
+			u32Val.v[1] = (uint8_t)(u16Address >> 8);
+			u32Val.v[2] = u8ValidDataLen;
+			u32Val.v[3] = 0xC0;
+		
+			PDI_Disable_Global_Interrupt();
+			MCHP_ESF_PDI_WRITE(ESC_CSR_CMD_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
+			MCHP_ESF_PDI_FASTREAD(ESC_CSR_DATA_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
+			PDI_Restore_Global_Interrupt();
+		
+			for (u8Itr = 0; u8Itr < u8ValidDataLen; u8Itr++)
+	        {
+	            *pu8Data++ = u32Val.v[u8Itr];
+	        }
 	
-		u32Val.v[0] = (uint8_t)u16Address;
-		u32Val.v[1] = (uint8_t)(u16Address >> 8);
-		u32Val.v[2] = u8ValidDataLen;
-		u32Val.v[3] = 0xC0;
-	
-		PDI_Disable_Global_Interrupt();
-		MCHP_ESF_PDI_WRITE(ESC_CSR_CMD_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-		MCHP_ESF_PDI_FASTREAD(ESC_CSR_DATA_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-		PDI_Restore_Global_Interrupt();
-	
-		for (u8Itr = 0; u8Itr < u8ValidDataLen; u8Itr++)
-        {
-            *pu8Data++ = u32Val.v[u8Itr];
-        }
-
-		u16Address += u8ValidDataLen;
-		u16Len -= u8ValidDataLen;
-	}
-
-#elif ETHERCAT_SPI_BECKHOFF_MODE_ACCESS
-
-	UINT32_VAL u32Val;
-	uint8_t u8ValidDataLen, u8Itr;
-	uint8_t *pu8Data = (uint8_t *)pmData;
-
-	while (u16Len > 0)
-    {
-		u8ValidDataLen = (u16Len > 4) ? 4 : u16Len;
-	
-		if (u16Address & 1) 
-        {
-			u8ValidDataLen = 1;
-		}
-		else if (u16Address & 2)
-		{
-			u8ValidDataLen = (u8ValidDataLen >= 2 ) ? 2 : 1;
-		}
-		else if (u8ValidDataLen < 4)
-		{
-			u8ValidDataLen = (u8ValidDataLen >= 2) ? 2 : 1;
+			u16Address += u8ValidDataLen;
+			u16Len -= u8ValidDataLen;
 		}
 	
-		PDI_Disable_Global_Interrupt();
-		MCHP_ESF_PDI_READ(u16Address, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-		PDI_Restore_Global_Interrupt();
+	#elif defined ETHERCAT_SPI_BECKHOFF_MODE_ACCESS
 	
-		for (u8Itr = 0; u8Itr < u8ValidDataLen; u8Itr++)
-        {
-            *pu8Data++ = u32Val.v[u8Itr];
-        }
-
-		u16Address += u8ValidDataLen;
-		u16Len -= u8ValidDataLen;
-	}
-
-#else
-
-	UINT32_VAL u32Val;
-	uint8_t u8ValidDataLen, u8Itr;
-	uint8_t *pu8Data = (uint8_t *)pmData;
-
-	while (u16Len > 0)
-    {
-		u8ValidDataLen = (u16Len > 4) ? 4 : u16Len;
+		UINT32_VAL u32Val;
+		uint8_t u8ValidDataLen, u8Itr;
+		uint8_t *pu8Data = (uint8_t *)pmData;
 	
-		if (u16Address & 1)
-        {
-			u8ValidDataLen = 1;
+		while (u16Len > 0)
+	    {
+			u8ValidDataLen = (u16Len > 4) ? 4 : u16Len;
+		
+			if (u16Address & 0x1) 
+	        {
+				u8ValidDataLen = 1;
+			}
+			else if (u16Address & 0x2)
+			{
+				u8ValidDataLen = (u8ValidDataLen >= 2 ) ? 2 : 1;
+			}
+			else if (u8ValidDataLen < 4)
+			{
+				u8ValidDataLen = (u8ValidDataLen >= 2) ? 2 : 1;
+			}
+		
+			PDI_Disable_Global_Interrupt();
+			MCHP_ESF_PDI_READ(u16Address, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
+			PDI_Restore_Global_Interrupt();
+		
+			for (u8Itr = 0; u8Itr < u8ValidDataLen; u8Itr++)
+	        {
+	            *pu8Data++ = u32Val.v[u8Itr];
+	        }
+	
+			u16Address += u8ValidDataLen;
+			u16Len -= u8ValidDataLen;
 		}
-		else if (u16Address & 2)
-		{
-			u8ValidDataLen = (u8ValidDataLen >= 2 ) ? 2 : 1;
-		}
-		else if (u8ValidDataLen < 4)
-		{
-			u8ValidDataLen = (u8ValidDataLen >= 2) ? 2 : 1;
+	
+	#else
+	
+		UINT32_VAL u32Val;
+		uint8_t u8ValidDataLen, u8Itr;
+		uint8_t *pu8Data = (uint8_t *)pmData;
+	
+		while (u16Len > 0)
+	    {
+			u8ValidDataLen = (u16Len > 4) ? 4 : u16Len;
+		
+			if (u16Address & 0x1)
+	        {
+				u8ValidDataLen = 1;
+			}
+			else if (u16Address & 0x2)
+			{
+				u8ValidDataLen = (u8ValidDataLen >= 2 ) ? 2 : 1;
+			}
+			else if (u8ValidDataLen < 4)
+			{
+				u8ValidDataLen = (u8ValidDataLen >= 2) ? 2 : 1;
+			}
+		
+			PDI_Disable_Global_Interrupt();
+			MCHP_ESF_PDI_FASTREAD(u16Address, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
+			PDI_Restore_Global_Interrupt();
+		
+			for (u8Itr = 0; u8Itr < u8ValidDataLen; u8Itr++)
+	        {
+	            *pu8Data++ = u32Val.v[u8Itr];
+	        }
+	
+			u16Address += u8ValidDataLen;
+			u16Len -= u8ValidDataLen;
 		}
 	
-		PDI_Disable_Global_Interrupt();
-		MCHP_ESF_PDI_FASTREAD(u16Address, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
-		PDI_Restore_Global_Interrupt();
-	
-		for (u8Itr = 0; u8Itr < u8ValidDataLen; u8Itr++)
-        {
-            *pu8Data++ = u32Val.v[u8Itr];
-        }
-
-		u16Address += u8ValidDataLen;
-		u16Len -= u8ValidDataLen;
-	}
-
-#endif
+	#endif
 #endif
 
 #if defined(ETHERCAT_COMM_PROTOCOL_SQI)
-    #if ETHERCAT_SQI_INDIRECT_MODE_ACCESS
+    #if defined ETHERCAT_SQI_INDIRECT_MODE_ACCESS
 
         UINT32_VAL u32Val;
         uint8_t u8ValidDataLen = 0, u8Itr = 0;
@@ -634,7 +675,7 @@ void HW_EscRead(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
             u16Address += u8ValidDataLen;
             u16Len -= u8ValidDataLen;
         }
-    #elif ETHERCAT_SQI_DIRECT_MODE_ACCESS
+    #elif defined ETHERCAT_SQI_DIRECT_MODE_ACCESS
         
         UINT32_VAL u32Val;
         uint8_t u8ValidDataLen = 0, u8Itr = 0;
@@ -690,7 +731,7 @@ void HW_EscRead(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
 void EscRead(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
 {
 #if defined(ETHERCAT_COMM_PROTOCOL_SPI)    
-    #if ETHERCAT_SPI_INDIRECT_MODE_ACCESS
+    #if defined ETHERCAT_SPI_INDIRECT_MODE_ACCESS
         UINT32_VAL u32Val;
         uint8_t u8ValidDataLen, u8Itr;
         uint8_t *pu8Data = (uint8_t *)pmData;
@@ -699,11 +740,11 @@ void EscRead(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
         {
             u8ValidDataLen = (u16Len > 4) ? 4 : u16Len;
 
-            if (u16Address & 1)
+            if (u16Address & 0x1)
             {
                 u8ValidDataLen = 1;
             }
-            else if (u16Address & 2)
+            else if (u16Address & 0x2)
             {
                 u8ValidDataLen = (u8ValidDataLen >= 2 ) ? 2 : 1;
             }
@@ -715,7 +756,7 @@ void EscRead(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
             u32Val.v[0] = (uint8_t)u16Address;
             u32Val.v[1] = (uint8_t)(u16Address >> 8);
             u32Val.v[2] = u8ValidDataLen;
-            u32Val.v[3] = 0xC0;
+            u32Val.v[3] = ESC_READ_BYTE;
 
             MCHP_ESF_PDI_WRITE(ESC_CSR_CMD_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
             MCHP_ESF_PDI_FASTREAD(ESC_CSR_DATA_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
@@ -728,7 +769,7 @@ void EscRead(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
             u16Address += u8ValidDataLen;
             u16Len -= u8ValidDataLen;
         }
-    #elif ETHERCAT_SPI_BECKHOFF_MODE_ACCESS
+    #elif defined ETHERCAT_SPI_BECKHOFF_MODE_ACCESS
 
         UINT32_VAL u32Val;
         uint8_t u8ValidDataLen, u8Itr;
@@ -738,11 +779,11 @@ void EscRead(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
         {
             u8ValidDataLen = (u16Len > 4) ? 4 : u16Len;
 
-            if (u16Address & 1)
+            if (u16Address & 0x1)
             {
                 u8ValidDataLen = 1;
             }
-            else if (u16Address & 2)
+            else if (u16Address & 0x2)
             {
                 u8ValidDataLen = (u8ValidDataLen >= 2 ) ? 2 : 1;
             }
@@ -772,11 +813,11 @@ void EscRead(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
         {
             u8ValidDataLen = (u16Len > 4) ? 4 : u16Len;
 
-            if (u16Address & 1)
+            if (u16Address & 0x1)
             {
                 u8ValidDataLen = 1;
             }
-            else if (u16Address & 2)
+            else if (u16Address & 0x2)
             {
                 u8ValidDataLen = (u8ValidDataLen >= 2 ) ? 2 : 1;
             }
@@ -800,7 +841,7 @@ void EscRead(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
 #endif
 
 #if defined(ETHERCAT_COMM_PROTOCOL_SQI)
-    #if ETHERCAT_SQI_INDIRECT_MODE_ACCESS
+    #if defined ETHERCAT_SQI_INDIRECT_MODE_ACCESS
         UINT32_VAL u32Val;
         uint8_t u8ValidDataLen = 0, u8Itr = 0;
         uint8_t *pu8Data = (uint8_t *)pmData;
@@ -838,7 +879,7 @@ void EscRead(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
             u16Address += u8ValidDataLen;
             u16Len -= u8ValidDataLen;
         }
-    #elif ETHERCAT_SQI_DIRECT_MODE_ACCESS
+    #elif defined ETHERCAT_SQI_DIRECT_MODE_ACCESS
 
         UINT32_VAL u32Val;
         uint8_t u8ValidDataLen = 0, u8Itr = 0;
@@ -908,26 +949,26 @@ void HW_EscReadIsr(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
             UINT32_VAL u32Val;
             uint8_t u8ValidDataLen = 0, u8Itr = 0;
             
-            while (u16Len > 0) 
+            while(u16Len > 0) 
             {
                  
                 u8ValidDataLen = (u16Len > 4) ? 4 : u16Len;
 
-                if (u16Address & 0x1) {
+                if(u16Address & 0x1) {
                     u8ValidDataLen = 1;
                 }
                 else if (u16Address & 0x2)
                 {
                     u8ValidDataLen = (u8ValidDataLen >= 2 ) ? 2 : 1;
                 }
-                else if (u8ValidDataLen < 4)
+                else if(u8ValidDataLen < 4)
                 {
                     u8ValidDataLen = (u8ValidDataLen >= 2) ? 2 : 1;
                 }
 
                 MCHP_ESF_PDI_READ(u16Address, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
 
-                for (u8Itr = 0; u8Itr < u8ValidDataLen; u8Itr++)
+                for(u8Itr = 0; u8Itr < u8ValidDataLen; u8Itr++)
                 {
                     *pu8Data++ = u32Val.v[u8Itr];
                 }
@@ -960,21 +1001,21 @@ void HW_EscReadIsr(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
 void HW_EscWrite(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
 {
 #if defined(ETHERCAT_COMM_PROTOCOL_SPI)    
-    #if ETHERCAT_SPI_INDIRECT_MODE_ACCESS
+    #if defined ETHERCAT_SPI_INDIRECT_MODE_ACCESS
 
         UINT32_VAL u32Val;
-        uint8_t u8ValidDataLen, u8Itr;
+        uint8_t u8ValidDataLen=0, u8Itr=0;
         uint8_t *pu8Data = (uint8_t *)pmData;
 
         while (u16Len > 0)
         {
             u8ValidDataLen = (u16Len > 4) ? 4 : u16Len;
 
-            if (u16Address & 1)
+            if (u16Address & 0x1)
             {
                 u8ValidDataLen = 1;
             }
-            else if (u16Address & 2)
+            else if (u16Address & 0x2)
             {
                 u8ValidDataLen = (u8ValidDataLen >= 2) ? 2 : 1;
             }
@@ -994,7 +1035,7 @@ void HW_EscWrite(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
             u32Val.v[0] = (uint8_t)u16Address;
             u32Val.v[1] = (uint8_t)(u16Address >> 8);
             u32Val.v[2] = u8ValidDataLen;
-            u32Val.v[3] = 0x80;
+            u32Val.v[3] = ESC_WRITE_BYTE;
 
             MCHP_ESF_PDI_WRITE(ESC_CSR_CMD_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
             PDI_Restore_Global_Interrupt();
@@ -1003,7 +1044,7 @@ void HW_EscWrite(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
             u16Len -= u8ValidDataLen;
         }
 
-    #elif ETHERCAT_SPI_BECKHOFF_MODE_ACCESS
+    #elif defined ETHERCAT_SPI_BECKHOFF_MODE_ACCESS
 
         UINT32_VAL u32Val;
         uint8_t u8ValidDataLen, u8Itr;
@@ -1013,11 +1054,11 @@ void HW_EscWrite(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
         {
             u8ValidDataLen = (u16Len > 4) ? 4 : u16Len;
 
-            if (u16Address & 1)
+            if (u16Address & 0x1)
             {
                 u8ValidDataLen = 1;
             }
-            else if (u16Address & 2)
+            else if (u16Address & 0x2)
             {
                 u8ValidDataLen = (u8ValidDataLen >= 2) ? 2 : 1;
             }
@@ -1049,11 +1090,11 @@ void HW_EscWrite(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
         {
             u8ValidDataLen = (u16Len > 4) ? 4 : u16Len;
 
-            if (u16Address & 1)
+            if (u16Address & 0x1)
             {
                 u8ValidDataLen = 1;
             }
-            else if (u16Address & 2)
+            else if (u16Address & 0x2)
             {
                 u8ValidDataLen = (u8ValidDataLen >= 2) ? 2 : 1;
             }
@@ -1078,7 +1119,7 @@ void HW_EscWrite(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
     #endif
 #endif
 #if defined(ETHERCAT_COMM_PROTOCOL_SQI)
-    #if ETHERCAT_SQI_INDIRECT_MODE_ACCESS
+    #if defined ETHERCAT_SQI_INDIRECT_MODE_ACCESS
 
         UINT32_VAL u32Val;
         uint8_t u8ValidDataLen = 0, u8Itr = 0;
@@ -1120,7 +1161,7 @@ void HW_EscWrite(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
             u16Len -= u8ValidDataLen;
         }
 
-    #elif ETHERCAT_SQI_DIRECT_MODE_ACCESS
+    #elif defined ETHERCAT_SQI_DIRECT_MODE_ACCESS
         
         UINT32_VAL u32Val;
         uint8_t u8ValidDataLen = 0, u8Itr = 0;
@@ -1176,7 +1217,7 @@ void HW_EscWrite(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
 void EscWrite(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len) 
 {
 #if defined(ETHERCAT_COMM_PROTOCOL_SPI)    
-    #if ETHERCAT_SPI_INDIRECT_MODE_ACCESS
+    #if defined ETHERCAT_SPI_INDIRECT_MODE_ACCESS
 
         UINT32_VAL u32Val;
         uint8_t u8ValidDataLen, u8Itr;
@@ -1186,11 +1227,11 @@ void EscWrite(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
         {
             u8ValidDataLen = (u16Len > 4) ? 4 : u16Len;
 
-            if (u16Address & 1)
+            if (u16Address & 0x1)
             {
                 u8ValidDataLen = 1;
             }
-            else if (u16Address & 2)
+            else if (u16Address & 0x2)
             {
                 u8ValidDataLen = (u8ValidDataLen >= 2) ? 2 : 1;
             }
@@ -1209,7 +1250,7 @@ void EscWrite(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
             u32Val.v[0] = (uint8_t)u16Address;
             u32Val.v[1] = (uint8_t)(u16Address >> 8);
             u32Val.v[2] = u8ValidDataLen;
-            u32Val.v[3] = 0x80;
+            u32Val.v[3] = ESC_WRITE_BYTE;
 
             MCHP_ESF_PDI_WRITE(ESC_CSR_CMD_REG, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
 
@@ -1217,7 +1258,7 @@ void EscWrite(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
             u16Len -= u8ValidDataLen;
         }
 
-    #elif ETHERCAT_SPI_BECKHOFF_MODE_ACCESS
+    #elif defined ETHERCAT_SPI_BECKHOFF_MODE_ACCESS
 
         UINT32_VAL u32Val;
         uint8_t u8ValidDataLen, u8Itr;
@@ -1227,11 +1268,11 @@ void EscWrite(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
         {
             u8ValidDataLen = (u16Len > 4) ? 4 : u16Len;
 
-            if (u16Address & 1)
+            if (u16Address & 0x1)
             {
                 u8ValidDataLen = 1;
             }
-            else if (u16Address & 2)
+            else if (u16Address & 0x2)
             {
                 u8ValidDataLen = (u8ValidDataLen >= 2) ? 2 : 1;
             }
@@ -1253,18 +1294,18 @@ void EscWrite(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
 
     #else 
         UINT32_VAL u32Val;
-        uint8_t u8ValidDataLen, u8Itr;
+        uint8_t u8ValidDataLen=0, u8Itr=0;
         uint8_t *pu8Data = (uint8_t *)pmData;
 
         while (u16Len > 0)
         {
             u8ValidDataLen = (u16Len > 4) ? 4 : u16Len;
 
-            if (u16Address & 1)
+            if (u16Address & 0x1)
             {
                 u8ValidDataLen = 1;
             }
-            else if (u16Address & 2)
+            else if (u16Address & 0x2)
             {
                 u8ValidDataLen = (u8ValidDataLen >= 2) ? 2 : 1;
             }
@@ -1287,7 +1328,7 @@ void EscWrite(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
     #endif
 #endif
 #if defined(ETHERCAT_COMM_PROTOCOL_SQI)
-    #if ETHERCAT_SQI_INDIRECT_MODE_ACCESS
+    #if defined ETHERCAT_SQI_INDIRECT_MODE_ACCESS
 
         UINT32_VAL u32Val;
         uint8_t u8ValidDataLen = 0, u8Itr = 0;
@@ -1327,7 +1368,7 @@ void EscWrite(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
             u16Len -= u8ValidDataLen;
         }
 
-    #elif ETHERCAT_SQI_DIRECT_MODE_ACCESS
+    #elif defined ETHERCAT_SQI_DIRECT_MODE_ACCESS
 
         UINT32_VAL u32Val;
 		uint8_t u8ValidDataLen = 0, u8Itr = 0;
@@ -1371,7 +1412,7 @@ void HW_EscWriteIsr(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
     if(u16Address>0xfff)
     {
         /* start transmission */
-  #if ETHERCAT_SPI_INDIRECT_MODE_ACCESS	  
+  #if defined ETHERCAT_SPI_INDIRECT_MODE_ACCESS	  
         MCHP_ESF_PDI_WRITE_PDRAM(pu8Data, u16Address, u16Len);
   #else
         MCHP_ESF_PDI_WRITE (u16Address, pu8Data, u16Len);
@@ -1388,7 +1429,7 @@ void HW_EscWriteIsr(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
     if(u16Address>0xfff)
     {
         /* start transmission */
-        #if ETHERCAT_SQI_INDIRECT_MODE_ACCESS	  
+        #if defined ETHERCAT_SQI_INDIRECT_MODE_ACCESS	  
             MCHP_ESF_PDI_WRITE_PDRAM(pu8Data, u16Address, u16Len);
         #else
          
@@ -1443,3 +1484,11 @@ void HW_EscReadMailbox(MEM_ADDR *pData, uint16_t Address, uint16_t Len)
 	//ReadPdRam(pTmpData, Address, Len);
 	HW_EscRead(pData, Address, Len);
 }
+
+
+#if (ETHERCAT_EEPROM_EMULATION_SUPPORT==true)
+uint8_t HW_EepromReload ()
+{
+    return 0;
+}
+#endif

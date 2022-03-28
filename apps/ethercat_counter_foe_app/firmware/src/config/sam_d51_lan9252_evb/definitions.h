@@ -48,12 +48,13 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
-#include "peripheral/nvmctrl/plib_nvmctrl.h"
 #include "peripheral/qspi/plib_qspi_spi.h"
+#include "peripheral/nvmctrl/plib_nvmctrl.h"
 #include "peripheral/evsys/plib_evsys.h"
 #include "peripheral/port/plib_port.h"
 #include "peripheral/clock/plib_clock.h"
 #include "peripheral/nvic/plib_nvic.h"
+#include "peripheral/systick/plib_systick.h"
 #include "peripheral/cmcc/plib_cmcc.h"
 #include "peripheral/eic/plib_eic.h"
 #include "peripheral/tc/plib_tc0.h"
@@ -66,6 +67,9 @@ extern "C" {
 
 #endif
 // DOM-IGNORE-END
+
+/* CPU clock frequency */
+#define CPU_CLOCK_FREQUENCY 120000000
 
 // *****************************************************************************
 // *****************************************************************************

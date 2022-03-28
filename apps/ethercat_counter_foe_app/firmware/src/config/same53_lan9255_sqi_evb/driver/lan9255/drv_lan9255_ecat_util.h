@@ -101,7 +101,7 @@
 /* SQI Direct mode Access */
 #define MCHP_ESF_PDI_WRITE(addr, pdata, len)            ECAT_LAN925x_SQIWrite (addr, pdata, len)
 #define MCHP_ESF_PDI_READ(addr, pdata, len)             ECAT_LAN925x_SQIRead (addr, pdata, len)
-#define MCHP_ESF_PDI_FASTREAD(addr, pdata, len)         
+#define MCHP_ESF_PDI_FASTREAD(addr, pdata, len)			
 #define MCHP_ESF_PDI_READ_PDRAM(pdata, addr, len)		
 #define MCHP_ESF_PDI_FASTREAD_PDRAM(pdata, addr, len)	
 #define MCHP_ESF_PDI_WRITE_PDRAM(pdata, addr, len)		
@@ -326,14 +326,14 @@ typedef union {
 
 void    ECAT_SyncInterruptsInitialization(void);
 void    ECAT_Lan9255_IsPDIFunctional(uint8_t *pbyData);
-uint16_t	ECAT_PDI_TimerGet();
+uint16_t	ECAT_PDI_TimerGet(void);
 void	ECAT_PDI_TimerClear(void);
 void    ECAT_PDI_TimerInterrupt(void);
 void    ECAT_ESCIRQInitialization(void);
 void	ECAT_PDI_TimerStop(void);
 void	ECAT_PDI_TimerStart(void);
 void	ECAT_HWSetlED(uint8_t RunLed, uint8_t ErrLed);
-void	ECAT_Initialization();
+void	ECAT_Initialization(void);
 void    CRITICAL_SECTION_ENTER(void);
 void    CRITICAL_SECTION_LEAVE(void);
 void	ECAT_SQI_SetConfiguration(uint8_t *byDummyByteCnt);

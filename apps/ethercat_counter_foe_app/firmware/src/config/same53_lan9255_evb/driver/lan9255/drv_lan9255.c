@@ -20,7 +20,7 @@
 *******************************************************************************/
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-* Copyright (C) 2020 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2022 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -54,6 +54,10 @@
 
 bool gbALEvtOpEnabled = FALSE; 
 UALEVENT    gEscALEvent;
+void lan9255_interrupt_init(void);
+
+#ifdef ETHERCAT_DEVELOPMENT_TEST
+void develop_test(void);
 
 void develop_test(void)
 {    
@@ -68,7 +72,7 @@ void develop_test(void)
     }while(u32WriteMask != u32ReadMask);
 	
 }
-
+#endif
 
 void lan9255_interrupt_init(void)
 {
@@ -296,7 +300,8 @@ uint16_t HW_GetALEventRegister(void)
 #if defined (ETHERCAT_COMM_PROTOCOL_SPI)    
 	#if defined ETHERCAT_SPI_INDIRECT_MODE_ACCESS 	
 	    UINT32_VAL u32Val;
-	
+        u32Val.w[0] = 0;
+        u32Val.w[1] = 0;
 	    u32Val.v[0] = 0x20;
 	    u32Val.v[1] = 0x02;
 	    u32Val.v[2] = 4;
@@ -321,6 +326,8 @@ uint16_t HW_GetALEventRegister(void)
 	#elif defined ETHERCAT_SPI_BECKHOFF_MODE_ACCESS
 	
 	    UINT32_VAL u32Val;
+        u32Val.w[0] = 0;
+        u32Val.w[1] = 0;
 	
 	    PDI_Disable_Global_Interrupt();
 	
@@ -341,6 +348,8 @@ uint16_t HW_GetALEventRegister(void)
 	
 	    UINT32_VAL u32Val;
 	
+        u32Val.w[0] = 0;
+        u32Val.w[1] = 0;
 	    PDI_Disable_Global_Interrupt();
 	
 	    MCHP_ESF_PDI_FASTREAD(ESC_AL_EVENT_OFFSET, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
@@ -361,7 +370,8 @@ uint16_t HW_GetALEventRegister(void)
 #if defined (ETHERCAT_COMM_PROTOCOL_SQI)
     #if defined ETHERCAT_SQI_INDIRECT_MODE_ACCESS 	
         UINT32_VAL u32Val;
-
+        u32Val.w[0] = 0;
+        u32Val.w[1] = 0;
         u32Val.v[0] = 0x20;
         u32Val.v[1] = 0x02;
         u32Val.v[2] = 4;
@@ -386,7 +396,8 @@ uint16_t HW_GetALEventRegister(void)
     #elif defined ETHERCAT_SQI_DIRECT_MODE_ACCESS
 
         UINT32_VAL u32Val;
-
+        u32Val.w[0] = 0;
+        u32Val.w[1] = 0;
         PDI_Disable_Global_Interrupt();
 
         MCHP_ESF_PDI_READ(ESC_AL_EVENT_OFFSET, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
@@ -415,7 +426,8 @@ uint16_t HW_GetALEventRegister_Isr(void)
 #if defined (ETHERCAT_COMM_PROTOCOL_SPI)    
 	#if defined ETHERCAT_SPI_INDIRECT_MODE_ACCESS 
 	    UINT32_VAL u32Val;
-	
+        u32Val.w[0] = 0;
+        u32Val.w[1] = 0;
 	    u32Val.v[0] = 0x20;
 	    u32Val.v[1] = 0x02;
 	    u32Val.v[2] = 2;
@@ -436,7 +448,8 @@ uint16_t HW_GetALEventRegister_Isr(void)
 		  
 	#elif defined ETHERCAT_SPI_BECKHOFF_MODE_ACCESS
 	    UINT32_VAL u32Val;
-	
+        u32Val.w[0] = 0;
+        u32Val.w[1] = 0;
 	    MCHP_ESF_PDI_READ(ESC_AL_EVENT_OFFSET, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
         
         if(gbALEvtOpEnabled)
@@ -450,7 +463,8 @@ uint16_t HW_GetALEventRegister_Isr(void)
 	
 	#else 
 	    UINT32_VAL u32Val;
-	
+        u32Val.w[0] = 0;
+        u32Val.w[1] = 0;
 	    MCHP_ESF_PDI_FASTREAD(ESC_AL_EVENT_OFFSET, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
 	
 	    if (gbALEvtOpEnabled)
@@ -468,7 +482,8 @@ uint16_t HW_GetALEventRegister_Isr(void)
 #if defined (ETHERCAT_COMM_PROTOCOL_SQI)
     #if defined ETHERCAT_SQI_INDIRECT_MODE_ACCESS 
         UINT32_VAL u32Val;
-
+        u32Val.w[0] = 0;
+        u32Val.w[1] = 0;
         u32Val.v[0] = 0x20;
         u32Val.v[1] = 0x02;
         u32Val.v[2] = 2;
@@ -487,7 +502,8 @@ uint16_t HW_GetALEventRegister_Isr(void)
         }
     #elif defined ETHERCAT_SQI_DIRECT_MODE_ACCESS
         UINT32_VAL u32Val;
-
+        u32Val.w[0] = 0;
+        u32Val.w[1] = 0;
         MCHP_ESF_PDI_READ(ESC_AL_EVENT_OFFSET, (uint8_t*)&u32Val.Val, DWORD_LENGTH);
 
         return u32Val.w[0];
@@ -593,6 +609,11 @@ void HW_EscRead(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
 	#else
 	
 		UINT32_VAL u32Val;
+        u32Val.v[0] = 0;
+        u32Val.v[1] = 0;
+        u32Val.v[2] = 0;
+        u32Val.v[3] = 0;
+        
 		uint8_t u8ValidDataLen, u8Itr;
 		uint8_t *pu8Data = (uint8_t *)pmData;
 	
@@ -803,7 +824,10 @@ void EscRead(MEM_ADDR *pmData, uint16_t u16Address, uint16_t u16Len)
         UINT32_VAL u32Val;
         uint8_t u8ValidDataLen, u8Itr;
         uint8_t *pu8Data = (uint8_t *)pmData;
-
+        u32Val.v[0] = 0;
+        u32Val.v[1] = 0;
+        u32Val.v[2] = 0;
+        u32Val.v[3] = 0;
         while (u16Len > 0)
         {
             u8ValidDataLen = (u16Len > 4) ? 4 : u16Len;

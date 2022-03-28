@@ -90,6 +90,26 @@ UINT32			u32FileSize=0;
 volatile BOOL	gFirmwareDownload_Started = FALSE;
 volatile BOOL	gFirmwareDownload_Finished = FALSE;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*-----------------------------------------------------------------------------------------
 ------
 ------    application specific functions
@@ -411,7 +431,7 @@ void Emulation_Init()
    pAPPL_EEPROM_Write  = HW_EepromWrite;
 }
 #else
-UINT16 HW_EepromReload ()
+UINT16 HW_EepromReload(void)
 {
     return 0;
 }

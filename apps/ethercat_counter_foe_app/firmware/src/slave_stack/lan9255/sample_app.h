@@ -89,7 +89,7 @@ void APP_FW_startDownload(void);
 void APP_FW_StateBOOTtoINIT(void);
 BOOL APP_FW_GetDownloadStateFinished(void);
 
-#ifdef ETHERCAT_EEPROM_EMULATION_SUPPORT
+#if (ETHERCAT_EEPROM_EMULATION_SUPPORT == true)
 #define ESC_EEPROM_CONTROL_OFFSET                 0x0502
 /**
 EEPROM_READ_SIZE: Only required if EEPROM emulation is active. This value defines the number of bytes which will be read per opertion. */

@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /*****************************************************************************
- Copyright (C) 2020-2021 Microchip Technology Inc. and its subsidiaries.
+ Copyright (C) 2022 Microchip Technology Inc. and its subsidiaries.
 
 Microchip Technology Inc. and its subsidiaries.
 
@@ -54,7 +54,7 @@ THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 
 #include "bootmode.h"
 #include "ethercat_configuration.h"
-#include "app.h"
+#include "app_lan9255.h"
 
 
 UINT32  gTriggerCounterValMeasure=0;
@@ -344,7 +344,7 @@ void BL_FOE_Application(void)
 
 #endif
 
-#ifdef ETHERCAT_EEPROM_EMULATION_SUPPORT
+#if (ETHERCAT_EEPROM_EMULATION_SUPPORT == true)
 
 /* Beckhoff Hw abstraction layer interface API to write new configuration parameters to slave EEPROM area */
 UINT16 HW_EepromWrite(UINT32 wordaddr)

@@ -5,10 +5,10 @@ frameworkPath: ../../..
 processor: ATSAMD51J19A
 projectName: ''
 settings:
-  PackageFilter: aws_cloud;bootloader;bsp;core;crypto;csp;ethercat;net;net;net;net;net;net;net;net;usb;wireless;
+  PackageFilter: aws_cloud;azure_rtos;bootloader;bsp;core;core_apps_pic32cz_ca;crypto;csp;csp_apps_pic32cz_ca;csp_apps_sam_9x60;Devices;dev_packs;ethercat;harmony-services;net;net_apps_pic32cz_ca;net_apps_pic32cz_ca_backup;net_apps_pic32mx;net_apps_pic32mx_notworking;net_apps_pic32mz;net_apps_sam_9x60;net_apps_sam_a5d2;net_apps_sam_e5x;net_apps_sam_e70_v71;quick_docs;usb;wireless
   FORCE_OPTIMIZATION: 'false'
   GENERATE_BACKUP: 'true'
   TRUSTZONE: 'false'
   CMSISPath: .\dev_packs\arm\CMSIS\5.8.0
   MERGE_STRATEGY: ALL
-  DFPPath: .\dev_packs\Microchip\SAMD51_DFP\3.4.91\samd51a\atdf\ATSAMD51J19A.atdf
+  DFPPath: .\dev_packs\Microchip\SAMD51_DFP\3.5.95\samd51a\atdf\ATSAMD51J19A.atdf

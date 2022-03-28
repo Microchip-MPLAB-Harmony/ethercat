@@ -67,7 +67,7 @@ void NVIC_Initialize( void )
     NVIC_EnableIRQ(EIC_EXTINT_7_IRQn);
     NVIC_SetPriority(TC0_IRQn, 7);
     NVIC_EnableIRQ(TC0_IRQn);
-    NVIC_SetPriority(QSPI_IRQn, 2);
+    NVIC_SetPriority(QSPI_IRQn, 7);
     NVIC_EnableIRQ(QSPI_IRQn);
 
 
@@ -82,7 +82,9 @@ void NVIC_INT_Enable( void )
 
 bool NVIC_INT_Disable( void )
 {
-    bool processorStatus = (__get_PRIMASK() == 0U);
+    bool processorStatus;
+
+    processorStatus = (bool) (__get_PRIMASK() == 0);
 
     __disable_irq();
     __DMB();

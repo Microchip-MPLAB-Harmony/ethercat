@@ -40,6 +40,7 @@
 
 #include "device.h"
 #include "peripheral/cmcc/plib_cmcc.h"
+#include "interrupts.h"
 
 void CMCC_Disable (void )
 {

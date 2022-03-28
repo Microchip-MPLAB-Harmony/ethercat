@@ -147,6 +147,7 @@ const DRV_LAN9252_UTIL_INIT drvLAN9252InitData = {
 
 void SYS_Initialize ( void* data )
 {
+
     NVMCTRL_Initialize( );
 
   
@@ -161,6 +162,7 @@ void SYS_Initialize ( void* data )
 
     EVSYS_Initialize();
 
+	SYSTICK_TimerInitialize();
     EIC_Initialize();
 
     TC0_TimerInitialize();

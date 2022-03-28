@@ -50,7 +50,7 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ETHERCAT_SQI_INDIRECT_MODE_ACCESS}
+        attributes: {value: ETHERCAT_SQI_DIRECT_MODE_ACCESS}
   - type: KeyValueSet
     attributes: {id: DRV_LAN9253_SYNC1_INT}
     children:
@@ -116,4 +116,4 @@ children:
         children:
         - {type: Value, value: EtherCAT_LANDRV_Dependency}
 - type: ElementPosition
-  attributes: {x: '213', y: '139', id: ethercat_lan9253}
+  attributes: {x: '212', y: '139', id: ethercat_lan9253}

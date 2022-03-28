@@ -1,4 +1,4 @@
-<config configName="samd51_lan9253_evb" projectName="ethercat_counter_foe_lan9253_evb" configVersion="1.1" device="ATSAMD51J19A" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.4.1">
+<config configName="samd51_lan9253_evb" projectName="ethercat_counter_foe_lan9253_evb" configVersion="1.1" device="ATSAMD51J19A" deviceLibraryClass="com.microchip.mcc.harmony.Harmony3Library" coreVersion="5.4.2">
    <usedPackages class="java.util.ArrayList"/>
    <usedClasses class="java.util.TreeMap">
       <entry>
@@ -43,7 +43,7 @@
       </entry>
    </usedClasses>
    <usedLibraries class="java.util.ArrayList">
-      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.harmony.Harmony3Library" version="1.0.9"/>
+      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.harmony.Harmony3Library" version="1.1.0"/>
    </usedLibraries>
    <tokenMap class="java.util.TreeMap">
       <entry>
@@ -54,21 +54,21 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="!@#harmonyUserData"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;UserData&gt;
   &lt;UserData dnOrder=&quot;0&quot;&gt;
-    &lt;GraphSettings canvasHeight=&quot;400&quot; canvasWidth=&quot;529&quot; dnOrder=&quot;0&quot;/&gt;
-    &lt;ComponentGraph dnOrder=&quot;1&quot; id=&quot;__ROOTVIEW&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;0&quot; id=&quot;__ROOTVIEW&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;cmsis&quot; x=&quot;310&quot; y=&quot;60&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;core&quot; x=&quot;500&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;2&quot; id=&quot;dfp&quot; x=&quot;300&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;3&quot; id=&quot;eic&quot; x=&quot;30&quot; y=&quot;312&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;4&quot; id=&quot;ethercat_apps_config&quot; x=&quot;393&quot; y=&quot;166&quot;/&gt;
-        &lt;ElementPosition dnOrder=&quot;5&quot; id=&quot;ethercat_lan9253&quot; x=&quot;232&quot; y=&quot;184&quot;/&gt;
+        &lt;ElementPosition dnOrder=&quot;5&quot; id=&quot;ethercat_lan9253&quot; x=&quot;228&quot; y=&quot;186&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;6&quot; id=&quot;evsys&quot; x=&quot;160&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;7&quot; id=&quot;nvmctrl&quot; x=&quot;20&quot; y=&quot;20&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;8&quot; id=&quot;qspi&quot; x=&quot;30&quot; y=&quot;136&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;9&quot; id=&quot;tc0&quot; x=&quot;34&quot; y=&quot;215&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
+    &lt;GraphSettings canvasHeight=&quot;400&quot; canvasWidth=&quot;529&quot; dnOrder=&quot;1&quot;/&gt;
   &lt;/UserData&gt;
 &lt;/UserData&gt;
 </value>
@@ -4757,7 +4757,7 @@
       </entry>
       <entry>
          <file>..\src\config\samd51_lan9253_evb\driver\lan9253\drv_lan9253.c</file>
-         <hash>86c328ed1718ce0015dc81311ae25443bd0865f884453db22b2f5f781595a9b2</hash>
+         <hash>01334d8c01283012a64c2f7fdfa81e7566d5afd7ca70d2795d5061e489cf725d</hash>
       </entry>
       <entry>
          <file>..\src\slave_stack\sdoserv.c</file>

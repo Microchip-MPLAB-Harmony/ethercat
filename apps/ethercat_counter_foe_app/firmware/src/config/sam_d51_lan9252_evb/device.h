@@ -41,6 +41,9 @@
 *******************************************************************************/
 // DOM-IGNORE-END
 
+#ifndef DEVICE_H
+#define DEVICE_H
+
 #pragma GCC diagnostic push
 #ifndef __cplusplus
 #pragma GCC diagnostic ignored "-Wnested-externs"
@@ -48,8 +51,15 @@
 #pragma GCC diagnostic ignored "-Wsign-conversion"
 #pragma GCC diagnostic ignored "-Wattributes"
 #pragma GCC diagnostic ignored "-Wundef"
-#include "atsamd51j19a.h"
+#ifndef DONT_USE_PREDEFINED_CORE_HANDLERS
+    #define DONT_USE_PREDEFINED_CORE_HANDLERS
+#endif //DONT_USE_PREDEFINED_CORE_HANDLERS
+#ifndef DONT_USE_PREDEFINED_PERIPHERALS_HANDLERS
+    #define DONT_USE_PREDEFINED_PERIPHERALS_HANDLERS
+#endif //DONT_USE_PREDEFINED_PERIPHERALS_HANDLERS
+#include "samd51j19a.h"
 #pragma GCC diagnostic pop
 #include "device_cache.h"
 #include "toolchain_specifics.h"
 
+#endif //DEVICE_H

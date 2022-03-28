@@ -20,27 +20,27 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 60B2DEC75552C7E059A8810598CC8588
-- generatedChecksum: EFC3106A7C395BCFBF487B9CF23A065F
+- generatedChecksum: 3948C0B7C18EBFEDACD5CABBC572017B
   logicalPath: config/same53_lan9255_evb/driver/lan9255
   name: drv_lan9255.c
   physicalPath: driver/lan9255
   security: NON_SECURE
   type: SOURCE
-  userChecksum: EFC3106A7C395BCFBF487B9CF23A065F
-- generatedChecksum: AD633D8FBB05271F0EE3ED03372AB406
+  userChecksum: 3948C0B7C18EBFEDACD5CABBC572017B
+- generatedChecksum: 9E6D06396AA645918B0A7D717C3B47BC
   logicalPath: config/same53_lan9255_evb/driver/lan9255
   name: drv_lan9255_ecat_util.c
   physicalPath: driver/lan9255
   security: NON_SECURE
   type: SOURCE
-  userChecksum: AD633D8FBB05271F0EE3ED03372AB406
+  userChecksum: 9E6D06396AA645918B0A7D717C3B47BC
 - generatedChecksum: ACEE93AE1BC431F90567C530DAD82896
   logicalPath: slave_stack
   name: ecatappl.c
   physicalPath: ../../slave_stack
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 4B79BDAF50BE4BE723F401AB442E4C43
+  userChecksum: 5B4F5F7D832B2CBDA1F70F9C2994C231
 - generatedChecksum: 2A37B3D13944E83BA790288CDE1143E3
   logicalPath: slave_stack
   name: ecatcoe.c
@@ -61,7 +61,7 @@ files:
   physicalPath: ../../slave_stack
   security: NON_SECURE
   type: SOURCE
-  userChecksum: F687A3AFDE3857282468C657F5AF4353
+  userChecksum: 175B95AE5EB23B662272FE744B07EDE4
 - generatedChecksum: 19240ADA643084032A1817AB05CEEADF
   logicalPath: slave_stack
   name: emcy.c
@@ -83,13 +83,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 7B5215AF785AE32B29C808A175D6A14E
-- generatedChecksum: A57497F53295AD76884F755B7A0CCDFC
+- generatedChecksum: 5741F11F118B670B681926F685A50622
   logicalPath: config/same53_lan9255_evb
   name: initialization.c
   physicalPath: ''
   security: NON_SECURE
   type: SOURCE
-  userChecksum: A57497F53295AD76884F755B7A0CCDFC
+  userChecksum: 5741F11F118B670B681926F685A50622
 - generatedChecksum: 07A529F511FFF5D573CB4178D46F5FEF
   logicalPath: config/same53_lan9255_evb
   name: interrupts.c
@@ -139,13 +139,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: D903E8D9DCBC4107D0AA841E07F653BA
-- generatedChecksum: 7E465DE4BCA594E3056CC42BCFD1A91C
+- generatedChecksum: CBCD5C1AC41592F6299A7F48DAC453C7
   logicalPath: config/same53_lan9255_evb/peripheral/eic
   name: plib_eic.c
   physicalPath: peripheral/eic
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 7E465DE4BCA594E3056CC42BCFD1A91C
+  userChecksum: CBCD5C1AC41592F6299A7F48DAC453C7
 - generatedChecksum: C3ECDED3D6301DB0DE622293ED615D21
   logicalPath: config/same53_lan9255_evb/peripheral/evsys
   name: plib_evsys.c
@@ -153,13 +153,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: C3ECDED3D6301DB0DE622293ED615D21
-- generatedChecksum: 87B7693AF2BC20510E406A67C157C261
+- generatedChecksum: B8AD91559E6F6367A39813F3793584E9
   logicalPath: config/same53_lan9255_evb/peripheral/nvic
   name: plib_nvic.c
   physicalPath: peripheral/nvic
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 87B7693AF2BC20510E406A67C157C261
+  userChecksum: B8AD91559E6F6367A39813F3793584E9
 - generatedChecksum: 903E0413B53BA9E8980C740E65F59966
   logicalPath: config/same53_lan9255_evb/peripheral/nvmctrl
   name: plib_nvmctrl.c
@@ -194,7 +194,7 @@ files:
   physicalPath: ../../slave_stack
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 1B4712949F9A74A22A0A3EF8A032C0EC
+  userChecksum: C27C46B66647E9D8271CD22A9C43B25D
 - generatedChecksum: AA16290033E9F082D4FFFF1CB5CBB75E
   logicalPath: slave_stack
   name: sdoserv.c
@@ -271,7 +271,7 @@ files:
   physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
-  userChecksum: C7C4BFBE90EFC3F56CA231CA9F56CA42
+  userChecksum: 240ADC4F61D386DEDF35907F12E7CA7C
 - generatedChecksum: 579E1E1CB5806E6B3466B402826C15CF
   logicalPath: slave_stack
   name: bootmode.h
@@ -440,27 +440,27 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: C386EBA5980F785DCD00E0FD600F0F28
-- generatedChecksum: 8E9356953C585B49C2DDA2D46B880E54
+- generatedChecksum: 466F0EDE4CAFA0AD269917C71C90B7DE
   logicalPath: config/same53_lan9255_evb/driver/lan9255
   name: drv_lan9255.h
   physicalPath: driver/lan9255
   security: NON_SECURE
   type: HEADER
-  userChecksum: 8E9356953C585B49C2DDA2D46B880E54
-- generatedChecksum: ECEF95DC91727E389CE19BB7CF256B3B
+  userChecksum: 466F0EDE4CAFA0AD269917C71C90B7DE
+- generatedChecksum: CA1E905E4A91078BB25BB9506D9F4E5B
   logicalPath: config/same53_lan9255_evb/driver/lan9255
   name: drv_lan9255_definitions.h
   physicalPath: driver/lan9255
   security: NON_SECURE
   type: HEADER
-  userChecksum: ECEF95DC91727E389CE19BB7CF256B3B
-- generatedChecksum: D15226F6C97DAD3975FCC7C826ABBB3F
+  userChecksum: CA1E905E4A91078BB25BB9506D9F4E5B
+- generatedChecksum: FA0B39C21F6DF2A598EF05460ED9E549
   logicalPath: config/same53_lan9255_evb/driver/lan9255
   name: drv_lan9255_ecat_util.h
   physicalPath: driver/lan9255
   security: NON_SECURE
   type: HEADER
-  userChecksum: D15226F6C97DAD3975FCC7C826ABBB3F
+  userChecksum: FA0B39C21F6DF2A598EF05460ED9E549
 - generatedChecksum: 4E366E6B0AFD8882F3DD087E2064FB9A
   logicalPath: packs/LAN9255ZMX020_DFP/component
   name: dsu.h
@@ -481,14 +481,14 @@ files:
   physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
-  userChecksum: 74F3DA646A2485DAC61792E8F262E20B
+  userChecksum: BDC52E468B74741159DA03C25FB66A94
 - generatedChecksum: 2C62033177B4B81E335A5A88F8A2A763
   logicalPath: slave_stack
   name: ecatappl.h
   physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
-  userChecksum: 2C62033177B4B81E335A5A88F8A2A763
+  userChecksum: 1976D43F554CCD21D4503E802CA881FB
 - generatedChecksum: 9714F7686D284256A5984D8F85952673
   logicalPath: slave_stack
   name: ecatcoe.h
@@ -509,7 +509,7 @@ files:
   physicalPath: ../../slave_stack
   security: NON_SECURE
   type: HEADER
-  userChecksum: B6A828178624F0B1A2C2D43ECA16856E
+  userChecksum: 083CBBA62121C7816C0617F64BC5E799
 - generatedChecksum: 3287D8EB261D75C3C16DE4540A1952B9
   logicalPath: slave_stack
   name: eeprom.h
@@ -1224,13 +1224,13 @@ files:
   security: NON_SECURE
   type: LINKER
   userChecksum: 23ED4F810B2BE630DBACA1E9C08C194C
-- generatedChecksum: 1EDB648412BF3CEB4CA15C9FA7AD23D6
+- generatedChecksum: 84D0647C4604B25739F0820D94351E59
   logicalPath: ''
   name: ethercat_foe.ld
   physicalPath: ''
   security: NON_SECURE
   type: LINKER
-  userChecksum: 1EDB648412BF3CEB4CA15C9FA7AD23D6
+  userChecksum: 84D0647C4604B25739F0820D94351E59
 format_version: v1.0
 libraries: []
 settings:
@@ -1257,7 +1257,7 @@ settings:
   delimiter: ''
   key: heap-size
   security: NON_SECURE
-  value: '512'
+  value: '2048'
 - append: false
   category: C32-LD
   delimiter: ''

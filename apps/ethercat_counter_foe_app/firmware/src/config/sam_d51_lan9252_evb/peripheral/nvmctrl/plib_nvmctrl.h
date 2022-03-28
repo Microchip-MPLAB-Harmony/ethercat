@@ -63,7 +63,6 @@
 // DOM-IGNORE-END
 
 #define NVMCTRL_FLASH_START_ADDRESS        (0U)
-#define NVMCTRL_FLASH_SIZE                 (524288U)
 #define NVMCTRL_FLASH_PAGESIZE             (512U)
 #define NVMCTRL_FLASH_BLOCKSIZE            (8192U)
 
@@ -91,6 +90,10 @@ bool NVMCTRL_QuadWordWrite(const uint32_t *data, const uint32_t address);
 bool NVMCTRL_DoubleWordWrite(const uint32_t *data, const uint32_t address);
 
 bool NVMCTRL_PageWrite( const uint32_t* data, uint32_t address );
+
+bool NVMCTRL_PageBufferWrite( uint32_t *data, const uint32_t address);
+
+bool NVMCTRL_PageBufferCommit( const uint32_t address );
 
 bool NVMCTRL_BlockErase( uint32_t address );
 

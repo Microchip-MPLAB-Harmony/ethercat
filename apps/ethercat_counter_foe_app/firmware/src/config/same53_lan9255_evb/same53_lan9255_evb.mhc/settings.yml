@@ -5,7 +5,7 @@ frameworkPath: ..\..\..
 processor: LAN9255ZMX020
 projectName: ethercat_counter_foe_app
 settings:
-  PackageFilter: aws_cloud;azure_rtos;bootloader;bsp;core;core_apps_pic32cz_ca;crypto;csp;csp_apps_pic32cz_ca;csp_apps_sam_9x60;Devices;dev_packs;ethercat;net;net_apps_pic32mx;net_apps_pic32mx_notworking;net_apps_pic32mz;net_apps_sam_9x60;net_apps_sam_a5d2;net_apps_sam_e5x;net_apps_sam_e70_v71;quick_docs;usb;wireless
+  PackageFilter: aws_cloud;azure_rtos;bootloader;bsp;core;core_apps_pic32cz_ca;crypto;csp;csp_apps_pic32cz_ca;csp_apps_sam_9x60;Devices;dev_packs;ethercat;net;net_apps_pic32cz_ca;net_apps_pic32cz_ca_backup;net_apps_pic32mx;net_apps_pic32mx_notworking;net_apps_pic32mz;net_apps_sam_9x60;net_apps_sam_a5d2;net_apps_sam_e5x;net_apps_sam_e70_v71;quick_docs;usb;wireless
   FORCE_OPTIMIZATION: 'false'
   GENERATE_BACKUP: 'true'
   TRUSTZONE: 'false'
