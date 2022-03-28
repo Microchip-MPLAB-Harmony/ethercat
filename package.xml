@@ -2,6 +2,5 @@
 <Package name="ethercat">
     <Dependencies>
         <Dependency name="csp" version="3.11.0"/>
-		<Dependency name="mcc" version="5.1.1"/>
     </Dependencies>
 </Package>

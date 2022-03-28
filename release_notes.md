@@ -1,15 +1,15 @@
 ![Microchip logo](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_logo.png)
 ![Harmony logo small](https://raw.githubusercontent.com/wiki/Microchip-MPLAB-Harmony/Microchip-MPLAB-Harmony.github.io/images/microchip_mplab_harmony_logo_small.png)
 
-# Microchip MPLAB® Harmony 3 EtherCAT Release Notes  (March 2022)
+# Microchip MPLAB® Harmony 3 EtherCAT Release Notes  (Feb 2022)
 ## EtherCAT Release v3.2.0
 ### ADDITIONS AND UPDATES FOR  3.2.0:
 - Added LAN9253 EtherCAT device with SQI support with Harmony 3 framework.
-- Added EtherCAT Applications for LAN9255 device with Harmony 3 framework and all the applications has support for both SPI and SQI.
+- Added EtherCAT Applications for LAN9255 device with Harmony 3 framework and all the applications support both SPI and SQI.
 - Added EEPROM Emulation support for LAN9255 device.
-- Added support for Dummy byte for both LAN9253 and LAN9255.
-- EtherCAT application is verified with both Beckhoff SSC stack v5.12 and v5.13
-- Existing MHC based Demos are migrated to MCC based Configuration
+- Added support for Dummy bytes for both LAN9253 and LAN9255.
+- EtherCAT application demos are verified with Beckhoff SSC stack v5.12.
+- Added MCC support for all demo applications
 
 ### Known Issues
 None
@@ -21,6 +21,8 @@ None
 * TwinCAT Manager:
     * [TC31-Full-Setup.3.1.4024.7x and above.](https://www.beckhoff.com/english.asp?download/tc3-downloads.htm)
 * [EtherCAT Beckhoff Slave Stack Code (SSC) v5.12](https://www.ethercat.org/en/downloads/downloads_01DCC32A10294F2EA866F7E46FB0285F.htm)
+* MPLAB® X IDE plug-ins:
+    - MPLAB® Code Configurator 5.1.1
 
 # Microchip MPLAB® Harmony 3 EtherCAT Release Notes  (October 2020)
 ## EtherCAT Release v3.1.0
