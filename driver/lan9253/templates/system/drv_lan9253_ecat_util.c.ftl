@@ -1479,7 +1479,7 @@ void ECAT_Lan925x_SPIWritePDRAM(uint8_t *pu8Data, uint16_t u16Addr, uint16_t u16
 */
 
 void ECAT_Lan9253_SPIWrite(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Length)
-{	
+{
 	uint32_t    dwModLen = 0;
 #ifdef ETHERCAT_IS_SUPPORT_DUMMY_CYCLE
 	uint8_t 	u8dummy_clk_cnt = 0;
@@ -1499,7 +1499,7 @@ void ECAT_Lan9253_SPIWrite(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Lengt
 		if (u32Length > 1)
 		{
 			u16Addr |= 0xC000; 	/* addr[15:14]=11 */
-		}
+        }
 		else
 		{
 			/* Do Nothing */
@@ -1526,7 +1526,7 @@ void ECAT_Lan9253_SPIWrite(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Lengt
 			/* Do nothing if length is 0 since it is DWORD access */
 		}
 	}
-
+	
 	_ECAT_ChipSelectEnable();
 	
 	/* SPI read and write with 3 bytes of TX and RX length */
@@ -1535,19 +1535,19 @@ void ECAT_Lan9253_SPIWrite(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Lengt
     u8TxData[1] = (uint8_t)(u16Addr >> 8);
     u8TxData[2] = (uint8_t)u16Addr;
 	
-    while(gDrvLan9253UtilObj.spiPlib->spiIsBusy())
+	while(gDrvLan9253UtilObj.spiPlib->spiIsBusy())
     {        
     }
-
+	
     gDrvLan9253UtilObj.spiPlib->spiWriteRead(u8TxData, u8TxLen,u8RxData,u8RxLen);
-    _ECAT_QSPI_SyncWait();    
+	_ECAT_QSPI_SyncWait();    
     while(gDrvLan9253UtilObj.spiPlib->spiIsBusy())
     {        
     }
     // Update the gEscALEvent value which is required for the state change
     gEscALEvent.Byte[0] = u8RxData[1];
     gEscALEvent.Byte[1] = u8RxData[2];
-	
+    
 	/* SPI read and write with 1 bytes of TX and RX length */
 	u8TxLen = u8RxLen = 1;
 	
@@ -1556,7 +1556,7 @@ void ECAT_Lan9253_SPIWrite(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Lengt
 	u8dummy_clk_cnt = gau8DummyCntArr[SPI_WRITE_INITIAL_OFFSET];
 	/* Add Intra DWORD dummy clocks, avoid for last byte */
 	
-	while (u8dummy_clk_cnt--)
+	while(u8dummy_clk_cnt--)
 	{
 		gDrvLan9253UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
 		_ECAT_QSPI_SyncWait();
@@ -1573,14 +1573,14 @@ void ECAT_Lan9253_SPIWrite(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Lengt
         _ECAT_QSPI_SyncWait();    
         while(gDrvLan9253UtilObj.spiPlib->spiIsBusy())
         {            
-        }
+        }		
 #ifdef ETHERCAT_SUPPORT_DUMMY_CYCLE  		
 		/* Get the Intra DWORD dummy clock count */
         u8dummy_clk_cnt = gau8DummyCntArr[SPI_WRITE_INTRA_DWORD_OFFSET];
         /* Add Intra DWORD dummy clocks, avoid for last byte */
         if (1 != u32Length) 
 		{
-            while (u8dummy_clk_cnt--)
+            while(u8dummy_clk_cnt--)
 			{
 				gDrvLan9253UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
                 _ECAT_QSPI_SyncWait();
@@ -1589,8 +1589,9 @@ void ECAT_Lan9253_SPIWrite(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Lengt
 				}
             }
         }
-	} while (--u32Length);
-#endif
+#endif        
+	} while(--u32Length);
+
 	_ECAT_ChipSelectDisable();
 }
 
@@ -1609,15 +1610,15 @@ void ECAT_Lan9253_SPIWrite(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Lengt
 */
 
 void ECAT_Lan9253_SPIRead(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Length)
-{	
+{
 #ifdef ETHERCAT_IS_SUPPORT_DUMMY_CYCLE
 	uint8_t u8dummy_clk_cnt=0;
 #endif
 	uint32_t dwModLen = 0;
 
     uint8_t  u8TxData[DWORD_LENGTH]={0,0,0,0};
-    uint8_t  u8RxData[DWORD_LENGTH]={0,0,0,0};
-	uint8_t  u8TxLen = 1, u8RxLen = 1;
+	uint8_t  u8RxData[DWORD_LENGTH]={0,0,0,0};
+    uint8_t  u8TxLen = 1, u8RxLen = 1;
 	uint8_t	 u8TxOneByteData=0, u8RxOneByteData=0;
 	
 	/* Core CSR and Process RAM accesses can have any alignment and length */
@@ -1627,7 +1628,7 @@ void ECAT_Lan9253_SPIRead(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Length
 		{
 			/* Use Auto-increment if number of bytes to read is more than 1 */
 			u16Addr |= 0x4000;			
-		}
+        }
 	}
 	else
 	{
@@ -1651,22 +1652,22 @@ void ECAT_Lan9253_SPIRead(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Length
 		}
 	}
 	_ECAT_ChipSelectEnable();
-
+	
 	/* SPI read and write with 3 bytes of TX and RX length */
 	u8TxLen = u8RxLen = 3;
 	
 	u8TxData[0] = CMD_SERIAL_READ;
     u8TxData[1] = (uint8_t)(u16Addr >> 8);
     u8TxData[2] = (uint8_t)u16Addr;
-    
-    while(gDrvLan9253UtilObj.spiPlib->spiIsBusy())
+	
+	while(gDrvLan9253UtilObj.spiPlib->spiIsBusy())
     {        
     }
-
+	
     gDrvLan9253UtilObj.spiPlib->spiWriteRead(u8TxData, u8TxLen,u8RxData,u8RxLen);
     _ECAT_QSPI_SyncWait();    
     while(gDrvLan9253UtilObj.spiPlib->spiIsBusy())
-    {    
+    {        
     }
     
 	 // Update the gEscALEvent value which is required for the state change
@@ -1678,13 +1679,13 @@ void ECAT_Lan9253_SPIRead(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Length
 #ifdef ETHERCAT_IS_SUPPORT_DUMMY_CYCLE  	
 	/* Initial Dummy cycle added by dummy read */
 	u8dummy_clk_cnt = gau8DummyCntArr[SPI_READ_INITIAL_OFFSET];
-	while (u8dummy_clk_cnt--)
+	while(u8dummy_clk_cnt--)
 	{
 		gDrvLan9253UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
-		_ECAT_QSPI_SyncWait();    
-		while(gDrvLan9253UtilObj.spiPlib->spiIsBusy())
-		{
-		}
+        _ECAT_QSPI_SyncWait();    
+        while(gDrvLan9253UtilObj.spiPlib->spiIsBusy())
+        {        
+        }
 	}
 #else
     gDrvLan9253UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
@@ -1693,31 +1694,30 @@ void ECAT_Lan9253_SPIRead(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Length
 	{
 	}
 #endif   
-	
-#endif	
+
 	do
 	{
-		if (1 == u32Length)
+        if(1 == u32Length)
 		{
 			u8TxOneByteData = READ_TERMINATION_BYTE;
 		}
-        else
-        {
-            u8TxOneByteData = 0;
-        }
+		else
+		{
+			u8TxOneByteData = 0;
+		}
         gDrvLan9253UtilObj.spiPlib->spiWriteRead(&u8TxOneByteData, u8TxLen, &u8RxOneByteData, u8RxLen);
         _ECAT_QSPI_SyncWait();    
         while(gDrvLan9253UtilObj.spiPlib->spiIsBusy())
-        {
+        {            
         }
-		*pu8Data++ = u8RxOneByteData;
+		*pu8Data++ = u8RxOneByteData;		
 #ifdef ETHERCAT_IS_SUPPORT_DUMMY_CYCLE 		
 		/* Get the Intra DWORD dummy clock count */
         u8dummy_clk_cnt = gau8DummyCntArr[SPI_READ_INTRA_DWORD_OFFSET];
         /* Add Intra DWORD dummy clocks, avoid for last byte */
-        if (1 != u32Length) 
+        if(1 != u32Length) 
 		{
-            while (u8dummy_clk_cnt--)
+            while(u8dummy_clk_cnt--)
 			{
 				gDrvLan9253UtilObj.spiPlib->spiRead(&u8RxOneByteData, u8RxLen);
                 _ECAT_QSPI_SyncWait();
@@ -1727,9 +1727,9 @@ void ECAT_Lan9253_SPIRead(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Length
             }
         }
 #endif		
-	} while (--u32Length);
-
-	_ECAT_ChipSelectDisable();	
+	} while(--u32Length);
+	
+	_ECAT_ChipSelectDisable();
 }
 
 /* 
@@ -1775,15 +1775,15 @@ void ECAT_Lan9253_SPIFastRead(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Le
 	{  	/* System CSRs are DWORD aligned and are a DWORD in length. Non- DWORD aligned / non-DWORD length access 
 	is not supported. */
 		dwModLen = u32Length % 4;
-		if (1 == dwModLen)
+		if(1 == dwModLen)
 		{
 			u32Length = u32Length + 3;
 		}
-		else if (2 == dwModLen)
+		else if(2 == dwModLen)
 		{
 			u32Length = u32Length + 2;
 		}
-		else if (3 == dwModLen)
+		else if(3 == dwModLen)
 		{
 			u32Length = u32Length + 1;
 		}
@@ -1797,7 +1797,7 @@ void ECAT_Lan9253_SPIFastRead(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Le
 	length up to 127 bytes. For the two byte transfer length format, bit 7 of the first byte
 	is high and bits 6-0 specify the lower 7 bits of the length. Bits 6-0 of the of the second byte 
 	field specify the upper 7 bits of the length with a maximum transfer length of 16,383 bytes (16K-1)" */ 
-	if (u32Length <= ONE_BYTE_MAX_XFR_LEN)
+	if(u32Length <= ONE_BYTE_MAX_XFR_LEN)
 	{
 		wXfrLen = u32Length; 
 	}
@@ -1874,7 +1874,7 @@ void ECAT_Lan9253_SPIFastRead(uint16_t u16Addr, uint8_t *pu8Data, uint32_t u32Le
 	   SW needs to handle dummy data in case of non DWORD address reads" */
 	for (u8Itr = 0; u8Itr < u8StartAlignSize; u8Itr++) 
 	{
-        gDrvLan9255UtilObj.spiPlib->spiRead(&u8TxOneByteData,u8TxLen);
+        gDrvLan9253UtilObj.spiPlib->spiRead(&u8TxOneByteData,u8TxLen);
         _ECAT_QSPI_SyncWait();    
         while(gDrvLan9253UtilObj.spiPlib->spiIsBusy())
         {            
@@ -2653,7 +2653,7 @@ void ECAT_Initialization()
             /* Reset SQIO mode */
             ECAT_SPI_DisableQuadMode();
         }
-	} while (0x87654321 != u32data);
+	} while(0x87654321 != u32data);
     
     /* Update the SQI related config data as per the frequency */
 	ECAT_SPI_SetCfg_dataInit();
