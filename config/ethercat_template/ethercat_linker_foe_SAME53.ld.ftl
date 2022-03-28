@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------
  * MPLAB XC32 Compiler -  LAN9255ZMX020 ethercat_linker_foe linker script
  * 
- * Copyright (c) 2021, Microchip Technology Inc. and its subsidiaries ("Microchip")
+ * Copyright (c) 2022, Microchip Technology Inc. and its subsidiaries ("Microchip")
  * All rights reserved.
  * 
  * This software is developed by Microchip Technology Inc. and its
@@ -67,7 +67,7 @@ ENTRY(__XC32_RESET_HANDLER_NAME)
 #ifndef ROM_LENGTH
 #  define ROM_LENGTH 0x80000
 #elif (ROM_LENGTH > 0x80000)
-#  error ROM_LENGTH is greater than the max size of 0x0FE000
+#  error ROM_LENGTH is greater than the max size of 0x80000
 #endif
 #ifndef RAM_ORIGIN
 #  define RAM_ORIGIN 0x20000000
