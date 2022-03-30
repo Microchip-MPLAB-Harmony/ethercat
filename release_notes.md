@@ -10,6 +10,7 @@
 - Added support for Dummy bytes (Individually programmable per read and write command type) for both LAN9253 and LAN9255.
 - EtherCAT application demos are verified with Beckhoff SSC stack v5.12.
 - Added MCC support for all demo applications
+- Added production **hex** files in the application for both LAN9253 and LAN9255 devices
 
 ### Known Issues
 None
