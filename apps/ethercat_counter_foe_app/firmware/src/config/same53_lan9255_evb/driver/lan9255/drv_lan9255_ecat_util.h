@@ -104,7 +104,7 @@
 #define MCHP_ESF_PDI_FASTREAD(addr, pdata, len)			ECAT_Lan9255_SPIFastRead (addr, pdata, len)
 #define MCHP_ESF_PDI_READ_PDRAM(pdata, addr, len)		
 #define MCHP_ESF_PDI_FASTREAD_PDRAM(pdata, addr, len)	
-#define MCHP_ESF_PDI_WRITE_PDRAM(pdata, addr, len)		
+#define MCHP_ESF_PDI_WRITE_PDRAM(pdata, addr, len)
 
 
 

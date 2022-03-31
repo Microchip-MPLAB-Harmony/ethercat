@@ -202,11 +202,6 @@
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
                    projectFiles="true">
-      <logicalFolder name="f1" displayName="config" projectFiles="true">
-        <logicalFolder name="f1" displayName="same53_lan9255_evb" projectFiles="true">
-          <itemPath>../src/config/same53_lan9255_evb/LAN9255ZMX020.ld</itemPath>
-        </logicalFolder>
-      </logicalFolder>
       <itemPath>../src/config/same53_lan9255_evb/ethercat_foe.ld</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"

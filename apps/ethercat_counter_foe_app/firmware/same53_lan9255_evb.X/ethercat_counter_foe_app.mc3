@@ -62,8 +62,7 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="core" name="!@#harmonyUserData"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;UserData&gt;
   &lt;UserData dnOrder=&quot;0&quot;&gt;
-    &lt;GraphSettings canvasHeight=&quot;770&quot; canvasWidth=&quot;210&quot; dnOrder=&quot;0&quot;/&gt;
-    &lt;ComponentGraph dnOrder=&quot;1&quot; id=&quot;__ROOTVIEW&quot;&gt;
+    &lt;ComponentGraph dnOrder=&quot;0&quot; id=&quot;__ROOTVIEW&quot;&gt;
       &lt;ElementPositions dnOrder=&quot;0&quot;&gt;
         &lt;ElementPosition dnOrder=&quot;0&quot; id=&quot;BSP_LAN9255_Evaluation_Board&quot; x=&quot;497&quot; y=&quot;252&quot;/&gt;
         &lt;ElementPosition dnOrder=&quot;1&quot; id=&quot;cmsis&quot; x=&quot;517&quot; y=&quot;219&quot;/&gt;
@@ -78,6 +77,7 @@
         &lt;ElementPosition dnOrder=&quot;10&quot; id=&quot;tc0&quot; x=&quot;28&quot; y=&quot;263&quot;/&gt;
       &lt;/ElementPositions&gt;
     &lt;/ComponentGraph&gt;
+    &lt;GraphSettings canvasHeight=&quot;770&quot; canvasWidth=&quot;210&quot; dnOrder=&quot;1&quot;/&gt;
   &lt;/UserData&gt;
 &lt;/UserData&gt;
 </value>
@@ -2291,7 +2291,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;qspi&gt;
   &lt;qspi dnOrder=&quot;0&quot; id=&quot;QSPI_BAUD_RATE&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;User dnOrder=&quot;0&quot; value=&quot;20&quot;/&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;20000000&quot;/&gt;
     &lt;/Values&gt;
   &lt;/qspi&gt;
 &lt;/qspi&gt;
@@ -2318,7 +2318,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;qspi&gt;
   &lt;qspi dnOrder=&quot;0&quot; id=&quot;QSPI_SCBR&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;qspi&quot; value=&quot;255&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;qspi&quot; value=&quot;5&quot;/&gt;
     &lt;/Values&gt;
   &lt;/qspi&gt;
 &lt;/qspi&gt;
@@ -2913,7 +2913,7 @@
       </entry>
       <entry>
          <file>..\src\config\same53_lan9255_evb\definitions.h</file>
-         <hash>1f3858210cbb62ac0ec8bab742ec076d3151c30ee46a1ad9d0d67696908bad8a</hash>
+         <hash>abecec21090cf3511b12e01a124d2ee88f87f853d780cc1497616838a47d5b42</hash>
       </entry>
       <entry>
          <file>..\src\config\same53_lan9255_evb\toolchain_specifics.h</file>
@@ -2937,7 +2937,7 @@
       </entry>
       <entry>
          <file>..\src\config\same53_lan9255_evb\driver\lan9255\drv_lan9255_ecat_util.h</file>
-         <hash>79eb40663806af825705a41eb472ab1d7f9ee6f91c55ae573e52ca4294f15f77</hash>
+         <hash>441930a47311365ce63eb62a09e187fb0a6bebe7249cad2271a5da5074d929e1</hash>
       </entry>
       <entry>
          <file>..\src\slave_stack\ecatcoe.h</file>
@@ -2949,7 +2949,7 @@
       </entry>
       <entry>
          <file>..\src\config\same53_lan9255_evb\driver\lan9255\drv_lan9255_ecat_util.c</file>
-         <hash>90f6b9ee4535ab8a54dc014e690a7336112cda9e42b8da6c02673105b2c909a3</hash>
+         <hash>fb8b724e1caafb25fc6b00b72dd3952b3015dfccde2bd514c6ff72acef0dbe18</hash>
       </entry>
       <entry>
          <file>..\src\packs\LAN9255ZMX020_DFP\component\dsu.h</file>
@@ -3065,7 +3065,7 @@
       </entry>
       <entry>
          <file>..\src\config\same53_lan9255_evb\peripheral\qspi\plib_qspi_spi.c</file>
-         <hash>837326b1dd534db6c1c218bb6a5c9e2f850647b316b04c6b1cf9eb5b5c686f32</hash>
+         <hash>b0d2103cab0b7ffcf0f34fb0748d8ffaafbd54a075ec47b2e239f550fdb5275b</hash>
       </entry>
       <entry>
          <file>..\src\slave_stack\bootmode.c</file>
